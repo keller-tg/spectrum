@@ -1,0 +1,83 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "distributism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Distributism" },
+  slugs: { en: "distributism" },
+  spectrum: "centre",
+  tags: ["religious"],
+  family: "distributism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Developed by Hilaire Belloc and G. K. Chesterton in the 1910s and 1920s from Catholic social teaching (Rerum novarum, 1891); its adherents organised the Distributist League in 1926.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: -40,
+    ownership: 20,
+    trade: -30,
+    liberty: 10,
+    centralization: 60,
+    participation: 5,
+    tradition: 60,
+    religion: 50,
+    ecology: 30,
+    nation: -15,
+    intervention: 10,
+    borders: 10,
+  },
+  salience: {
+    distribution: 0.8,
+    ownership: 1,
+    trade: 0.3,
+    liberty: 0.2,
+    centralization: 0.7,
+    participation: 0.2,
+    tradition: 0.5,
+    religion: 0.5,
+    ecology: 0.3,
+    nation: 0.2,
+    intervention: 0.1,
+    borders: 0.1,
+  },
+  rationale: {
+    en: "Defined by spreading productive property as widely as possible among families, small firms, farms, guilds and cooperatives, opposing concentration under both capitalism and state socialism (private but dispersed Ownership, active policy on Distribution); it pairs this with subsidiarity, local economies and Catholic social teaching.",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "The economic core is clear and well documented; positions beyond economics are inferred from its Catholic and agrarian background.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the centre rather than on the right: distributism is a Catholic 'third way' between capitalism and socialism, socially traditional but without an authoritarian programme.",
+  },
+  sources: [
+    {
+      title: "Distributism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Distributism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Distributism",
+      publisher: "Encyclopedia.com (New Catholic Encyclopedia)",
+      url: "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/distributism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Quadragesimo Anno (Pius XI, 1931)",
+      publisher: "Holy See",
+      url: "https://www.vatican.va/content/pius-xi/en/encyclicals/documents/hf_p-xi_enc_19310515_quadragesimo-anno.html",
+      kind: "primary",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

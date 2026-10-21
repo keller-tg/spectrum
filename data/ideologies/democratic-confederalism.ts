@@ -1,0 +1,77 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "democratic-confederalism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Democratic confederalism" },
+  slugs: { en: "democratic-confederalism" },
+  aka: ["Apoism"],
+  spectrum: "radical-left",
+  tags: [],
+  family: "communalism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Introduced by Abdullah Öcalan in his 2005 declaration of democratic confederalism in Kurdistan and adopted by the PKK the same year.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: -70,
+    ownership: -60,
+    trade: -30,
+    liberty: -55,
+    centralization: 90,
+    participation: -95,
+    tradition: -75,
+    religion: -40,
+    ecology: 65,
+    nation: 70,
+    intervention: 50,
+    borders: -50,
+  },
+  salience: {
+    distribution: 0.6,
+    ownership: 0.6,
+    trade: 0.2,
+    liberty: 0.5,
+    centralization: 0.9,
+    participation: 1,
+    tradition: 0.8,
+    religion: 0.4,
+    ecology: 0.7,
+    nation: 0.7,
+    intervention: 0.4,
+    borders: 0.3,
+  },
+  rationale: {
+    en: "Defined by direct democracy through communes and councils confederated without a nation-state (toward Rule by the many and Decentralized), with women's liberation, ecology and a cooperative economy as co-equal pillars.",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "Öcalan's texts are explicit, but implementation in North and East Syria has diverged from theory and is hard to assess independently.",
+    },
+  },
+  classificationNote: {
+    en: "Placed on the radical left rather than with anarchism: it grew out of Bookchin's libertarian municipalism and rejects the state, but Öcalan and the movement reject the anarchist label and keep a socialist framing.",
+  },
+  sources: [
+    {
+      title: "Democratic confederalism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Democratic_confederalism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Democratic Confederalism (Abdullah Öcalan, 2011)",
+      publisher: "The Anarchist Library",
+      url: "https://theanarchistlibrary.org/library/abdullah-ocalan-democratic-confederalism",
+      kind: "primary",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-a", date: "2026-10-21" },
+} satisfies IdeologyInput;

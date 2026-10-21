@@ -1,0 +1,83 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "strasserism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Strasserism" },
+  slugs: { en: "strasserism" },
+  spectrum: "third-position",
+  tags: [],
+  family: "third-position",
+  labelStatus: "academic",
+  termOrigin: {
+    en: "Named by historians and later sympathisers after Gregor and Otto Strasser, leaders of the NSDAP's anti-capitalist wing until Otto's break with Hitler in 1930 and Gregor's murder in 1934; Otto Strasser called his programme 'German Socialism' and later 'Solidarism'.",
+  },
+  extremist: true,
+  estimate: false,
+  coords: {
+    distribution: -60,
+    ownership: -50,
+    trade: -75,
+    liberty: 85,
+    centralization: 30,
+    participation: 85,
+    tradition: 65,
+    religion: 25,
+    ecology: 20,
+    nation: -90,
+    intervention: -20,
+    borders: 90,
+  },
+  salience: {
+    distribution: 0.8,
+    ownership: 0.7,
+    trade: 0.4,
+    liberty: 0.6,
+    centralization: 0.4,
+    participation: 0.6,
+    tradition: 0.5,
+    religion: 0.2,
+    ecology: 0.3,
+    nation: 0.9,
+    intervention: 0.3,
+    borders: 0.7,
+  },
+  rationale: {
+    en: "The anti-capitalist current of early National Socialism: national ownership of large industry, banks and land with hereditary usage rights, the break-up of heavy industry and a de-urbanised, corporatist 'German socialism', combined with racial nationalism and antisemitism under an authoritarian state; Otto Strasser later proposed a federal Germany of autonomous regions (toward Decentralized).",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "Otto Strasser's programme is documented, but his own accounts are considered unreliable and later Strasserist groups vary.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the third position rather than on the far right because it explicitly fuses anti-capitalist economics with ultranationalism (D-029); it remains a form of national socialism, including its antisemitism, and is often grouped with the far right.",
+  },
+  sources: [
+    {
+      title: "Strasserism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Strasserism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Strasser, Gregor",
+      publisher: "Encyclopedia.com (The Columbia Encyclopedia, 6th ed.)",
+      url: "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/strasser-gregor",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Black Front",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Black_Front",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

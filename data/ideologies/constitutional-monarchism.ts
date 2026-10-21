@@ -1,0 +1,83 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "constitutional-monarchism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Constitutional monarchism" },
+  slugs: { en: "constitutional-monarchism" },
+  spectrum: "right",
+  tags: [],
+  family: "monarchism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Support for constitutional monarchy, the form of government that developed in England after the Glorious Revolution and the Bill of Rights 1689 and spread across Europe in the 19th century.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: 20,
+    ownership: 25,
+    trade: 30,
+    liberty: 0,
+    centralization: -10,
+    participation: 15,
+    tradition: 45,
+    religion: 20,
+    ecology: 0,
+    nation: -20,
+    intervention: -10,
+    borders: 15,
+  },
+  salience: {
+    distribution: 0.2,
+    ownership: 0.2,
+    trade: 0.2,
+    liberty: 0.2,
+    centralization: 0.1,
+    participation: 0.5,
+    tradition: 0.8,
+    religion: 0.3,
+    ecology: 0.1,
+    nation: 0.4,
+    intervention: 0.2,
+    borders: 0.2,
+  },
+  rationale: {
+    en: "Defined by support for a hereditary monarch as a mainly ceremonial head of state within parliamentary democracy, valued for continuity, national symbolism and standing above party politics (toward Traditional); elected institutions still decide, so it sits near representative democracy on Participation.",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "The defining institutional view is clear, but adherents' positions on most other axes vary widely and are weighted low.",
+    },
+  },
+  classificationNote: {
+    en: "Placed on the right rather than in the centre: constitutional monarchy is accepted by voters across the spectrum where it exists, but organised monarchist movements are usually conservative. D-029 splits monarchism, placing absolute monarchism on the far right.",
+  },
+  sources: [
+    {
+      title: "Constitutional monarchy",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Constitutional_monarchy",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "The role of the Monarchy",
+      publisher: "The Royal Family (royal.uk)",
+      url: "https://www.royal.uk/the-role-of-the-monarchy",
+      kind: "primary",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Monarchism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Monarchism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

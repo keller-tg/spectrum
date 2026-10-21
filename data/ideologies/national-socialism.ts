@@ -1,0 +1,106 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "national-socialism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "National socialism" },
+  slugs: { en: "national-socialism" },
+  aka: ["Nazism"],
+  spectrum: "far-right",
+  tags: ["ethnonationalist"],
+  family: "fascism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Self-designation of the National Socialist German Workers' Party (NSDAP), which took that name in 1920; 'Nazism' is the common shortened form.",
+  },
+  extremist: true,
+  estimate: false,
+  coords: {
+    distribution: -20,
+    ownership: 10,
+    trade: -80,
+    liberty: 100,
+    centralization: -95,
+    participation: 100,
+    tradition: 70,
+    religion: -20,
+    ecology: -10,
+    nation: -100,
+    intervention: -100,
+    borders: 100,
+  },
+  salience: {
+    distribution: 0.4,
+    ownership: 0.4,
+    trade: 0.5,
+    liberty: 1,
+    centralization: 0.7,
+    participation: 0.9,
+    tradition: 0.6,
+    religion: 0.3,
+    ecology: 0.2,
+    nation: 1,
+    intervention: 0.8,
+    borders: 1,
+  },
+  rationale: {
+    en: "Defined by racial ideology: the nation conceived as a biological race, with antisemitism and the exclusion, persecution and murder of those deemed outside it (Closed borders at its extreme); total control of public and private life under a single leader; and wars of conquest for territory in Eastern Europe.",
+  },
+  placement: {
+    confidence: "high",
+    reason: {
+      en: "Extensively documented in its own programme and in the regime's practice from 1933 to 1945.",
+    },
+  },
+  classificationNote: {
+    en: "Placed on the far right with fascism, following scholarly consensus; the 'socialism' in its name referred to a racially defined national community, and the regime accepted private property and capitalist enterprise as long as they served the state.",
+  },
+  sources: [
+    {
+      title: "Nazism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Nazism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Nazi Racism",
+      publisher: "United States Holocaust Memorial Museum, Holocaust Encyclopedia",
+      url: "https://encyclopedia.ushmm.org/content/en/article/nazi-racism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Adolf Hitler and the Nazi Rise to Power, 1918–1933",
+      publisher: "United States Holocaust Memorial Museum, Holocaust Encyclopedia",
+      url: "https://encyclopedia.ushmm.org/content/en/article/the-nazi-rise-to-power",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+  ],
+  atrocity: {
+    basis: "scholarly-consensus",
+    note: {
+      en: "The Holocaust, the systematic, state-sponsored persecution and murder of six million European Jews by Nazi Germany and its allies and collaborators, alongside the mass murder of Roma, people with disabilities, Soviet prisoners of war and others, was documented in evidence before the International Military Tribunal at Nuremberg (1945–46), which convicted leading Nazi officials of crimes against humanity. There is overwhelming scholarly consensus that the Holocaust was genocide.",
+    },
+    sources: [
+      {
+        title: "Introduction to the Holocaust: What was the Holocaust?",
+        publisher: "United States Holocaust Memorial Museum, Holocaust Encyclopedia",
+        url: "https://encyclopedia.ushmm.org/content/en/article/introduction-to-the-holocaust",
+        kind: "encyclopedia",
+        accessed: "2026-10-21",
+      },
+      {
+        title: "International Military Tribunal at Nuremberg",
+        publisher: "United States Holocaust Memorial Museum, Holocaust Encyclopedia",
+        url: "https://encyclopedia.ushmm.org/content/en/article/international-military-tribunal-at-nuremberg",
+        kind: "encyclopedia",
+        accessed: "2026-10-21",
+      },
+    ],
+  },
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

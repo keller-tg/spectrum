@@ -1,0 +1,73 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "democratic-socialism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Democratic socialism" },
+  slugs: { en: "democratic-socialism" },
+  spectrum: "left",
+  tags: [],
+  family: "socialism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Used since the late 19th century and popularised in the 20th by socialists distinguishing their aims from one-party Soviet-style socialism.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: -65,
+    ownership: -50,
+    trade: -25,
+    liberty: -35,
+    centralization: 5,
+    participation: -25,
+    tradition: -45,
+    religion: -40,
+    ecology: 35,
+    nation: 40,
+    intervention: 30,
+    borders: -35,
+  },
+  salience: {
+    distribution: 1,
+    ownership: 0.9,
+    trade: 0.4,
+    liberty: 0.5,
+    centralization: 0.3,
+    participation: 0.5,
+    tradition: 0.5,
+    religion: 0.3,
+    ecology: 0.4,
+    nation: 0.4,
+    intervention: 0.4,
+    borders: 0.4,
+  },
+  rationale: {
+    en: "Defined by the aim of moving beyond capitalism through democratic means: social or cooperative ownership of major industries (toward Collective ownership) and strong redistribution, within multi-party democracy and with more emphasis on workplace democracy than social democracy.",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "Long-standing tradition, but the label is also used for social-democratic reformism, so adherents' ownership positions vary.",
+    },
+  },
+  sources: [
+    {
+      title: "Democratic socialism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Democratic_socialism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Socialism",
+      publisher: "Stanford Encyclopedia of Philosophy",
+      url: "https://plato.stanford.edu/entries/socialism/",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-a", date: "2026-10-21" },
+} satisfies IdeologyInput;

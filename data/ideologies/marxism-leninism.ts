@@ -1,0 +1,73 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "marxism-leninism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Marxism–Leninism" },
+  slugs: { en: "marxism-leninism" },
+  spectrum: "radical-left",
+  tags: [],
+  family: "marxism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Formulated in the Soviet Union after Lenin's death in 1924, popularised by the 1938 party history issued under Stalin, and adopted as official doctrine by ruling communist parties.",
+  },
+  extremist: true,
+  estimate: false,
+  coords: {
+    distribution: -95,
+    ownership: -95,
+    trade: -60,
+    liberty: 80,
+    centralization: -90,
+    participation: 85,
+    tradition: -40,
+    religion: -90,
+    ecology: -55,
+    nation: 40,
+    intervention: -25,
+    borders: 55,
+  },
+  salience: {
+    distribution: 1,
+    ownership: 1,
+    trade: 0.4,
+    liberty: 0.8,
+    centralization: 0.8,
+    participation: 0.9,
+    tradition: 0.4,
+    religion: 0.7,
+    ecology: 0.3,
+    nation: 0.5,
+    intervention: 0.4,
+    borders: 0.3,
+  },
+  rationale: {
+    en: "Defined by state ownership and central planning in place of market distribution, under the leading role of a single vanguard party organised by democratic centralism (toward Collective ownership, Authority, Centralized and Rule by the few); officially atheist and internationalist, though state-centred in practice.",
+  },
+  placement: {
+    confidence: "high",
+    reason: {
+      en: "Codified state doctrine of the USSR and other ruling communist parties, with a well-documented programme and record.",
+    },
+  },
+  sources: [
+    {
+      title: "Marxism–Leninism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Marxism%E2%80%93Leninism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "The State and Revolution (Lenin, 1917)",
+      publisher: "Marxists Internet Archive",
+      url: "https://www.marxists.org/archive/lenin/works/1917/staterev/",
+      kind: "primary",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-a", date: "2026-10-21" },
+} satisfies IdeologyInput;

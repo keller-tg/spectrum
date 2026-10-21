@@ -1,0 +1,83 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "transhumanism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Transhumanism" },
+  slugs: { en: "transhumanism" },
+  spectrum: "centre",
+  tags: ["technological"],
+  family: "technopolitics",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Popularised by the biologist Julian Huxley in a 1957 essay; organised since 1998 in the World Transhumanist Association, renamed Humanity+ in 2008.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: 0,
+    ownership: 10,
+    trade: 40,
+    liberty: -55,
+    centralization: 0,
+    participation: 0,
+    tradition: -80,
+    religion: -55,
+    ecology: -45,
+    nation: 45,
+    intervention: 0,
+    borders: -20,
+  },
+  salience: {
+    distribution: 0.2,
+    ownership: 0.2,
+    trade: 0.2,
+    liberty: 0.7,
+    centralization: 0.1,
+    participation: 0.2,
+    tradition: 0.9,
+    religion: 0.5,
+    ecology: 0.5,
+    nation: 0.3,
+    intervention: 0.1,
+    borders: 0.1,
+  },
+  rationale: {
+    en: "Defined by using technology to overcome human biological limits through life extension and enhancement, which places it far toward Progressive on inherited norms and toward Liberty through 'morphological freedom'; economic positions range from libertarian to social-democratic.",
+  },
+  placement: {
+    confidence: "low",
+    reason: {
+      en: "A philosophical movement rather than a political programme; its political wings disagree on economics and regulation.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the centre per D-029 because it is defined mainly by its stance on technology and human enhancement, not by a left–right economic position.",
+  },
+  sources: [
+    {
+      title: "Transhumanism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Transhumanism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "A History of Transhumanist Thought (Nick Bostrom, 2005)",
+      publisher: "Journal of Evolution and Technology (author's copy)",
+      url: "https://nickbostrom.com/papers/history.pdf",
+      kind: "academic",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "The Transhumanist Declaration",
+      publisher: "Humanity+",
+      url: "https://www.humanityplus.org/the-transhumanist-declaration",
+      kind: "primary",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-a", date: "2026-10-21" },
+} satisfies IdeologyInput;

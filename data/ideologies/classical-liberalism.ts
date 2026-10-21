@@ -1,0 +1,83 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "classical-liberalism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Classical liberalism" },
+  slugs: { en: "classical-liberalism" },
+  spectrum: "centre",
+  tags: [],
+  family: "liberalism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "A retrospective label, applied from the late 19th century to distinguish earlier liberalism from social liberalism; now used by market-liberal thinkers and think tanks to describe themselves.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: 55,
+    ownership: 55,
+    trade: 80,
+    liberty: -45,
+    centralization: 20,
+    participation: 10,
+    tradition: -5,
+    religion: -5,
+    ecology: -35,
+    nation: 20,
+    intervention: 45,
+    borders: -30,
+  },
+  salience: {
+    distribution: 0.9,
+    ownership: 0.8,
+    trade: 0.8,
+    liberty: 0.8,
+    centralization: 0.3,
+    participation: 0.4,
+    tradition: 0.3,
+    religion: 0.4,
+    ecology: 0.2,
+    nation: 0.3,
+    intervention: 0.4,
+    borders: 0.3,
+  },
+  rationale: {
+    en: "Defined by limited constitutional government, private property and free markets (toward Markets and Free trade) together with civil liberty and religious toleration; largely neutral on questions of inherited custom.",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "Well documented, but its 19th-century and contemporary forms differ on suffrage, social policy and migration.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the centre rather than with libertarianism because it accepts a tax-funded state providing public goods; modern libertarians often claim it as their ancestry.",
+  },
+  sources: [
+    {
+      title: "Classical liberalism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Classical_liberalism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Liberalism",
+      publisher: "Stanford Encyclopedia of Philosophy",
+      url: "https://plato.stanford.edu/entries/liberalism/",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "An Inquiry into the Nature and Causes of the Wealth of Nations (Adam Smith, 1776)",
+      publisher: "Project Gutenberg",
+      url: "https://www.gutenberg.org/ebooks/3300",
+      kind: "primary",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-a", date: "2026-10-21" },
+} satisfies IdeologyInput;

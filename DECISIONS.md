@@ -112,15 +112,69 @@ at least one answer. Otherwise the plain mean is used with a confidence penalty.
 axis per block). This keeps every prefix balanced. The upgrade ("36 more questions") keeps the
 existing answers and creates a new result linked by `upgradedFrom`.
 
-**D-010 · 🟢 · Confidence (provisional):** `n/(n+2) · (1 − sd) · balance`. Tuned in Phase 2 against
-fixtures.
+**D-010 · 🟢 · Confidence (provisional):** `n/(n+2) · (1 − variance) · balance`, where balance is 0.8 if
+only one keying side was answered. Variance (not SD) is used so ordinary agree vs strongly-agree
+variation costs a few percent, while full contradiction (variance 1) costs everything. A tension note
+appears at SD > 0.5 or on a contradicted mirror pair.
 
-**D-011 · 🟢 · Quality flags (provisional):** straightline, acquiescence, contradiction, fast,
-sparse. Thresholds are in PLAN §6.3.
+**D-011 · 🟢 · Quality flags (provisional):** straightline (mode share ≥ 80% or run ≥ 70%),
+acquiescence (|mean raw| ≥ 1.0), contradiction (≥ 2 mirror pairs and ≥ 25% of pairs ≥ 1.5 apart),
+fast (median < 1.2 s), sparse (≥ 40% skipped; confidence only). All pattern checks need ≥ 12
+answers.
+
+The acquiescence threshold is 1.0, not the 1.2 first planned. In Quick (2/1 keying per axis), a
+consistent respondent at the "two-item" pole on every axis averages ±0.67, so the threshold sits
+safely above that while still catching yea-saying.
 
 **D-028 · ✅ · 72 English items in Phase 2** (Quick = first 36), then stop for review.
 
 **D-037 · ✅ · The only profile question is an optional country.** It defaults the party set.
+
+**D-061 · 🟢 · Question-bank layout.** There are six blocks of 12, and each block covers every
+axis once.
+- **Block 1** opens with low-heat items: direct democracy, then the income gap, then local
+  decisions. The drug and family items sit at positions 9 and 11, and the "my country vs abroad"
+  items are spread out.
+- **Mirror pairs:** block 1 holds each axis's first mirror item. The second halves are split
+  between blocks 2 and 3 (each ≥ 15 positions later), so they never arrive as a run at the end of
+  Quick.
+- **Blocks 4–6** complete Standard at 3+/3−.
+- **Priming:** pairs that would prime each other are kept apart:
+  - religion-in-schools vs national curricula
+  - deregulation vs regional tax rates
+  - "citizen of the world" before the trade/borders items
+  - aid vs inheritance tax
+- **int-05/int-06** (neutrality vs defending partners) form a declared Standard-only mirror pair,
+  14 apart.
+
+**D-063 · 🟢 · Question review (reviewer subagent, Phase 2).** I adopted almost all of the
+reviewer's ~40 findings. Highlights:
+- **Keys that would flip for real groups were rewritten.**
+  - eco-06: green "build faster" supporters would have agreed, so it now reads "jobs over
+    local nature".
+  - dist-05: union wage floors in collective-bargaining countries. It now reads "no minimum set by
+    law *or* by unions".
+  - part-04: it measured authoritarianism, so it now reads "leaders who need not win elections
+    decide better long-term".
+- **Mirror pairs were tightened into true opposites:** dist-01/02, own-01/02, cent-01/02,
+  part-01/02, trad-01/02, int-01/02, eco-01/02, bord-01/02.
+- **Status-quo wording was removed:** "kept low", "keep full control", "stay out", "its allies",
+  "much more aid", "public schools" (the UK meaning).
+- **Coverage fixes:**
+  - wealth: dist-06 is now inheritance tax, replacing basic income, which cuts across camps
+  - ceiling effects fixed in dist-03 and own-06
+  - social change in Quick: the same-sex-marriage item moved to Standard, and "adapt traditions"
+    moved into Quick
+- **The reviewer's suggestions for Deep** (Phase 9) are noted for that bank: wealth/rent caps,
+  housing ownership, labour standards in trade, emergency powers, voting age, gender-neutral
+  language, religious exemptions, carbon tax, arms exports, labour-migrant selection.
+- **Not adopted:** the claim that answering "agree" to both items of a mirror pair counts as a
+  contradiction. That pattern is a keyed gap of 1.0, below the 1.5 threshold, so only
+  agree + strongly agree or strongly agree to both are flagged. The threshold stays at 1.5.
+
+**D-062 · 🟢 · Anchor catalog in Phase 2.** 52 ideology stubs across all nine spectra and 21
+families, with coordinates, salience and sources but no page content, serve as calibration
+anchors. They become full Tier A entries in Phase 5. Stubs are never published as pages.
 
 ---
 
@@ -140,6 +194,13 @@ they push the best match to 95%+. Capped at 99%.
   for honest respondents; the other levels are reported.
 - Deep is simulated on the Deep bank *structure* until Phase 9 writes the items.
 - Strict and family-level hit rates are both reported.
+- **Gate metric (Phase 2):** the spec says to count same-family and parent/child matches as hits
+  in all modes. So for Deep and Standard, a hit is "exact, parent/child or same family within the
+  top 3", and for Quick it is "exact within the top 5, or the top match in the same family". The
+  report always shows the stricter numbers next to these: exact @1/@3/@5, and parent/child only @3.
+- **Test (c):** "clearly opposite" means an unweighted RMS distance ≥ 100 between two entries. The
+  check is that a respondent simulated from archetype A never ranks such an entry above A itself.
+  (Ranking below the respondent's *best* match is trivially true.)
 - I read the spec's "do NOT tune data until tests pass" as **never bending catalog coordinates to
   make a test pass**. When a gate fails, I report it and fix the engine or questions only if
   they're actually wrong.

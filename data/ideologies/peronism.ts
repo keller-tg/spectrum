@@ -1,0 +1,85 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "peronism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Peronism" },
+  slugs: { en: "peronism" },
+  aka: ["Justicialism"],
+  spectrum: "third-position",
+  tags: [],
+  family: "statist-nationalism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Named after Juan Domingo Perón, president of Argentina in 1946–1955 and 1973–1974; Perón called his doctrine Justicialism, and the Justicialist Party remains its main vehicle.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: -55,
+    ownership: -30,
+    trade: -50,
+    liberty: 20,
+    centralization: -25,
+    participation: 10,
+    tradition: 15,
+    religion: 10,
+    ecology: -35,
+    nation: -60,
+    intervention: 40,
+    borders: -15,
+  },
+  salience: {
+    distribution: 0.9,
+    ownership: 0.6,
+    trade: 0.6,
+    liberty: 0.4,
+    centralization: 0.3,
+    participation: 0.5,
+    tradition: 0.2,
+    religion: 0.2,
+    ecology: 0.3,
+    nation: 0.8,
+    intervention: 0.5,
+    borders: 0.2,
+  },
+  rationale: {
+    en: "Defined by its 'three flags' of social justice, economic independence and political sovereignty: redistribution toward organised labour and the welfare state (toward Equality), nationalised utilities and import-substituting industry (Protectionism), and anti-imperialist nationalism with Cold War non-alignment, led by a charismatic leader at the head of a mass movement.",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "Coordinates reflect classical Justicialism (1946–1955); later Peronist governments ranged from neoliberal to centre-left.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the third position under D-029 for its claim to stand between capitalism and communism. Perón's 'Third Position' (tercera posición) meant Cold War non-alignment and a middle way between individualism and collectivism; it is distinct from the post-war neo-fascist 'third positionism' of Terza Posizione and its successors. Since 1983 Peronism has competed in democratic elections, and many observers place its main factions in the centre or on the left.",
+  },
+  sources: [
+    {
+      title: "Peronism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Peronism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title:
+        "The rise and fall of the third position: Bolivia, Perón and the Cold War, 1943-1954 (Loris Zanatta)",
+      publisher: "SciELO Social Sciences (translated from Desarrollo Económico)",
+      url: "https://socialsciences.scielo.org/scielo.php?script=sci_arttext&pid=S0046-001X2006000100004",
+      kind: "academic",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Justicialist Party",
+      publisher: "Encyclopedia.com (Encyclopedia of Latin American History and Culture)",
+      url: "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/justicialist-party",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

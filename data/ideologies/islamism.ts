@@ -1,0 +1,92 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "islamism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Islamism" },
+  slugs: { en: "islamism" },
+  aka: ["Political Islam"],
+  spectrum: "theocratic",
+  tags: ["religious"],
+  family: "theocracy",
+  labelStatus: "contested",
+  termOrigin: {
+    en: "An old synonym for 'Islam' that fell out of use and returned after Iran's 1978–79 revolution as scholars' and journalists' term for movements seeking an Islamic political order; many adherents reject it and speak of the 'Islamic movement' or 'Islamic activism'.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: -20,
+    ownership: 20,
+    trade: 0,
+    liberty: 55,
+    centralization: -20,
+    participation: 30,
+    tradition: 80,
+    religion: 90,
+    ecology: -5,
+    nation: 15,
+    intervention: 0,
+    borders: 20,
+  },
+  salience: {
+    distribution: 0.3,
+    ownership: 0.3,
+    trade: 0.1,
+    liberty: 0.6,
+    centralization: 0.2,
+    participation: 0.4,
+    tradition: 0.8,
+    religion: 1,
+    ecology: 0.1,
+    nation: 0.4,
+    intervention: 0.2,
+    borders: 0.1,
+  },
+  rationale: {
+    en: "Defined by the aim of making Islam, and sharia in particular, the basis of state law and public life (toward Religious); most currents pursue this through social activism and electoral politics, a minority through revolution or armed struggle. It is socially traditional, ranks the community of believers above the nation-state, and supports Islamic charity and welfare without rejecting private property.",
+  },
+  placement: {
+    confidence: "low",
+    reason: {
+      en: "A very broad current spanning electoral parties and revolutionary groups; coordinates describe the mainstream that seeks sharia-based law through politics.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the theocratic spectrum under D-029's inclusion rule because it seeks sharia as the basis of state law; Muslim democratic parties that do not seek this belong in their usual spectra with a religious tag.",
+  },
+  sources: [
+    {
+      title: "Islamism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Islamism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Islamism",
+      publisher: "Encyclopedia.com (Dictionary of the Israeli-Palestinian Conflict)",
+      url: "https://www.encyclopedia.com/politics/dictionaries-thesauruses-pictures-and-press-releases/islamism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Political Islam",
+      publisher: "Encyclopedia.com (Encyclopedia of Islam and the Muslim World)",
+      url: "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/political-islam",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title:
+        "What Islamists Need to Be Clear About: The Case of the Egyptian Muslim Brotherhood (Brown, Hamzawy, Ottaway)",
+      publisher: "Carnegie Endowment for International Peace",
+      url: "https://carnegieendowment.org/india/posts/2007/02/what-islamists-need-to-be-clear-about-the-case-of-the-egyptian-muslim-brotherhood",
+      kind: "academic",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

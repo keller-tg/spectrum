@@ -49,7 +49,9 @@ export default {
   },
   placement: {
     confidence: "high",
-    reason: { en: "Long-established, well-documented tradition with stable programmatic core across countries." },
+    reason: {
+      en: "Long-established, well-documented tradition with stable programmatic core across countries.",
+    },
   },
   sources: [
     {

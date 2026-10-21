@@ -5,7 +5,9 @@
 import { readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-const CATALOGS = [{ dir: "data/ideologies", type: "IdeologyInput", exportName: "IDEOLOGIES" }] as const;
+const CATALOGS = [
+  { dir: "data/ideologies", type: "IdeologyInput", exportName: "IDEOLOGIES" },
+] as const;
 
 for (const { dir, type, exportName } of CATALOGS) {
   const files = readdirSync(dir)

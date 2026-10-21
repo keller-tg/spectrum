@@ -1,0 +1,83 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "anarcho-capitalism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Anarcho-capitalism" },
+  slugs: { en: "anarcho-capitalism" },
+  spectrum: "libertarian",
+  tags: [],
+  family: "libertarianism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "First documented in Karl Hess's 1969 essay 'The Death of Politics' and popularised by Murray Rothbard in the early 1970s.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: 100,
+    ownership: 100,
+    trade: 100,
+    liberty: -85,
+    centralization: 90,
+    participation: 15,
+    tradition: 0,
+    religion: -10,
+    ecology: -60,
+    nation: 20,
+    intervention: 95,
+    borders: -80,
+  },
+  salience: {
+    distribution: 1,
+    ownership: 1,
+    trade: 0.6,
+    liberty: 0.9,
+    centralization: 0.8,
+    participation: 0.3,
+    tradition: 0.2,
+    religion: 0.2,
+    ecology: 0.4,
+    nation: 0.3,
+    intervention: 0.6,
+    borders: 0.4,
+  },
+  rationale: {
+    en: "Defined by replacing the state entirely with private property and voluntary exchange, including private courts, security and roads (the extremes of Markets and Private ownership); most adherents also favour unrestricted trade and non-intervention.",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "Core thesis is clear (Rothbard, David Friedman), but adherents split on migration and social questions.",
+    },
+  },
+  classificationNote: {
+    en: "Placed with libertarianism rather than anarchism: adherents call themselves anarchists, but most anarchist traditions reject the label because they treat capitalist property as a form of hierarchy (D-029).",
+  },
+  sources: [
+    {
+      title: "Anarcho-capitalism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Anarcho-capitalism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Anarchism",
+      publisher: "Stanford Encyclopedia of Philosophy",
+      url: "https://plato.stanford.edu/entries/anarchism/",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Libertarianism",
+      publisher: "Stanford Encyclopedia of Philosophy",
+      url: "https://plato.stanford.edu/entries/libertarianism/",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-a", date: "2026-10-21" },
+} satisfies IdeologyInput;

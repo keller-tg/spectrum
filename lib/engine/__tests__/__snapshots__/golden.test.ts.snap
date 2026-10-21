@@ -1,0 +1,116 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`golden outputs (engine 1.0.0) > quick-left-libertarian > engine-1.0.0 1`] = `
+{
+  "confidences": [
+    0.6,
+    0.571875,
+    0.46875,
+    0.525,
+    0.5625,
+    0.571875,
+    0.525,
+    0.375,
+    0.45,
+    0.6,
+    0.571875,
+    0.46875,
+  ],
+  "flags": [],
+  "overall": 0.524219,
+  "scores": [
+    -100,
+    12.5,
+    25,
+    -50,
+    -25,
+    12.5,
+    -50,
+    25,
+    50,
+    -50,
+    12.5,
+    25,
+  ],
+  "tension": [],
+}
+`;
+
+exports[`golden outputs (engine 1.0.0) > standard-centrist-noisy > engine-1.0.0 1`] = `
+{
+  "confidences": [
+    0.643519,
+    0.578125,
+    0.416667,
+    0.654762,
+    0.62128,
+    0.670883,
+    0.610119,
+    0.520833,
+    0.625,
+    0.610119,
+    0.661458,
+    0.525794,
+  ],
+  "flags": [],
+  "overall": 0.59488,
+  "scores": [
+    -41.666667,
+    25,
+    0,
+    0,
+    -12.5,
+    -20.833333,
+    25,
+    25,
+    -25,
+    25,
+    -8.333333,
+    16.666667,
+  ],
+  "tension": [
+    "ownership",
+    "trade",
+    "religion",
+    "borders",
+  ],
+}
+`;
+
+exports[`golden outputs (engine 1.0.0) > standard-right-traditional > engine-1.0.0 1`] = `
+{
+  "confidences": [
+    0.6875,
+    0.723958,
+    0.625,
+    0.625,
+    0.661458,
+    0.708333,
+    0.5,
+    0.661458,
+    0.6875,
+    0.625,
+    0.661458,
+    0.625,
+  ],
+  "flags": [],
+  "overall": 0.649306,
+  "scores": [
+    50,
+    58.333333,
+    50,
+    50,
+    58.333333,
+    33.333333,
+    0,
+    -41.666667,
+    0,
+    0,
+    -41.666667,
+    -50,
+  ],
+  "tension": [
+    "tradition",
+  ],
+}
+`;

@@ -1,0 +1,83 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "national-bolshevism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "National bolshevism" },
+  slugs: { en: "national-bolshevism" },
+  spectrum: "third-position",
+  tags: [],
+  family: "third-position",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "First used around 1919–1920 for Hamburg communists (Heinrich Laufenberg, Fritz Wolffheim) who urged a national war against the Versailles powers; developed by Ernst Niekisch in Weimar Germany and revived in 1990s Russia by the National Bolshevik Party of Eduard Limonov and Aleksandr Dugin.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: -80,
+    ownership: -75,
+    trade: -60,
+    liberty: 85,
+    centralization: -70,
+    participation: 85,
+    tradition: 35,
+    religion: 0,
+    ecology: -30,
+    nation: -85,
+    intervention: -60,
+    borders: 40,
+  },
+  salience: {
+    distribution: 0.8,
+    ownership: 0.8,
+    trade: 0.3,
+    liberty: 0.6,
+    centralization: 0.5,
+    participation: 0.5,
+    tradition: 0.3,
+    religion: 0.2,
+    ecology: 0.2,
+    nation: 0.9,
+    intervention: 0.5,
+    borders: 0.3,
+  },
+  rationale: {
+    en: "Defined by an explicit synthesis of Bolshevik economics (collective ownership and planning, toward Equality and Collective) with ultranationalism (Nationalism) under a totalitarian state; in Weimar Germany it sought alliance with Soviet Russia against the West, and its post-Soviet Russian form championed imperial restoration.",
+  },
+  placement: {
+    confidence: "low",
+    reason: {
+      en: "Small and discontinuous movements in different countries and eras; the German and Russian strands differ on religion, tradition and ethnicity.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the third position rather than on the far right or radical left because it explicitly fuses left-wing (Bolshevik) economics with ultranationalism, which is the defining third-position synthesis under D-029.",
+  },
+  sources: [
+    {
+      title: "National Bolshevism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/National_Bolshevism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "National Bolshevik Party",
+      publisher: "Encyclopedia.com (Extremist Groups: Information for Students)",
+      url: "https://www.encyclopedia.com/politics/legal-and-political-magazines/national-bolshevik-party",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Excerpt on National Bolshevism from Martin A. Lee's The Beast Reawakens",
+      publisher: "libcom.org",
+      url: "https://libcom.org/article/excerpt-national-bolshevism-martin-lees-beast-reawakens",
+      kind: "academic",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

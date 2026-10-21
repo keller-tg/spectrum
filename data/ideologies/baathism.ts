@@ -1,0 +1,83 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "baathism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Ba'athism" },
+  slugs: { en: "baathism" },
+  spectrum: "third-position",
+  tags: [],
+  family: "statist-nationalism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "From Arabic ba'th, 'renaissance' or 'resurrection'; the Arab Ba'ath Party was founded in Damascus in 1947 by Michel Aflaq and Salah al-Din al-Bitar, drawing also on the ideas of Zaki al-Arsuzi.",
+  },
+  extremist: true,
+  estimate: false,
+  coords: {
+    distribution: -55,
+    ownership: -55,
+    trade: -50,
+    liberty: 85,
+    centralization: -80,
+    participation: 85,
+    tradition: -15,
+    religion: -40,
+    ecology: -50,
+    nation: -80,
+    intervention: -55,
+    borders: 30,
+  },
+  salience: {
+    distribution: 0.6,
+    ownership: 0.6,
+    trade: 0.3,
+    liberty: 0.8,
+    centralization: 0.5,
+    participation: 0.7,
+    tradition: 0.3,
+    religion: 0.6,
+    ecology: 0.2,
+    nation: 1,
+    intervention: 0.4,
+    borders: 0.2,
+  },
+  rationale: {
+    en: "Defined by pan-Arab nationalism, the idea of one Arab nation (toward Nationalism), combined with 'Arab socialism' (nationalisation and land reform, especially after 1963) and secular modernisation; in power in Syria and Iraq it took the form of a one-party state run through the party, the army and the security services (Authority, Rule by the few).",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "The founding doctrine is clear; Iraqi and Syrian Ba'athism split in 1966, and practice in both states departed from it.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the third position rather than the radical left: it combines Arab socialism with pan-Arab nationalism and one-party rule, and its chief ideologue Michel Aflaq broke with the communists and rejected Marxist materialism in favour of national unity.",
+  },
+  sources: [
+    {
+      title: "Ba'athism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Ba%27athism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Ba'th, al-",
+      publisher: "Encyclopedia.com (Encyclopedia of the Modern Middle East and North Africa)",
+      url: "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/bath-al",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Michel 'Aflaq",
+      publisher: "Encyclopedia.com (Encyclopedia of World Biography)",
+      url: "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/michel-aflaq",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

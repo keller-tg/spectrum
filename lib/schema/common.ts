@@ -7,11 +7,19 @@ export const nonEmpty = z.string().trim().min(1);
 export const localizedFull = z.object({ en: nonEmpty, de: nonEmpty, fr: nonEmpty });
 
 /** English required; de/fr added when that locale's content is completed (Phase 9). */
-export const localizedPartial = z.object({ en: nonEmpty, de: nonEmpty.optional(), fr: nonEmpty.optional() });
+export const localizedPartial = z.object({
+  en: nonEmpty,
+  de: nonEmpty.optional(),
+  fr: nonEmpty.optional(),
+});
 
 export const slugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "ASCII kebab-case slug");
 
-export const localizedSlugs = z.object({ en: slugSchema, de: slugSchema.optional(), fr: slugSchema.optional() });
+export const localizedSlugs = z.object({
+  en: slugSchema,
+  de: slugSchema.optional(),
+  fr: slugSchema.optional(),
+});
 
 export const axisIdSchema = z.enum(AXIS_IDS);
 

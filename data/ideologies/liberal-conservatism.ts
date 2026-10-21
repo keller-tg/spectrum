@@ -1,0 +1,73 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "liberal-conservatism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Liberal conservatism" },
+  slugs: { en: "liberal-conservatism" },
+  spectrum: "right",
+  tags: [],
+  family: "conservatism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Used since the 19th century for conservatives who accepted liberal economics and constitutional government; today it describes the mainstream centre-right in many democracies.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: 50,
+    ownership: 50,
+    trade: 50,
+    liberty: 10,
+    centralization: 0,
+    participation: 0,
+    tradition: 50,
+    religion: 15,
+    ecology: -20,
+    nation: 0,
+    intervention: -50,
+    borders: 25,
+  },
+  salience: {
+    distribution: 0.9,
+    ownership: 0.7,
+    trade: 0.6,
+    liberty: 0.4,
+    centralization: 0.2,
+    participation: 0.3,
+    tradition: 0.7,
+    religion: 0.3,
+    ecology: 0.3,
+    nation: 0.4,
+    intervention: 0.5,
+    borders: 0.4,
+  },
+  rationale: {
+    en: "Defined by pairing free-market economics (toward Markets, Private ownership and free trade) with conservative defence of inherited institutions, the family and gradual change (toward Traditional), within representative democracy; historically Atlanticist and willing to act abroad with allies.",
+  },
+  placement: {
+    confidence: "high",
+    reason: {
+      en: "Mainstream centre-right tradition with a stable programme; the balance of liberal and conservative elements varies by country.",
+    },
+  },
+  sources: [
+    {
+      title: "Liberal conservatism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Liberal_conservatism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Conservatism",
+      publisher: "Stanford Encyclopedia of Philosophy",
+      url: "https://plato.stanford.edu/entries/conservatism/",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

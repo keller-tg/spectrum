@@ -1,0 +1,83 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "christian-democracy",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Christian democracy" },
+  slugs: { en: "christian-democracy" },
+  spectrum: "centre",
+  tags: ["religious"],
+  family: "christian-democracy",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Used by Catholic social movements from the late 19th century (Leo XIII's encyclical Graves de communi re of 1901 addressed 'Christian democracy'); after 1945 it named the major centre-right parties of Germany, Italy and the Benelux countries.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: 0,
+    ownership: 0,
+    trade: 35,
+    liberty: 0,
+    centralization: 50,
+    participation: 5,
+    tradition: 50,
+    religion: 50,
+    ecology: 0,
+    nation: 50,
+    intervention: -10,
+    borders: 0,
+  },
+  salience: {
+    distribution: 0.7,
+    ownership: 0.5,
+    trade: 0.3,
+    liberty: 0.4,
+    centralization: 0.7,
+    participation: 0.3,
+    tradition: 0.7,
+    religion: 0.8,
+    ecology: 0.3,
+    nation: 0.6,
+    intervention: 0.3,
+    borders: 0.3,
+  },
+  rationale: {
+    en: "Defined by Christian social teaching applied through democratic politics: a social market economy between laissez-faire and socialism (centre on Distribution and Ownership), subsidiarity (toward Decentralized), defence of the family and a public role for Christian values (toward Traditional and Religious); in Europe it was a founding force of supranational integration.",
+  },
+  placement: {
+    confidence: "high",
+    reason: {
+      en: "Long-established party family with a documented doctrinal basis in Catholic social teaching; national parties differ mainly in emphasis.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the centre rather than on the right: Christian democratic parties sit on the centre-right in much of Europe, but the tradition is moderate on both economics (social market economy, welfare state) and society, and historically opposed both laissez-faire liberalism and socialism.",
+  },
+  sources: [
+    {
+      title: "Christian democracy",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Christian_democracy",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Christian Democrats",
+      publisher: "Encyclopedia.com (International Encyclopedia of the Social Sciences)",
+      url: "https://www.encyclopedia.com/social-sciences-and-law/sociology-and-social-reform/sociology-general-terms-and-concepts/christian",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Rerum Novarum (Leo XIII, 1891)",
+      publisher: "Holy See",
+      url: "https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html",
+      kind: "primary",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-b", date: "2026-10-21" },
+} satisfies IdeologyInput;

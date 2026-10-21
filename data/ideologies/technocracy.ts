@@ -1,0 +1,76 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "technocracy",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Technocracy" },
+  slugs: { en: "technocracy" },
+  spectrum: "centre",
+  tags: ["technological"],
+  family: "technopolitics",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "Given its modern sense by the engineer William H. Smyth in 1919 and adopted by the 1930s Technocracy movement around Howard Scott; today also applied by observers and critics to expert-led governments.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: -10,
+    ownership: 0,
+    trade: 30,
+    liberty: 20,
+    centralization: -50,
+    participation: 60,
+    tradition: -20,
+    religion: -40,
+    ecology: -15,
+    nation: 30,
+    intervention: 0,
+    borders: 0,
+  },
+  salience: {
+    distribution: 0.3,
+    ownership: 0.3,
+    trade: 0.2,
+    liberty: 0.4,
+    centralization: 0.6,
+    participation: 1,
+    tradition: 0.2,
+    religion: 0.3,
+    ecology: 0.2,
+    nation: 0.3,
+    intervention: 0.1,
+    borders: 0.1,
+  },
+  rationale: {
+    en: "Defined by the belief that public decisions should be made by technical experts applying scientific methods rather than by elected politicians or markets (toward Rule by the few), usually with central planning; positions on other axes vary.",
+  },
+  placement: {
+    confidence: "low",
+    reason: {
+      en: "An umbrella covering the 1930s Technocracy movement and later advocacy of expert-led government, which differ sharply on economics.",
+    },
+  },
+  classificationNote: {
+    en: "Placed in the centre per D-029 because it is defined mainly by one axis (expert rule); individual technocratic projects can sit elsewhere on the economic axes.",
+  },
+  sources: [
+    {
+      title: "Technocracy",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Technocracy",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Technocracy Inc. – Official Site",
+      publisher: "Technocracy Inc.",
+      url: "https://www.technocracyinc.org/",
+      kind: "primary",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-a", date: "2026-10-21" },
+} satisfies IdeologyInput;

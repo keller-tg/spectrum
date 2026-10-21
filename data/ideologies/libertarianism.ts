@@ -1,0 +1,73 @@
+import type { IdeologyInput } from "@/lib/schema/entries";
+
+export default {
+  id: "libertarianism",
+  kind: "ideology",
+  status: "stub",
+  tier: "A",
+  names: { en: "Libertarianism" },
+  slugs: { en: "libertarianism" },
+  spectrum: "libertarian",
+  tags: [],
+  family: "libertarianism",
+  labelStatus: "self-described",
+  termOrigin: {
+    en: "'Libertaire' was coined by the anarchist Joseph Déjacque in 1857; its use for free-market, limited-government politics spread in the United States from the 1950s and 1960s, popularised by Murray Rothbard and Robert Nozick.",
+  },
+  extremist: false,
+  estimate: false,
+  coords: {
+    distribution: 85,
+    ownership: 80,
+    trade: 95,
+    liberty: -65,
+    centralization: 50,
+    participation: 10,
+    tradition: -15,
+    religion: -15,
+    ecology: -50,
+    nation: 0,
+    intervention: 85,
+    borders: -40,
+  },
+  salience: {
+    distribution: 1,
+    ownership: 0.9,
+    trade: 0.7,
+    liberty: 1,
+    centralization: 0.4,
+    participation: 0.3,
+    tradition: 0.3,
+    religion: 0.3,
+    ecology: 0.5,
+    nation: 0.3,
+    intervention: 0.6,
+    borders: 0.3,
+  },
+  rationale: {
+    en: "Defined by individual liberty and self-ownership: a state limited to protecting rights, with minimal taxation and regulation (toward Markets and Private ownership), wide personal freedom (toward Liberty) and a non-interventionist foreign policy.",
+  },
+  placement: {
+    confidence: "medium",
+    reason: {
+      en: "Core is well documented, but the umbrella spans minarchists and anarcho-capitalists, and adherents divide on migration and social questions.",
+    },
+  },
+  sources: [
+    {
+      title: "Libertarianism",
+      publisher: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Libertarianism",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+    {
+      title: "Libertarianism",
+      publisher: "Stanford Encyclopedia of Philosophy",
+      url: "https://plato.stanford.edu/entries/libertarianism/",
+      kind: "encyclopedia",
+      accessed: "2026-10-21",
+    },
+  ],
+  review: { status: "draft", by: "claude-subagent-a", date: "2026-10-21" },
+} satisfies IdeologyInput;
