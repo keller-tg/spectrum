@@ -17,7 +17,12 @@
     "e2e": "playwright test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "npm run lint && npm run typecheck && npm run test"
+    "check": "npm run lint && npm run typecheck && npm run test",
+    "gen:index": "tsx scripts/gen-catalog-index.ts",
+    "validate": "tsx scripts/validate-data.ts",
+    "derive": "tsx scripts/build-derived.ts",
+    "calibration": "tsx scripts/calibration-report.ts",
+    "check-sources": "tsx scripts/check-sources.ts"
   },
   "dependencies": {
     "next": "^16.4.2",
