@@ -67,6 +67,25 @@ supports. Package manager is npm.
 English copy and questions. It reads naturally to a European and Commonwealth audience and is
 widely understood elsewhere.
 
+**D-057 · 🟢 · Cache Components off.** Next 16.4 scaffolds with `cacheComponents: true`, but
+next-intl documents static rendering through `generateStaticParams` + `next/root-params` and says
+nothing about Cache Components. Every page is plain SSG/ISR, which is all the app needs.
+Revisit if next-intl documents support.
+
+**D-058 · 🟢 · Fonts.** Bodoni Moda (display, optical-size axis) + Schibsted Grotesk (text/UI),
+self-hosted via `next/font`. Only the `latin` subset is preloaded (it covers en/de/fr); latin-ext
+loads on demand. The italic display face is a separate, non-preloaded face, since it sets only
+words of emphasis.
+
+**D-059 · 🟢 · String-literal lint.** `i18next/no-literal-string` in `jsx-text-only` mode plus a
+`no-restricted-syntax` rule for `aria-label`/`alt`/`title`/`placeholder` literals. The plugin's
+`jsx-only` mode flagged translation-call arguments and class names, which made it useless.
+
+**D-060 · 🟢 · Lighthouse measurement.** On localhost, Lighthouse's simulated mobile LCP (≈3.1 s,
+perf 94) is dominated by Next's baseline JS, because everything loads before the 78 ms observed
+LCP. The ≥ 95 gate is measured against the Vercel preview from Phase 3 onwards, not localhost.
+Accessibility, best practices: 100.
+
 ---
 
 ## B. Axes & questions

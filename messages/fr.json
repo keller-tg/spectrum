@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "siteName": "Spectrum",
+    "homeTitle": "Spectrum : un test politique à douze axes",
+    "homeDescription": "Un test gratuit qui vous situe sur douze axes politiques et montre quelles idéologies, quels pays, personnalités et partis sont les plus proches, avec une incertitude assumée. Sans compte."
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu principal"
+  },
+  "nav": {
+    "primary": "Navigation principale",
+    "home": "Spectrum, accueil",
+    "test": "Faire le test",
+    "compass": "Boussole",
+    "ideologies": "Idéologies",
+    "countries": "Pays",
+    "figures": "Personnalités",
+    "parties": "Partis",
+    "dashboard": "Tableau de bord",
+    "menu": "Menu"
+  },
+  "locale": {
+    "label": "Langue",
+    "names": { "en": "English", "de": "Deutsch", "fr": "Français" },
+    "short": { "en": "EN", "de": "DE", "fr": "FR" }
+  },
+  "theme": {
+    "toggle": "Basculer entre thème clair et thème sombre"
+  },
+  "footer": {
+    "disclaimer": "Spectrum est un outil d’interprétation. Il lit vos réponses à travers un modèle aux limites bien réelles ; il ne mesure pas qui vous êtes.",
+    "privacy": "Vos réponses restent dans votre navigateur, sauf si vous choisissez de les enregistrer.",
+    "explore": "Explorer",
+    "about": "À propos",
+    "method": "Méthode",
+    "privacyLink": "Confidentialité",
+    "imprint": "Mentions légales",
+    "source": "Code source",
+    "designSystem": "Système de design",
+    "status": "Titre provisoire, en développement."
+  },
+  "home": {
+    "kicker": "Douze axes · Gratuit · Sans compte",
+    "title": "La politique ne tient pas sur <em>une seule ligne</em>.",
+    "lead": "Répondez à de courtes affirmations, puis découvrez votre position sur douze axes indépendants, les idéologies, pays, personnalités et partis les plus proches, et le degré de certitude de ce portrait.",
+    "chooseMode": "Choisissez une durée",
+    "modeCount": "{count} questions",
+    "modeTime": "environ {minutes} min",
+    "recommended": "Recommandé",
+    "opensSoon": "Bientôt disponible",
+    "start": "Commencer",
+    "modes": {
+      "quick": { "name": "Rapide", "blurb": "Une première esquisse de votre position." },
+      "standard": {
+        "name": "Standard",
+        "blurb": "Un portrait plus net, avec une confiance plus solide."
+      },
+      "deep": {
+        "name": "Approfondi",
+        "blurb": "La lecture la plus détaillée : douze questions par axe."
+      }
+    },
+    "modesNote": "Vous pourrez prolonger un test court plus tard en gardant vos réponses. Ce que vous voyez ici est le test entier : aucune étape cachée.",
+    "axesKicker": "L’instrument",
+    "axesTitle": "Douze axes, quatre domaines",
+    "axesLead": "Chaque axe est indépendant. On peut préférer le marché et les frontières ouvertes, ou la propriété collective et la tradition. Pendant le test, vous ne voyez jamais à quel axe se rattache une affirmation ; vos résultats le révèlent.",
+    "howKicker": "La méthode",
+    "howTitle": "Comment ça marche",
+    "how": {
+      "answer": {
+        "title": "Répondre",
+        "body": "Réagissez à des affirmations simples sur une échelle à cinq points. Pas sûr ? Passez. Passer ne compte pas comme neutre."
+      },
+      "see": {
+        "title": "Voir douze positions",
+        "body": "Chaque axe reçoit un score et un degré de confiance. Quand vos réponses tirent dans des sens opposés, les résultats le disent."
+      },
+      "explore": {
+        "title": "Explorer et suivre",
+        "body": "Comparez-vous aux idéologies, pays, personnalités et partis, et voyez vos opinions évoluer avec le temps."
+      }
+    },
+    "promisesKicker": "Les engagements",
+    "promisesTitle": "Ce sur quoi vous pouvez compter",
+    "promises": {
+      "local": {
+        "title": "Local d’abord",
+        "body": "Les résultats sont enregistrés dans votre navigateur. Rien n’atteint un serveur, sauf si vous choisissez la synchronisation chiffrée."
+      },
+      "tracking": {
+        "title": "Aucun pistage",
+        "body": "Pas de publicité, pas de mesure d’audience, pas de scripts tiers. Pas de cookies, sauf si vous créez un profil."
+      },
+      "honest": {
+        "title": "Incertitude assumée",
+        "body": "Les correspondances ne sont pas gonflées, et chaque résultat indique son degré de confiance."
+      },
+      "neutral": {
+        "title": "Catalogue équitable",
+        "body": "Chaque idéologie, dominante ou marginale, reçoit le même traitement encyclopédique, critiques comprises."
+      }
+    }
+  },
+  "stub": {
+    "phaseNote": "Cette page arrive à la phase {phase} du développement.",
+    "backHome": "Retour à l’accueil"
+  },
+  "pages": {
+    "test": {
+      "title": "Faire le test",
+      "lead": "Choisissez une durée. Le nombre de questions et le temps indiqués sont tout l’effort demandé."
+    },
+    "question": {
+      "title": "Question {n} sur {count}",
+      "lead": "Les questions arrivent à la prochaine phase du développement."
+    },
+    "results": {
+      "title": "Vos résultats",
+      "lead": "Votre dernier résultat, lu depuis ce navigateur. Rien de celui-ci n’apparaît dans la barre d’adresse."
+    },
+    "sharedResult": {
+      "title": "Un résultat partagé",
+      "lead": "Quelqu’un a partagé avec vous sa position sur les douze axes."
+    },
+    "compare": {
+      "title": "Comparer",
+      "lead": "Superposez le résultat d’une autre personne au vôtre, axe par axe."
+    },
+    "dashboard": {
+      "title": "Votre tableau de bord",
+      "lead": "Chaque résultat est conservé dans ce navigateur, pour voir comment vos opinions évoluent."
+    },
+    "compass": {
+      "title": "Boussole",
+      "lead": "Une carte continue de l’espace politique : deux axes au choix, ou la carte d’ensemble."
+    },
+    "web": {
+      "title": "Réseau des idéologies",
+      "lead": "Les idéologies reliées par leurs ressemblances, regroupées par famille."
+    },
+    "sandbox": {
+      "title": "Bac à sable",
+      "lead": "Déplacez douze curseurs et regardez les correspondances changer."
+    },
+    "ideologies": {
+      "title": "Idéologies",
+      "lead": "Des centaines d’idéologies et de traditions politiques, des plus courantes aux plus marginales, chacune avec ses critiques et ses sources."
+    },
+    "countries": {
+      "title": "Pays et régimes",
+      "lead": "Pays actuels et régimes historiques, chacun situé à une date indiquée."
+    },
+    "figures": {
+      "title": "Personnalités",
+      "lead": "Personnalités politiques historiques et contemporaines. Les positions des personnes vivantes sont des estimations éditoriales."
+    },
+    "parties": {
+      "title": "Partis",
+      "lead": "De vrais partis politiques, avec une date de référence et les idéologies dont ils se réclament."
+    },
+    "method": {
+      "title": "Méthode",
+      "lead": "Comment les réponses deviennent des scores, comment les correspondances sont calculées et où s’arrêtent les limites du modèle."
+    },
+    "privacy": {
+      "title": "Confidentialité",
+      "lead": "Les opinions politiques sont sensibles. Cette page explique simplement ce qui est enregistré, où et pour combien de temps.",
+      "now": "À ce jour : ce site ne dépose aucun cookie, n’utilise aucune mesure d’audience et n’enregistre rien sur un serveur."
+    },
+    "imprint": {
+      "title": "Mentions légales",
+      "lead": "Informations légales et contact.",
+      "pending": "La personne responsable sera indiquée ici avant le lancement public."
+    },
+    "designSystem": {
+      "title": "Système de design",
+      "lead": "Les fondations et composants dont chaque page est faite."
+    }
+  },
+  "notFound": {
+    "title": "Cette page n’existe pas",
+    "body": "L’adresse est peut-être mal saisie, ou la page a été déplacée.",
+    "home": "Retour à l’accueil"
+  },
+  "anchors": {
+    "summary": "resume",
+    "axes": "axes",
+    "positions": "positions",
+    "radar": "radar",
+    "compass": "boussole",
+    "ideologies": "ideologies",
+    "countries": "pays",
+    "figures": "personnalites",
+    "parties": "partis",
+    "eras": "epoques",
+    "uncertainty": "incertitude",
+    "share": "partager"
+  },
+  "axisStrip": {
+    "label": "Position sur les douze axes",
+    "centre": "{axis} : proche du centre",
+    "lean": "{axis} : penche vers {pole}",
+    "strong": "{axis} : nettement {pole}"
+  },
+  "scale": {
+    "stronglyDisagree": "Pas du tout d’accord",
+    "disagree": "Pas d’accord",
+    "neutral": "Neutre",
+    "agree": "D’accord",
+    "stronglyAgree": "Tout à fait d’accord",
+    "skip": "Je ne sais pas, passer",
+    "groupLabel": "Votre réponse"
+  },
+  "ds": {
+    "kicker": "Référence interne",
+    "type": "Typographie",
+    "typeDisplay": "Titres : Bodoni Moda",
+    "typeText": "Texte et interface : Schibsted Grotesk",
+    "sampleHeadline": "Où placeriez-vous la limite ?",
+    "sampleBody": "Chaque axe est mesuré séparément. Une position sur l’un ne dit rien des autres ; c’est précisément pourquoi douze lignes décrivent mieux une personne qu’une seule.",
+    "colour": "Couleur",
+    "colourNote": "Chaque association utilisée pour du texte respecte le niveau AA des WCAG dans les deux thèmes. Le rouge profond est réservé à vous et aux actions principales.",
+    "spectra": "Teintes des spectres",
+    "spectraNote": "Les teintes identifient les spectres dans les graphiques et les étiquettes. Elles accompagnent toujours un libellé écrit, jamais seules.",
+    "glyphs": "Glyphes des axes",
+    "glyphsNote": "Vingt-quatre glyphes originaux, un par pôle. Les bandeaux montrent le glyphe du pôle vers lequel penche une entrée.",
+    "strip": "Bandeau à douze icônes",
+    "stripNote": "L’opacité suit la force de l’inclinaison ; un point signifie proche du centre.",
+    "stripExampleA": "Profil d’exemple A",
+    "stripExampleB": "Profil d’exemple B",
+    "controls": "Commandes",
+    "scaleNote": "L’échelle de réponse garde une mise en page fixe pour que les boutons ne bougent jamais d’une question à l’autre. Passer est séparé de neutre.",
+    "buttons": "Boutons",
+    "primary": "Action principale",
+    "secondary": "Secondaire",
+    "quiet": "Lien discret",
+    "chips": "Étiquettes"
+  }
+}

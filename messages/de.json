@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "siteName": "Spectrum",
+    "homeTitle": "Spectrum: ein politischer Test mit zwölf Achsen",
+    "homeDescription": "Ein kostenloser Test, der dich auf zwölf politischen Achsen verortet und zeigt, welche Ideologien, Länder, Persönlichkeiten und Parteien dir am nächsten sind – mit ehrlicher Unsicherheit. Ohne Konto."
+  },
+  "a11y": {
+    "skipToContent": "Zum Hauptinhalt springen"
+  },
+  "nav": {
+    "primary": "Hauptnavigation",
+    "home": "Spectrum, Startseite",
+    "test": "Zum Test",
+    "compass": "Kompass",
+    "ideologies": "Ideologien",
+    "countries": "Länder",
+    "figures": "Persönlichkeiten",
+    "parties": "Parteien",
+    "dashboard": "Verlauf",
+    "menu": "Menü"
+  },
+  "locale": {
+    "label": "Sprache",
+    "names": { "en": "English", "de": "Deutsch", "fr": "Français" },
+    "short": { "en": "EN", "de": "DE", "fr": "FR" }
+  },
+  "theme": {
+    "toggle": "Zwischen hellem und dunklem Design wechseln"
+  },
+  "footer": {
+    "disclaimer": "Spectrum ist ein Werkzeug zur Deutung. Es liest deine Antworten durch ein Modell mit echten Grenzen; es misst nicht, wer du bist.",
+    "privacy": "Deine Antworten bleiben in deinem Browser, außer du entscheidest dich, sie zu speichern.",
+    "explore": "Entdecken",
+    "about": "Über",
+    "method": "Methode",
+    "privacyLink": "Datenschutz",
+    "imprint": "Impressum",
+    "source": "Quellcode",
+    "designSystem": "Designsystem",
+    "status": "Arbeitstitel, in Entwicklung."
+  },
+  "home": {
+    "kicker": "Zwölf Achsen · Kostenlos · Ohne Konto",
+    "title": "Politik passt nicht auf <em>eine Linie</em>.",
+    "lead": "Beantworte kurze Aussagen und sieh, wo du auf zwölf unabhängigen Achsen stehst, welche Ideologien, Länder, Persönlichkeiten und Parteien dir am nächsten sind und wie sicher dieses Bild ist.",
+    "chooseMode": "Wähle eine Länge",
+    "modeCount": "{count} Fragen",
+    "modeTime": "etwa {minutes} Min.",
+    "recommended": "Empfohlen",
+    "opensSoon": "Bald verfügbar",
+    "start": "Starten",
+    "modes": {
+      "quick": { "name": "Schnell", "blurb": "Eine erste Skizze deiner Position." },
+      "standard": {
+        "name": "Standard",
+        "blurb": "Ein schärferes Bild mit belastbarerer Sicherheit."
+      },
+      "deep": { "name": "Vertieft", "blurb": "Die genaueste Auswertung: zwölf Fragen pro Achse." }
+    },
+    "modesNote": "Einen kürzeren Test kannst du später verlängern, deine Antworten bleiben erhalten. Was du hier siehst, ist der ganze Test: keine versteckten Zusatzrunden.",
+    "axesKicker": "Das Instrument",
+    "axesTitle": "Zwölf Achsen in vier Bereichen",
+    "axesLead": "Jede Achse ist unabhängig. Du kannst Markt und offene Grenzen bevorzugen oder Gemeineigentum und Tradition. Während des Tests siehst du nie, zu welcher Achse eine Aussage gehört; das zeigen erst deine Ergebnisse.",
+    "howKicker": "Die Methode",
+    "howTitle": "So funktioniert es",
+    "how": {
+      "answer": {
+        "title": "Antworten",
+        "body": "Reagiere auf klare Aussagen auf einer Fünferskala. Unsicher? Überspringen. Überspringen zählt nicht als neutral."
+      },
+      "see": {
+        "title": "Zwölf Positionen sehen",
+        "body": "Jede Achse erhält einen Wert und eine Sicherheit. Wo deine Antworten in verschiedene Richtungen ziehen, sagen es die Ergebnisse."
+      },
+      "explore": {
+        "title": "Entdecken und verfolgen",
+        "body": "Vergleiche dich mit Ideologien, Ländern, Persönlichkeiten und Parteien und sieh, wie sich deine Ansichten mit der Zeit verschieben."
+      }
+    },
+    "promisesKicker": "Die Bedingungen",
+    "promisesTitle": "Worauf du dich verlassen kannst",
+    "promises": {
+      "local": {
+        "title": "Lokal zuerst",
+        "body": "Ergebnisse werden in deinem Browser gespeichert. Nichts erreicht einen Server, außer du wählst die verschlüsselte Synchronisierung."
+      },
+      "tracking": {
+        "title": "Kein Tracking",
+        "body": "Keine Werbung, keine Analyse, keine Skripte von Dritten. Keine Cookies, außer du legst ein Profil an."
+      },
+      "honest": {
+        "title": "Ehrliche Unsicherheit",
+        "body": "Übereinstimmungen werden nicht aufgebläht, und jedes Ergebnis zeigt, wie sicher es ist."
+      },
+      "neutral": {
+        "title": "Ausgewogener Katalog",
+        "body": "Jede Ideologie, ob etabliert oder randständig, wird gleich sachlich behandelt – Kritik inklusive."
+      }
+    }
+  },
+  "stub": {
+    "phaseNote": "Diese Seite folgt in Phase {phase} der Entwicklung.",
+    "backHome": "Zurück zum Start"
+  },
+  "pages": {
+    "test": {
+      "title": "Zum Test",
+      "lead": "Wähle eine Länge. Fragenzahl und Dauer sind der ganze Aufwand."
+    },
+    "question": {
+      "title": "Frage {n} von {count}",
+      "lead": "Die Fragen folgen in der nächsten Entwicklungsphase."
+    },
+    "results": {
+      "title": "Deine Ergebnisse",
+      "lead": "Dein neuestes Ergebnis, gelesen aus diesem Browser. Nichts davon steht in der Adresszeile."
+    },
+    "sharedResult": {
+      "title": "Ein geteiltes Ergebnis",
+      "lead": "Jemand hat seine Position auf den zwölf Achsen mit dir geteilt."
+    },
+    "compare": {
+      "title": "Vergleichen",
+      "lead": "Lege das Ergebnis einer anderen Person über deines, Achse für Achse."
+    },
+    "dashboard": {
+      "title": "Dein Verlauf",
+      "lead": "Jedes Ergebnis wird in diesem Browser aufbewahrt, damit du siehst, wie sich deine Ansichten verändern."
+    },
+    "compass": {
+      "title": "Kompass",
+      "lead": "Eine stufenlose Karte des politischen Raums: zwei beliebige Achsen oder die Gesamtkarte."
+    },
+    "web": {
+      "title": "Ideologie-Netz",
+      "lead": "Ideologien, verbunden nach Ähnlichkeit, gruppiert nach Familie."
+    },
+    "sandbox": {
+      "title": "Sandkasten",
+      "lead": "Bewege zwölf Regler und sieh, wie sich die nächsten Übereinstimmungen ändern."
+    },
+    "ideologies": {
+      "title": "Ideologien",
+      "lead": "Hunderte politische Ideologien und Traditionen, von etabliert bis randständig, jeweils mit Kritik und Quellen."
+    },
+    "countries": {
+      "title": "Länder und Regime",
+      "lead": "Heutige Länder und historische Regime, jeweils verortet zu einem genannten Stichtag."
+    },
+    "figures": {
+      "title": "Persönlichkeiten",
+      "lead": "Historische und heutige politische Persönlichkeiten. Positionen lebender Personen sind redaktionelle Schätzungen."
+    },
+    "parties": {
+      "title": "Parteien",
+      "lead": "Echte politische Parteien mit Stichtag und den Ideologien, auf die sie sich stützen."
+    },
+    "method": {
+      "title": "Methode",
+      "lead": "Wie aus Antworten Werte werden, wie Übereinstimmungen berechnet werden und wo die Grenzen des Modells liegen."
+    },
+    "privacy": {
+      "title": "Datenschutz",
+      "lead": "Politische Ansichten sind sensibel. Diese Seite erklärt in einfachen Worten, was wo und wie lange gespeichert wird.",
+      "now": "Stand heute: Diese Website setzt keine Cookies, nutzt keine Analyse und speichert nichts auf einem Server."
+    },
+    "imprint": {
+      "title": "Impressum",
+      "lead": "Rechtliche Angaben und Kontakt.",
+      "pending": "Die verantwortliche Stelle wird hier vor dem öffentlichen Start genannt."
+    },
+    "designSystem": {
+      "title": "Designsystem",
+      "lead": "Gestaltungsgrundlagen und Bausteine, aus denen jede Seite besteht."
+    }
+  },
+  "notFound": {
+    "title": "Diese Seite gibt es nicht",
+    "body": "Die Adresse ist vielleicht vertippt, oder die Seite ist umgezogen.",
+    "home": "Zum Start"
+  },
+  "anchors": {
+    "summary": "zusammenfassung",
+    "axes": "achsen",
+    "positions": "positionen",
+    "radar": "radar",
+    "compass": "kompass",
+    "ideologies": "ideologien",
+    "countries": "laender",
+    "figures": "persoenlichkeiten",
+    "parties": "parteien",
+    "eras": "epochen",
+    "uncertainty": "unsicherheit",
+    "share": "teilen"
+  },
+  "axisStrip": {
+    "label": "Position auf den zwölf Achsen",
+    "centre": "{axis}: nahe der Mitte",
+    "lean": "{axis}: Tendenz {pole}",
+    "strong": "{axis}: deutlich {pole}"
+  },
+  "scale": {
+    "stronglyDisagree": "Stimme gar nicht zu",
+    "disagree": "Stimme nicht zu",
+    "neutral": "Neutral",
+    "agree": "Stimme zu",
+    "stronglyAgree": "Stimme voll zu",
+    "skip": "Unsicher, überspringen",
+    "groupLabel": "Deine Antwort"
+  },
+  "ds": {
+    "kicker": "Interne Referenz",
+    "type": "Typografie",
+    "typeDisplay": "Auszeichnung: Bodoni Moda",
+    "typeText": "Text und Oberfläche: Schibsted Grotesk",
+    "sampleHeadline": "Wo würdest du die Grenze ziehen?",
+    "sampleBody": "Jede Achse wird für sich gemessen. Eine Position auf der einen sagt nichts über die anderen – genau deshalb beschreiben zwölf Linien einen Menschen besser als eine.",
+    "colour": "Farbe",
+    "colourNote": "Jede Kombination für Text erfüllt WCAG AA in beiden Designs. Tiefrot ist dir und den wichtigsten Aktionen vorbehalten.",
+    "spectra": "Spektrumsfarben",
+    "spectraNote": "Farbtöne kennzeichnen Spektren in Diagrammen und Chips. Sie stehen immer neben einer Beschriftung, nie allein.",
+    "glyphs": "Achsen-Glyphen",
+    "glyphsNote": "Vierundzwanzig eigene Glyphen, eine pro Pol. Leisten zeigen die Glyphe des Pols, zu dem ein Eintrag neigt.",
+    "strip": "Leiste mit zwölf Symbolen",
+    "stripNote": "Die Deckkraft folgt der Stärke der Neigung; ein Punkt bedeutet nahe der Mitte.",
+    "stripExampleA": "Beispielprofil A",
+    "stripExampleB": "Beispielprofil B",
+    "controls": "Bedienelemente",
+    "scaleNote": "Die Antwortskala hat ein festes Layout, damit sich Schaltflächen zwischen Fragen nie verschieben. Überspringen steht getrennt von neutral.",
+    "buttons": "Schaltflächen",
+    "primary": "Hauptaktion",
+    "secondary": "Sekundär",
+    "quiet": "Dezenter Link",
+    "chips": "Chips"
+  }
+}

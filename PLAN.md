@@ -7,8 +7,8 @@ no claim to measure anyone exactly.
 Source of truth: **Master spec v2** (2026-10-21). Every choice and its status is recorded in
 [DECISIONS.md](DECISIONS.md), whose first section lists what changed from v1.
 
-Status: Phase 0 ✅ · **Phase 1 (scaffold, design system, i18n)** → Phase 2 (engine, schemas,
-36 Quick and 72 Standard questions, calibration), then **stop for review of the question list**.
+Status: Phase 0 ✅ · Phase 1 ✅ (scaffold, design system, i18n) · **Phase 2 (engine, schemas,
+36 Quick and 72 Standard questions, calibration)**, then **stop for review of the question list**.
 
 ---
 

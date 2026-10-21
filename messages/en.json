@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "siteName": "Spectrum",
+    "homeTitle": "Spectrum: a twelve-axis political test",
+    "homeDescription": "A free test that places you on twelve political axes and shows which ideologies, countries, figures and parties sit closest, with honest uncertainty. No account needed."
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content"
+  },
+  "nav": {
+    "primary": "Main",
+    "home": "Spectrum, home",
+    "test": "Take the test",
+    "compass": "Compass",
+    "ideologies": "Ideologies",
+    "countries": "Countries",
+    "figures": "Figures",
+    "parties": "Parties",
+    "dashboard": "Dashboard",
+    "menu": "Menu"
+  },
+  "locale": {
+    "label": "Language",
+    "names": { "en": "English", "de": "Deutsch", "fr": "Français" },
+    "short": { "en": "EN", "de": "DE", "fr": "FR" }
+  },
+  "theme": {
+    "toggle": "Switch between light and dark theme"
+  },
+  "footer": {
+    "disclaimer": "Spectrum is an interpretation tool. It reads your answers through a model with real limits; it does not measure who you are.",
+    "privacy": "Your answers stay in your browser unless you choose to save them.",
+    "explore": "Explore",
+    "about": "About",
+    "method": "Method",
+    "privacyLink": "Privacy",
+    "imprint": "Imprint",
+    "source": "Source code",
+    "designSystem": "Design system",
+    "status": "Working title, in development."
+  },
+  "home": {
+    "kicker": "Twelve axes · Free · No account",
+    "title": "Politics doesn’t fit on <em>one line</em>.",
+    "lead": "Answer short statements, then see where you stand on twelve independent axes, which ideologies, countries, figures and parties sit closest, and how certain that picture is.",
+    "chooseMode": "Choose a length",
+    "modeCount": "{count} questions",
+    "modeTime": "about {minutes} min",
+    "recommended": "Recommended",
+    "opensSoon": "Opens soon",
+    "start": "Start",
+    "modes": {
+      "quick": { "name": "Quick", "blurb": "A first sketch of where you stand." },
+      "standard": { "name": "Standard", "blurb": "A sharper picture with sturdier confidence." },
+      "deep": { "name": "Deep", "blurb": "The most detailed reading: twelve questions per axis." }
+    },
+    "modesNote": "You can extend a shorter test later and keep your answers. What you see here is the whole test: no hidden extra rounds.",
+    "axesKicker": "The instrument",
+    "axesTitle": "Twelve axes in four domains",
+    "axesLead": "Each axis is independent. You can favour markets and open borders, or collective ownership and tradition. During the test you never see which axis a statement belongs to; that is revealed with your results.",
+    "howKicker": "The method",
+    "howTitle": "How it works",
+    "how": {
+      "answer": {
+        "title": "Answer",
+        "body": "React to plain statements on a five-point scale. Not sure? Skip it. A skip is not counted as neutral."
+      },
+      "see": {
+        "title": "See twelve positions",
+        "body": "Each axis gets a score and a confidence. Where your answers pull in different directions, the results say so."
+      },
+      "explore": {
+        "title": "Explore and track",
+        "body": "Compare yourself with ideologies, countries, figures and parties, and see how your views move over time."
+      }
+    },
+    "promisesKicker": "The terms",
+    "promisesTitle": "What you can count on",
+    "promises": {
+      "local": {
+        "title": "Local-first",
+        "body": "Results are saved in your browser. Nothing reaches a server unless you choose encrypted sync."
+      },
+      "tracking": {
+        "title": "No tracking",
+        "body": "No ads, no analytics, no third-party scripts. No cookies unless you create a profile."
+      },
+      "honest": {
+        "title": "Honest uncertainty",
+        "body": "Matches are spread out, not inflated, and every result shows how confident it is."
+      },
+      "neutral": {
+        "title": "Even-handed catalog",
+        "body": "Every ideology, mainstream or fringe, gets the same encyclopedic treatment, criticisms included."
+      }
+    }
+  },
+  "stub": {
+    "phaseNote": "This page arrives in phase {phase} of the build.",
+    "backHome": "Back to the start"
+  },
+  "pages": {
+    "test": {
+      "title": "Take the test",
+      "lead": "Pick a length. The question count and time are the whole commitment."
+    },
+    "question": {
+      "title": "Question {n} of {count}",
+      "lead": "The questions open in the next build phase."
+    },
+    "results": {
+      "title": "Your results",
+      "lead": "Your latest result, read from this browser. Nothing about it is in the address bar."
+    },
+    "sharedResult": {
+      "title": "A shared result",
+      "lead": "Someone shared their position on the twelve axes with you."
+    },
+    "compare": {
+      "title": "Compare",
+      "lead": "Overlay a friend’s result on yours, axis by axis."
+    },
+    "dashboard": {
+      "title": "Your dashboard",
+      "lead": "Every result you take is kept in this browser, so you can see how your views change over time."
+    },
+    "compass": {
+      "title": "Compass",
+      "lead": "A continuous map of the political space: pick any two axes, or the overall map."
+    },
+    "web": {
+      "title": "Ideology web",
+      "lead": "Ideologies linked by similarity, grouped by family."
+    },
+    "sandbox": {
+      "title": "Sandbox",
+      "lead": "Move twelve sliders and watch the closest matches change."
+    },
+    "ideologies": {
+      "title": "Ideologies",
+      "lead": "Hundreds of political ideologies and traditions, from mainstream to fringe, each with criticisms and sources."
+    },
+    "countries": {
+      "title": "Countries and regimes",
+      "lead": "Modern countries and historical regimes, each placed as of a stated date."
+    },
+    "figures": {
+      "title": "Figures",
+      "lead": "Historical and contemporary political figures. Positions of living people are editorial estimates."
+    },
+    "parties": {
+      "title": "Parties",
+      "lead": "Real political parties with an “as of” date and the ideologies they draw on."
+    },
+    "method": {
+      "title": "Method",
+      "lead": "How answers become scores, how matches are calculated, and where the model’s limits are."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "lead": "Political views are sensitive. This page explains, in plain words, what is stored, where and for how long.",
+      "now": "Today: this site sets no cookies, runs no analytics and stores nothing on a server."
+    },
+    "imprint": {
+      "title": "Imprint",
+      "lead": "Legal notice and contact details.",
+      "pending": "The responsible party will be named here before public launch."
+    },
+    "designSystem": {
+      "title": "Design system",
+      "lead": "Tokens and components that every page is built from."
+    }
+  },
+  "notFound": {
+    "title": "This page doesn’t exist",
+    "body": "The address may be mistyped, or the page may have moved.",
+    "home": "Go to the start"
+  },
+  "anchors": {
+    "summary": "summary",
+    "axes": "axes",
+    "positions": "positions",
+    "radar": "radar",
+    "compass": "compass",
+    "ideologies": "ideologies",
+    "countries": "countries",
+    "figures": "figures",
+    "parties": "parties",
+    "eras": "eras",
+    "uncertainty": "uncertainty",
+    "share": "share"
+  },
+  "axisStrip": {
+    "label": "Position on the twelve axes",
+    "centre": "{axis}: near the centre",
+    "lean": "{axis}: leans {pole}",
+    "strong": "{axis}: strongly {pole}"
+  },
+  "scale": {
+    "stronglyDisagree": "Strongly disagree",
+    "disagree": "Disagree",
+    "neutral": "Neutral",
+    "agree": "Agree",
+    "stronglyAgree": "Strongly agree",
+    "skip": "Unsure, skip this one",
+    "groupLabel": "Your answer"
+  },
+  "ds": {
+    "kicker": "Internal reference",
+    "type": "Typography",
+    "typeDisplay": "Display: Bodoni Moda",
+    "typeText": "Text and interface: Schibsted Grotesk",
+    "sampleHeadline": "Where would you draw the line?",
+    "sampleBody": "Each axis is measured on its own. A position on one says nothing about the others, which is exactly why twelve lines describe a person better than one.",
+    "colour": "Colour",
+    "colourNote": "Every pairing used for text meets WCAG AA in both themes. Deep red is reserved for you and for primary actions.",
+    "spectra": "Spectrum tints",
+    "spectraNote": "Tints identify spectra on charts and chips. They are always paired with a written label, never colour alone.",
+    "glyphs": "Axis glyphs",
+    "glyphsNote": "Twenty-four original glyphs, one per pole. Strips show the glyph of the pole an entry leans to.",
+    "strip": "Twelve-icon strip",
+    "stripNote": "Opacity follows how strongly an entry leans; a dot means near the centre.",
+    "stripExampleA": "Example profile A",
+    "stripExampleB": "Example profile B",
+    "controls": "Controls",
+    "scaleNote": "The answer scale keeps a fixed layout so buttons never move between questions. Skip sits apart from neutral.",
+    "buttons": "Buttons",
+    "primary": "Primary action",
+    "secondary": "Secondary",
+    "quiet": "Quiet link",
+    "chips": "Chips"
+  }
+}

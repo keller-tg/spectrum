@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+/* Dark styles follow the data-theme attribute set before paint by the inline
+   theme script (system preference unless the user chose otherwise). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------- Tokens: light (default) ---------- */
+:root {
+  --paper: #f3ede0;
+  --paper-raised: #faf6ee;
+  --paper-sunk: #e9e1d0;
+  --ink: #12332b;
+  --ink-2: #3f5c53;
+  --ink-3: #526b63;
+  --rule: rgb(18 51 43 / 0.16);
+  --rule-strong: rgb(18 51 43 / 0.32);
+  --forest: #163f35;
+  --on-forest: #f3ede0;
+  --accent: #a3191f;
+  --accent-ink: #fff8f2;
+  --focus: #a3191f;
+  --grain-opacity: 0.05;
+
+  --sp-radical-left: #8c2254;
+  --sp-left: #b23d66;
+  --sp-centre: #6a4e9e;
+  --sp-right: #2c5b9a;
+  --sp-far-right: #6e4a2c;
+  --sp-third-position: #5f6b17;
+  --sp-libertarian: #835c06;
+  --sp-anarchist: #2a2a2a;
+  --sp-theocratic: #226b70;
+
+  color-scheme: light;
+}
+
+/* ---------- Tokens: dark ---------- */
+@media (prefers-color-scheme: dark) {
+  /* No-JS fallback; with JS the data-theme attribute always wins. */
+  :root:not([data-theme]) {
+    --paper: #0d1c18;
+    --paper-raised: #13261f;
+    --paper-sunk: #091511;
+    --ink: #eee7d7;
+    --ink-2: #bcc6bc;
+    --ink-3: #93a39a;
+    --rule: rgb(238 231 215 / 0.14);
+    --rule-strong: rgb(238 231 215 / 0.3);
+    --forest: #e9e1d0;
+    --on-forest: #0d1c18;
+    --accent: #f0645a;
+    --accent-ink: #1a0605;
+    --focus: #f0645a;
+    --grain-opacity: 0.07;
+    --sp-radical-left: #e88ab4;
+    --sp-left: #f3a0b6;
+    --sp-centre: #b9a3ea;
+    --sp-right: #86aeea;
+    --sp-far-right: #d2a57e;
+    --sp-third-position: #bac86e;
+    --sp-libertarian: #e7bc55;
+    --sp-anarchist: #d8d2c4;
+    --sp-theocratic: #74c4c6;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0d1c18;
+  --paper-raised: #13261f;
+  --paper-sunk: #091511;
+  --ink: #eee7d7;
+  --ink-2: #bcc6bc;
+  --ink-3: #93a39a;
+  --rule: rgb(238 231 215 / 0.14);
+  --rule-strong: rgb(238 231 215 / 0.3);
+  --forest: #e9e1d0;
+  --on-forest: #0d1c18;
+  --accent: #f0645a;
+  --accent-ink: #1a0605;
+  --focus: #f0645a;
+  --grain-opacity: 0.07;
+  --sp-radical-left: #e88ab4;
+  --sp-left: #f3a0b6;
+  --sp-centre: #b9a3ea;
+  --sp-right: #86aeea;
+  --sp-far-right: #d2a57e;
+  --sp-third-position: #bac86e;
+  --sp-libertarian: #e7bc55;
+  --sp-anarchist: #d8d2c4;
+  --sp-theocratic: #74c4c6;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-display: var(--font-bodoni), "Bodoni 72", "Didot", Georgia, serif;
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-paper-sunk: var(--paper-sunk);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-forest: var(--forest);
+  --color-on-forest: var(--on-forest);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --color-sp-radical-left: var(--sp-radical-left);
+  --color-sp-left: var(--sp-left);
+  --color-sp-centre: var(--sp-centre);
+  --color-sp-right: var(--sp-right);
+  --color-sp-far-right: var(--sp-far-right);
+  --color-sp-third-position: var(--sp-third-position);
+  --color-sp-libertarian: var(--sp-libertarian);
+  --color-sp-anarchist: var(--sp-anarchist);
+  --color-sp-theocratic: var(--sp-theocratic);
+}
+
+@theme {
+  --text-display-xl: clamp(2.75rem, 1.6rem + 5.2vw, 6rem);
+  --text-display-xl--line-height: 0.98;
+  --text-display-lg: clamp(2.1rem, 1.5rem + 2.8vw, 3.75rem);
+  --text-display-lg--line-height: 1.02;
+  --text-display-md: clamp(1.6rem, 1.3rem + 1.3vw, 2.35rem);
+  --text-display-md--line-height: 1.08;
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    background-color: var(--paper);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "kern", "liga";
+    min-height: 100dvh;
+    background-color: var(--paper);
+  }
+
+  /* Paper grain: a few hundred bytes of SVG noise, purely decorative. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ---------- Editorial primitives ---------- */
+@layer components {
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  /* Display headings: Bodoni with optical sizing for big sizes. */
+  .display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .display em,
+  .display.italic,
+  .display .italic {
+    font-family: var(--font-bodoni-italic), var(--font-display);
+  }
+
+  .display em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .rule-top {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .hairline {
+    border-color: var(--rule);
+  }
+
+  /* Animated underline for text links. */
+  .link-ink {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    text-decoration-color: var(--rule-strong);
+    transition: text-decoration-color 160ms ease;
+  }
+  .link-ink:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Load-in: elements start visible (no blank gaps if JS or animation fails);
+   the animation only adds a short rise. */
+@keyframes rise {
+  from {
+    transform: translateY(6px);
+  }
+  to {
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 520ms var(--ease-out-quart) both;
+}
