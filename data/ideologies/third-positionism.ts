@@ -46,7 +46,7 @@ export default {
     borders: 0.7,
   },
   rationale: {
-    en: "A post-war neo-fascist current that claims to stand beyond capitalism and communism: it pairs anti-capitalist economics (distributist, corporatist or solidarist small ownership) with revolutionary ethnic nationalism, ethnic separatism and anti-parliamentary politics (Authority, Rule by the few), and rejects alignment with either Cold War bloc.",
+    en: "A post-war neo-fascist current that claims to stand beyond capitalism and communism: it pairs anti-capitalist economics (distributist, corporatist or solidarist small ownership) with revolutionary ethnic nationalism, ethnic separatism and anti-parliamentary politics (Authority, unelected rule), and rejects alignment with either Cold War bloc.",
   },
   placement: {
     confidence: "medium",

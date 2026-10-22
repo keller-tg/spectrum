@@ -1,6 +1,21 @@
 import { AXES, CATEGORIES, CATEGORY_IDS } from "@/data/axes";
 import type { Locale } from "@/data/locales";
+import { Fragment } from "react";
 import { AxisGlyph } from "@/components/glyphs/AxisGlyph";
+
+/** Lets long pole labels such as "Representatives/experts decide" wrap after the slash. */
+function breakable(label: string) {
+  return label.split("/").map((part, i) => (
+    <Fragment key={i}>
+      {i > 0 && (
+        <>
+          /<wbr />
+        </>
+      )}
+      {part}
+    </Fragment>
+  ));
+}
 
 export function AxesOverview({ locale }: { locale: Locale }) {
   return (
@@ -22,11 +37,11 @@ export function AxesOverview({ locale }: { locale: Locale }) {
                     <span className="text-ink-3">{String(axis.index).padStart(2, "0")}</span>
                     <span className="ml-2">{axis.name[locale]}</span>
                   </p>
-                  <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-start gap-3">
+                  <div className="mt-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-3">
                     <div>
                       <p className="flex items-center gap-2 font-semibold text-ink">
                         <AxisGlyph axis={id} side="neg" size={20} className="shrink-0 text-ink-2" />
-                        {axis.neg.label[locale]}
+                        <span>{breakable(axis.neg.label[locale])}</span>
                       </p>
                       <p className="mt-1 text-[0.82rem] leading-snug text-ink-2">
                         {axis.neg.tooltip[locale]}
@@ -38,7 +53,7 @@ export function AxesOverview({ locale }: { locale: Locale }) {
                     />
                     <div className="text-right">
                       <p className="flex items-center justify-end gap-2 font-semibold text-ink">
-                        {axis.pos.label[locale]}
+                        <span>{breakable(axis.pos.label[locale])}</span>
                         <AxisGlyph axis={id} side="pos" size={20} className="shrink-0 text-ink-2" />
                       </p>
                       <p className="mt-1 text-[0.82rem] leading-snug text-ink-2">

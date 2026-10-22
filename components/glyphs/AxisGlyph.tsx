@@ -86,7 +86,7 @@ const GLYPHS: Record<AxisId, Record<PoleSide, React.ReactNode>> = {
     ),
   },
   participation: {
-    // The many: a field of nine.
+    // Citizens decide directly: a field of nine.
     neg: (
       <>
         {[6, 12, 18].flatMap((y) =>
@@ -96,7 +96,7 @@ const GLYPHS: Record<AxisId, Record<PoleSide, React.ReactNode>> = {
         )}
       </>
     ),
-    // The few: two figures on a raised step.
+    // Representatives/experts decide: two figures on a raised step.
     pos: (
       <>
         <path d="M3.5 20.5h17M7.5 20.5v-6h9v6" />
@@ -118,14 +118,14 @@ const GLYPHS: Record<AxisId, Record<PoleSide, React.ReactNode>> = {
     ),
   },
   religion: {
-    // Secular: a written civil statute.
+    // Separation of religion and state: a written civil statute.
     neg: (
       <>
         <path d="M7 3.5h7l4 4v13H7z" />
         <path d="M14 3.5v4h4M9.5 11h6M9.5 14.2h6M9.5 17.4h4" />
       </>
     ),
-    // Religious: a candle flame, shared across many traditions.
+    // Religion in public life: a candle flame, shared across many traditions.
     pos: (
       <>
         <path d="M12 3c2.3 2.6 3.2 4.4 3.2 6a3.2 3.2 0 0 1-6.4 0c0-1.6.9-3.4 3.2-6z" />
@@ -185,11 +185,12 @@ const GLYPHS: Record<AxisId, Record<PoleSide, React.ReactNode>> = {
         <path d="M4.5 8l4 2v7.5l-4-2M19.5 8l-4 2v7.5l4-2" />
       </>
     ),
-    // Closed: a shut gate.
+    // Restrictive: a checkpoint barrier, lowered.
     pos: (
       <>
-        <path d="M4 4.5v16M20 4.5v16" />
-        <path d="M4 9h16M4 15h16M9.3 9v6M14.7 9v6" />
+        <path d="M6 20.5V8.5M3.5 20.5h5" />
+        <path d="M6 10h14.5v3H6" />
+        <path d="M10.8 10v3M15.6 10v3" />
       </>
     ),
   },

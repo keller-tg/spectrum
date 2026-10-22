@@ -84,6 +84,39 @@ export interface CalibrationOptions {
 const related = (a: Matchable, b: Matchable) =>
   a.id === b.id || a.parent === b.id || b.parent === a.id;
 
+export interface CaseOutcome {
+  /** Rank of the archetype itself (0 = first, −1 = absent). */
+  pos: number;
+  lineage3: boolean;
+  family1: boolean;
+  hit3: boolean;
+  quickHit: boolean;
+  inversion: boolean;
+}
+
+/** How one simulated respondent's ranking scores against the archetype they were drawn from. */
+export function caseOutcome(
+  ranked: readonly { entry: Matchable }[],
+  archetype: Matchable,
+  opposites: readonly Matchable[],
+): CaseOutcome {
+  const ids = ranked.map((r) => r.entry.id);
+  const pos = ids.indexOf(archetype.id);
+  const top3 = ranked.slice(0, 3).map((r) => r.entry);
+  const first = ranked[0]?.entry;
+  const family1 = first?.family !== undefined && first.family === archetype.family;
+  return {
+    pos,
+    lineage3: top3.some((e) => related(e, archetype)),
+    family1,
+    hit3: top3.some(
+      (e) => related(e, archetype) || (e.family !== undefined && e.family === archetype.family),
+    ),
+    quickHit: (pos >= 0 && pos < 5) || family1,
+    inversion: opposites.some((o) => ids.indexOf(o.id) < pos),
+  };
+}
+
 export function runCalibration({
   entries,
   banks,
@@ -119,28 +152,17 @@ export function runCalibration({
         for (let rep = 0; rep < reps; rep++) {
           const rng = createRng(seed ^ hashString(`${mode}|${sigma}|${archetype.id}|${rep}`));
           const result = scoreTest(bank, simulateAnswers(bank, archetype.coords, { sigma, rng }));
-          const ranked = rank(result, visible, tau);
-          const ids = ranked.map((r) => r.entry.id);
-          const pos = ids.indexOf(archetype.id);
-          const top3 = ranked.slice(0, 3).map((r) => r.entry);
-          const first = ranked[0]?.entry;
+          const c = caseOutcome(rank(result, visible, tau), archetype, opposites);
 
           row.cases++;
-          if (pos === 0) row.strict1++;
-          if (pos >= 0 && pos < 3) row.strict3++;
-          if (pos >= 0 && pos < 5) row.strict5++;
-          if (top3.some((e) => related(e, archetype))) row.lineage3++;
-          const sameFamily = first?.family !== undefined && first.family === archetype.family;
-          if (sameFamily) row.family1++;
-          if (
-            top3.some(
-              (e) =>
-                related(e, archetype) || (e.family !== undefined && e.family === archetype.family),
-            )
-          )
-            row.hit3++;
-          if ((pos >= 0 && pos < 5) || sameFamily) row.quickHit++;
-          if (opposites.some((o) => ids.indexOf(o.id) < pos)) row.inversions++;
+          if (c.pos === 0) row.strict1++;
+          if (c.pos >= 0 && c.pos < 3) row.strict3++;
+          if (c.pos >= 0 && c.pos < 5) row.strict5++;
+          if (c.lineage3) row.lineage3++;
+          if (c.family1) row.family1++;
+          if (c.hit3) row.hit3++;
+          if (c.quickHit) row.quickHit++;
+          if (c.inversion) row.inversions++;
         }
       }
       for (const k of [

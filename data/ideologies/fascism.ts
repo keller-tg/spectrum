@@ -45,7 +45,7 @@ export default {
     borders: 0.5,
   },
   rationale: {
-    en: "Defined by ultranationalism that places the nation above all other loyalties and laws, a totalitarian one-party state under a single leader (Authority, Rule by the few) and the glorification of war and imperial expansion (Interventionist); its corporatist economy kept private property under state direction and aimed at autarky.",
+    en: "Defined by ultranationalism that places the nation above all other loyalties and laws, a totalitarian one-party state under a single leader (Authority, unelected rule) and the glorification of war and imperial expansion (Interventionist); its corporatist economy kept private property under state direction and aimed at autarky.",
   },
   placement: {
     confidence: "high",

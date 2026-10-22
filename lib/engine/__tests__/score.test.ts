@@ -1,15 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { AXIS_IDS } from "@/data/axes";
-import { MODES } from "@/data/modes";
-import { QUESTION_BANK } from "@/data/questions/bank";
+import { modeQuestions } from "@/data/questions/bank";
 import { createRng } from "../random";
 import { scoreAxis, scoreTest } from "../score";
 import { simulateAnswers, syntheticDeepBank, uniformAnswers } from "../simulate";
 import type { Answers, BankItem, RawAnswer } from "../types";
 import { axisVector } from "../vector";
 
-const quick = QUESTION_BANK.slice(0, MODES.quick.count);
-const standard = QUESTION_BANK.slice(0, MODES.standard.count);
+const quick = modeQuestions("quick");
+const standard = modeQuestions("standard");
 const deep = syntheticDeepBank(standard);
 
 const tiny: BankItem[] = [

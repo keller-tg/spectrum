@@ -1,13 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { MODES } from "@/data/modes";
-import { QUESTION_BANK } from "@/data/questions/bank";
+import { modeQuestions } from "@/data/questions/bank";
 import { assessQuality } from "../quality";
 import { createRng } from "../random";
 import { simulateAnswers } from "../simulate";
 import type { Answers } from "../types";
 import { axisVector } from "../vector";
 
-const standard = QUESTION_BANK.slice(0, MODES.standard.count);
+const standard = modeQuestions("standard");
 
 describe("quality checks", () => {
   it("does not flag an honest, varied respondent", () => {

@@ -46,7 +46,7 @@ export default {
     borders: 0.3,
   },
   rationale: {
-    en: "Defined by face-to-face citizen assemblies in every municipality (Rule by the many at its extreme) federated through recallable, mandated delegates instead of the nation-state (Decentralized), with land and enterprises 'municipalised' under assembly control (Collective) and an ecological society grounded in Bookchin's social ecology.",
+    en: "Defined by face-to-face citizen assemblies in every municipality (Citizens decide directly, at its extreme) federated through recallable, mandated delegates instead of the nation-state (Decentralized), with land and enterprises 'municipalised' under assembly control (Collective) and an ecological society grounded in Bookchin's social ecology.",
   },
   placement: {
     confidence: "medium",

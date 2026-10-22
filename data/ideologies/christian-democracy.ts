@@ -45,7 +45,7 @@ export default {
     borders: 0.3,
   },
   rationale: {
-    en: "Defined by Christian social teaching applied through democratic politics: a social market economy between laissez-faire and socialism (centre on Distribution and Ownership), subsidiarity (toward Decentralized), defence of the family and a public role for Christian values (toward Traditional and Religious); in Europe it was a founding force of supranational integration.",
+    en: "Defined by Christian social teaching applied through democratic politics: a social market economy between laissez-faire and socialism (centre on Distribution and Ownership), subsidiarity (toward Decentralized), defence of the family and a public role for Christian values (toward Traditional and Religion in public life); in Europe it was a founding force of supranational integration.",
   },
   placement: {
     confidence: "high",

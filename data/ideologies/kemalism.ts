@@ -46,7 +46,7 @@ export default {
     borders: 0.2,
   },
   rationale: {
-    en: "Defined by the Six Arrows of Atatürk's republic: state-controlled secularism (laiklik, toward Secular), Turkish civic nationalism, a unitary centralised republic, state-led industrialisation (statism), and top-down modernising reform of law, script, dress and the status of women (toward Progressive).",
+    en: "Defined by the Six Arrows of Atatürk's republic: state-controlled secularism (laiklik, toward Separation of religion and state), Turkish civic nationalism, a unitary centralised republic, state-led industrialisation (statism), and top-down modernising reform of law, script, dress and the status of women (toward Progressive).",
   },
   placement: {
     confidence: "medium",

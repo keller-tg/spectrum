@@ -23,10 +23,23 @@ describe("data validation (the same checks as prebuild)", () => {
     const bank = QUESTION_BANK.map((q) => (q.id === "q-dist-02" ? { ...q, key: -1 as const } : q));
     const texts = {
       ...QUESTION_TEXT_EN,
-      "q-own-01": { text: "Everyone should always own everything.", explainer: "x" },
+      "q-own-07": { text: "Everyone should always own everything.", explainer: "x" },
     };
     const found = errors(validateQuestions(bank, texts)).join("\n");
     expect(found).toMatch(/mirror pair must have opposite keys/);
     expect(found).toMatch(/absolute wording/);
+  });
+
+  it("caps empirical items in Quick and checks replacements", () => {
+    const bank = QUESTION_BANK.map((q) =>
+      q.id === "q-own-07"
+        ? { ...q, empirical: true }
+        : q.id === "q-bord-08"
+          ? { ...q, replaces: "q-dist-01" }
+          : q,
+    );
+    const found = errors(validateQuestions(bank, QUESTION_TEXT_EN)).join("\n");
+    expect(found).toMatch(/quick\/ownership: 2 empirical items/);
+    expect(found).toMatch(/replaces q-dist-01, which is not retired/);
   });
 });

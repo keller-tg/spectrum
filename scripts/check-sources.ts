@@ -7,6 +7,9 @@ import { loadIdeologies } from "@/lib/catalog/ideologies";
 
 /** Publishers that answer bots with 403 although the page exists. */
 const BOT_BLOCKING = ["britannica.com", "globalgreens.org"];
+/** Identifies the checker; the contact is the public repo, never personal data (D-073). */
+const USER_AGENT =
+  "Mozilla/5.0 (compatible; SpectrumSourceCheck/1.0; +https://github.com/keller-tg/spectrum)";
 const CONCURRENCY = 4;
 const TIMEOUT_MS = 20_000;
 
@@ -16,7 +19,7 @@ async function check(url: string): Promise<{ url: string; status: number; error?
       const res = await fetch(url, {
         redirect: "follow",
         signal: AbortSignal.timeout(TIMEOUT_MS),
-        headers: { "user-agent": "Mozilla/5.0" },
+        headers: { "user-agent": USER_AGENT },
       });
       await res.body?.cancel();
       if (res.status < 500 || attempt === 1) return { url, status: res.status };

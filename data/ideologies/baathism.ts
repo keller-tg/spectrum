@@ -45,7 +45,7 @@ export default {
     borders: 0.2,
   },
   rationale: {
-    en: "Defined by pan-Arab nationalism, the idea of one Arab nation (toward Nationalism), combined with 'Arab socialism' (nationalisation and land reform, especially after 1963) and secular modernisation; in power in Syria and Iraq it took the form of a one-party state run through the party, the army and the security services (Authority, Rule by the few).",
+    en: "Defined by pan-Arab nationalism, the idea of one Arab nation (toward Nationalism), combined with 'Arab socialism' (nationalisation and land reform, especially after 1963) and secular modernisation; in power in Syria and Iraq it took the form of a one-party state run through the party, the army and the security services (Authority, unelected rule).",
   },
   placement: {
     confidence: "medium",

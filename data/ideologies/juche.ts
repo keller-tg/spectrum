@@ -46,7 +46,7 @@ export default {
     borders: 0.7,
   },
   rationale: {
-    en: "Defined by self-reliance in politics, economy and defence (toward autarky), a totalising single-leader system with hereditary succession (Authority, Rule by the few) and a primacy of the Korean nation that departs from Marxist-Leninist internationalism; property is collective and religion suppressed.",
+    en: "Defined by self-reliance in politics, economy and defence (toward autarky), a totalising single-leader system with hereditary succession (Authority, unelected rule) and a primacy of the Korean nation that departs from Marxist-Leninist internationalism; property is collective and religion suppressed.",
   },
   placement: {
     confidence: "medium",

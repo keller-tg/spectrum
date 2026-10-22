@@ -46,7 +46,7 @@ export default {
     borders: 0.2,
   },
   rationale: {
-    en: "Defined by a rule-based 'economic constitution': private ownership and competitive markets (toward Private ownership and Free trade) secured by a strong state that prevents monopoly, with independent rule-bound institutions shielded from interest groups (toward Rule by the few).",
+    en: "Defined by a rule-based 'economic constitution': private ownership and competitive markets (toward Private ownership and Free trade) secured by a strong state that prevents monopoly, with independent rule-bound institutions shielded from interest groups (toward Representatives/experts decide).",
   },
   placement: {
     confidence: "medium",

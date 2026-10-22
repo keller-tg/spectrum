@@ -8,6 +8,7 @@ export * from "./pca";
 export * from "./quality";
 export * from "./random";
 export * from "./recompute";
+export * from "./robustness";
 export * from "./score";
 export * from "./simulate";
 export * from "./types";

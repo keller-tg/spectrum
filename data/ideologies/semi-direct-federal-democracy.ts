@@ -46,7 +46,7 @@ export default {
     borders: 0.2,
   },
   rationale: {
-    en: "Defined by binding popular votes on laws and constitutional amendments beside an elected parliament (toward Rule by the many, short of assembly democracy) and by strong federalism with cantonal and communal autonomy (Decentralized). The reference country is Switzerland, whose model also includes armed neutrality; other axes reflect typical Swiss consensus politics and carry low salience.",
+    en: "Defined by binding popular votes on laws and constitutional amendments beside an elected parliament (toward Citizens decide directly, short of assembly democracy) and by strong federalism with cantonal and communal autonomy (Decentralized). The reference country is Switzerland, whose model also includes armed neutrality; other axes reflect typical Swiss consensus politics and carry low salience.",
   },
   placement: {
     confidence: "high",

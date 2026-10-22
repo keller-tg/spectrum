@@ -46,7 +46,7 @@ export default {
     borders: 0.1,
   },
   rationale: {
-    en: "Defined by theonomy, the view that biblical law, including the civil and penal laws of the Old Testament, should govern modern society (Religious and Traditional at their extremes). It pairs this with a decentralised order of family, church and limited civil government (Decentralized), free-market economics and Christian education, to be reached gradually rather than by revolution.",
+    en: "Defined by theonomy, the view that biblical law, including the civil and penal laws of the Old Testament, should govern modern society (Religion in public life and Traditional at their extremes). It pairs this with a decentralised order of family, church and limited civil government (Decentralized), free-market economics and Christian education, to be reached gradually rather than by revolution.",
   },
   placement: {
     confidence: "medium",

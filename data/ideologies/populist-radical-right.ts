@@ -46,7 +46,7 @@ export default {
     borders: 1,
   },
   rationale: {
-    en: "Defined, following Cas Mudde, by nativism (the state should belong to natives, with strict immigration limits: toward Nationalism and Closed borders), authoritarianism in the sense of strict law and order, and populism that sets a pure people against a corrupt elite and calls for popular votes (toward Rule by the many).",
+    en: "Defined, following Cas Mudde, by nativism (the state should belong to natives, with strict immigration limits: toward Nationalism and Restrictive), authoritarianism in the sense of strict law and order, and populism that sets a pure people against a corrupt elite and calls for popular votes (toward Citizens decide directly).",
   },
   placement: {
     confidence: "medium",

@@ -142,6 +142,21 @@ gates apply at σ = 0.5. Until the Deep items exist, Deep uses the Deep *bank st
 Strict numbers (exact entry at ranks 1, 3 and 5) and parent/child-only numbers are reported next
 to the gated values. **Catalog data is never adjusted to pass a gate**; failures are reported.
 
+The gates assume idealised respondents. A robustness grid (reported in
+`docs/calibration-report.md`, not gated) repeats the simulation with:
+
+- **response styles:** acquiescent (+0.75 added to every latent answer), midpoint-heavy (neutral
+  unless the latent answer is at least 1 away from 0), extremity-averse (never a strong answer);
+- **noise** σ ∈ {0.5, 0.8, 1.2};
+- **item difficulty offsets:** each item gets a fixed offset ~ N(0, SD²), SD ∈ {0, 0.3, 0.6}, so
+  some statements are easier to agree with than others;
+- a **mixed population** (styles at random, σ 0.8, offsets 0.5).
+
+It also computes, exactly rather than by sampling, the expected axis scores of a **true centrist**
+(every coordinate 0). With balanced keying a style that shifts every item equally cancels out, so
+the centrist stays at exactly 0 under every style; only item offsets move them. The pilot
+(Phase 3) measures the real offsets.
+
 ## 8. Share codes
 
 A share code is 23 bytes (31 base64url characters):

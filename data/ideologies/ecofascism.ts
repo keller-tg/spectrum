@@ -46,7 +46,7 @@ export default {
     borders: 0.9,
   },
   rationale: {
-    en: "Combines fascist authoritarianism and ethnic nationalism with radical environmentalism: it treats a people's bond to its land as sacred and frames immigration and population growth as ecological threats (Closed borders at its extreme), calling for authoritarian rule to protect nature (Sustainability).",
+    en: "Combines fascist authoritarianism and ethnic nationalism with radical environmentalism: it treats a people's bond to its land as sacred and frames immigration and population growth as ecological threats (Restrictive at its extreme), calling for authoritarian rule to protect nature (Sustainability).",
   },
   placement: {
     confidence: "low",

@@ -45,7 +45,7 @@ export default {
     borders: 0.1,
   },
   rationale: {
-    en: "Defined by the belief that public decisions should be made by technical experts applying scientific methods rather than by elected politicians or markets (toward Rule by the few), usually with central planning; positions on other axes vary.",
+    en: "Defined by the belief that public decisions should be made by technical experts applying scientific methods rather than by elected politicians or markets (toward Representatives/experts decide), usually with central planning; positions on other axes vary.",
   },
   placement: {
     confidence: "low",

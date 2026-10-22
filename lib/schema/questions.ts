@@ -15,6 +15,10 @@ export const questionSchema = z.object({
   mirrorOf: z.string().optional(),
   /** Kept so old results stay scorable; never shown again. */
   retired: z.boolean().optional(),
+  /** The retired item this one stands in for (same axis and key; the meaning is new). */
+  replaces: z.string().optional(),
+  /** States a claim about facts or effects rather than a value; at most one per axis in Quick. */
+  empirical: z.boolean().optional(),
 });
 
 export const questionTextSchema = z.object({ text: nonEmpty, explainer: nonEmpty });

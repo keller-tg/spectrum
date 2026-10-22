@@ -45,7 +45,7 @@ export default {
     borders: 0.5,
   },
   rationale: {
-    en: "Defined by revolutionary trade unions as both the means of struggle (direct action, the general strike) and the framework of a stateless economy in which federated unions own and run production (toward Collective ownership, Liberty and Rule by the many).",
+    en: "Defined by revolutionary trade unions as both the means of struggle (direct action, the general strike) and the framework of a stateless economy in which federated unions own and run production (toward Collective ownership, Liberty and Citizens decide directly).",
   },
   placement: {
     confidence: "high",

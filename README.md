@@ -19,10 +19,11 @@ npm run dev                  # http://localhost:3000 → redirects to /en, /de o
 
 | Command | What it does |
 |---|---|
-| `npm run check` | validate data → derive → lint → typecheck → unit tests (must pass before every commit) |
+| `npm run check` | privacy guard → validate data → derive → lint → typecheck → unit tests (must pass before every commit) |
+| `npm run check:privacy` | fails if the owner's personal email appears in the repo (`:history` scans every commit); needs `PRIVACY_GUARD_SHA256` in `.env.local` (hashes only) |
 | `npm run validate` | zod + semantic checks on all content (also runs before every build) |
 | `npm run derive` | build-time PCA map, category indices, similarity τ, neighbours → `generated/` |
-| `npm run calibration` | full calibration report (see below) |
+| `npm run calibration` | full calibration report → `docs/calibration-report.md` (see below) |
 | `npm run gen:index` | regenerate catalog index files after adding entries |
 | `npm run check-sources` | check every source URL (network; CI job, not part of the build) |
 | `npm run e2e` | builds, starts and runs the Playwright smoke suite (desktop + mobile, axe a11y checks) |
@@ -84,12 +85,16 @@ rules (`lib/validation`). **The build fails on invalid data.**
 ## Calibration
 
 ```bash
-npm run calibration      # prints the table and writes generated/calibration-report.md
+npm run calibration      # prints the tables and writes docs/calibration-report.md
 ```
 
 Simulated respondents are generated from each ideology's coordinates with answer noise, scored and
 matched by the real engine. Gates (σ = 0.5): Deep top-3 ≥ 90%, Standard top-3 ≥ 80%, Quick top-5
 or same family ≥ 80%, straight-liners exactly at 0, and no archetype ranked below a clearly
 opposite entry. `npm test` runs the same gates on a smaller sample.
+
+The report also runs a robustness grid that the gates leave out: response styles (acquiescent,
+midpoint-heavy, extremity-averse), more noise, per-item difficulty offsets, and an exact check of
+where a true centrist lands. Those numbers are reported, not gated.
 
 How to refresh party data will be documented when parties land (Phase 5).

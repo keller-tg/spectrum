@@ -15,3 +15,9 @@
 - Colours are CSS tokens in app/globals.css (light + dark); text pairs must pass WCAG AA
   (axe runs in e2e for both themes).
 - The repo is public: never commit secrets or personal data.
+- Never put the owner's personal data (email, real name beyond the commit identity, machine name)
+  in any file, HTTP header or request. For a User-Agent contact use the repo URL:
+  `+https://github.com/keller-tg/spectrum`. Tell every subagent the same. `npm run check` runs the
+  privacy guard and CI scans the full git history (D-073).
+- Question ids are permanent: a new meaning gets a new id, the old item is retired, and the new one
+  names it in `replaces` (D-069). Pilot answer files never enter the repo (D-072).

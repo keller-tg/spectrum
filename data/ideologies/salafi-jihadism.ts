@@ -46,7 +46,7 @@ export default {
     borders: 0.2,
   },
   rationale: {
-    en: "Defined by the aim of a state governed solely by a literalist reading of sharia, rejecting democracy and popular sovereignty as illegitimate (Religious, Authority and Rule by the few at their extremes), and by armed jihad as the means, including against Muslim-majority governments it deems apostate (Interventionist). It rejects the nation-state in favour of a transnational caliphate.",
+    en: "Defined by the aim of a state governed solely by a literalist reading of sharia, rejecting democracy and popular sovereignty as illegitimate (Religion in public life, Authority and unelected rule at their extremes), and by armed jihad as the means, including against Muslim-majority governments it deems apostate (Interventionist). It rejects the nation-state in favour of a transnational caliphate.",
   },
   placement: {
     confidence: "medium",

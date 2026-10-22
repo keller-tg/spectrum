@@ -1,0 +1,27 @@
+# Fails if the owner's personal email appears in the repo or anywhere in its git
+# history (D-073). The secret holds SHA-256 hashes only; see scripts/check-privacy.ts.
+name: Privacy guard
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  personal-data:
+    runs-on: ubuntu-latest
+    env:
+      PRIVACY_GUARD_SHA256: ${{ secrets.PRIVACY_GUARD_SHA256 }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Working tree
+        run: node scripts/check-privacy.ts
+      - name: Full git history
+        run: node scripts/check-privacy.ts --history

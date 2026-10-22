@@ -38,6 +38,7 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
   },
 
   // 2 · Ownership (Collective ↔ Private)
+  // retired in revision 2
   "q-own-01": {
     text: "Services such as water and electricity are best provided by private companies.",
     explainer:
@@ -52,6 +53,7 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
     text: "Private companies generally run businesses more efficiently than the state does.",
     explainer: "Efficiency means delivering goods or services at lower cost or higher quality.",
   },
+  // retired in revision 2
   "q-own-04": {
     text: "More companies should be owned by the people who work in them.",
     explainer:
@@ -62,9 +64,25 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
     explainer:
       "This concerns land itself, such as farmland, building plots and forests, rather than the buildings on it.",
   },
+  // retired in revision 2
   "q-own-06": {
     text: "Companies that extract oil, gas and minerals should be owned by the state.",
     explainer: "Extraction means mining or drilling natural resources out of the ground.",
+  },
+  "q-own-07": {
+    text: "Most large companies should be privately owned.",
+    explainer:
+      "Privately owned means owned by individuals, families or shareholders, rather than by the state, the public or the workers as a group.",
+  },
+  "q-own-08": {
+    text: "Most large companies should be owned collectively rather than privately.",
+    explainer:
+      "Collective ownership means ownership by the state, a municipality or another public body, or by the workers as a cooperative.",
+  },
+  "q-own-09": {
+    text: "Most large banks should be owned by the public or by their customers, rather than by private investors.",
+    explainer:
+      "Owned by the public means by the state, a region or a municipality. Owned by customers means a cooperative bank, such as a credit union.",
   },
 
   // 3 · Trade (Protectionism ↔ Free trade)
@@ -149,13 +167,19 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
     text: "Regions should be able to pass their own laws on matters such as policing, health and schools.",
     explainer: "Regions are units below the national level, such as states, provinces or cantons.",
   },
+  // retired in revision 2
   "q-cent-06": {
     text: "Small municipalities should be merged into larger ones.",
     explainer:
       "A municipality is the smallest unit of local government, such as a town or village council.",
   },
+  "q-cent-07": {
+    text: "Equal public services across the whole country matter more than letting regions and towns run them their own way.",
+    explainer:
+      "Public services here means things like hospitals, policing and social care. Regions are units below the national level, such as states, provinces or cantons.",
+  },
 
-  // 6 · Participation (Rule by the many ↔ Rule by the few)
+  // 6 · Participation (Citizens decide directly ↔ Representatives/experts decide)
   "q-part-01": {
     text: "Citizens should be able to vote directly on important laws.",
     explainer: "A direct vote on a law is often called a referendum or popular vote.",
@@ -185,6 +209,7 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
   },
 
   // 7 · Social change (Progressive ↔ Traditional)
+  // retired in revision 2
   "q-trad-01": {
     text: "Children are best raised by a married mother and father.",
     explainer:
@@ -193,12 +218,13 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
   "q-trad-02": {
     text: "Many different kinds of families can raise children equally well.",
     explainer:
-      "Kinds of families include single parents, same-sex couples, unmarried couples and extended families.",
+      "Kinds of families include same-sex couples, unmarried couples, stepfamilies and extended families.",
   },
   "q-trad-03": {
     text: "Traditions should be adapted to modern values rather than kept as they are.",
     explainer: "Traditions are customs, rituals and norms handed down over generations.",
   },
+  // retired in revision 2
   "q-trad-04": {
     text: "When in doubt, it is better to keep an old custom than to change it.",
     explainer: "Customs are the habits, rituals and norms a society has kept over generations.",
@@ -211,8 +237,17 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
     text: "Same-sex couples should have the same right to marry as other couples.",
     explainer: "This is about civil marriage under the law, not religious ceremonies.",
   },
+  "q-trad-07": {
+    text: "It is wrong for a doctor to help a terminally ill patient end their life, even if the patient asks for it.",
+    explainer:
+      "Terminally ill means the illness cannot be cured and is expected to cause death. This is often called assisted dying; the question is whether it is morally right, not only what the law allows.",
+  },
+  "q-trad-08": {
+    text: "Long-standing customs are better kept as they are than changed to fit modern values.",
+    explainer: "Customs are the habits, rituals and norms a society has kept over generations.",
+  },
 
-  // 8 · Religion and state (Secular ↔ Religious)
+  // 8 · Religion and state (Separation of religion and state ↔ Religion in public life)
   "q-rel-01": {
     text: "Religious beliefs should be kept out of law-making.",
     explainer:
@@ -283,10 +318,12 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
     explainer:
       "Examples include trade rules, human-rights courts and agreements on climate or fishing.",
   },
+  // retired in revision 2
   "q-nat-03": {
     text: "I feel as much a citizen of the world as of my own country.",
     explainer: "This is about where your sense of belonging and loyalty lies.",
   },
+  // retired in revision 2
   "q-nat-04": {
     text: "A shared national identity is important for holding a society together.",
     explainer:
@@ -299,6 +336,15 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
   "q-nat-06": {
     text: "My government should care as much about people in other countries as about its own citizens.",
     explainer: "This is about whose well-being a government should weigh when it makes decisions.",
+  },
+  "q-nat-07": {
+    text: "Being a citizen of the world is an important part of how I see myself.",
+    explainer: "This is about where your sense of belonging and loyalty lies.",
+  },
+  "q-nat-08": {
+    text: "Schools should teach children to be proud of their country.",
+    explainer:
+      "This is about whether national pride should be an aim of education, not about whether history is taught.",
   },
 
   // 11 · Foreign intervention (Interventionist ↔ Restraint)
@@ -315,6 +361,7 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
     text: "My country should put strong pressure on foreign governments that abuse human rights.",
     explainer: "Pressure can mean sanctions, cutting aid or breaking off diplomatic ties.",
   },
+  // retired in revision 2
   "q-int-04": {
     text: "Economic sanctions against other countries usually do more harm than good.",
     explainer:
@@ -324,20 +371,32 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
     text: "My country should be neutral rather than belong to a military alliance.",
     explainer: "A military alliance is a treaty in which countries promise to defend each other.",
   },
+  // retired in revision 2
   "q-int-06": {
     text: "My country should be ready to send troops to help defend partner countries if they are attacked.",
     explainer: "Partner countries are countries your country cooperates with closely.",
   },
+  "q-int-07": {
+    text: "Replacing an undemocratic government should be left to that country’s own people, not to my country.",
+    explainer: "Helping to replace a government can mean military action or arming rebels.",
+  },
+  "q-int-08": {
+    text: "My country should be willing to use military force abroad to protect its economic interests, such as trade routes.",
+    explainer: "Here, this means interests such as shipping routes and energy supplies.",
+  },
 
-  // 12 · Migration (Open ↔ Closed)
+  // 12 · Migration (Open ↔ Restrictive)
+  // retired in revision 2
   "q-bord-01": {
     text: "My country should accept only a small number of immigrants each year.",
     explainer: "Immigrants are people who move to your country to live there long-term.",
   },
+  // retired in revision 2
   "q-bord-02": {
     text: "My country should let in most people who want to live and work here.",
     explainer: "Living and working here means settling long-term, not just visiting.",
   },
+  // retired in revision 2
   "q-bord-03": {
     text: "People who enter the country without permission should be sent back quickly.",
     explainer: "Sending people back is also called deportation or removal.",
@@ -351,8 +410,26 @@ export const QUESTION_TEXT_EN: Record<string, QuestionText> = {
     text: "My country should take in refugees fleeing war, even when many arrive at once.",
     explainer: "A refugee is someone who has fled their country because of war or persecution.",
   },
+  // retired in revision 2
   "q-bord-06": {
     text: "Immigrants should have to live in the country for many years before they can become citizens.",
+    explainer: "Citizenship gives full rights, such as voting and a passport.",
+  },
+  "q-bord-07": {
+    text: "My country should accept immigrants only if they clearly benefit the country.",
+    explainer: "This is about people moving to work or settle long-term, not about refugees.",
+  },
+  "q-bord-08": {
+    text: "People with no legal right to stay, such as rejected asylum seekers, should be deported even after living and working here for five years.",
+    explainer:
+      "Deportation means the state sends a person to their home country or to another country that accepts them. A rejected asylum seeker is someone whose claim to protection has been turned down.",
+  },
+  "q-bord-09": {
+    text: "People should be free to move to my country to live and work unless there is a strong reason to refuse them.",
+    explainer: "This is about people moving to work or settle long-term, not about refugees.",
+  },
+  "q-bord-10": {
+    text: "Immigrants should have to live in the country for at least ten years before they can become citizens.",
     explainer: "Citizenship gives full rights, such as voting and a passport.",
   },
 };

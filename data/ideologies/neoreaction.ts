@@ -46,7 +46,7 @@ export default {
     borders: 0.4,
   },
   rationale: {
-    en: "Defined by rejection of democracy and egalitarianism (Rule by the few): it proposes running states like corporations under a chief executive or monarch ('neocameralism'), possibly as a patchwork of small sovereign city-states, combined with strong property rights, anti-egalitarian views and hostility to progressive institutions.",
+    en: "Defined by rejection of democracy and egalitarianism (unelected rule): it proposes running states like corporations under a chief executive or monarch ('neocameralism'), possibly as a patchwork of small sovereign city-states, combined with strong property rights, anti-egalitarian views and hostility to progressive institutions.",
   },
   placement: {
     confidence: "low",

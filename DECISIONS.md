@@ -43,14 +43,26 @@ Superseded: the Phase-0 open questions about pole names, Standard timing, E2E, t
 spectrum, perpetrator figures, index signs, Ocalan/Swiss, ß/ss, /en parties and profile questions.
 The spec answered them all.
 
+## 0b. Changes after the Phase 2 review (2026-10-22)
+
+| Area | Before | Now | Entries |
+|---|---|---|---|
+| Pole names | Rule by the many ↔ the few; Secular ↔ Religious; Open ↔ Closed borders | **Citizens decide directly ↔ Representatives/experts decide; Separation of religion and state ↔ Religion in public life; Open ↔ Restrictive** (owner's review) | D-067 |
+| Question bank | revision 1 (72 items) | **revision 2:** 14 new items, 3 moved, 14 retired; structure unchanged; reviewer re-run twice | D-068, D-070 |
+| Question ids | retire-and-replace rule in a comment | rule enforced: `retired` items stay with their last position, new items name them in `replaces`; `empirical` flag, ≤ 1 per axis in Quick | D-069 |
+| Calibration | idealised respondents only | **robustness grid**: response styles, noise, item difficulty offsets, mixed population, exact centrist check; report in `docs/calibration-report.md` | D-071 |
+| Pilot | — | Phase 3: unlinked, noindex `/pilot` with explicit consent and a download-only answers file; `pilot-analysis` script | D-072 |
+| Personal data | rule in CLAUDE.md | **privacy guard** (script + CI on every push, full history), hash-only secret; User-Agent contact = repo URL | D-073 |
+| Hosting | Vercel team unknown | team `sos-kellohs-projects`, project `spectrum`, Next.js preset, Node 24.x; live | D-001, D-074 |
+
 ---
 
 ## A. Project & stack
 
 **D-001 · 🟢 · Location, repo, hosting.** Folder `~/spectrum`; remote `github.com/keller-tg/spectrum`
 (**public**), branch `main`. Commits use the GitHub noreply address. Domain for now:
-`spectrum-six-rho.vercel.app` (it currently returns Vercel 404, so no deployment exists yet).
-**Still open:** which Vercel team/account, and the final domain (before Phase 7).
+`spectrum-six-rho.vercel.app`, served by the Vercel project `sos-kellohs-projects/spectrum`
+(D-074). **Still open:** the final domain (before Phase 7).
 
 **D-002 · 🟢 · Versions (npm, 2026-10-21).** next 16.4, react 19.2, next-intl 4.14, tailwindcss 4.3,
 zod 4, vitest, @playwright/test 1.64. ESLint is pinned to the major that `eslint-config-next`
@@ -86,6 +98,13 @@ perf 94) is dominated by Next's baseline JS, because everything loads before the
 LCP. The ≥ 95 gate is measured against the Vercel preview from Phase 3 onwards, not localhost.
 Accessibility, best practices: 100.
 
+**D-074 · 🟢 · Vercel setup (2026-10-22).** Team `sos-kellohs-projects` (Hobby), project
+`spectrum`, Root Directory `.`, Framework Preset Next.js, Node 24.x; `engines.node` is pinned to
+`24.x` to match local development. The first builds failed because the project was created while
+the repo held only Phase 0 docs, so Vercel had detected "Other" (fixed in the dashboard). Production
+is `main` → `spectrum-six-rho.vercel.app`; per-deployment URLs sit behind Vercel's default
+Deployment Protection. A dashboard "Redeploy" rebuilds the old deployment's commit, not `main`.
+
 ---
 
 ## B. Axes & questions
@@ -96,9 +115,8 @@ is −100. Pole labels live in localized data, so renaming one never changes sto
 
 **D-005 · ✅ · Pole names (spec v2)** as listed in PLAN §5.1, each with a one-line tooltip written so
 people who hold that view would accept it.
-*Note:* restrictionists often describe themselves as wanting "controlled" rather than "closed"
-borders. The tooltip for **Closed** therefore reads "strict limits on who may enter and settle",
-and the label stays as the spec says. The label could become "Controlled" if testers object.
+*Superseded in part by D-067:* the owner renamed three axes' poles after the Phase 2 review
+(Closed → Restrictive among them).
 
 **D-007 · ✅ · Scale.** 5 points mapped to −2…+2; skip/unsure is a separate `null`.
 
@@ -144,8 +162,8 @@ axis once.
   - deregulation vs regional tax rates
   - "citizen of the world" before the trade/borders items
   - aid vs inheritance tax
-- **int-05/int-06** (neutrality vs defending partners) form a declared Standard-only mirror pair,
-  14 apart.
+- **int-05/int-06** (neutrality vs defending partners) formed a declared Standard-only mirror
+  pair, 14 apart. Revision 2 retired int-06 (D-068), so int-05 is now unpaired.
 
 **D-063 · 🟢 · Question review (reviewer subagent, Phase 2).** I adopted almost all of the
 reviewer's ~40 findings. Highlights:
@@ -249,6 +267,87 @@ them would read as a political asymmetry.
   correlated pair: distribution/ownership r = 0.96, liberty/borders 0.90, religion/tradition 0.85,
   nation/borders −0.84, liberty/participation 0.83.
 
+**D-067 · ✅ · Pole names revised (owner's Phase 2 review).**
+- **Axis 6:** *Citizens decide directly ↔ Representatives/experts decide* (short: Direct ↔
+  Delegated). "Rule by the few" misdescribed the items liberal democrats agree with (elected
+  representatives having the final say, independent central banks). The far end is still
+  unelected rule, anchored by part-04, and the + tooltip says so ("…or at the far end to a party or
+  a crown"). The rubric is unchanged: representative democracy sits at 0.
+- **Axis 8:** *Separation of religion and state ↔ Religion in public life*. The items measure
+  religion's public role, not personal religiosity.
+- **Axis 12:** *Open ↔ Restrictive* (was Open borders ↔ Closed borders).
+- Pole glyphs: Restrictive is now a lowered checkpoint barrier instead of a shut gate. Catalog
+  summaries that cited the old labels were rewritten; autocracies now read "unelected rule".
+
+**D-068 · ✅/🟢 · Question bank revision 2.** The owner approved the structure and asked for seven
+content changes. Position numbers are the new ones; `docs/question-bank-changes.md` has the full
+before/after with reasons and the reviewer's verdicts.
+- **Ownership:** the Quick mirror pair is now "most large companies privately ↔ collectively
+  owned" (#5/#22); #62 is "most large banks owned by the public or their customers"; the utilities
+  item moved to #40, replacing "**more** companies worker-owned" (status-quo wording). Extraction
+  is gone.
+- **Social change:** the Quick mirror pair is the axis's core idea, keeping vs adapting customs
+  (#11/#31, exact complements). "Married mother and father" is replaced, not reworded, since a
+  single-idea version would duplicate #17. End of life is the new non-family norm (#38).
+  Family/gender items: 3 of 6 in Standard, 1 of 3 in Quick.
+- **Migration:** #12/#28 are now a burden-of-proof pair: admit only if clearly beneficial vs free
+  to come unless there is a strong reason to refuse. They need no quantity and split near the
+  centre. #18 covers people with no legal right to stay, even after five years of living and
+  working here. #61 says "at least ten years".
+- **Centralization:** #70 (municipal mergers) → equal public services nationwide vs local control.
+- **Intervention:** #43 (sanctions) → regime change left to a country's own people; #72 (troops
+  for partners) → force to protect economic interests such as shipping routes.
+- **Nation and world:** #32 softened ("being a citizen of the world is an important part of how I
+  see myself"), #39 replaced (schools teaching national pride).
+- Keys and axes per position are unchanged, so every structural property (3+/3−, Quick 18/18,
+  mirror pairs ≥ 15 apart, all-agree = 0) holds as before.
+
+**D-070 · 🟢 · Reviewer resolutions (revision 2).** The reviewer agent checked every changed
+position twice. **Adopted:**
+- the exact-complement wording for #11
+- #17's explainer without single parents (it keyed evidence-minded progressives Traditional)
+- the burden-of-proof pair #12/#28, replacing my net-migration pair. The reviewer rejected that
+  pair for a keying error: people who want cuts that stay above zero would agree with #28 and be
+  scored Open.
+- the five-year trade-off in #18 (otherwise near-consensus)
+- #32's wording (my "my continent" draft only worked in Europe)
+- regime change for #43 (my neutrality draft duplicated #58), then "undemocratic" instead of the
+  loaded "brutal"
+- cooperatives and "most" in #62
+- #70 without "regions lose control"
+- narrower explainers for #72 and #43
+- restoring utilities at #40
+- a fairer Open tooltip
+
+**Not adopted, put to the owner:**
+- relabelling axis 6's + pole ("Leaders and experts decide")
+- relabelling axis 8's + pole ("Religion guides law and state")
+- replacing #53 for axis 7 difficulty (decide after the pilot)
+- replacing #58 (an alliance item the owner did not flag)
+
+**Documented, not changed:**
+- #61's country anchoring: ten years is current law in CH/AT
+- #38's overlap with axis 4
+- #39's country dependence
+
+**Phase 3 default:** the participation slider gets a far-end note above about +60 ("toward rule
+without elections"), because Quick has no non-democratic item.
+
+**D-069 · 🟢 · Question ids and claim types.** A changed meaning always gets a new id. The retired
+item stays in the bank with `retired: true` and its last position, so stored answers stay scorable
+and the change log can show before/after; the new item names it in `replaces` (validator: same axis
+and key, target retired). Items that state a claim about facts or effects carry `empirical: true`;
+the validator allows at most one per axis in Quick. Tagged: eco-03, own-03, cent-03, trad-02
+(Quick); part-04, bord-04, trade-04 (Standard). `ACTIVE_QUESTIONS` / `modeQuestions()` are the only
+way code reads a mode's items (tests used to slice the raw array).
+
+**D-072 · 🟢 · Pilot (built in Phase 3).** An unlinked, noindex `/pilot` page with explicit consent
+lets a participant take the test and download an anonymous answers file; nothing is stored on a
+server. `scripts/pilot-analysis.ts` reports per-item agree rates and implied difficulty,
+corrected item-total correlations, per-axis reliability (α) and inter-axis correlations from a
+folder of those files. The owner collects 30–50 files before Phase 9. Pilot files never enter the
+repo (`/pilot-data/` is gitignored). Details: PLAN §7a.
+
 ---
 
 ## C. Scoring, matching, maps
@@ -300,6 +399,16 @@ it distorts global distances and can't place new points exactly.
 - **Headline:** a `low` placement entry loses the headline to any medium or high entry within
   3 points.
 
+**D-071 · 🟢 · Calibration robustness.** The gates (D-014) assume respondents who use the whole
+scale and items that are equally easy to agree with, which is why they read 94–99%. The report now
+adds a grid that is reported, not gated: response styles (acquiescent +0.75 on every item;
+midpoint-heavy; extremity-averse), σ ∈ {0.5, 0.8, 1.2}, per-item difficulty offsets with SD ∈ {0,
+0.3, 0.6}, and a mixed population. A true centrist's expected scores are computed exactly: without
+offsets they are exactly 0 under every style (a uniform shift cancels under balanced keying); with
+offsets they drift. Simulation only sees each item's axis and key, never its wording, so it cannot
+judge the wording changes; the pilot (D-072) can. The report moved from `generated/` to
+`docs/calibration-report.md` so it is readable on GitHub.
+
 ---
 
 ## D. Storage, sync, privacy
@@ -343,6 +452,19 @@ renders k-anonymous density. Behind a feature flag.
   still count as personal data.
 
 **Get legal advice before any public, indexed launch.**
+
+**D-073 · 🟢 · Privacy guard.** `scripts/check-privacy.ts` fails if the owner's personal email
+appears in the working tree, and with `--history` anywhere in git history (every blob reachable
+from any ref, plus author, committer and message of every commit). The address is never stored in
+the repo: `PRIVACY_GUARD_SHA256` holds SHA-256 hashes of the address and its local part (locally
+in the gitignored `.env.local`, in CI as a repository secret). Every email-like string (including
+`%40` and `[at]` spellings) and every word-like token is hashed and compared, and findings print
+locations only. It runs in `npm run check` and in `.github/workflows/privacy.yml` on every push
+and pull request (plain Node 24, no install). Without the hashes it warns locally and fails in
+CI. Scripts that make HTTP requests identify themselves with the repo URL as contact
+(`+https://github.com/keller-tg/spectrum`), never personal data. History check on 2026-10-22: the
+email appears nowhere; the first commit's author field is a machine-local address (macOS user and
+computer name), not the personal email.
 
 ---
 
@@ -474,5 +596,6 @@ asks for consent, is labelled AI-generated, cached and rate-limited, and is off 
 
 ## G. Open items
 
-- Vercel team/account (needed for Phase 3 preview deploys).
 - Final domain (before Phase 7).
+- Optional: rewrite the first commit's author field (machine-local address) — needs a force push
+  of `main`; owner's call.

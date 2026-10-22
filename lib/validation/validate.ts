@@ -137,8 +137,33 @@ export function validateQuestions(
     }
     if (m.axis !== q.axis) out.push(issue("error", q.id, "mirror pair must share an axis"));
     if (m.key === q.key) out.push(issue("error", q.id, "mirror pair must have opposite keys"));
+    if (m.retired) out.push(issue("error", q.id, `mirrorOf ${m.id} is retired`));
     if (Math.abs(m.order - q.order) < 8)
       out.push(issue("error", q.id, "mirror pair items must be at least 8 apart"));
+  }
+
+  // A replacement stands in for a retired item on the same axis with the same key.
+  for (const q of active) {
+    if (!q.replaces) continue;
+    const old = byId.get(q.replaces);
+    if (!old) out.push(issue("error", q.id, `replaces ${q.replaces}, which does not exist`));
+    else if (!old.retired)
+      out.push(issue("error", q.id, `replaces ${old.id}, which is not retired`));
+    else if (old.axis !== q.axis || old.key !== q.key)
+      out.push(issue("error", q.id, `replaces ${old.id} but differs in axis or key`));
+  }
+
+  // Empirical claims (facts or effects rather than values): at most one per axis in Quick.
+  for (const axis of AXIS_IDS) {
+    const claims = active.slice(0, MODES.quick.count).filter((q) => q.axis === axis && q.empirical);
+    if (claims.length > 1)
+      out.push(
+        issue(
+          "error",
+          `quick/${axis}`,
+          `${claims.length} empirical items (${claims.map((q) => q.id).join(", ")}); at most 1`,
+        ),
+      );
   }
   if (active.length >= MODES.quick.count) {
     for (const axis of AXIS_IDS) {
@@ -154,7 +179,7 @@ export function validateQuestions(
     }
   }
 
-  // Wording rules.
+  // Wording rules. Retired items keep their text for the record but are never shown again.
   for (const q of parsed) {
     const raw = texts[q.id];
     const r = questionTextSchema.safeParse(raw);
@@ -162,6 +187,7 @@ export function validateQuestions(
       out.push(issue("error", q.id, "missing or invalid English text/explainer"));
       continue;
     }
+    if (q.retired) continue;
     const { text, explainer } = r.data;
     const words = text.split(/\s+/).length;
     if (words > 25) out.push(issue("error", q.id, `${words} words; keep items to 25 or fewer`));

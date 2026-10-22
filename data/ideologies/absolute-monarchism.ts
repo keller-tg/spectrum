@@ -46,7 +46,7 @@ export default {
     borders: 0.2,
   },
   rationale: {
-    en: "Defined by undivided sovereignty in a hereditary monarch who is not bound by parliament or a written constitution (Rule by the few at its extreme, high Authority), usually justified by divine right and tied to an established church and an inherited social hierarchy (Traditional).",
+    en: "Defined by undivided sovereignty in a hereditary monarch who is not bound by parliament or a written constitution (unelected rule at the far end of Participation, high Authority), usually justified by divine right and tied to an established church and an inherited social hierarchy (Traditional).",
   },
   placement: {
     confidence: "medium",

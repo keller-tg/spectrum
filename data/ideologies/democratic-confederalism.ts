@@ -46,7 +46,7 @@ export default {
     borders: 0.3,
   },
   rationale: {
-    en: "Defined by direct democracy through communes and councils confederated without a nation-state (toward Rule by the many and Decentralized), with women's liberation, ecology and a cooperative economy as co-equal pillars.",
+    en: "Defined by direct democracy through communes and councils confederated without a nation-state (toward Citizens decide directly and Decentralized), with women's liberation, ecology and a cooperative economy as co-equal pillars.",
   },
   placement: {
     confidence: "medium",

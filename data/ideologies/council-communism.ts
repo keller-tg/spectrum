@@ -46,7 +46,7 @@ export default {
     borders: 0.3,
   },
   rationale: {
-    en: "A Marxist current defined by workers' councils as the organ of both revolution and economic management: production held in common and run by recallable council delegates rather than a party or state (toward Collective ownership and Rule by the many).",
+    en: "A Marxist current defined by workers' councils as the organ of both revolution and economic management: production held in common and run by recallable council delegates rather than a party or state (toward Collective ownership and Citizens decide directly).",
   },
   placement: {
     confidence: "medium",

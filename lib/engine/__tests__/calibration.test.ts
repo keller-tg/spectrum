@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MODES } from "@/data/modes";
-import { QUESTION_BANK } from "@/data/questions/bank";
+import { modeQuestions } from "@/data/questions/bank";
 import { loadIdeologies, toMatchable } from "@/lib/catalog/ideologies";
 import { fitTau } from "../calibrate";
 import { runCalibration } from "../calibration";
@@ -11,9 +10,9 @@ import { syntheticDeepBank } from "../simulate";
  * every run shows them; `npm run calibration` writes the full report.
  */
 const entries = loadIdeologies().map(toMatchable);
-const standard = QUESTION_BANK.slice(0, MODES.standard.count);
+const standard = modeQuestions("standard");
 const banks = {
-  quick: QUESTION_BANK.slice(0, MODES.quick.count),
+  quick: modeQuestions("quick"),
   standard,
   deep: syntheticDeepBank(standard),
 };

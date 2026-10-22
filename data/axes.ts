@@ -217,13 +217,17 @@ export const AXES: Record<AxisId, AxisDef> = {
     category: "governmental",
     name: { en: "Participation", de: "Mitbestimmung", fr: "Participation" },
     measures: {
-      en: "Who should make collective decisions: citizens directly or a selected few.",
-      de: "Wer kollektive Entscheidungen treffen soll: die Bürgerschaft direkt oder wenige Ausgewählte.",
-      fr: "Qui doit prendre les décisions collectives : les citoyens directement ou quelques personnes choisies.",
+      en: "How far collective decisions should pass from citizens to elected representatives and experts, or at the far end to rulers who need no election.",
+      de: "Wie weit kollektive Entscheidungen von der Bürgerschaft an Gewählte und Fachleute übergehen sollen, am äußersten Ende an Herrschende ohne Wahl.",
+      fr: "Dans quelle mesure les décisions collectives doivent passer des citoyens aux élus et aux experts, voire, à l’extrême, à des dirigeants non élus.",
     },
     neg: {
-      label: { en: "Rule by the many", de: "Herrschaft der Vielen", fr: "Pouvoir du grand nombre" },
-      short: { en: "The many", de: "Die Vielen", fr: "Le grand nombre" },
+      label: {
+        en: "Citizens decide directly",
+        de: "Bürgerschaft entscheidet direkt",
+        fr: "Les citoyens décident directement",
+      },
+      short: { en: "Direct", de: "Direkt", fr: "Direct" },
       tooltip: {
         en: "Citizens should decide directly and often, through votes and assemblies.",
         de: "Bürgerinnen und Bürger entscheiden direkt und oft, durch Abstimmungen und Versammlungen.",
@@ -231,12 +235,16 @@ export const AXES: Record<AxisId, AxisDef> = {
       },
     },
     pos: {
-      label: { en: "Rule by the few", de: "Herrschaft der Wenigen", fr: "Pouvoir du petit nombre" },
-      short: { en: "The few", de: "Die Wenigen", fr: "Le petit nombre" },
+      label: {
+        en: "Representatives/experts decide",
+        de: "Gewählte/Fachleute entscheiden",
+        fr: "Les élus/experts décident",
+      },
+      short: { en: "Delegated", de: "Delegiert", fr: "Délégué" },
       tooltip: {
-        en: "Decisions are best left to a qualified few: representatives, experts, a party or a crown.",
-        de: "Entscheidungen liegen am besten bei wenigen Befähigten: Abgeordneten, Fachleuten, einer Partei oder einer Krone.",
-        fr: "Les décisions reviennent à quelques personnes qualifiées : élus, experts, un parti ou une couronne.",
+        en: "Decisions are best left to elected representatives and experts, or at the far end to a party or a crown.",
+        de: "Entscheidungen liegen am besten bei Gewählten und Fachleuten, am äußersten Ende bei einer Partei oder einer Krone.",
+        fr: "Mieux vaut confier les décisions aux élus et aux experts, voire, à l’extrême, à un parti ou à une couronne.",
       },
     },
   },
@@ -246,9 +254,9 @@ export const AXES: Record<AxisId, AxisDef> = {
     category: "societal",
     name: { en: "Social change", de: "Gesellschaftlicher Wandel", fr: "Changement social" },
     measures: {
-      en: "How society should treat inherited norms about family, gender and custom.",
-      de: "Wie die Gesellschaft mit überlieferten Normen zu Familie, Geschlecht und Brauchtum umgehen soll.",
-      fr: "Comment la société doit traiter les normes héritées sur la famille, le genre et les coutumes.",
+      en: "How society should treat inherited norms and customs, for example on family, gender and the end of life.",
+      de: "Wie die Gesellschaft mit überlieferten Normen und Bräuchen umgehen soll, etwa zu Familie, Geschlecht und Lebensende.",
+      fr: "Comment la société doit traiter les normes et coutumes héritées, par exemple sur la famille, le genre et la fin de vie.",
     },
     neg: {
       label: { en: "Progressive", de: "Progressiv", fr: "Progressiste" },
@@ -280,8 +288,12 @@ export const AXES: Record<AxisId, AxisDef> = {
       fr: "Quel rôle la religion doit jouer dans le droit et la vie publique.",
     },
     neg: {
-      label: { en: "Secular", de: "Säkular", fr: "Laïque" },
-      short: { en: "Secular", de: "Säkular", fr: "Laïque" },
+      label: {
+        en: "Separation of religion and state",
+        de: "Trennung von Religion und Staat",
+        fr: "Séparation des religions et de l’État",
+      },
+      short: { en: "Separation", de: "Trennung", fr: "Séparation" },
       tooltip: {
         en: "Law and public institutions stay neutral between religions and non-belief.",
         de: "Recht und öffentliche Institutionen bleiben neutral gegenüber Religionen und Nichtglauben.",
@@ -289,8 +301,12 @@ export const AXES: Record<AxisId, AxisDef> = {
       },
     },
     pos: {
-      label: { en: "Religious", de: "Religiös", fr: "Religieux" },
-      short: { en: "Religious", de: "Religiös", fr: "Religieux" },
+      label: {
+        en: "Religion in public life",
+        de: "Religion im öffentlichen Leben",
+        fr: "Religion dans la vie publique",
+      },
+      short: { en: "Public religion", de: "Öffentliche Religion", fr: "Religion publique" },
       tooltip: {
         en: "Faith and religious teaching should guide law and public life.",
         de: "Glaube und religiöse Lehre sollen Recht und öffentliches Leben prägen.",
@@ -404,17 +420,17 @@ export const AXES: Record<AxisId, AxisDef> = {
       fr: "Avec quelle liberté on doit pouvoir venir s’installer dans un pays.",
     },
     neg: {
-      label: { en: "Open borders", de: "Offene Grenzen", fr: "Frontières ouvertes" },
-      short: { en: "Open", de: "Offen", fr: "Ouvertes" },
+      label: { en: "Open", de: "Offen", fr: "Ouverte" },
+      short: { en: "Open", de: "Offen", fr: "Ouverte" },
       tooltip: {
-        en: "People should be broadly free to move across borders and settle where they choose.",
-        de: "Menschen sollen weitgehend frei Grenzen überqueren und sich niederlassen können, wo sie wollen.",
-        fr: "Chacun doit pouvoir largement franchir les frontières et s’installer où il le souhaite.",
+        en: "Moving to and settling in another country should be easy, with few barriers.",
+        de: "In ein anderes Land zu ziehen und sich dort niederzulassen soll einfach sein, mit wenigen Hürden.",
+        fr: "S’installer dans un autre pays doit être facile, avec peu d’obstacles.",
       },
     },
     pos: {
-      label: { en: "Closed borders", de: "Geschlossene Grenzen", fr: "Frontières fermées" },
-      short: { en: "Closed", de: "Geschlossen", fr: "Fermées" },
+      label: { en: "Restrictive", de: "Restriktiv", fr: "Restrictive" },
+      short: { en: "Restrictive", de: "Restriktiv", fr: "Restrictive" },
       tooltip: {
         en: "Strict limits on who may enter and settle, decided by the nation.",
         de: "Strenge Grenzen dafür, wer einreisen und sich niederlassen darf, festgelegt von der Nation.",

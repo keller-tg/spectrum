@@ -71,7 +71,7 @@ lib/catalog/              typed accessors, localized slug maps, search index
 lib/storage/ lib/sync/    client: IndexedDB, E2E crypto, sync client
 lib/server/               server-only: db, tokens, rate limit
 components/               ui/ test/ results/ compass/ charts/ dashboard/ explorer/ share/
-scripts/                  validate-data, build-derived, check-sources, fetch-commons, calibration-report
+scripts/                  validate-data, build-derived, check-sources, check-privacy, fetch-commons, calibration-report, pilot-analysis
 generated/                build outputs (PCA, indices, τ, neighbours, web layout), gitignored
 docs/                     scoring.md, content-style.md, adding-content.md, refreshing-parties.md
 tests/e2e/                Playwright
@@ -121,13 +121,13 @@ that people who hold that view would accept it as fair.
 | 3 | `trade` | Protectionism | Free trade | Openness to cross-border goods, services and capital | migration → 12 |
 | 4 | `liberty` | Liberty | Authority | Scope of state power over individual life: speech, privacy, policing, personal choices | who rules → 6 |
 | 5 | `centralization` | Centralized | Decentralized | Where power sits: national vs. regional/local | scope → 4; supranational → 10 |
-| 6 | `participation` | Rule by the many | Rule by the few | Who should make collective decisions: citizens directly vs. a selected few (representatives, experts, a party, a crown) | scope → 4 |
-| 7 | `tradition` | Progressive | Traditional | Attitude to social change: family, gender roles, inherited customs | religion's public role → 8 |
-| 8 | `religion` | Secular | Religious | Role of religion in law, schools and public life | social change in general → 7 |
+| 6 | `participation` | Citizens decide directly | Representatives/experts decide | How far decisions pass from citizens to elected representatives and experts, or at the far end (anchored by an unelected-rule item) to a party or a crown (D-067) | scope → 4 |
+| 7 | `tradition` | Progressive | Traditional | Attitude to inherited norms and customs: family and gender (at most half the items), end of life, custom in general | religion's public role → 8 |
+| 8 | `religion` | Separation of religion and state | Religion in public life | Role of religion in law, schools and public life, not personal religiosity (D-067) | social change in general → 7 |
 | 9 | `ecology` | Growth | Ecological sustainability | Priority when growth and ecological limits conflict | ownership → 2 |
 | 10 | `nation` | Nationalism | Internationalism | Primacy of the nation and national identity vs. shared sovereignty and international institutions | migration → 12; war → 11 |
 | 11 | `intervention` | Interventionist | Restraint | Willingness to use military or coercive power abroad, and alliance commitments | identity → 10 |
-| 12 | `borders` | Open | Closed | How freely people may move to and settle in a country | trade → 3 |
+| 12 | `borders` | Open | Restrictive | How freely people may move to and settle in a country (D-067) | trade → 3 |
 
 `build-derived` reports the catalog correlation matrix and warns when any |r| > 0.8. That's a
 warning and not a failure, since ideologies cluster naturally. Item-level factor analysis replaces
@@ -136,7 +136,7 @@ it once community data exists.
 ### 5.2 Questions
 
 ```ts
-Question     = { id, axis, key: 1 | -1, order, mirrorOf?, retired? }   // key 1: agreeing → +100 pole
+Question     = { id, axis, key: 1 | -1, order, mirrorOf?, retired?, replaces?, empirical? }   // key 1: agreeing → +100 pole
 QuestionText = { [locale]: { [id]: { text, explainer } } }             // explainer defines terms, never hints direction
 ```
 
@@ -155,6 +155,9 @@ QuestionText = { [locale]: { [id]: { text, explainer } } }             // explai
   - ≤ 25 words per item
   - lint for absolutes, double-barrel conjunctions (flagged for review), a loaded-term denylist and
     US-specific institutions
+  - at most one `empirical` item (a claim about facts or effects) per axis in Quick
+  - a changed meaning gets a new id; the old item is `retired` (kept with its last position) and
+    the new one names it in `replaces` (same axis and key) — D-069
 - Times are stated up front at ~8 s per item: Quick 36 (~5 min), Standard 72 (~10 min), Deep 144
   (~20 min). The only profile question is an optional **country** (full list, "prefer not to say").
 - Phase 2 writes all 72 Quick and Standard items in English. Deep and DE/FR come in Phase 9.
@@ -334,8 +337,10 @@ sim = 100 · 2^(−(d/τ_k)²)                   smooth curve; τ_k per catalog 
 | (c) | for every simulated user, the best match ranks above every clearly opposite entry (unweighted distance ≥ 120) |
 | spread | median top-1 ≈ 75%, median 5th ≈ 55% (reported, with a loose gate) |
 
-`npm run calibration` prints the full table, which is also written to
-`generated/calibration-report.md`.
+`npm run calibration` prints the full tables and writes `docs/calibration-report.md`. Next to the
+gates it reports a robustness grid (response styles, noise, item difficulty offsets, a mixed
+population) and the exact expected scores of a true centrist (D-071). That grid is reported, not
+gated.
 
 ### 6.7 Share code
 
@@ -362,6 +367,36 @@ Results store their answers and the versions used. When versions differ the app 
   toggled. A progress bar shows "12 / 72".
 - After Quick, the user is offered "36 more questions to sharpen this", which keeps their answers
   (likewise Standard → Deep).
+
+## 7a. Pilot (Phase 3, D-072)
+
+Goal: 30–50 real answer sets from people the owner knows, collected before Phase 9, to measure what
+simulation cannot: item difficulty, item-total correlations, reliability and inter-axis
+correlations.
+
+- **`/pilot`** (per locale): unlinked (no nav, footer or sitemap entry), `noindex, nofollow` in
+  the page metadata and an `X-Robots-Tag` header. It is not named in `robots.txt` either, since a
+  `Disallow` line would advertise it.
+- **Explicit consent first:** a short screen says what the file contains, that political views
+  are sensitive data, that nothing is sent to or stored on any server, and that the participant
+  decides whether to pass the file on. The test only starts after an unticked-by-default checkbox.
+- The participant takes the normal test (Standard by default) with the real UI. Answers stay in
+  memory for the session (no IndexedDB, no cookie) and are cleared after the download.
+- **Download:** one JSON file, `spectrum-pilot-<random>.json`:
+  `{ format: "spectrum-pilot", version: 1, bankVersion, engineVersion, mode, locale, answers:
+  { [questionId]: { r, ms } }, country? }`. No name, no timestamp finer than the month, no
+  device data. The schema lives in `lib/schema/pilot.ts` and is validated on both ends.
+- **`npm run pilot-analysis -- <folder>`** (`scripts/pilot-analysis.ts`) reads every file in the
+  folder and reports, as Markdown to stdout and `generated/pilot-report.md` (gitignored):
+  - per item: n, skip rate, answer distribution, agree rate (+1/+2), mean, SD, and the implied
+    difficulty offset (feeds the robustness grid, D-071)
+  - corrected item-total correlation (item vs. the keyed sum of the other items on its axis),
+    flagging items below 0.2 or negative (likely mis-keyed)
+  - per-axis reliability (Cronbach's α; alpha-if-item-deleted)
+  - inter-axis correlations of the engine's axis scores, flagged above |0.8|
+  - mirror-pair agreement and quality-flag rates, median time per item
+- Pilot files are personal data: they live outside the repo (or in the gitignored `pilot-data/`)
+  and are never committed. The privacy guard does not replace this rule.
 
 ## 8. Results page (Phase 3)
 
@@ -475,7 +510,7 @@ Phase 5.
 | 0 | Plan (re-synced to spec v2) | ✅ |
 | 1 | Scaffold, design system, i18n: Next 16 app, tokens, fonts, theme, next-intl with localized pathnames (en/de/fr UI), layout shell, stub pages for every route, design-system page, lint/format/Vitest/Playwright wiring | `/en` `/de` `/fr` with localized slugs; lint blocks string literals; check and e2e smoke green |
 | 2 | Engine, schemas, **36 Quick + 72 Standard EN questions**, ~40 anchor stubs, validator, build-derived (PCA, indices, τ), calibration suite, `docs/scoring.md` | calibration numbers reported; (b) and (c) pass; **STOP for question review** |
-| 3 | Test UI + results page; first Vercel preview deploy | e2e full flow; LHCI tracked |
+| 3 | Test UI + results page; first Vercel preview deploy; **pilot page + `pilot-analysis`** (§7a) | e2e full flow; LHCI tracked; pilot file round-trips through the analysis |
 | 4 | Modern compass (static) | 60 fps; axe clean |
 | 5 | Catalogs: Tier A → regimes → countries → figures → parties → Tier B | validator plus calibration on the full catalog |
 | 6 | Local history + dashboard | works offline with zero setup |

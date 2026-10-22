@@ -46,7 +46,7 @@ export default {
     borders: 1,
   },
   rationale: {
-    en: "Defined by racial ideology: the nation conceived as a biological race, with antisemitism and the exclusion, persecution and murder of those deemed outside it (Closed borders at its extreme); total control of public and private life under a single leader; and wars of conquest for territory in Eastern Europe.",
+    en: "Defined by racial ideology: the nation conceived as a biological race, with antisemitism and the exclusion, persecution and murder of those deemed outside it (Restrictive at its extreme); total control of public and private life under a single leader; and wars of conquest for territory in Eastern Europe.",
   },
   placement: {
     confidence: "high",
