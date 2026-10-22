@@ -46,7 +46,7 @@ export default {
     borders: 0.1,
   },
   rationale: {
-    en: "Defined by the aim of making Islam, and sharia in particular, the basis of state law and public life (toward Religious); most currents pursue this through social activism and electoral politics, a minority through revolution or armed struggle. It is socially traditional, ranks the community of believers above the nation-state, and supports Islamic charity and welfare without rejecting private property.",
+    en: "Defined by the aim of making Islam, and sharia in particular, the basis of state law and public life (toward Religious); this entry covers the mainstream that pursues it through social activism and electoral politics; armed Salafi-jihadist currents are a separate entry. It is socially traditional, ranks the community of believers above the nation-state, and supports Islamic charity and welfare without rejecting private property.",
   },
   placement: {
     confidence: "low",

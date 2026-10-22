@@ -26,7 +26,7 @@ export default {
     participation: 100,
     tradition: 70,
     religion: -20,
-    ecology: -10,
+    ecology: -30,
     nation: -100,
     intervention: -100,
     borders: 100,

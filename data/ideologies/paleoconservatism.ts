@@ -50,7 +50,7 @@ export default {
   placement: {
     confidence: "medium",
     reason: {
-      en: "A well-defined but small and personality-driven US current; adherents differ on economics and the role of religion.",
+      en: "A well-defined but small US current centred on a few writers and Pat Buchanan's campaigns; adherents differ on economics and the role of religion.",
     },
   },
   sources: [

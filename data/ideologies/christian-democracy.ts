@@ -18,7 +18,7 @@ export default {
   estimate: false,
   coords: {
     distribution: 0,
-    ownership: 0,
+    ownership: 20,
     trade: 35,
     liberty: 0,
     centralization: 50,

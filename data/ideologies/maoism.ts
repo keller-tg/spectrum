@@ -22,7 +22,7 @@ export default {
     distribution: -95,
     ownership: -95,
     trade: -75,
-    liberty: 85,
+    liberty: 90,
     centralization: -55,
     participation: 75,
     tradition: -80,
@@ -47,7 +47,7 @@ export default {
     borders: 0.2,
   },
   rationale: {
-    en: "A Marxist-Leninist variant defined by peasant-based people's war, the mass line and continuing class struggle under socialism; in power this meant collectivised communes, self-reliance and mass campaigns against inherited custom (toward Authority and Progressive).",
+    en: "A Marxist-Leninist variant defined by peasant-based people's war, the mass line and continuing class struggle under socialism; in power this meant collectivised communes, self-reliance and mass political campaigns, including the Great Leap Forward and the Cultural Revolution, against 'class enemies' and inherited custom (toward Authority and Progressive).",
   },
   placement: {
     confidence: "medium",

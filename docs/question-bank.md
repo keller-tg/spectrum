@@ -84,7 +84,7 @@ During the test, respondents see only the statement, the scale and the "?" expla
 
 ### 1. Distribution: Equality ↔ Markets
 
-*Measures:* How far the state should shape who earns and owns what.
+*Measures:* How far the state should redistribute income and wealth through taxes, transfers and wage rules.
 
 - **#2** (Quick, agree → Equality) Governments should actively reduce the gap between high and low incomes.
   - ?: “Actively” means through deliberate policy, such as taxes, benefits or wage rules.

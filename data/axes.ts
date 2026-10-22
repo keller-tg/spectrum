@@ -72,9 +72,9 @@ export const AXES: Record<AxisId, AxisDef> = {
     category: "economic",
     name: { en: "Distribution", de: "Verteilung", fr: "Répartition" },
     measures: {
-      en: "How far the state should shape who earns and owns what.",
-      de: "Wie stark der Staat beeinflussen soll, wer was verdient und besitzt.",
-      fr: "Dans quelle mesure l’État doit influencer qui gagne et possède quoi.",
+      en: "How far the state should redistribute income and wealth through taxes, transfers and wage rules.",
+      de: "Wie stark der Staat Einkommen und Vermögen über Steuern, Transfers und Lohnregeln umverteilen soll.",
+      fr: "Dans quelle mesure l’État doit redistribuer revenus et patrimoine par l’impôt, les transferts et les règles salariales.",
     },
     neg: {
       label: { en: "Equality", de: "Gleichheit", fr: "Égalité" },

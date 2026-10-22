@@ -48,9 +48,9 @@ export default {
     en: "Defined by spreading productive property as widely as possible among families, small firms, farms, guilds and cooperatives, opposing concentration under both capitalism and state socialism (private but dispersed Ownership, active policy on Distribution); it pairs this with subsidiarity, local economies and Catholic social teaching.",
   },
   placement: {
-    confidence: "medium",
+    confidence: "low",
     reason: {
-      en: "The economic core is clear and well documented; positions beyond economics are inferred from its Catholic and agrarian background.",
+      en: "Its defining claim, widely dispersed small property, cannot be expressed on the collective-versus-private ownership line; positions beyond economics are inferred from its Catholic and agrarian background.",
     },
   },
   classificationNote: {

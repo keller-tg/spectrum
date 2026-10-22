@@ -45,7 +45,7 @@ export default {
     borders: 0.4,
   },
   rationale: {
-    en: "Shares Leninism's collective ownership, planning and vanguard party, but is defined by permanent revolution and internationalism (rejecting 'socialism in one country', toward Internationalism) and by a critique of Stalinist bureaucracy in favour of multi-party soviet democracy.",
+    en: "Shares Leninism's collective ownership, planning and vanguard party, but is defined by permanent revolution and internationalism (rejecting 'socialism in one country', toward Internationalism) and by a critique of Stalinist bureaucracy in favour of what Trotsky's 1938 programme called soviet democracy with legal soviet parties.",
   },
   placement: {
     confidence: "medium",

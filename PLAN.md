@@ -7,8 +7,8 @@ no claim to measure anyone exactly.
 Source of truth: **Master spec v2** (2026-10-21). Every choice and its status is recorded in
 [DECISIONS.md](DECISIONS.md), whose first section lists what changed from v1.
 
-Status: Phase 0 ✅ · Phase 1 ✅ (scaffold, design system, i18n) · **Phase 2 (engine, schemas,
-36 Quick and 72 Standard questions, calibration)**, then **stop for review of the question list**.
+Status: Phase 0 ✅ · Phase 1 ✅ · Phase 2 ✅ (engine, schemas, 72 EN questions, 53 anchor ideologies,
+calibration). **Stopped for the owner's review of the question list** (`docs/question-bank.md`).
 
 ---
 
@@ -116,7 +116,7 @@ that people who hold that view would accept it as fair.
 
 | # | id | −100 | +100 | Measures | Not in this axis |
 |---|---|---|---|---|---|
-| 1 | `distribution` | Equality | Markets | How far the state should shape economic outcomes (taxes, transfers, wage rules, economic regulation) | ownership → 2 |
+| 1 | `distribution` | Equality | Markets | How far the state should redistribute income and wealth (taxes, transfers, wage rules, price rules) | ownership → 2 |
 | 2 | `ownership` | Collective | Private | Who should own productive assets (firms, land, resources, infrastructure) | redistribution → 1 |
 | 3 | `trade` | Protectionism | Free trade | Openness to cross-border goods, services and capital | migration → 12 |
 | 4 | `liberty` | Liberty | Authority | Scope of state power over individual life: speech, privacy, policing, personal choices | who rules → 6 |

@@ -43,15 +43,16 @@ import e39 from "./ordoliberalism";
 import e40 from "./paleoconservatism";
 import e41 from "./peronism";
 import e42 from "./populist-radical-right";
-import e43 from "./semi-direct-federal-democracy";
-import e44 from "./social-democracy";
-import e45 from "./social-liberalism";
-import e46 from "./strasserism";
-import e47 from "./technocracy";
-import e48 from "./third-positionism";
-import e49 from "./titoism";
-import e50 from "./transhumanism";
-import e51 from "./trotskyism";
+import e43 from "./salafi-jihadism";
+import e44 from "./semi-direct-federal-democracy";
+import e45 from "./social-democracy";
+import e46 from "./social-liberalism";
+import e47 from "./strasserism";
+import e48 from "./technocracy";
+import e49 from "./third-positionism";
+import e50 from "./titoism";
+import e51 from "./transhumanism";
+import e52 from "./trotskyism";
 
 export const IDEOLOGIES: readonly IdeologyInput[] = [
   e0,
@@ -106,4 +107,5 @@ export const IDEOLOGIES: readonly IdeologyInput[] = [
   e49,
   e50,
   e51,
+  e52,
 ];

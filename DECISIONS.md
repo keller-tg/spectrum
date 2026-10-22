@@ -176,6 +176,79 @@ reviewer's ~40 findings. Highlights:
 families, with coordinates, salience and sources but no page content, serve as calibration
 anchors. They become full Tier A entries in Phase 5. Stubs are never published as pages.
 
+**D-064 · 🟢 · One rule for `extremist`** (second-reviewer finding, applied to every entry). An
+entry is `extremist: true` when the current, as defined, meets **both** conditions:
+1. Its programme or its record in power bars lawful opposition (one-party, one-leader, clerical,
+   dynastic or racial-state rule).
+2. Violence or persecution against opponents, or against groups defined by religion, ethnicity,
+   class or sexuality, is either a systematic, documented practice of the tradition in power or a
+   central, distinctive part of its programme.
+   - Revolution against a state does not count on its own.
+   - Neither do practices common to every state of an era.
+
+Variants inherit their parent's flag unless they renounce the qualifying element. Umbrellas whose
+currents differ are split, and only the qualifying current is flagged.
+
+- **Now true:**
+  - Marxism–Leninism, Maoism, Titoism (changed), Juche
+  - fascism, national socialism, ecofascism, third positionism, Strasserism, national
+    bolshevism (changed)
+  - Ba'athism, Khomeinism
+  - Christian reconstructionism (changed; its harms section must state that it has no record of
+    organised violence)
+  - Salafi-jihadism (new)
+- **False:** Trotskyism, neoreaction, absolute monarchism, Islamism (the participatory
+  mainstream, now split from Salafi-jihadism), democratic confederalism, anarcho-primitivism.
+- **Effect:** the flag only switches on stricter tone rules (third-person voice, documented-harms
+  section). It is never shown to users as a label.
+
+**D-065 · 🟢 · Atrocity flag at ideology level.** An *ideology* carries `atrocity` only when the
+genocide meets D-030 **and** scholarship treats it as the direct implementation of that
+ideology's own defining programme. Otherwise the flag belongs on the regime or figure entry, and
+the ideology's harms section links to it.
+- **National socialism:** keeps the flag, with basis corrected to `scholarly-consensus`. The
+  Nuremberg tribunal convicted for crimes against humanity; it did not adjudicate "genocide".
+- **Ba'athism (Anfal):** goes to a future Ba'athist Iraq regime entry and its leaders.
+- **Maoism (Khmer Rouge, ECCC 2018):** goes to a Democratic Kampuchea regime entry and its
+  convicted leaders.
+- **Islamic State (Yazidis):** goes to an Islamic State entry.
+- **The Holodomor** is contested among historians: a regime-level question at most.
+
+**D-066 · 🟢 · Catalog review resolutions (Phase 2 anchors).** I adopted the reviewer's findings
+on bias and drift. The two generator batches split left/right, so any scale difference between
+them would read as a political asymmetry.
+- **Authoritarian regimes, aligned:**
+  - liberty: ML 80→90, Maoism 85→90, fascism 95→90, Khomeinism 60→75, Christian
+    reconstructionism 40→65, Peronism 20→40 (participation 10→25)
+  - intervention: ML −25→−50
+  - ecology: national socialism −10→−30
+- **Off-diagonal reality restored:** Titoism distribution −65→−45 (market socialism), Christian
+  democracy ownership 0→20, populist radical right distribution 10→−5 (welfare chauvinism).
+- **Wording made symmetric:** Maoism, ML, Khomeinism, Trotskyism, paleoconservatism.
+- **Labels and hierarchy:** Titoism's label is now "contested", and anarcho-capitalism is a
+  child of libertarianism.
+- **Low placement confidence** for constitutional monarchism and distributism. Their defining
+  claims (a hereditary head of state; dispersed small property) are on no axis, and constitutional
+  monarchism had become a "centre attractor" (top match for 37% of simulated centrists). Under
+  D-051 a low-confidence entry is never the headline when a medium/high one is within 3 points.
+- **Rubric:** participation sub-scale written down (single leader 100, single party ≈ 85–90), and
+  references fixed for liberty +50, ownership 0, tradition 0 and borders −100.
+- **Axis 1** now measures *redistribution of income and wealth* ("who earns and owns what"
+  overlapped Ownership).
+- **Deferred to Phase 5:**
+  - source upgrades. The reviewer listed better secondaries for paleoconservatism, ecofascism,
+    national bolshevism, Strasserism, neoreaction, national conservatism, Khomeinism (Abrahamian)
+    and Juche (Myers), plus one independent secondary for each "Wikipedia + primary" entry.
+    Think-tank glossaries (ECPS) will not count as scholarly support.
+  - implementing the rule-based spectrum classifier
+  - captioning the PCA map's PC1 as "nationalist–authoritarian ↔ internationalist–libertarian"
+- **Tier A must-adds:** market socialism, Dengism, neoliberalism (contested label),
+  neoconservatism, paleolibertarianism, Bonapartism/Caesarism, Christian socialism (+ liberation
+  theology), liberal/civic nationalism, Hindutva; runners-up: Eurocommunism, left-libertarianism,
+  property-owning democracy, the Nordic model, developmental authoritarianism. Each splits a
+  correlated pair: distribution/ownership r = 0.96, liberty/borders 0.90, religion/tradition 0.85,
+  nation/borders −0.84, liberty/participation 0.83.
+
 ---
 
 ## C. Scoring, matching, maps

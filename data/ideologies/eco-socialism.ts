@@ -66,7 +66,7 @@ export default {
       title: "Why Ecosocialism: For a Red-Green Future (Michael Löwy, 2018)",
       publisher: "Great Transition Initiative",
       url: "https://greattransition.org/publication/why-ecosocialism-red-green-future",
-      kind: "academic",
+      kind: "primary",
       accessed: "2026-10-21",
     },
   ],

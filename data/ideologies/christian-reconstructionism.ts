@@ -15,13 +15,13 @@ export default {
   termOrigin: {
     en: "'Christian Reconstruction' was coined by R. J. Rushdoony, whose Chalcedon Foundation dates from 1965 and whose Institutes of Biblical Law (1973) is the movement's founding text; its legal programme is also known as theonomy, the subject of Greg Bahnsen's Theonomy in Christian Ethics (1977).",
   },
-  extremist: false,
+  extremist: true,
   estimate: false,
   coords: {
     distribution: 75,
     ownership: 75,
     trade: 50,
-    liberty: 40,
+    liberty: 65,
     centralization: 70,
     participation: 40,
     tradition: 100,

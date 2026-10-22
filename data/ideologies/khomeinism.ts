@@ -22,7 +22,7 @@ export default {
     distribution: -35,
     ownership: -30,
     trade: -40,
-    liberty: 60,
+    liberty: 75,
     centralization: -60,
     participation: 75,
     tradition: 85,
@@ -47,7 +47,7 @@ export default {
     borders: 0.1,
   },
   rationale: {
-    en: "Defined by velayat-e faqih, the guardianship of the Islamic jurist: a senior Shia cleric rules as Supreme Leader above elected institutions, and clerical bodies vet candidates and laws against Islamic criteria (Religious at its extreme, Rule by the few). It adds revolutionary anti-imperialism, a populist appeal to the 'oppressed' and the export of the revolution abroad.",
+    en: "Defined by velayat-e faqih, the guardianship of the Islamic jurist: a senior Shia cleric rules as Supreme Leader above elected institutions, clerical bodies vet candidates and laws against Islamic criteria, and the state enforces religious rules on dress and private conduct (Religious at its extreme, Rule by the few). It adds revolutionary anti-imperialism, a populist appeal to the 'oppressed' and the export of the revolution abroad.",
   },
   placement: {
     confidence: "high",

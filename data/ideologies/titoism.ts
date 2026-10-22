@@ -12,14 +12,14 @@ export default {
   tags: [],
   family: "marxism",
   parent: "marxism-leninism",
-  labelStatus: "academic",
+  labelStatus: "contested",
   termOrigin: {
     en: "Applied after the 1948 Tito–Stalin split by Cominform critics and Western observers; Tito rejected the label, describing Yugoslav policy as Marxism and socialist self-management.",
   },
-  extremist: false,
+  extremist: true,
   estimate: false,
   coords: {
-    distribution: -65,
+    distribution: -45,
     ownership: -70,
     trade: -15,
     liberty: 55,

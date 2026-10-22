@@ -14,7 +14,7 @@ export default {
   termOrigin: {
     en: "First used around 1919–1920 for Hamburg communists (Heinrich Laufenberg, Fritz Wolffheim) who urged a national war against the Versailles powers; developed by Ernst Niekisch in Weimar Germany and revived in 1990s Russia by the National Bolshevik Party of Eduard Limonov and Aleksandr Dugin.",
   },
-  extremist: false,
+  extremist: true,
   estimate: false,
   coords: {
     distribution: -80,

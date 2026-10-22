@@ -20,7 +20,7 @@ export default {
     distribution: -20,
     ownership: 10,
     trade: -75,
-    liberty: 95,
+    liberty: 90,
     centralization: -90,
     participation: 100,
     tradition: 60,

@@ -54,7 +54,7 @@ export const RUBRIC: Record<AxisId, RubricAnchor[]> = {
     {
       value: 0,
       description: "Mixed ownership: public utilities alongside a large private sector.",
-      references: ["social-democracy", "christian-democracy"],
+      references: ["social-democracy"],
     },
     {
       value: 50,
@@ -113,7 +113,7 @@ export const RUBRIC: Record<AxisId, RubricAnchor[]> = {
     {
       value: 50,
       description: "Strong policing, broad surveillance, limits on dissent.",
-      references: ["national-conservatism", "khomeinism"],
+      references: ["national-conservatism", "populist-radical-right"],
     },
     {
       value: 100,
@@ -167,7 +167,8 @@ export const RUBRIC: Record<AxisId, RubricAnchor[]> = {
     },
     {
       value: 100,
-      description: "Rule by a single person, party, clergy or caste.",
+      description:
+        "Rule by a single person (100); a single ruling party, clergy or caste sits at about 85–90.",
       references: ["absolute-monarchism", "fascism"],
     },
   ],
@@ -185,7 +186,7 @@ export const RUBRIC: Record<AxisId, RubricAnchor[]> = {
     {
       value: 0,
       description: "Mixed: some reforms accepted, some customs defended.",
-      references: ["social-democracy"],
+      references: ["classical-liberalism"],
     },
     {
       value: 50,
@@ -310,7 +311,7 @@ export const RUBRIC: Record<AxisId, RubricAnchor[]> = {
     {
       value: -100,
       description: "No border controls; free movement for all.",
-      references: ["anarcho-communism", "anarcho-capitalism"],
+      references: ["anarcho-communism"],
     },
     {
       value: -50,

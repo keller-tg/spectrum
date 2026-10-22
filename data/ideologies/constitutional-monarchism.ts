@@ -48,9 +48,9 @@ export default {
     en: "Defined by support for a hereditary monarch as a mainly ceremonial head of state within parliamentary democracy, valued for continuity, national symbolism and standing above party politics (toward Traditional); elected institutions still decide, so it sits near representative democracy on Participation.",
   },
   placement: {
-    confidence: "medium",
+    confidence: "low",
     reason: {
-      en: "The defining institutional view is clear, but adherents' positions on most other axes vary widely and are weighted low.",
+      en: "Its defining claim, a hereditary head of state, is not measured by any of the twelve axes; positions on the axes vary widely among adherents.",
     },
   },
   classificationNote: {

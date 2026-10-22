@@ -10,6 +10,7 @@ export default {
   spectrum: "libertarian",
   tags: [],
   family: "libertarianism",
+  parent: "libertarianism",
   labelStatus: "self-described",
   termOrigin: {
     en: "First documented in Karl Hess's 1969 essay 'The Death of Politics' and popularised by Murray Rothbard in the early 1970s.",

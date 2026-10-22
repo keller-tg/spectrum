@@ -20,14 +20,14 @@ export default {
     distribution: -95,
     ownership: -95,
     trade: -60,
-    liberty: 80,
+    liberty: 90,
     centralization: -90,
     participation: 85,
     tradition: -40,
     religion: -90,
     ecology: -55,
     nation: 40,
-    intervention: -25,
+    intervention: -50,
     borders: 55,
   },
   salience: {
@@ -45,7 +45,7 @@ export default {
     borders: 0.3,
   },
   rationale: {
-    en: "Defined by state ownership and central planning in place of market distribution, under the leading role of a single vanguard party organised by democratic centralism (toward Collective ownership, Authority, Centralized and Rule by the few); officially atheist and internationalist, though state-centred in practice.",
+    en: "Defined by state ownership and central planning in place of market distribution, under the leading role of a single vanguard party organised by democratic centralism, with no legal opposition and a political police (toward Collective ownership, Authority, Centralized and Rule by the few); officially atheist and internationalist, though state-centred in practice.",
   },
   placement: {
     confidence: "high",
