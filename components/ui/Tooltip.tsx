@@ -1,50 +1,65 @@
 "use client";
 
-import { useId, useLayoutEffect, useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 
 /**
- * "[?]" button with a bordered note. Opens on hover, focus or tap, instantly;
- * Escape closes it. The note flips to the left edge if it would leave the screen.
+ * "[?]" with a bordered note. Hover opens it after 300ms (CSS), focus or tap
+ * at once; it comes in over 120ms. Escape closes it. Before it opens, the note
+ * is shifted so it stays inside the viewport.
  */
 export function Tooltip({ label, children }: { label: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
-  const [alignEnd, setAlignEnd] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
   const id = useId();
   const note = useRef<HTMLSpanElement>(null);
 
-  useLayoutEffect(() => {
-    if (!open || !note.current) return;
-    const rect = note.current.getBoundingClientRect();
-    if (rect.right > document.documentElement.clientWidth - 8) setAlignEnd(true);
-  }, [open]);
+  /** Keep the note inside the viewport (16px margins). */
+  const place = () => {
+    const el = note.current;
+    const host = el?.parentElement?.getBoundingClientRect();
+    if (!el || !host) return;
+    const vw = document.documentElement.clientWidth;
+    const width = Math.min(288, vw - 32);
+    const shift = Math.max(16 - host.left, Math.min(0, vw - 16 - width - host.left));
+    el.style.left = `${shift}px`;
+  };
 
   return (
     <span
-      className="relative inline-flex align-middle"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      className="tip-host relative inline-flex align-middle"
+      data-open={open || undefined}
+      data-dismissed={dismissed || undefined}
+      onMouseEnter={place}
+      onMouseLeave={() => {
+        setOpen(false);
+        setDismissed(false);
+      }}
     >
       <button
         type="button"
         aria-label={label}
         aria-describedby={id}
-        onFocus={() => setOpen(true)}
-        onBlur={() => setOpen(false)}
-        onClick={() => setOpen((o) => !o)}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") setOpen(false);
+        onFocus={place}
+        onClick={() => {
+          place();
+          setDismissed(false);
+          setOpen((o) => !o);
         }}
-        className="label min-h-11 min-w-11 px-1 hover:bg-ink hover:text-paper"
+        onBlur={() => {
+          setOpen(false);
+          setDismissed(false);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            setOpen(false);
+            setDismissed(true);
+          }
+        }}
+        className="label min-h-11 min-w-11 px-1"
       >
         <span aria-hidden="true">{"[?]"}</span>
       </button>
-      <span
-        ref={note}
-        role="tooltip"
-        id={id}
-        hidden={!open}
-        className={`absolute top-full z-30 mt-1 w-[min(18rem,calc(100vw-2rem))] border-2 border-ink bg-paper p-3 font-sans text-base leading-normal text-ink ${alignEnd ? "right-0" : "left-0"}`}
-      >
+      <span ref={note} role="tooltip" id={id} className="tip">
         {children}
       </span>
     </span>

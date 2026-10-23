@@ -7,12 +7,16 @@ import { RangeSlider } from "@/components/charts/RangeSlider";
 import { SpectrumTag } from "@/components/charts/SpectrumMarker";
 import { EntryGlyph } from "@/components/glyphs/EntryGlyph";
 import { IconStrip } from "@/components/glyphs/IconStrip";
-import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { ModeRows } from "@/components/home/ModeRows";
+import { ThemeSwitch } from "@/components/layout/ThemeSwitch";
+import { ButtonDemo } from "@/components/styleguide/ButtonDemo";
 import { CompassDemo } from "@/components/styleguide/CompassDemo";
+import { ControlsSwitch } from "@/components/styleguide/ControlsSwitch";
+import { SegmentedDemo } from "@/components/styleguide/SegmentedDemo";
 import { ToggleDemo } from "@/components/styleguide/ToggleDemo";
 import { WebGraphDemo } from "@/components/styleguide/WebGraphDemo";
-import { AnswerScaleDemo } from "@/components/test/AnswerScaleDemo";
-import { buttonClass, type ButtonVariant } from "@/components/ui/Button";
+import { AnswerRowsDemo } from "@/components/test/AnswerRows";
+import { Button, type ButtonVariant } from "@/components/ui/Button";
 import { Cell, CellGrid } from "@/components/ui/Cell";
 import { Checkbox, TextField } from "@/components/ui/Field";
 import { FigureImage } from "@/components/ui/FigureImage";
@@ -21,12 +25,13 @@ import { Modal } from "@/components/ui/Modal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Table } from "@/components/ui/Table";
 import { Tabs } from "@/components/ui/Tabs";
+import { ExternalLink, TextLink } from "@/components/ui/TextLink";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { AXES, type AxisId } from "@/data/axes";
 import { IMAGE_BY_ID } from "@/data/images";
 import type { Locale } from "@/data/locales";
-import { PALETTE } from "@/lib/design/tokens";
 import { loadIdeologies } from "@/lib/catalog/ideologies";
+import { PALETTE } from "@/lib/design/tokens";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export async function generateMetadata({
@@ -81,6 +86,15 @@ const BAR_AXES: readonly { axis: AxisId; value: number; interval: readonly [numb
   { axis: "borders", value: 71, interval: [55, 87] },
 ];
 
+const MOTION = [
+  ["--ease-out", "cubic-bezier(0.22, 1, 0.36, 1)"],
+  ["--ease-spring", "linear(…), ≤ 3% overshoot"],
+  ["--dur-fast", "120ms"],
+  ["--dur", "220ms"],
+  ["--dur-slow", "360ms"],
+  ["--radius-control", "0 · 999px"],
+] as const;
+
 const GLYPH_IDS = [
   "social-democracy",
   "fascism",
@@ -89,6 +103,26 @@ const GLYPH_IDS = [
   "juche",
   "kemalism",
 ];
+const SECTIONS = [
+  "type",
+  "buttons",
+  "links",
+  "inputs",
+  "segmented",
+  "modes",
+  "answers",
+  "nav",
+  "sliders",
+  "overlays",
+  "cells",
+  "legend",
+  "strip",
+  "radar",
+  "compass",
+  "web",
+  "images",
+] as const;
+type SectionKey = (typeof SECTIONS)[number];
 
 /** Renders its content twice: in a light frame and in a dark frame. */
 function ModePair({
@@ -99,14 +133,14 @@ function ModePair({
   children: (mode: Mode) => React.ReactNode;
 }) {
   return (
-    <div className="mt-6 grid gap-4 xl:grid-cols-2">
+    <div className="mt-8 grid gap-4 xl:grid-cols-2">
       {MODES.map((mode) => (
         <div
           key={mode}
           data-theme={mode}
-          className="min-w-0 border-2 border-ink bg-paper p-3 text-ink sm:p-4"
+          className="min-w-0 border border-ink bg-paper p-4 text-ink sm:p-6"
         >
-          <p className="label mb-5 border-b-2 border-ink pb-2">{labels[mode]}</p>
+          <p className="annot mb-6 border-b border-ink pb-2 font-bold">{labels[mode]}</p>
           {children(mode)}
         </div>
       ))}
@@ -116,8 +150,8 @@ function ModePair({
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="grid gap-2 border-b border-ink py-3 last:border-b-0 sm:grid-cols-[11rem_1fr] sm:items-center">
-      <p className="label">{label}</p>
+    <div className="grid gap-3 border-b border-ink py-4 last:border-b-0 sm:grid-cols-[9rem_1fr] sm:items-center">
+      <p className="annot font-bold">{label}</p>
       <div className="flex flex-wrap items-center gap-3">{children}</div>
     </div>
   );
@@ -127,32 +161,11 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
   const locale = (await params).locale as Locale;
   const t = await getTranslations("styleguide");
   const tn = await getTranslations("nav");
+  const th = await getTranslations("home");
   const modeLabels = { light: t("light"), dark: t("dark") };
   const ideologies = loadIdeologies();
   const mill = IMAGE_BY_ID.get("john-stuart-mill");
-
-  const states = (variant: ButtonVariant, text: string, key: string) => {
-    return (
-      <Row label={t(`buttons.${variant}`)} key={key}>
-        <button type="button" className={buttonClass(variant)}>
-          {text}
-        </button>
-        <button type="button" className={buttonClass(variant, true)} tabIndex={-1}>
-          {text}
-        </button>
-        <button
-          type="button"
-          className={`${buttonClass(variant)} outline-3 outline-offset-3 outline-ink`}
-          tabIndex={-1}
-        >
-          {text}
-        </button>
-        <button type="button" className={buttonClass(variant)} disabled>
-          {text}
-        </button>
-      </Row>
-    );
-  };
+  const n = (key: SectionKey) => SECTIONS.indexOf(key) + 1;
 
   const tableRows = ideologies
     .slice(0, 6)
@@ -177,82 +190,172 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
     </svg>
   );
 
-  return (
-    <div className="mx-auto max-w-7xl px-4 pt-10 pb-12 sm:pt-16">
-      <h1 className="display text-display-lg">{t("title")}</h1>
-      <p className="prose-text mt-5">{t("lead")}</p>
-      <div className="mt-6 flex flex-wrap items-center gap-4 border-2 border-ink p-3">
-        <p className="label">{t("modeSwitch")}</p>
-        <ThemeToggle />
-      </div>
+  const buttonRow = (variant: ButtonVariant) => (
+    <Row key={variant} label={t(`buttons.${variant}`)}>
+      <Button variant={variant} arrow={variant !== "text"}>
+        {t(`buttons.${variant}Text`)}
+      </Button>
+      <Button variant={variant} arrow={variant !== "text"} state="hover" tabIndex={-1}>
+        {t(`buttons.${variant}Text`)}
+      </Button>
+      <Button variant={variant} arrow={variant !== "text"} disabled>
+        {t(`buttons.${variant}Text`)}
+      </Button>
+    </Row>
+  );
 
-      {/* 01 Palette and type */}
-      <section aria-labelledby="sg-type" className="mt-14">
-        <SectionHeader number={1} id="sg-type" title={t("sections.type")}>
+  return (
+    <div className="mx-auto max-w-[96rem] px-4 pt-10 pb-16 sm:px-6 lg:px-10">
+      <p className="annot font-bold">{t("kicker")}</p>
+      <h1 className="display mt-4 text-display-lg">{t("title")}</h1>
+      <p className="prose-text mt-5">{t("lead")}</p>
+      <div className="mt-8 grid gap-4 border-y border-ink py-4 lg:grid-cols-[1fr_auto] lg:items-center">
+        <ul className="flex flex-wrap gap-x-6 gap-y-1">
+          {(["buttons", "screens", "home-a", "home-b"] as const).map((page) => (
+            <li key={page}>
+              <TextLink href={`/styleguide/${page}`} className="inline-flex min-h-11 items-center">
+                {t(`pages.${page}`)}
+              </TextLink>
+            </li>
+          ))}
+        </ul>
+        <div className="flex flex-wrap items-center gap-3">
+          <ControlsSwitch
+            labels={{
+              label: t("controls.label"),
+              sharp: t("controls.sharp"),
+              pill: t("controls.pill"),
+              offset: t("controls.offset"),
+            }}
+          />
+          <ThemeSwitch />
+        </div>
+      </div>
+      <p className="prose-text mt-4">{t("controls.note")}</p>
+
+      <section aria-labelledby="sg-type" className="mt-16">
+        <SectionHeader number={n("type")} id="sg-type" title={t("sections.type")}>
           {t("palette.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
           {(mode) => (
             <>
-              <div className="grid grid-cols-2 border-t-2 border-l-2 border-ink">
+              <div className="grid grid-cols-2 border-t border-l border-ink">
                 {(["ink", "paper"] as const).map((token) => (
-                  <div key={token} className="border-r-2 border-b-2 border-ink">
+                  <div key={token} className="border-r border-b border-ink">
                     <div
-                      className={`h-16 border-b-2 border-ink ${token === "ink" ? "bg-ink" : "bg-paper"}`}
+                      className={`h-16 border-b border-ink ${token === "ink" ? "bg-ink" : "bg-paper"}`}
                     />
-                    <p className="label px-3 py-2">
+                    <p className="annot px-3 py-2 font-bold">
                       --{token} · {PALETTE[mode][token]}
                     </p>
                   </div>
                 ))}
               </div>
-              <p className="label mt-6">{t("type.display")}</p>
+              <p className="annot mt-8 font-bold">{t("type.display")}</p>
               <p className="display mt-2 text-display-lg">{t("type.sampleHeadline")}</p>
-              <p className="label mt-6">{t("type.prose")}</p>
+              <p className="annot mt-8 font-bold">{t("type.prose")}</p>
               <p className="prose-text mt-2">{t("type.sampleBody")}</p>
-              <p className="label mt-6">{t("type.mono")}</p>
-              <p className="mt-2">0123456789 · −100 · +100 · 72 / 144</p>
-              <p className="label mt-6">{t("type.numeral")}</p>
-              <p className="mt-2 flex items-baseline gap-3">
-                <span className="text-numeral font-bold">87</span>
-                <span className="text-4xl font-bold">%</span>
+              <p className="annot mt-8 font-bold">{t("type.mono")}</p>
+              <p className="mt-2">0123456789 · −100 · +100 · 36 / 72 / 144</p>
+              <p className="annot mt-8 font-bold">{t("type.numeral")}</p>
+              <p className="mt-2 font-mono leading-none font-bold">
+                <span className="text-numeral">87</span>
+                <span className="text-4xl">%</span>
               </p>
+              <p className="annot mt-8 font-bold">{t("type.motion")}</p>
+              <dl className="mt-2 border-t border-ink">
+                {MOTION.map(([token, value]) => (
+                  <div key={token} className="flex justify-between gap-4 border-b border-ink py-2">
+                    <dt className="annot font-bold">{token}</dt>
+                    <dd className="annot text-right">{value}</dd>
+                  </div>
+                ))}
+              </dl>
             </>
           )}
         </ModePair>
       </section>
 
-      {/* 02 Buttons */}
-      <section aria-labelledby="sg-buttons" className="mt-14">
-        <SectionHeader number={2} id="sg-buttons" title={t("sections.buttons")}>
+      <section aria-labelledby="sg-buttons" className="mt-20">
+        <SectionHeader number={n("buttons")} id="sg-buttons" title={t("sections.buttons")}>
           {t("buttons.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
           {() => (
             <>
-              <p className="label">{t("buttons.order")}</p>
-              {states("primary", t("buttons.primaryText"), "p")}
-              {states("secondary", t("buttons.secondaryText"), "s")}
-              {states("text", t("buttons.textText"), "t")}
-              <Row label={t("buttons.link")}>
-                <p className="prose-text">
-                  {t.rich("buttons.linkSentence", {
-                    link: (chunks) => (
-                      <a href="#sg-buttons" className="link">
-                        {chunks}
-                      </a>
-                    ),
-                  })}
-                </p>
+              <p className="annot font-bold">{t("buttons.order")}</p>
+              {(["primary", "secondary", "text"] as const).map(buttonRow)}
+              <Row label={t("buttons.sizes")}>
+                <Button size="s" variant="secondary">
+                  {t("matrix.sizes.s")}
+                </Button>
+                <Button size="m" variant="secondary">
+                  {t("matrix.sizes.m")}
+                </Button>
+                <Button size="l" variant="secondary" keycap="1" arrow>
+                  {t("matrix.sizes.l")}
+                </Button>
+              </Row>
+              <Row label={t("buttons.live")}>
+                <ButtonDemo
+                  variant="primary"
+                  outcome="success"
+                  label={t("buttons.save")}
+                  statusLabel={t("matrix.successLabel")}
+                  loadingLabel={t("matrix.loadingLabel")}
+                />
+                <ButtonDemo
+                  variant="secondary"
+                  outcome="error"
+                  label={t("buttons.sync")}
+                  statusLabel={t("matrix.errorLabel")}
+                  loadingLabel={t("matrix.loadingLabel")}
+                />
               </Row>
             </>
           )}
         </ModePair>
       </section>
 
-      {/* 03 Inputs */}
-      <section aria-labelledby="sg-inputs" className="mt-14">
-        <SectionHeader number={3} id="sg-inputs" title={t("sections.inputs")}>
+      <section aria-labelledby="sg-links" className="mt-20">
+        <SectionHeader number={n("links")} id="sg-links" title={t("sections.links")}>
+          {t("links.note")}
+        </SectionHeader>
+        <ModePair labels={modeLabels}>
+          {() => (
+            <>
+              <p className="prose-text">
+                {t.rich("links.sentence", {
+                  link: (chunks) => (
+                    <a href="#sg-links" className="link">
+                      {chunks}
+                    </a>
+                  ),
+                })}
+              </p>
+              <ul className="mt-4 flex flex-wrap gap-x-6">
+                <li>
+                  <TextLink href="/method" className="inline-flex min-h-11 items-center">
+                    {t("links.internal")}
+                  </TextLink>
+                </li>
+                <li>
+                  <ExternalLink
+                    href="https://github.com/keller-tg/spectrum"
+                    className="inline-flex min-h-11 items-center"
+                  >
+                    {t("links.external")}
+                  </ExternalLink>
+                </li>
+              </ul>
+            </>
+          )}
+        </ModePair>
+      </section>
+
+      <section aria-labelledby="sg-inputs" className="mt-20">
+        <SectionHeader number={n("inputs")} id="sg-inputs" title={t("sections.inputs")}>
           {t("inputs.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
@@ -285,52 +388,217 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
         </ModePair>
       </section>
 
-      {/* 04 Answer options */}
-      <section aria-labelledby="sg-answer" className="mt-14">
-        <SectionHeader number={4} id="sg-answer" title={t("sections.answer")}>
+      <section aria-labelledby="sg-segmented" className="mt-20">
+        <SectionHeader number={n("segmented")} id="sg-segmented" title={t("sections.segmented")}>
+          {t("segmented.note")}
+        </SectionHeader>
+        <ModePair labels={modeLabels}>
+          {() => (
+            <>
+              <Row label={t("segmented.mode")}>
+                <SegmentedDemo
+                  label={t("segmented.mode")}
+                  options={(["quick", "standard", "deep"] as const).map((m) => ({
+                    value: m,
+                    label: th(`modes.${m}.name`),
+                  }))}
+                  initial="standard"
+                />
+              </Row>
+              <Row label={t("segmented.axis")}>
+                <SegmentedDemo
+                  label={t("segmented.axis")}
+                  options={[
+                    { value: "map", label: t("segmented.map") },
+                    ...(["distribution", "liberty", "borders"] as const).map((a) => ({
+                      value: a,
+                      label: AXES[a].code[locale],
+                    })),
+                  ]}
+                  initial="map"
+                />
+              </Row>
+              <Row label={t("segmented.switch")}>
+                <ToggleDemo
+                  label={t("toggle.advance")}
+                  onText={t("toggle.on")}
+                  offText={t("toggle.off")}
+                  initial
+                />
+                <ToggleDemo
+                  label={t("toggle.disabled")}
+                  onText={t("toggle.on")}
+                  offText={t("toggle.off")}
+                  disabled
+                />
+              </Row>
+            </>
+          )}
+        </ModePair>
+      </section>
+
+      <section aria-labelledby="sg-modes" className="mt-20">
+        <SectionHeader number={n("modes")} id="sg-modes" title={t("sections.modes")}>
+          {t("modes.note")}
+        </SectionHeader>
+        <ModePair labels={modeLabels}>
+          {(mode) => (
+            <ModeRows locale={locale} pinnedHover={mode === "light" ? "quick" : undefined} />
+          )}
+        </ModePair>
+      </section>
+
+      <section aria-labelledby="sg-answers" className="mt-20">
+        <SectionHeader number={n("answers")} id="sg-answers" title={t("sections.answers")}>
           {t("answer.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
           {() => (
             <>
-              <p className="label mb-2">{t("answer.selected")}</p>
-              <AnswerScaleDemo initial={1} />
-              <p className="label mt-6 mb-2">{t("answer.skipped")}</p>
-              <AnswerScaleDemo initialSkipped />
+              <p className="annot mb-3 font-bold">{t("answer.selected")}</p>
+              <AnswerRowsDemo initial={1} pinnedHover={-1} />
+              <p className="annot mt-8 mb-3 font-bold">{t("answer.skipped")}</p>
+              <AnswerRowsDemo initialSkipped />
             </>
           )}
         </ModePair>
       </section>
 
-      {/* 05 Cells and section headers */}
-      <section aria-labelledby="sg-cells" className="mt-14">
-        <SectionHeader number={5} id="sg-cells" title={t("sections.cells")}>
-          {t("cells.note")}
+      <section aria-labelledby="sg-nav" className="mt-20">
+        <SectionHeader number={n("nav")} id="sg-nav" title={t("sections.nav")}>
+          {t("nav.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
           {() => (
             <>
-              <SectionHeader number={7} title={t("cells.sampleTitle")} as="h3" />
-              <CellGrid className="mt-4">
-                {[1, 2, 3].map((n) => (
-                  <Cell key={n} span={4} number={n} title={t("cells.cellTitle")}>
-                    <p className="prose-text mt-2">{t("cells.cellBody")}</p>
-                  </Cell>
+              <p className="annot mb-2 font-bold">{t("nav.header")}</p>
+              <ul aria-hidden="true" className="nav relative flex flex-wrap border-y border-ink">
+                {(["test", "compass", "ideologies", "dashboard"] as const).map((key, i) => (
+                  <li key={key} className="flex">
+                    <span
+                      aria-current={i === 1 ? "page" : undefined}
+                      className="nav-link bracketed label flex min-h-14 items-center px-4"
+                    >
+                      {tn(key)}
+                    </span>
+                  </li>
                 ))}
-              </CellGrid>
+              </ul>
+              <p className="prose-text mt-4">{t("nav.sheet")}</p>
+              <p className="annot mt-8 mb-2 font-bold">{t("nav.tabs")}</p>
+              <Tabs
+                label={t("nav.tabsLabel")}
+                tabs={[
+                  {
+                    id: "axes",
+                    label: t("nav.tabAxes"),
+                    content: <p className="prose-text">{t("nav.panelAxes")}</p>,
+                  },
+                  {
+                    id: "radar",
+                    label: t("nav.tabRadar"),
+                    content: <p className="prose-text">{t("nav.panelRadar")}</p>,
+                  },
+                  {
+                    id: "map",
+                    label: t("nav.tabMap"),
+                    content: <p className="prose-text">{t("nav.panelMap")}</p>,
+                  },
+                ]}
+              />
             </>
           )}
         </ModePair>
       </section>
 
-      {/* 06 Ruled table */}
-      <section aria-labelledby="sg-table" className="mt-14">
-        <SectionHeader number={6} id="sg-table" title={t("sections.table")}>
-          {t("table.note")}
+      <section aria-labelledby="sg-sliders" className="mt-20">
+        <SectionHeader number={n("sliders")} id="sg-sliders" title={t("sections.sliders")}>
+          {t("sliders.note")}
+        </SectionHeader>
+        <ModePair labels={modeLabels}>
+          {() => (
+            <div className="space-y-10">
+              {BAR_AXES.map(({ axis, value, interval }, i) => (
+                <AxisBar
+                  key={axis}
+                  axis={axis}
+                  value={value}
+                  interval={interval}
+                  band={i === 2 ? "hatch" : "bracket"}
+                  locale={locale}
+                  description={t("sliders.bar", {
+                    axis: AXES[axis].name[locale],
+                    score: formatScore(value),
+                    pole: (value < 0 ? AXES[axis].neg : AXES[axis].pos).label[locale],
+                    low: formatScore(interval[0]),
+                    high: formatScore(interval[1]),
+                  })}
+                />
+              ))}
+              <RangeSlider
+                label={`${AXES.ecology.code[locale]} · ${AXES.ecology.name[locale]}`}
+                negLabel={AXES.ecology.neg.short[locale]}
+                posLabel={AXES.ecology.pos.short[locale]}
+                initial={30}
+              />
+              <RangeSlider
+                label={`${t("sliders.snap")} · ${AXES.trade.name[locale]}`}
+                negLabel={AXES.trade.neg.short[locale]}
+                posLabel={AXES.trade.pos.short[locale]}
+                initial={-40}
+                snap
+              />
+              <RangeSlider
+                label={t("sliders.disabled")}
+                negLabel={AXES.nation.neg.short[locale]}
+                posLabel={AXES.nation.pos.short[locale]}
+                disabled
+              />
+            </div>
+          )}
+        </ModePair>
+      </section>
+
+      <section aria-labelledby="sg-overlays" className="mt-20">
+        <SectionHeader number={n("overlays")} id="sg-overlays" title={t("sections.overlays")}>
+          {t("overlays.note")}
+        </SectionHeader>
+        <ModePair labels={modeLabels}>
+          {() => (
+            <div className="flex flex-wrap items-center gap-6">
+              <p className="flex items-center gap-1">
+                <span>{AXES.participation.name[locale]}</span>
+                <Tooltip label={t("overlays.tooltipLabel")}>
+                  {AXES.participation.measures[locale]}
+                </Tooltip>
+              </p>
+              <Modal
+                triggerLabel={t("overlays.open")}
+                title={t("overlays.modalTitle")}
+                closeLabel={t("overlays.close")}
+              >
+                {t("overlays.modalBody")}
+              </Modal>
+            </div>
+          )}
+        </ModePair>
+      </section>
+
+      <section aria-labelledby="sg-cells" className="mt-20">
+        <SectionHeader number={n("cells")} id="sg-cells" title={t("sections.cells")}>
+          {t("cells.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
           {(mode) => (
-            <div className="space-y-6">
+            <div className="space-y-10">
+              <SectionHeader number={7} title={t("cells.sampleTitle")} as="h3" />
+              <CellGrid>
+                {[1, 2, 3].map((k) => (
+                  <Cell key={k} span={4} number={k} title={t("cells.cellTitle")}>
+                    <p className="prose-text mt-2">{t("cells.cellBody")}</p>
+                  </Cell>
+                ))}
+              </CellGrid>
               <Table
                 id={`${mode}-table-ideologies`}
                 caption={t("table.caption")}
@@ -360,158 +628,13 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
         </ModePair>
       </section>
 
-      {/* 07 Navigation and tabs */}
-      <section aria-labelledby="sg-nav" className="mt-14">
-        <SectionHeader number={7} id="sg-nav" title={t("sections.nav")}>
-          {t("nav.note")}
-        </SectionHeader>
-        <ModePair labels={modeLabels}>
-          {() => (
-            <>
-              <p className="label mb-2">{t("nav.header")}</p>
-              <ul aria-hidden="true" className="label flex flex-wrap border-2 border-ink">
-                {(["test", "compass", "ideologies", "dashboard"] as const).map((key, i) => (
-                  <li key={key} className="flex border-ink not-first:border-l-2">
-                    <span
-                      aria-current={i === 1 ? "page" : undefined}
-                      className="bracketed flex min-h-11 items-center px-4 aria-[current=page]:bg-ink aria-[current=page]:text-paper"
-                    >
-                      {tn(key)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <p className="label mt-6 mb-2">{t("nav.tabs")}</p>
-              <Tabs
-                label={t("nav.tabsLabel")}
-                tabs={[
-                  {
-                    id: "axes",
-                    label: t("nav.tabAxes"),
-                    content: <p className="prose-text">{t("nav.panelAxes")}</p>,
-                  },
-                  {
-                    id: "radar",
-                    label: t("nav.tabRadar"),
-                    content: <p className="prose-text">{t("nav.panelRadar")}</p>,
-                  },
-                  {
-                    id: "map",
-                    label: t("nav.tabMap"),
-                    content: <p className="prose-text">{t("nav.panelMap")}</p>,
-                  },
-                ]}
-              />
-            </>
-          )}
-        </ModePair>
-      </section>
-
-      {/* 08 Toggles */}
-      <section aria-labelledby="sg-toggle" className="mt-14">
-        <SectionHeader number={8} id="sg-toggle" title={t("sections.toggle")}>
-          {t("toggle.note")}
-        </SectionHeader>
-        <ModePair labels={modeLabels}>
-          {() => (
-            <div className="flex flex-col items-start gap-3">
-              <ToggleDemo
-                label={t("toggle.advance")}
-                onText={t("toggle.on")}
-                offText={t("toggle.off")}
-                initial
-              />
-              <ToggleDemo
-                label={t("toggle.labels")}
-                onText={t("toggle.on")}
-                offText={t("toggle.off")}
-              />
-              <ToggleDemo
-                label={t("toggle.disabled")}
-                onText={t("toggle.on")}
-                offText={t("toggle.off")}
-                disabled
-              />
-            </div>
-          )}
-        </ModePair>
-      </section>
-
-      {/* 09 Sliders and axis bars */}
-      <section aria-labelledby="sg-sliders" className="mt-14">
-        <SectionHeader number={9} id="sg-sliders" title={t("sections.sliders")}>
-          {t("sliders.note")}
-        </SectionHeader>
-        <ModePair labels={modeLabels}>
-          {() => (
-            <div className="space-y-8">
-              {BAR_AXES.map(({ axis, value, interval }) => (
-                <AxisBar
-                  key={axis}
-                  axis={axis}
-                  value={value}
-                  interval={interval}
-                  locale={locale}
-                  description={t("sliders.bar", {
-                    axis: AXES[axis].name[locale],
-                    score: formatScore(value),
-                    pole: (value < 0 ? AXES[axis].neg : AXES[axis].pos).label[locale],
-                    low: formatScore(interval[0]),
-                    high: formatScore(interval[1]),
-                  })}
-                />
-              ))}
-              <RangeSlider
-                label={`${AXES.ecology.code[locale]} · ${AXES.ecology.name[locale]}`}
-                negLabel={AXES.ecology.neg.short[locale]}
-                posLabel={AXES.ecology.pos.short[locale]}
-                initial={30}
-              />
-              <RangeSlider
-                label={t("sliders.disabled")}
-                negLabel={AXES.trade.neg.short[locale]}
-                posLabel={AXES.trade.pos.short[locale]}
-                disabled
-              />
-            </div>
-          )}
-        </ModePair>
-      </section>
-
-      {/* 10 Tooltip and modal */}
-      <section aria-labelledby="sg-overlays" className="mt-14">
-        <SectionHeader number={10} id="sg-overlays" title={t("sections.overlays")}>
-          {t("overlays.note")}
-        </SectionHeader>
-        <ModePair labels={modeLabels}>
-          {() => (
-            <div className="flex flex-wrap items-center gap-6">
-              <p className="flex items-center gap-1">
-                <span>{AXES.participation.name[locale]}</span>
-                <Tooltip label={t("overlays.tooltipLabel")}>
-                  {AXES.participation.measures[locale]}
-                </Tooltip>
-              </p>
-              <Modal
-                triggerLabel={t("overlays.open")}
-                title={t("overlays.modalTitle")}
-                closeLabel={t("overlays.close")}
-              >
-                {t("overlays.modalBody")}
-              </Modal>
-            </div>
-          )}
-        </ModePair>
-      </section>
-
-      {/* 11 Legend */}
-      <section aria-labelledby="sg-legend" className="mt-14">
-        <SectionHeader number={11} id="sg-legend" title={t("sections.legend")}>
+      <section aria-labelledby="sg-legend" className="mt-20">
+        <SectionHeader number={n("legend")} id="sg-legend" title={t("sections.legend")}>
           {t("legend.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
           {(mode) => (
-            <div className="space-y-6">
+            <div className="space-y-8">
               <SpectrumLegend locale={locale} title={t("legend.spectra")} />
               <Legend
                 title={t("legend.charts")}
@@ -569,6 +692,11 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
                     label: t("legend.halftone"),
                   },
                   {
+                    key: "dither",
+                    swatch: <span className="dither-fade block h-2 w-14" />,
+                    label: t("legend.dither"),
+                  },
+                  {
                     key: "you",
                     swatch: (
                       <svg
@@ -624,28 +752,27 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
         </ModePair>
       </section>
 
-      {/* 12 Twelve-axis strip */}
-      <section aria-labelledby="sg-strip" className="mt-14">
-        <SectionHeader number={12} id="sg-strip" title={t("sections.strip")}>
+      <section aria-labelledby="sg-strip" className="mt-20">
+        <SectionHeader number={n("strip")} id="sg-strip" title={t("sections.strip")}>
           {t("strip.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
           {() => (
-            <dl className="space-y-5">
+            <dl className="space-y-6">
               <div>
-                <dt className="label mb-2">{t("strip.exampleA")}</dt>
+                <dt className="annot mb-2 font-bold">{t("strip.exampleA")}</dt>
                 <dd>
                   <IconStrip coords={EXAMPLE_A} locale={locale} />
                 </dd>
               </div>
               <div>
-                <dt className="label mb-2">{t("strip.exampleB")}</dt>
+                <dt className="annot mb-2 font-bold">{t("strip.exampleB")}</dt>
                 <dd>
                   <IconStrip coords={EXAMPLE_B} locale={locale} />
                 </dd>
               </div>
               <div>
-                <dt className="label mb-2">{t("strip.howTitle")}</dt>
+                <dt className="annot mb-2 font-bold">{t("strip.howTitle")}</dt>
                 <dd className="prose-text">{t("strip.how")}</dd>
               </div>
             </dl>
@@ -653,9 +780,8 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
         </ModePair>
       </section>
 
-      {/* 13 Radar */}
-      <section aria-labelledby="sg-radar" className="mt-14">
-        <SectionHeader number={13} id="sg-radar" title={t("sections.radar")}>
+      <section aria-labelledby="sg-radar" className="mt-20">
+        <SectionHeader number={n("radar")} id="sg-radar" title={t("sections.radar")}>
           {t("radar.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
@@ -675,9 +801,8 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
         </ModePair>
       </section>
 
-      {/* 14 Compass encodings */}
-      <section aria-labelledby="sg-compass" className="mt-14">
-        <SectionHeader number={14} id="sg-compass" title={t("sections.compass")}>
+      <section aria-labelledby="sg-compass" className="mt-20">
+        <SectionHeader number={n("compass")} id="sg-compass" title={t("sections.compass")}>
           {t("compass.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
@@ -698,9 +823,8 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
         </ModePair>
       </section>
 
-      {/* 15 Web view */}
-      <section aria-labelledby="sg-web" className="mt-14">
-        <SectionHeader number={15} id="sg-web" title={t("sections.web")}>
+      <section aria-labelledby="sg-web" className="mt-20">
+        <SectionHeader number={n("web")} id="sg-web" title={t("sections.web")}>
           {t("web.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
@@ -720,9 +844,8 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
         </ModePair>
       </section>
 
-      {/* 16 Images and glyphs */}
-      <section aria-labelledby="sg-images" className="mt-14">
-        <SectionHeader number={16} id="sg-images" title={t("sections.images")}>
+      <section aria-labelledby="sg-images" className="mt-20">
+        <SectionHeader number={n("images")} id="sg-images" title={t("sections.images")}>
           {t("images.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
@@ -737,7 +860,7 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
                 />
               ) : null}
               <div>
-                <p className="label">{t("images.glyphs")}</p>
+                <p className="annot font-bold">{t("images.glyphs")}</p>
                 <ul className="mt-3 flex flex-wrap gap-4">
                   {GLYPH_IDS.map((id) => (
                     <li key={id}>
@@ -746,7 +869,7 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
                   ))}
                 </ul>
                 <p className="prose-text mt-3">{t("images.glyphsNote")}</p>
-                <p className="label mt-6">{t("images.flags")}</p>
+                <p className="annot mt-6 font-bold">{t("images.flags")}</p>
                 <p className="prose-text mt-2">{t("images.flagsNote")}</p>
               </div>
             </div>

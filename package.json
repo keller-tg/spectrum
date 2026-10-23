@@ -26,6 +26,7 @@
     "validate": "tsx scripts/validate-data.ts",
     "derive": "tsx scripts/build-derived.ts",
     "images": "tsx scripts/build-images.ts",
+    "design:capture": "tsx scripts/capture-design.ts",
     "calibration": "tsx scripts/calibration-report.ts",
     "check-sources": "tsx scripts/check-sources.ts",
     "prebuild": "npm run validate && npm run derive && npm run images",

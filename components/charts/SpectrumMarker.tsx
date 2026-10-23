@@ -25,6 +25,7 @@ export function SpectrumShapeG({
   y,
   size = 14,
   inverted = false,
+  hollow = "paper",
 }: {
   id: SpectrumId;
   x: number;
@@ -32,6 +33,8 @@ export function SpectrumShapeG({
   size?: number;
   /** Selected nodes: paper shape on an ink block. */
   inverted?: boolean;
+  /** Fill of outline shapes: paper (knocks out what is behind) or none (overlaps stay visible). */
+  hollow?: "paper" | "none";
 }) {
   const shape = SHAPES[SPECTRUMS[id].shape];
   const ink = inverted ? "var(--paper)" : "var(--ink)";
@@ -42,7 +45,7 @@ export function SpectrumShapeG({
       {inverted ? <rect x="-3" y="-3" width="22" height="22" fill="var(--ink)" /> : null}
       <path
         d={shape.d}
-        fill={shape.solid ? ink : paper}
+        fill={shape.solid ? ink : hollow === "none" ? "none" : paper}
         stroke={ink}
         strokeWidth={Math.min(3, 1.75 / s)}
         strokeLinejoin="miter"

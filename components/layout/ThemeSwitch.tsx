@@ -2,10 +2,9 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
+import { Segmented } from "@/components/ui/Segmented";
 import { PALETTE, type ThemeName } from "@/lib/design/tokens";
 import { THEME_STORAGE_KEY } from "./ThemeScript";
-
-const THEMES: readonly ThemeName[] = ["light", "dark"];
 
 function readStored(): string | null {
   try {
@@ -41,11 +40,11 @@ function choose(theme: ThemeName) {
 }
 
 /**
- * "[ LIGHT / DARK ]": two text buttons. The pressed look comes from the
- * data-theme attribute in CSS, so it is right before hydration; aria-pressed
- * follows once the client knows the theme. Hidden when no script ran.
+ * LIGHT / DARK as a segmented radiogroup. The indicator position comes from
+ * the data-theme attribute in CSS, so it is right before hydration. Hidden
+ * when no script ran (the system theme applies then).
  */
-export function ThemeToggle() {
+export function ThemeSwitch({ className = "" }: { className?: string }) {
   const t = useTranslations("theme");
   const theme = useSyncExternalStore(subscribe, currentTheme, () => null);
 
@@ -60,40 +59,17 @@ export function ThemeToggle() {
     return () => media.removeEventListener("change", onChange);
   }, []);
 
-  const pressed: Record<ThemeName, string> = {
-    light: "bg-ink text-paper dark:bg-paper dark:text-ink dark:hover:bg-ink dark:hover:text-paper",
-    dark: "hover:bg-ink hover:text-paper dark:bg-ink dark:text-paper",
-  };
-
   return (
-    <div
-      role="group"
-      aria-label={t("label")}
-      className="label flex items-stretch [:root:not([data-theme])_&]:hidden"
-    >
-      <span aria-hidden="true" className="flex items-center pr-1">
-        [
-      </span>
-      {THEMES.map((name, i) => (
-        <span key={name} className="flex items-stretch">
-          {i > 0 ? (
-            <span aria-hidden="true" className="flex items-center px-1">
-              /
-            </span>
-          ) : null}
-          <button
-            type="button"
-            aria-pressed={theme === null ? undefined : theme === name}
-            onClick={() => choose(name)}
-            className={`min-h-11 min-w-11 px-1.5 uppercase ${pressed[name]}`}
-          >
-            {t(name)}
-          </button>
-        </span>
-      ))}
-      <span aria-hidden="true" className="flex items-center pl-1">
-        ]
-      </span>
-    </div>
+    <Segmented<ThemeName>
+      label={t("label")}
+      seg="theme"
+      value={theme}
+      onChange={choose}
+      options={[
+        { value: "light", label: t("light") },
+        { value: "dark", label: t("dark") },
+      ]}
+      className={`[:root:not([data-theme])_&]:hidden ${className}`}
+    />
   );
 }

@@ -17,7 +17,8 @@
     "figures": "Figures",
     "parties": "Parties",
     "dashboard": "Dashboard",
-    "menu": "Menu"
+    "menu": "Menu",
+    "close": "Close"
   },
   "locale": {
     "label": "Language",
@@ -55,7 +56,9 @@
       "mode": "Mode",
       "questions": "Questions",
       "minutes": "Minutes",
-      "action": "Start"
+      "action": "Start",
+      "questionsShort": "Qs",
+      "minutesShort": "Min"
     },
     "recommended": "Recommended",
     "opensSoon": "Opens soon",
@@ -74,7 +77,67 @@
         "blurb": "The most detailed reading: twelve questions per axis."
       }
     },
-    "modesNote": "You can extend a shorter test later and keep your answers. What you see here is the whole test: no hidden extra rounds."
+    "modesNote": "You can extend a shorter test later and keep your answers. What you see here is the whole test: no hidden extra rounds.",
+    "kicker": "Spectrum · a twelve-axis political test · free · no account",
+    "subline": "Answer short statements and see where you stand, which ideologies sit closest, and how sure that picture is.",
+    "rowQuestions": "{count} questions",
+    "rowMinutes": "about {minutes} minutes",
+    "field": {
+      "description": "{count} ideologies from the catalog placed on the overall map, the first two principal components of all twelve axes. Bigger halftone dots mean more ideologies nearby; each marker shows its spectrum by shape.",
+      "caption": "Fig. 01 — Catalog, {count} entries",
+      "axes": "PC1 × PC2 · {share}% of variance",
+      "list": "View as list ({count})",
+      "nearest": "Nearest",
+      "keyboard": "Catalog map. Arrow keys step through the ideologies, Enter jumps to the index entry.",
+      "open": "Click for the index entry",
+      "pc1": "PC1",
+      "pc2": "PC2"
+    },
+    "stats": {
+      "label": "In numbers",
+      "axes": "Axes, measured separately",
+      "ideologies": "Ideologies in the catalog",
+      "questions": "Questions: quick, standard, deep",
+      "accounts": "Accounts needed"
+    },
+    "how": {
+      "kicker": "How it works",
+      "title": "Three steps, no account",
+      "steps": {
+        "answer": {
+          "title": "Answer",
+          "body": "React to plain statements on a five-point scale. Not sure? Skip it. A skip is not counted as neutral."
+        },
+        "see": {
+          "title": "See twelve positions",
+          "body": "Each axis gets a score and a confidence. Where your answers pull in different directions, the results say so."
+        },
+        "explore": {
+          "title": "Explore and track",
+          "body": "Compare yourself with ideologies, countries, figures and parties, and see how your views move over time."
+        }
+      }
+    },
+    "axes": {
+      "kicker": "The 12 axes",
+      "title": "Twelve independent axes",
+      "lead": "Each axis is measured on its own. During the test you never see which axis a statement belongs to; that is revealed with your results.",
+      "code": "Code",
+      "axis": "Axis",
+      "scale": "Scale from −100 to +100"
+    },
+    "index": {
+      "kicker": "Index",
+      "title": "Index of ideologies",
+      "lead": "All {count} entries in the catalog so far, A to Z, each with its spectrum. Full pages arrive with the catalog.",
+      "counts": "Entries per spectrum"
+    },
+    "privacy": {
+      "kicker": "04 / Privacy",
+      "statement": "Your answers stay in your browser.",
+      "body": "No account, no tracking, no ads. Nothing reaches a server unless you choose encrypted sync.",
+      "link": "How your data is handled"
+    }
   },
   "stub": {
     "phaseNote": "This page arrives in phase {phase} of the build.",
@@ -220,20 +283,16 @@
   },
   "styleguide": {
     "title": "Styleguide",
-    "lead": "Every component and state in both modes, for design review. This page is not linked and not indexed.",
-    "modeSwitch": "Whole page",
+    "lead": "Every component and state in both modes, for design review. Hover states are also shown pinned, so they can be checked without a pointer.",
     "light": "Light mode",
     "dark": "Dark mode",
     "dataTable": "Show data table",
     "sections": {
-      "type": "Palette and type",
+      "type": "Palette, type and motion",
       "buttons": "Buttons",
       "inputs": "Inputs",
-      "answer": "Answer options",
-      "cells": "Cells and section headers",
-      "table": "Ruled tables",
+      "cells": "Cells, headers and tables",
       "nav": "Navigation and tabs",
-      "toggle": "Toggles",
       "sliders": "Sliders and axis bars",
       "overlays": "Tooltip and modal",
       "legend": "Legends",
@@ -241,7 +300,11 @@
       "radar": "Radar",
       "compass": "Compass encodings",
       "web": "Web view",
-      "images": "Images and glyphs"
+      "images": "Images and glyphs",
+      "links": "Links",
+      "segmented": "Segmented controls",
+      "modes": "Mode rows",
+      "answers": "Answer rows"
     },
     "palette": {
       "note": "Two colours, swapped between modes. No greys, accents, gradients, shadows, opacity, blur or rounded corners. A CI check rejects any other colour."
@@ -252,19 +315,22 @@
       "mono": "Interface, labels and numbers: IBM Plex Mono",
       "numeral": "Match percentage",
       "sampleHeadline": "Where would you draw the line?",
-      "sampleBody": "Each axis is measured on its own. A position on one says nothing about the others, which is exactly why twelve lines describe a person better than one."
+      "sampleBody": "Each axis is measured on its own. A position on one says nothing about the others, which is exactly why twelve lines describe a person better than one.",
+      "motion": "Motion and shape tokens"
     },
     "buttons": {
-      "note": "Hover and press invert ink and paper. Focus is a 3px outline with a 3px gap. Disabled is a dashed frame.",
-      "order": "Default · hover or press · focus · disabled",
+      "note": "Hover wipes the opposite colour in from the left while the label flips with it; the arrow rolls. Press scales to 98% and springs back. Focus is a 2px ring at 3px. Disabled is dashed.",
+      "order": "Rest · hover (pinned) · disabled",
       "primary": "Primary",
       "secondary": "Secondary",
       "text": "Text",
       "primaryText": "Start",
       "secondaryText": "Compare",
       "textText": "Read more",
-      "link": "Link in text",
-      "linkSentence": "Links are always underlined, like <link>this one</link>, and invert on hover."
+      "sizes": "Sizes",
+      "live": "Try it",
+      "save": "Save result",
+      "sync": "Sync now"
     },
     "inputs": {
       "note": "Labels sit above fields. Errors are written out and thicken the frame; colour never carries meaning.",
@@ -277,18 +343,17 @@
       "checked": "Selected option"
     },
     "answer": {
-      "note": "Five ruled cells and a separate skip. The chosen answer is inverted and marked [X]; hover inverts too. Keys 1–5 answer.",
+      "note": "Full-width rows. Pressing wipes the row in; the chosen row stays inverted and its [X] draws in. Keycaps 1–5 show on desktop. With auto-advance on, the test waits 180ms so the choice registers.",
       "selected": "One answer chosen",
       "skipped": "Skipped"
     },
     "cells": {
-      "note": "Sections are bordered cells on a 12-column grid. Neighbouring cells share one 2px rule.",
+      "note": "Structure uses 2px rules, dense data 1px. Sections are cells on a 12-column grid; tables are ruled, numbers right-aligned in tabular figures, countries as ISO codes.",
       "sampleTitle": "A numbered section",
       "cellTitle": "Cell",
       "cellBody": "Content sits in ruled cells instead of floating cards."
     },
     "table": {
-      "note": "2px frame and header rule, 1px hairlines. Numbers are right-aligned with tabular figures. Countries appear as ISO codes, never as flags.",
       "caption": "Example: six anchor ideologies",
       "name": "Name",
       "spectrum": "Spectrum",
@@ -300,7 +365,7 @@
       "fr": "France"
     },
     "nav": {
-      "note": "The current page is inverted and bracketed. Tabs follow the same rule and answer to the arrow keys.",
+      "note": "Hover draws an underline; the current section has a bar that slides when the route changes, plus brackets. On phones the menu opens as a full-screen inverted sheet in display type.",
       "header": "Header cells",
       "tabs": "Tabs",
       "tabsLabel": "Result views",
@@ -309,23 +374,23 @@
       "tabMap": "Map",
       "panelAxes": "Twelve bars, one per axis.",
       "panelRadar": "All twelve axes in one shape.",
-      "panelMap": "The overall map of the political space."
+      "panelMap": "The overall map of the political space.",
+      "sheet": "Try the mobile sheet by narrowing the window and pressing MENU; it works without JavaScript."
     },
     "toggle": {
-      "note": "The active word is inverted. The theme switch in the header works the same way.",
       "advance": "Advance automatically",
-      "labels": "Show axis labels",
       "disabled": "Unavailable",
       "on": "On",
       "off": "Off"
     },
     "sliders": {
-      "note": "Black bars on ruled tracks with ticks every 10 points. The bracket above shows the uncertainty range. The slider thumb is a solid block.",
+      "note": "Black bars on ruled tracks with ticks every 10 points; uncertainty as a hairline bracket or a hatched band. The slider thumb grows while dragged and a bordered readout follows it.",
       "bar": "{axis}: {score}, toward {pole}, likely between {low} and {high}",
-      "disabled": "Disabled slider"
+      "disabled": "Disabled slider",
+      "snap": "Snaps to ticks"
     },
     "overlays": {
-      "note": "Both open instantly. The modal is a native dialog over a halftone screen; Escape closes it.",
+      "note": "The tooltip opens after 300ms of hover, at once on focus or tap, and comes in over 120ms. The modal is a native dialog over a halftone screen; Escape closes it.",
       "tooltipLabel": "What this axis measures",
       "open": "Open dialog",
       "modalTitle": "About this statement",
@@ -344,7 +409,8 @@
       "halftone": "Halftone: bigger dots, more ideologies nearby",
       "you": "You: the circle’s size shows uncertainty, the crosshair marks the point",
       "ghost": "Ghost compare: a hollow, dashed outline",
-      "selected": "Selected node: inverted"
+      "selected": "Selected node: inverted",
+      "dither": "Ordered dither: the band under the sticky header"
     },
     "strip": {
       "note": "Twelve two-letter axis codes, grouped by domain.",
@@ -381,6 +447,84 @@
       "glyphsNote": "Each catalog entry gets a symmetric 5×5 pattern derived from its id: original, no symbols, no faces.",
       "flags": "Countries",
       "flagsNote": "No flags. Countries are named and coded in text, e.g. CH, DE, FR."
+    },
+    "kicker": "Internal · not indexed",
+    "pages": {
+      "buttons": "Button state matrix",
+      "screens": "App screens",
+      "home-a": "Home A: specimen",
+      "home-b": "Home B: typographic"
+    },
+    "controls": {
+      "label": "Control style",
+      "sharp": "Sharp",
+      "pill": "Pill",
+      "offset": "Offset",
+      "note": "The control style applies to the whole site and is remembered in this browser, for review only. Sharp is the default until a choice is made."
+    },
+    "links": {
+      "note": "Links are underlined at rest, because colour cannot set them apart; on hover a 2px rule draws in from the left. Links that leave the site carry a small arrow.",
+      "sentence": "A link inside running text looks like <link>this one</link>.",
+      "internal": "Read the method",
+      "external": "Source code on GitHub"
+    },
+    "segmented": {
+      "note": "One control for language, theme, test length and axis picker: equal segments and an inverted indicator that slides between them. Arrow keys move the selection.",
+      "mode": "Test length",
+      "axis": "Axis picker",
+      "map": "Map",
+      "switch": "Switch"
+    },
+    "modes": {
+      "note": "Each mode is one link across the whole row. On hover the row wipes to inverted, START slides in and the arrow rolls (pinned on Quick in the light frame). Deep is dashed and not clickable yet."
+    },
+    "matrix": {
+      "kicker": "Styleguide",
+      "title": "Button state matrix",
+      "lead": "Every variant, size and state, with hover and press pinned. Switch the control style to compare sharp, pill and offset.",
+      "size": "Size",
+      "sizes": {
+        "s": "S · 36",
+        "m": "M · 44",
+        "l": "L · 56"
+      },
+      "states": {
+        "rest": "Rest",
+        "hover": "Hover",
+        "focus": "Focus",
+        "active": "Active",
+        "loading": "Loading",
+        "success": "Success",
+        "error": "Error",
+        "disabled": "Disabled"
+      },
+      "loadingLabel": "Saving",
+      "successLabel": "Saved",
+      "errorLabel": "Failed, retry"
+    },
+    "home": {
+      "lead": "Home page variant for design review.",
+      "specimen": "Home A: specimen",
+      "typographic": "Home B: typographic"
+    },
+    "screens": {
+      "kicker": "Styleguide",
+      "title": "App screens",
+      "lead": "Designed now, built in their phases: the test screen (Phase 3) and the result poster, which doubles as the share card.",
+      "test": "Test screen",
+      "questionOf": "Question {n} of {count}",
+      "mode": "Standard",
+      "progress": "Progress through the test",
+      "back": "Back",
+      "explain": "What does this mean?",
+      "result": "Result poster",
+      "posterLabel": "Result poster, example",
+      "posterHead": "Spectrum · result · 12 axes",
+      "example": "Example data",
+      "match": "Closest match",
+      "bar": "{axis}: {score}, toward {pole}, likely between {low} and {high}",
+      "posterFoot": "spectrum-six-rho.vercel.app",
+      "legend": "Bar: score · hatched band: likely range"
     }
   }
 }

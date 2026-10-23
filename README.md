@@ -22,6 +22,7 @@ npm run dev                  # http://localhost:3000 → redirects to /en, /de o
 | `npm run check` | privacy guard → palette guard → validate data → derive → lint → typecheck → unit tests (must pass before every commit) |
 | `npm run check:privacy` | fails if the owner's personal email appears in the repo (`:history` scans every commit); needs `PRIVACY_GUARD_SHA256` in `.env.local` (hashes only) |
 | `npm run check:palette` | fails on any colour other than `--ink`/`--paper` and on opacity, shadows, radius, blur or gradients (also a CI job) |
+| `npm run design:capture` | screenshots of both home variants and WebM recordings of the controls → `docs/design/` (needs a running server) |
 | `npm run images` | turns the photos in `data/images/` into 1-bit dither PNGs in `public/images/` (runs before `dev` and `build`) |
 | `npm run validate` | zod + semantic checks on all content (also runs before every build) |
 | `npm run derive` | build-time PCA map, category indices, similarity τ, neighbours → `generated/` |

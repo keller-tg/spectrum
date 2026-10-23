@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import { ExternalLink, TextLink } from "@/components/ui/TextLink";
 
 const REPO_URL = "https://github.com/keller-tg/spectrum";
 
@@ -18,64 +18,69 @@ const ABOUT = [
   ["imprint", "/imprint"],
 ] as const;
 
-const link = "link inline-flex min-h-11 items-center";
-
+/** Three ruled columns, then the wordmark across the full width, cropped at the bottom. */
 export async function SiteFooter() {
   const t = await getTranslations("footer");
   const nav = await getTranslations("nav");
+  const tm = await getTranslations("meta");
 
   return (
     <footer className="mt-auto border-t-2 border-ink">
-      <div className="mx-auto grid max-w-7xl grid-cols-12">
-        <div className="col-span-12 border-b-2 border-ink p-4 md:col-span-6 md:border-r-2 md:border-b-0">
+      <div className="mx-auto grid max-w-[96rem] grid-cols-12 px-4 sm:px-6 lg:px-10">
+        <div className="col-span-12 border-b border-ink py-8 md:col-span-6 md:border-r md:border-b-0 md:pr-8">
           <p className="prose-text">{t("disclaimer")}</p>
           <p className="prose-text mt-2">{t("privacy")}</p>
         </div>
         <nav
           aria-labelledby="footer-explore"
-          className="col-span-6 border-r-2 border-ink p-4 md:col-span-3"
+          className="col-span-6 border-r border-ink py-8 pr-4 md:col-span-3 md:px-8"
           data-print="hide"
         >
-          <h2 id="footer-explore" className="label">
+          <h2 id="footer-explore" className="annot">
             {t("explore")}
           </h2>
-          <ul className="mt-1 flex flex-wrap gap-x-4">
+          <ul className="mt-3 space-y-1">
             {EXPLORE.map(([key, href]) => (
               <li key={key}>
-                <Link href={href} className={link}>
+                <TextLink href={href} className="inline-flex min-h-11 items-center">
                   {nav(key)}
-                </Link>
+                </TextLink>
               </li>
             ))}
           </ul>
         </nav>
         <nav
           aria-labelledby="footer-about"
-          className="col-span-6 p-4 md:col-span-3"
+          className="col-span-6 py-8 pl-4 md:col-span-3 md:px-8"
           data-print="hide"
         >
-          <h2 id="footer-about" className="label">
+          <h2 id="footer-about" className="annot">
             {t("about")}
           </h2>
-          <ul className="mt-1 flex flex-wrap gap-x-4">
+          <ul className="mt-3 space-y-1">
             {ABOUT.map(([key, href]) => (
               <li key={key}>
-                <Link href={href} className={link}>
+                <TextLink href={href} className="inline-flex min-h-11 items-center">
                   {t(key)}
-                </Link>
+                </TextLink>
               </li>
             ))}
             <li>
-              <a href={REPO_URL} className={link} rel="noreferrer">
+              <ExternalLink href={REPO_URL} className="inline-flex min-h-11 items-center">
                 {t("source")}
-              </a>
+              </ExternalLink>
             </li>
           </ul>
         </nav>
       </div>
-      <p className="label border-t-2 border-ink">
-        <span className="mx-auto block max-w-7xl px-4 py-3">{t("status")}</span>
+      <p className="annot mx-auto max-w-[96rem] border-t border-ink px-4 py-3 sm:px-6 lg:px-10">
+        {t("status")}
       </p>
+      <div aria-hidden="true" className="h-[11.5vw] overflow-hidden select-none">
+        <p className="px-[1.5vw] font-mono text-[18vw] leading-none font-bold tracking-[-0.03em] whitespace-nowrap">
+          {tm("siteName").toUpperCase()}
+        </p>
+      </div>
     </footer>
   );
 }

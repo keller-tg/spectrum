@@ -8,18 +8,17 @@ import { AXIS_IDS } from "@/data/axes";
 import { QUESTION_BANK } from "@/data/questions/bank";
 import { QUESTION_TEXT_EN } from "@/data/questions/text.en";
 import { loadIdeologies, toMatchable } from "@/lib/catalog/ideologies";
+import { catalogMap } from "@/lib/catalog/map";
 import { fitTau } from "@/lib/engine/calibrate";
 import { deriveIndexDefs } from "@/lib/engine/indices";
 import { asUser, rank } from "@/lib/engine/match";
-import { pca } from "@/lib/engine/pca";
 import { ENGINE_VERSION } from "@/lib/engine/version";
 import { shortHash } from "./derived-lib";
 
 const ideologies = loadIdeologies();
 const matchables = ideologies.map(toMatchable).filter((m) => !m.hidden);
 
-const rows = matchables.map((m) => AXIS_IDS.map((a) => m.coords[a]));
-const map = pca(rows);
+const { map, rows } = catalogMap();
 const tau = fitTau(matchables);
 
 const neighbours = Object.fromEntries(

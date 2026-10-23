@@ -1,0 +1,716 @@
+/* Interactive controls (D-080). CSS-first, no animation library. Only
+   transform and clip-path animate; every resting state is pure ink or paper.
+   Hover lives under (hover: hover) and (pointer: fine); touch gets :active.
+   With reduced motion the duration tokens are 0s, so every wipe becomes an
+   instant invert. The control style (sharp, pill, offset) comes from
+   data-controls on <html>. */
+
+@layer components {
+  /* ---------- Shared wipe ----------
+     A host carries an aria-hidden copy of its own content in inverted colours
+     (.wipe). Revealing that copy with clip-path flips fill and label in the same
+     frame, so the label is never unreadable mid-transition. */
+  .wipe-host {
+    position: relative;
+    isolation: isolate;
+  }
+  .wipe {
+    --wipe-r: 0px;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    clip-path: inset(0 100% 0 0 round var(--wipe-r));
+    transition: clip-path var(--dur) var(--ease-out);
+  }
+  .wipe-host[data-state="hover"] > .wipe,
+  .wipe-host[aria-checked="true"] > .wipe,
+  .wipe-host[aria-pressed="true"] > .wipe {
+    clip-path: inset(0 round var(--wipe-r));
+  }
+
+  /* Arrow roll: the arrow leaves to the right while its copy enters from the left. */
+  .roll {
+    position: relative;
+    flex: none;
+    width: 0.875rem;
+    height: 0.875rem;
+    overflow: hidden;
+  }
+  .roll > svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform var(--dur) var(--ease-out);
+  }
+  .roll > svg + svg {
+    transform: translateX(-130%);
+  }
+  .wipe-host[data-state="hover"] .roll > svg:first-child {
+    transform: translateX(130%);
+  }
+  .wipe-host[data-state="hover"] .roll > svg + svg {
+    transform: none;
+  }
+
+  /* Keycap hint ("1"), shown only where a keyboard is likely. */
+  .keycap {
+    display: none;
+    flex: none;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding-inline: 0.25rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid currentColor;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  @media (pointer: fine) and (min-width: 48rem) {
+    .keycap {
+      display: inline-flex;
+    }
+  }
+
+  /* "[ ]" → "[X]": the X is drawn in with clip-path. */
+  .mark-x {
+    display: inline-block;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path var(--dur-fast) linear;
+  }
+  [aria-checked="true"] .mark-x,
+  [aria-pressed="true"] .mark-x,
+  :checked + .check-mark .mark-x {
+    clip-path: inset(0);
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    --btn-h: 2.75rem;
+    --btn-px: 1.75rem;
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    max-width: 100%;
+    vertical-align: middle;
+    min-height: var(--btn-h);
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-control);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform var(--dur) var(--ease-spring);
+  }
+  .btn[data-size="s"] {
+    --btn-h: 2.25rem;
+    --btn-px: 1rem;
+  }
+  .btn[data-size="l"] {
+    --btn-h: 3.5rem;
+    --btn-px: 2.25rem;
+    font-size: 0.875rem;
+  }
+  /* S is 36px tall; an invisible margin keeps the touch target at 44px. */
+  .btn[data-size="s"]::after {
+    content: "";
+    position: absolute;
+    inset: -5px 0;
+  }
+  .btn-face {
+    position: relative;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding-block: 0.5rem;
+    padding-inline: var(--btn-px);
+    border-radius: inherit;
+  }
+  .btn > .wipe {
+    --wipe-r: var(--radius-control);
+    position: absolute;
+    inset: 0;
+    display: flex;
+  }
+  .btn[data-variant="primary"] > .btn-face {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+  .btn[data-variant="primary"] > .wipe {
+    background-color: var(--paper);
+    color: var(--ink);
+  }
+  .btn[data-variant="secondary"] > .btn-face {
+    background-color: var(--paper);
+    color: var(--ink);
+  }
+  .btn[data-variant="secondary"] > .wipe {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+
+  /* Text variant: no frame; an underline draws left to right on hover. */
+  .btn[data-variant="text"] {
+    --btn-px: 0.25rem;
+    border-color: transparent;
+  }
+  .btn[data-variant="text"] > .wipe {
+    display: none;
+  }
+  /* Labels wrap only when the button cannot fit its container. */
+  .btn-label {
+    position: relative;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+  .btn[data-variant="text"] .btn-label {
+    text-decoration: underline 1px;
+    text-underline-offset: 0.35em;
+  }
+  .btn[data-variant="text"] .btn-label::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.45em;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 160ms var(--ease-out);
+  }
+  .btn[data-variant="text"][data-state="hover"] .btn-label {
+    text-decoration-color: transparent;
+  }
+  .btn[data-variant="text"][data-state="hover"] .btn-label::after {
+    transform: scaleX(1);
+  }
+
+  /* Press: a small scale, released with a spring. */
+  .btn:not([aria-disabled="true"]):active,
+  .btn[data-state="active"] {
+    transform: scale(0.98);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  /* Loading: three stepped ticks at fixed width; the label keeps its space and name. */
+  .btn-ticks {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    gap: 4px;
+    transform: translate(-50%, -50%);
+  }
+  .btn-ticks > i {
+    width: 6px;
+    height: 6px;
+    background-color: currentColor;
+  }
+  .btn[data-status="loading"] .btn-content {
+    color: transparent;
+  }
+  .btn[data-status="loading"] .btn-ticks {
+    display: flex;
+    animation: btn-ticks 900ms steps(1, end) infinite;
+  }
+  @keyframes btn-ticks {
+    0% {
+      clip-path: inset(0 77% 0 0);
+    }
+    33.3% {
+      clip-path: inset(0 38% 0 0);
+    }
+    66.6%,
+    100% {
+      clip-path: inset(0);
+    }
+  }
+
+  /* Success: the checkmark draws in 240ms. */
+  .btn-check {
+    flex: none;
+    width: 0.875rem;
+    height: 0.875rem;
+    clip-path: inset(0 100% 0 0);
+    animation: draw-in 240ms var(--ease-out) forwards;
+  }
+  @keyframes draw-in {
+    to {
+      clip-path: inset(0);
+    }
+  }
+
+  /* Disabled: a dashed frame, no fill, no hover, no press. */
+  .btn[aria-disabled="true"] {
+    border-style: dashed;
+    cursor: not-allowed;
+  }
+  .btn[aria-disabled="true"] > .btn-face {
+    background-color: var(--paper);
+    color: var(--ink);
+  }
+
+  /* Offset variant: a solid ink block 4px down-right, no blur. Hover lifts the
+     button 1px; press moves it into its shadow. The block counter-moves so it
+     stays put on screen. */
+  :root[data-controls="offset"] .btn:not([data-variant="text"], [aria-disabled="true"])::before {
+    content: "";
+    position: absolute;
+    inset: -1.5px;
+    z-index: -1;
+    background-color: var(--ink);
+    transform: translate(4px, 4px);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  :root[data-controls="offset"] .btn:not([data-variant="text"])[data-state="hover"] {
+    transform: translate(-1px, -1px);
+  }
+  :root[data-controls="offset"] .btn:not([data-variant="text"])[data-state="hover"]::before {
+    transform: translate(5px, 5px);
+  }
+  :root[data-controls="offset"]
+    .btn:not([data-variant="text"], [aria-disabled="true"]):is(:active, [data-state="active"]) {
+    transform: translate(4px, 4px);
+  }
+  :root[data-controls="offset"]
+    .btn:not([data-variant="text"], [aria-disabled="true"]):is(
+      :active,
+      [data-state="active"]
+    )::before {
+    transform: translate(0, 0);
+  }
+
+  /* ---------- Text links ---------- */
+  /* Underlined at rest (no colour to tell them apart); a 2px rule draws in on hover. */
+  .link {
+    position: relative;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+  }
+  /* A link with a large hit area carries .link on an inner span instead. */
+  .link-host {
+    text-decoration: none;
+  }
+  .link::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.2em;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 160ms var(--ease-out);
+    pointer-events: none;
+  }
+  .link-ext {
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    margin-inline-start: 0.2em;
+  }
+
+  /* ---------- Segmented control ----------
+     Equal segments; an inverted copy of all labels is clipped to the selected
+     segment and slides with clip-path, so label and fill always move together. */
+  .seg {
+    --seg-i: 0;
+    --seg-n: 2;
+    position: relative;
+    isolation: isolate;
+    display: inline-grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-control);
+  }
+  .seg-opt,
+  .seg-ind > span {
+    display: flex;
+    min-height: calc(2.75rem - 3px);
+    align-items: center;
+    justify-content: center;
+    padding-inline: 0.875rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .seg-opt {
+    position: relative;
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: var(--radius-control);
+  }
+  .seg-opt:focus-visible {
+    outline-offset: -5px;
+  }
+  .seg-ind {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    background-color: var(--ink);
+    color: var(--paper);
+    pointer-events: none;
+    border-radius: inherit;
+    clip-path: inset(
+      0 calc(100% - (var(--seg-i) + 1) * 100% / var(--seg-n)) 0
+        calc(var(--seg-i) * 100% / var(--seg-n)) round var(--radius-control)
+    );
+    transition: clip-path var(--dur) var(--ease-out);
+  }
+  /* The focus ring of the selected segment, drawn on the inverted copy. */
+  .seg:has(> .seg-opt:nth-child(1):focus-visible) .seg-ind > span:nth-child(1),
+  .seg:has(> .seg-opt:nth-child(2):focus-visible) .seg-ind > span:nth-child(2),
+  .seg:has(> .seg-opt:nth-child(3):focus-visible) .seg-ind > span:nth-child(3),
+  .seg:has(> .seg-opt:nth-child(4):focus-visible) .seg-ind > span:nth-child(4) {
+    outline: 2px solid var(--paper);
+    outline-offset: -5px;
+    border-radius: var(--radius-control);
+  }
+  /* Theme and control-style switches know their state before hydration. */
+  :root[data-theme="dark"] .seg[data-seg="theme"] {
+    --seg-i: 1;
+  }
+  :root[data-controls="pill"] .seg[data-seg="controls"] {
+    --seg-i: 1;
+  }
+  :root[data-controls="offset"] .seg[data-seg="controls"] {
+    --seg-i: 2;
+  }
+
+  /* ---------- Navigation ---------- */
+  .nav-link {
+    position: relative;
+    text-decoration: none;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    inset-inline: 1rem;
+    bottom: 0.875rem;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 160ms var(--ease-out);
+  }
+  /* Before the sliding indicator mounts (or without JS) the current item is underlined. */
+  .nav:not([data-ready]) .nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+  .nav-ind {
+    position: absolute;
+    bottom: 0.875rem;
+    left: 0;
+    width: 1px;
+    height: 2px;
+    background-color: var(--ink);
+    transform-origin: left;
+    transform: translateX(var(--x, 0)) scaleX(var(--w, 0));
+    transition: transform var(--dur) var(--ease-out);
+    pointer-events: none;
+  }
+
+  /* Sticky header with an ordered-dither band that appears once the page scrolls. */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--ink);
+    background-color: var(--paper);
+  }
+  .site-header-band {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    height: 8px;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path var(--dur-fast) var(--ease-out);
+    pointer-events: none;
+  }
+  .site-header[data-scrolled] .site-header-band {
+    clip-path: inset(0);
+  }
+
+  /* Mobile navigation: a full-screen inverted sheet (popover, works without
+     JS). Items come in with a stepped 40ms stagger. */
+  .sheet {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    border: 0;
+    clip-path: inset(0 0 100% 0);
+    transition:
+      clip-path var(--dur-slow) var(--ease-out),
+      display var(--dur-slow) allow-discrete,
+      overlay var(--dur-slow) allow-discrete;
+  }
+  .sheet:popover-open {
+    clip-path: inset(0);
+  }
+  .sheet-item {
+    transform: translateY(0.75rem);
+    clip-path: inset(0 0 100% 0);
+    transition:
+      transform var(--dur) var(--ease-out),
+      clip-path var(--dur) var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 40ms);
+  }
+  .sheet:popover-open .sheet-item {
+    transform: none;
+    clip-path: inset(0);
+  }
+  @starting-style {
+    .sheet:popover-open {
+      clip-path: inset(0 0 100% 0);
+    }
+    .sheet:popover-open .sheet-item {
+      transform: translateY(0.75rem);
+      clip-path: inset(0 0 100% 0);
+    }
+  }
+
+  /* ---------- Rows ---------- */
+  /* Mode rows are whole-row links: wipe from the left, "START" slides in, arrow rolls. */
+  .mode-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 3.25rem 3rem 1.25rem;
+    align-items: center;
+    column-gap: 0.75rem;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 40rem) {
+    .mode-grid {
+      grid-template-columns: minmax(0, 1fr) 5.5rem 5rem 7rem;
+      column-gap: 1rem;
+    }
+  }
+  .mode-row,
+  .mode-row > .wipe {
+    min-height: 4.5rem;
+    padding-block: 0.875rem;
+  }
+  @media (min-width: 40rem) {
+    .mode-row,
+    .mode-row > .wipe {
+      min-height: 5rem;
+    }
+  }
+  .mode-row {
+    color: var(--ink);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mode-row > .wipe {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+  .mode-row:active > .wipe {
+    clip-path: inset(0);
+    transition-duration: var(--dur-fast);
+  }
+  .mode-start-word {
+    display: inline-block;
+    transform: translateX(0.5rem);
+    clip-path: inset(0 0 0 100%);
+    transition:
+      transform var(--dur) var(--ease-out),
+      clip-path var(--dur) var(--ease-out);
+  }
+  .wipe-host[data-state="hover"] .mode-start-word {
+    transform: none;
+    clip-path: inset(0);
+  }
+  /* Without a hovering pointer the action is always spelled out. */
+  @media not ((hover: hover) and (pointer: fine)) {
+    .mode-start-word {
+      transform: none;
+      clip-path: none;
+    }
+  }
+
+  /* Answer rows: full-width, pressed = wipe, chosen = inverted with "[X]". */
+  .answer-row {
+    display: flex;
+    width: 100%;
+    min-height: 3.75rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    color: var(--ink);
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .answer-row > .wipe {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+  .answer-row:active > .wipe {
+    clip-path: inset(0);
+    transition-duration: var(--dur-fast);
+  }
+
+  /* ---------- Tooltip ---------- */
+  /* Opens after 300ms of hover, at once on focus or tap; Escape closes it.
+     Closed tooltips are display: none, so they never widen the page;
+     @starting-style gives the 120ms entrance. */
+  .tip {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    z-index: 30;
+    display: none;
+    width: min(18rem, calc(100vw - 2rem));
+    padding: 0.75rem;
+    border: 1.5px solid var(--ink);
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0;
+    text-transform: none;
+    clip-path: inset(0);
+    transform: none;
+    transition:
+      clip-path var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out),
+      display var(--dur-fast) allow-discrete;
+  }
+  .tip-host:focus-within:not([data-dismissed]) .tip,
+  .tip-host[data-open] .tip {
+    display: block;
+  }
+  @starting-style {
+    .tip-host:focus-within .tip,
+    .tip-host[data-open] .tip,
+    .tip-host:hover .tip {
+      clip-path: inset(0 0 100% 0);
+      transform: translateY(-0.25rem);
+    }
+  }
+
+  /* ---------- Slider ---------- */
+  .range {
+    appearance: none;
+    width: 100%;
+    height: 2.75rem;
+    margin: 0;
+    background: transparent;
+  }
+  .range::-webkit-slider-runnable-track {
+    height: 2px;
+    background-color: var(--ink);
+  }
+  .range::-moz-range-track {
+    height: 2px;
+    background-color: var(--ink);
+  }
+  .range::-webkit-slider-thumb {
+    appearance: none;
+    box-sizing: border-box;
+    width: 1rem;
+    height: 2rem;
+    margin-top: calc(-1rem + 1px);
+    border: 3px solid var(--paper);
+    border-radius: 0;
+    background-color: var(--ink);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .range::-moz-range-thumb {
+    box-sizing: border-box;
+    width: 1rem;
+    height: 2rem;
+    border: 3px solid var(--paper);
+    border-radius: 0;
+    background-color: var(--ink);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  /* The thumb grows while it is dragged. */
+  .range:active::-webkit-slider-thumb {
+    transform: scale(1.25);
+  }
+  .range:active::-moz-range-thumb {
+    transform: scale(1.25);
+  }
+
+  /* Controls that take the pill radius: inputs and tags (buttons and segments above). */
+  .field-input,
+  .tag {
+    border-radius: var(--radius-control);
+  }
+}
+
+/* Hover rules, for fine pointers only. */
+@media (hover: hover) and (pointer: fine) {
+  .wipe-host:not([aria-disabled="true"], [data-status="loading"]):hover > .wipe {
+    clip-path: inset(0 round var(--wipe-r));
+  }
+  .wipe-host:not([aria-disabled="true"]):hover .roll > svg:first-child {
+    transform: translateX(130%);
+  }
+  .wipe-host:not([aria-disabled="true"]):hover .roll > svg + svg {
+    transform: none;
+  }
+  .wipe-host:hover .mode-start-word {
+    transform: none;
+    clip-path: inset(0);
+  }
+  .btn[data-variant="text"]:not([aria-disabled="true"]):hover .btn-label {
+    text-decoration-color: transparent;
+  }
+  .btn[data-variant="text"]:not([aria-disabled="true"]):hover .btn-label::after {
+    transform: scaleX(1);
+  }
+  :root[data-controls="offset"]
+    .btn:not([data-variant="text"], [aria-disabled="true"]):hover:not(:active) {
+    transform: translate(-1px, -1px);
+  }
+  :root[data-controls="offset"]
+    .btn:not([data-variant="text"], [aria-disabled="true"]):hover:not(:active)::before {
+    transform: translate(5px, 5px);
+  }
+  .link:hover,
+  .link-host:hover .link {
+    text-decoration-color: transparent;
+  }
+  .link:hover::after,
+  .link-host:hover .link::after {
+    transform: scaleX(1);
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+  .tip-host:hover:not([data-dismissed]) .tip {
+    display: block;
+    transition-delay: 300ms;
+  }
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useRef } from "react";
-import { buttonClass } from "./Button";
+import { Button } from "./Button";
 
 /**
  * Native modal <dialog>: focus moves in and back, Escape closes, the page
@@ -22,13 +22,9 @@ export function Modal({
   const titleId = useId();
   return (
     <>
-      <button
-        type="button"
-        className={buttonClass("secondary")}
-        onClick={() => ref.current?.showModal()}
-      >
+      <Button variant="secondary" arrow onClick={() => ref.current?.showModal()}>
         {triggerLabel}
-      </button>
+      </Button>
       <dialog
         ref={ref}
         aria-labelledby={titleId}
@@ -38,13 +34,10 @@ export function Modal({
           <h2 id={titleId} className="label flex items-center px-4 py-2">
             {title}
           </h2>
-          <form method="dialog" className="flex">
-            <button
-              type="submit"
-              className="label min-h-11 border-l-2 border-ink px-4 hover:bg-ink hover:text-paper"
-            >
+          <form method="dialog" className="flex items-center p-1">
+            <Button type="submit" variant="text" size="s">
               {closeLabel}
-            </button>
+            </Button>
           </form>
         </div>
         <div className="prose-text p-4">{children}</div>

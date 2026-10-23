@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { ModeTable } from "@/components/home/ModeTable";
+import { ModeRows } from "@/components/home/ModeRows";
 import type { Locale } from "@/data/locales";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -36,7 +36,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         <h1 className="display mt-4 text-display-xl">{t("sentence")}</h1>
       </div>
       <div className="col-span-12 lg:col-span-8">
-        <ModeTable locale={locale} />
+        <ModeRows locale={locale} />
       </div>
     </div>
   );

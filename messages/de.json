@@ -17,7 +17,8 @@
     "figures": "Persönlichkeiten",
     "parties": "Parteien",
     "dashboard": "Verlauf",
-    "menu": "Menü"
+    "menu": "Menü",
+    "close": "Schließen"
   },
   "locale": {
     "label": "Sprache",
@@ -55,7 +56,9 @@
       "mode": "Modus",
       "questions": "Fragen",
       "minutes": "Minuten",
-      "action": "Starten"
+      "action": "Starten",
+      "questionsShort": "Fr.",
+      "minutesShort": "Min."
     },
     "recommended": "Empfohlen",
     "opensSoon": "Bald verfügbar",
@@ -74,7 +77,67 @@
         "blurb": "Die genaueste Auswertung: zwölf Fragen pro Achse."
       }
     },
-    "modesNote": "Einen kürzeren Test kannst du später verlängern, deine Antworten bleiben erhalten. Was du hier siehst, ist der ganze Test: keine versteckten Zusatzrunden."
+    "modesNote": "Einen kürzeren Test kannst du später verlängern, deine Antworten bleiben erhalten. Was du hier siehst, ist der ganze Test: keine versteckten Zusatzrunden.",
+    "kicker": "Spectrum · ein politischer Test mit zwölf Achsen · kostenlos · ohne Konto",
+    "subline": "Beantworte kurze Aussagen und sieh, wo du stehst, welche Ideologien dir am nächsten sind und wie sicher dieses Bild ist.",
+    "rowQuestions": "{count} Fragen",
+    "rowMinutes": "etwa {minutes} Minuten",
+    "field": {
+      "description": "{count} Ideologien aus dem Katalog auf der Gesamtkarte, den ersten beiden Hauptkomponenten aller zwölf Achsen. Größere Rasterpunkte bedeuten mehr Ideologien in der Nähe; jede Markierung zeigt ihr Spektrum durch ihre Form.",
+      "caption": "Abb. 01 — Katalog, {count} Einträge",
+      "axes": "HK1 × HK2 · {share} % der Varianz",
+      "list": "Als Liste zeigen ({count})",
+      "nearest": "Am nächsten",
+      "keyboard": "Katalogkarte. Pfeiltasten gehen die Ideologien durch, Enter springt zum Registereintrag.",
+      "open": "Klick führt zum Registereintrag",
+      "pc1": "HK1",
+      "pc2": "HK2"
+    },
+    "stats": {
+      "label": "In Zahlen",
+      "axes": "Achsen, einzeln gemessen",
+      "ideologies": "Ideologien im Katalog",
+      "questions": "Fragen: schnell, standard, vertieft",
+      "accounts": "Konten nötig"
+    },
+    "how": {
+      "kicker": "So funktioniert es",
+      "title": "Drei Schritte, kein Konto",
+      "steps": {
+        "answer": {
+          "title": "Antworten",
+          "body": "Reagiere auf einfache Aussagen auf einer Fünf-Punkte-Skala. Unsicher? Überspring sie. Übersprungen zählt nicht als neutral."
+        },
+        "see": {
+          "title": "Zwölf Positionen sehen",
+          "body": "Jede Achse erhält einen Wert und eine Sicherheit. Wo deine Antworten in verschiedene Richtungen ziehen, sagt es das Ergebnis."
+        },
+        "explore": {
+          "title": "Entdecken und verfolgen",
+          "body": "Vergleiche dich mit Ideologien, Ländern, Persönlichkeiten und Parteien und sieh, wie sich deine Ansichten mit der Zeit bewegen."
+        }
+      }
+    },
+    "axes": {
+      "kicker": "Die 12 Achsen",
+      "title": "Zwölf unabhängige Achsen",
+      "lead": "Jede Achse wird für sich gemessen. Während des Tests siehst du nie, zu welcher Achse eine Aussage gehört; das zeigt erst das Ergebnis.",
+      "code": "Code",
+      "axis": "Achse",
+      "scale": "Skala von −100 bis +100"
+    },
+    "index": {
+      "kicker": "Register",
+      "title": "Register der Ideologien",
+      "lead": "Alle {count} bisherigen Einträge im Katalog, von A bis Z, jeweils mit Spektrum. Ganze Seiten folgen mit dem Katalog.",
+      "counts": "Einträge pro Spektrum"
+    },
+    "privacy": {
+      "kicker": "04 / Datenschutz",
+      "statement": "Deine Antworten bleiben in deinem Browser.",
+      "body": "Kein Konto, kein Tracking, keine Werbung. Nichts erreicht einen Server, außer du wählst die verschlüsselte Synchronisierung.",
+      "link": "So werden deine Daten behandelt"
+    }
   },
   "stub": {
     "phaseNote": "Diese Seite folgt in Phase {phase} der Entwicklung.",
@@ -220,20 +283,16 @@
   },
   "styleguide": {
     "title": "Styleguide",
-    "lead": "Alle Komponenten und Zustände in beiden Modi, für die Designprüfung. Diese Seite ist nicht verlinkt und nicht indexiert.",
-    "modeSwitch": "Ganze Seite",
+    "lead": "Alle Komponenten und Zustände in beiden Modi, für die Designprüfung. Hover-Zustände sind auch fixiert gezeigt, damit man sie ohne Zeiger prüfen kann.",
     "light": "Heller Modus",
     "dark": "Dunkler Modus",
     "dataTable": "Datentabelle anzeigen",
     "sections": {
-      "type": "Palette und Schrift",
+      "type": "Palette, Schrift und Bewegung",
       "buttons": "Schaltflächen",
       "inputs": "Eingaben",
-      "answer": "Antwortoptionen",
-      "cells": "Zellen und Abschnittstitel",
-      "table": "Linierte Tabellen",
+      "cells": "Zellen, Titel und Tabellen",
       "nav": "Navigation und Tabs",
-      "toggle": "Schalter",
       "sliders": "Schieberegler und Achsenbalken",
       "overlays": "Tooltip und Dialog",
       "legend": "Legenden",
@@ -241,7 +300,11 @@
       "radar": "Radar",
       "compass": "Kompass-Kodierung",
       "web": "Netzansicht",
-      "images": "Bilder und Zeichen"
+      "images": "Bilder und Zeichen",
+      "links": "Links",
+      "segmented": "Segmentierte Auswahl",
+      "modes": "Modus-Zeilen",
+      "answers": "Antwortzeilen"
     },
     "palette": {
       "note": "Zwei Farben, die zwischen den Modi tauschen. Keine Grautöne, Akzente, Verläufe, Schatten, Transparenz, Unschärfe oder runden Ecken. Ein CI-Check weist jede andere Farbe zurück."
@@ -252,19 +315,22 @@
       "mono": "Oberfläche, Labels und Zahlen: IBM Plex Mono",
       "numeral": "Übereinstimmung in Prozent",
       "sampleHeadline": "Wo würdest du die Linie ziehen?",
-      "sampleBody": "Jede Achse wird für sich gemessen. Eine Position auf der einen sagt nichts über die anderen – genau deshalb beschreiben zwölf Linien einen Menschen besser als eine."
+      "sampleBody": "Jede Achse wird für sich gemessen. Eine Position auf der einen sagt nichts über die anderen – genau deshalb beschreiben zwölf Linien einen Menschen besser als eine.",
+      "motion": "Token für Bewegung und Form"
     },
     "buttons": {
-      "note": "Hover und Druck vertauschen Tinte und Papier. Fokus ist ein 3-px-Rahmen mit 3 px Abstand. Deaktiviert ist ein gestrichelter Rahmen.",
-      "order": "Standard · Hover oder Druck · Fokus · deaktiviert",
+      "note": "Beim Hover wischt die Gegenfarbe von links herein, das Label wechselt mit; der Pfeil rollt. Druck skaliert auf 98 % und federt zurück. Fokus ist ein 2-px-Ring mit 3 px Abstand. Deaktiviert ist gestrichelt.",
+      "order": "Ruhe · Hover (fixiert) · deaktiviert",
       "primary": "Primär",
       "secondary": "Sekundär",
       "text": "Text",
       "primaryText": "Starten",
       "secondaryText": "Vergleichen",
       "textText": "Mehr lesen",
-      "link": "Link im Text",
-      "linkSentence": "Links sind immer unterstrichen, wie <link>dieser hier</link>, und kehren sich beim Hover um."
+      "sizes": "Größen",
+      "live": "Ausprobieren",
+      "save": "Ergebnis speichern",
+      "sync": "Jetzt synchronisieren"
     },
     "inputs": {
       "note": "Labels stehen über den Feldern. Fehler werden ausgeschrieben und verstärken den Rahmen; Farbe trägt nie Bedeutung.",
@@ -277,18 +343,17 @@
       "checked": "Gewählte Option"
     },
     "answer": {
-      "note": "Fünf linierte Zellen und ein separates Überspringen. Die gewählte Antwort ist invertiert und mit [X] markiert; Hover invertiert ebenfalls. Die Tasten 1–5 antworten.",
+      "note": "Zeilen über die volle Breite. Druck wischt die Zeile herein; die gewählte Zeile bleibt invertiert, ihr [X] zeichnet sich ein. Tasten 1–5 erscheinen am Desktop. Mit automatischem Weitergehen wartet der Test 180 ms, damit die Wahl sichtbar wird.",
       "selected": "Eine Antwort gewählt",
       "skipped": "Übersprungen"
     },
     "cells": {
-      "note": "Abschnitte sind gerahmte Zellen in einem 12-Spalten-Raster. Benachbarte Zellen teilen sich eine 2-px-Linie.",
+      "note": "Struktur nutzt 2-px-Linien, dichte Daten 1 px. Abschnitte sind Zellen in einem 12-Spalten-Raster; Tabellen sind liniert, Zahlen rechtsbündig mit Tabellenziffern, Länder als ISO-Codes.",
       "sampleTitle": "Ein nummerierter Abschnitt",
       "cellTitle": "Zelle",
       "cellBody": "Inhalte stehen in linierten Zellen statt in schwebenden Karten."
     },
     "table": {
-      "note": "2-px-Rahmen und Kopflinie, 1-px-Haarlinien. Zahlen stehen rechtsbündig mit Tabellenziffern. Länder erscheinen als ISO-Codes, nie als Flaggen.",
       "caption": "Beispiel: sechs Anker-Ideologien",
       "name": "Name",
       "spectrum": "Spektrum",
@@ -300,7 +365,7 @@
       "fr": "Frankreich"
     },
     "nav": {
-      "note": "Die aktuelle Seite ist invertiert und steht in Klammern. Tabs folgen derselben Regel und reagieren auf die Pfeiltasten.",
+      "note": "Hover zieht eine Unterstreichung; der aktuelle Bereich hat einen Balken, der beim Seitenwechsel gleitet, dazu Klammern. Auf dem Handy öffnet sich das Menü als vollflächiges, invertiertes Blatt in großer Schrift.",
       "header": "Zellen der Kopfzeile",
       "tabs": "Tabs",
       "tabsLabel": "Ergebnisansichten",
@@ -309,23 +374,23 @@
       "tabMap": "Karte",
       "panelAxes": "Zwölf Balken, einer pro Achse.",
       "panelRadar": "Alle zwölf Achsen in einer Form.",
-      "panelMap": "Die Gesamtkarte des politischen Raums."
+      "panelMap": "Die Gesamtkarte des politischen Raums.",
+      "sheet": "Das mobile Menü erscheint, wenn du das Fenster schmal ziehst und MENÜ drückst; es funktioniert ohne JavaScript."
     },
     "toggle": {
-      "note": "Das aktive Wort ist invertiert. Der Designschalter in der Kopfzeile funktioniert genauso.",
       "advance": "Automatisch weiter",
-      "labels": "Achsennamen zeigen",
       "disabled": "Nicht verfügbar",
       "on": "Ein",
       "off": "Aus"
     },
     "sliders": {
-      "note": "Schwarze Balken auf linierten Spuren mit Strichen alle 10 Punkte. Die Klammer darüber zeigt den Unsicherheitsbereich. Der Regler ist ein voller Block.",
+      "note": "Schwarze Balken auf linierten Spuren mit Strichen alle 10 Punkte; Unsicherheit als Haarlinien-Klammer oder schraffiertes Band. Der Regler wächst beim Ziehen, und eine gerahmte Anzeige folgt ihm.",
       "bar": "{axis}: {score}, Richtung {pole}, wahrscheinlich zwischen {low} und {high}",
-      "disabled": "Deaktivierter Regler"
+      "disabled": "Deaktivierter Regler",
+      "snap": "Rastet an Strichen ein"
     },
     "overlays": {
-      "note": "Beide öffnen sofort. Der Dialog ist ein natives Dialogfenster über einem Punktraster; Escape schließt ihn.",
+      "note": "Der Tooltip öffnet sich nach 300 ms Hover, sofort bei Fokus oder Tippen, und erscheint in 120 ms. Der Dialog ist ein natives Dialogfenster über einem Punktraster; Escape schließt ihn.",
       "tooltipLabel": "Was diese Achse misst",
       "open": "Dialog öffnen",
       "modalTitle": "Zu dieser Aussage",
@@ -344,7 +409,8 @@
       "halftone": "Raster: größere Punkte, mehr Ideologien in der Nähe",
       "you": "Du: Die Kreisgröße zeigt die Unsicherheit, das Fadenkreuz markiert den Punkt",
       "ghost": "Geistervergleich: ein hohler, gestrichelter Umriss",
-      "selected": "Gewählter Knoten: invertiert"
+      "selected": "Gewählter Knoten: invertiert",
+      "dither": "Geordnetes Dithering: das Band unter der fixierten Kopfzeile"
     },
     "strip": {
       "note": "Zwölf zweistellige Achsencodes, nach Bereich gruppiert.",
@@ -381,6 +447,84 @@
       "glyphsNote": "Jeder Katalogeintrag erhält ein symmetrisches 5×5-Muster aus seiner ID: eigenständig, ohne Symbole, ohne Gesichter.",
       "flags": "Länder",
       "flagsNote": "Keine Flaggen. Länder werden im Text benannt und codiert, z. B. CH, DE, FR."
+    },
+    "kicker": "Intern · nicht indexiert",
+    "pages": {
+      "buttons": "Matrix der Schaltflächen",
+      "screens": "App-Bildschirme",
+      "home-a": "Startseite A: Spezimen",
+      "home-b": "Startseite B: typografisch"
+    },
+    "controls": {
+      "label": "Stil der Bedienelemente",
+      "sharp": "Eckig",
+      "pill": "Pille",
+      "offset": "Versatz",
+      "note": "Der Stil gilt für die ganze Website und wird in diesem Browser gespeichert, nur zur Prüfung. Eckig ist der Standard, bis eine Wahl getroffen ist."
+    },
+    "links": {
+      "note": "Links sind in Ruhe unterstrichen, weil Farbe sie nicht abheben kann; beim Hover zieht sich von links eine 2-px-Linie ein. Links nach außen tragen einen kleinen Pfeil.",
+      "sentence": "Ein Link im Fließtext sieht so aus wie <link>dieser hier</link>.",
+      "internal": "Zur Methode",
+      "external": "Quellcode auf GitHub"
+    },
+    "segmented": {
+      "note": "Ein Bedienelement für Sprache, Design, Testlänge und Achsenwahl: gleich breite Segmente und ein invertierter Anzeiger, der zwischen ihnen gleitet. Pfeiltasten verschieben die Auswahl.",
+      "mode": "Testlänge",
+      "axis": "Achsenwahl",
+      "map": "Karte",
+      "switch": "Schalter"
+    },
+    "modes": {
+      "note": "Jeder Modus ist ein Link über die ganze Zeile. Beim Hover wischt die Zeile ins Inverse, STARTEN gleitet herein und der Pfeil rollt (im hellen Rahmen auf Schnell fixiert). Vertieft ist gestrichelt und noch nicht anklickbar."
+    },
+    "matrix": {
+      "kicker": "Styleguide",
+      "title": "Matrix der Schaltflächen",
+      "lead": "Jede Variante, Größe und jeder Zustand, Hover und Druck fixiert. Wechsle den Stil, um eckig, Pille und Versatz zu vergleichen.",
+      "size": "Größe",
+      "sizes": {
+        "s": "S · 36",
+        "m": "M · 44",
+        "l": "L · 56"
+      },
+      "states": {
+        "rest": "Ruhe",
+        "hover": "Hover",
+        "focus": "Fokus",
+        "active": "Gedrückt",
+        "loading": "Lädt",
+        "success": "Erfolg",
+        "error": "Fehler",
+        "disabled": "Deaktiviert"
+      },
+      "loadingLabel": "Wird gespeichert",
+      "successLabel": "Gespeichert",
+      "errorLabel": "Fehlgeschlagen, erneut versuchen"
+    },
+    "home": {
+      "lead": "Variante der Startseite zur Designprüfung.",
+      "specimen": "Startseite A: Spezimen",
+      "typographic": "Startseite B: typografisch"
+    },
+    "screens": {
+      "kicker": "Styleguide",
+      "title": "App-Bildschirme",
+      "lead": "Jetzt gestaltet, in ihren Phasen gebaut: der Testbildschirm (Phase 3) und das Ergebnisplakat, das zugleich die Teilen-Karte ist.",
+      "test": "Testbildschirm",
+      "questionOf": "Frage {n} von {count}",
+      "mode": "Standard",
+      "progress": "Fortschritt im Test",
+      "back": "Zurück",
+      "explain": "Was heißt das?",
+      "result": "Ergebnisplakat",
+      "posterLabel": "Ergebnisplakat, Beispiel",
+      "posterHead": "Spectrum · Ergebnis · 12 Achsen",
+      "example": "Beispieldaten",
+      "match": "Größte Nähe",
+      "bar": "{axis}: {score}, Richtung {pole}, wahrscheinlich zwischen {low} und {high}",
+      "posterFoot": "spectrum-six-rho.vercel.app",
+      "legend": "Balken: Wert · schraffiertes Band: wahrscheinlicher Bereich"
     }
   }
 }

@@ -1,49 +1,171 @@
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
+import { CheckGlyph, ExternalGlyph, RollingArrow } from "./icons";
 
 export type ButtonVariant = "primary" | "secondary" | "text";
+export type ButtonSize = "s" | "m" | "l";
+export type ButtonStatus = "loading" | "success" | "error";
+/** Pins a pointer state so the styleguide can show it without a pointer. */
+export type PinnedState = "hover" | "active";
 
-const BASE =
-  "label inline-flex min-h-11 items-center justify-center gap-2 border-2 px-4 py-2 text-center no-underline select-none";
+interface ButtonLook {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  /** Show the rolling arrow after the label. */
+  arrow?: boolean;
+  /** Keyboard hint such as "1", shown where a keyboard is likely. */
+  keycap?: string;
+  status?: ButtonStatus;
+  /** Words for success or error ("Saved", "Failed, retry"); never colour. */
+  statusLabel?: string;
+  /** Spoken while loading; the visible label keeps its place. */
+  loadingLabel?: string;
+  state?: PinnedState;
+  disabled?: boolean;
+  children: ReactNode;
+}
 
-/** Hover and press invert ink and paper; disabled is a dashed border with no inversion. */
-const VARIANTS: Record<ButtonVariant, { rest: string; inverted: string }> = {
-  primary: {
-    rest: "border-ink bg-ink text-paper hover:bg-paper hover:text-ink active:bg-paper active:text-ink",
-    inverted: "border-ink bg-paper text-ink",
-  },
-  secondary: {
-    rest: "border-ink bg-paper text-ink hover:bg-ink hover:text-paper active:bg-ink active:text-paper",
-    inverted: "border-ink bg-ink text-paper",
-  },
-  text: {
-    rest: "border-transparent px-1 underline decoration-2 underline-offset-4 hover:bg-ink hover:text-paper active:bg-ink active:text-paper",
-    inverted: "border-transparent bg-ink px-1 text-paper underline decoration-2 underline-offset-4",
-  },
-};
+function Content({ arrow, keycap, status, statusLabel, children }: ButtonLook) {
+  const showStatus = status === "success" || status === "error";
+  return (
+    <span className="btn-content inline-flex items-center gap-2.5">
+      {keycap ? (
+        <kbd className="keycap" aria-hidden="true">
+          {keycap}
+        </kbd>
+      ) : null}
+      {status === "success" ? <CheckGlyph className="btn-check" /> : null}
+      <span className="btn-label">{showStatus ? statusLabel : children}</span>
+      {arrow && !showStatus ? <RollingArrow /> : null}
+    </span>
+  );
+}
 
-const DISABLED =
-  "disabled:cursor-not-allowed disabled:border-dashed disabled:border-ink disabled:bg-paper disabled:text-ink disabled:hover:bg-paper disabled:hover:text-ink";
+/**
+ * The face is rendered twice: once at rest and once, aria-hidden, in the
+ * inverted colours that wipe in on hover. Label and fill flip in the same frame.
+ */
+function Faces(look: ButtonLook) {
+  return (
+    <>
+      <span className="btn-face">
+        <Content {...look} />
+        {look.status === "loading" ? (
+          <>
+            <span className="btn-ticks" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+            {look.loadingLabel ? <span className="sr-only">{look.loadingLabel}</span> : null}
+          </>
+        ) : null}
+      </span>
+      <span className="btn-face wipe" aria-hidden="true">
+        <Content {...look} />
+      </span>
+    </>
+  );
+}
 
-/** `inverted` pins the hover look, so the styleguide can show it without a pointer. */
-export const buttonClass = (variant: ButtonVariant = "primary", inverted = false) =>
-  `${BASE} ${inverted ? VARIANTS[variant].inverted : VARIANTS[variant].rest} ${DISABLED}`;
+function hostProps(look: ButtonLook, className = "") {
+  return {
+    className: `btn wipe-host ${className}`,
+    "data-variant": look.variant ?? "primary",
+    "data-size": look.size ?? "m",
+    "data-state": look.state,
+    "data-status": look.status,
+    "aria-disabled": look.disabled ? true : undefined,
+    "aria-busy": look.status === "loading" ? true : undefined,
+  } as const;
+}
+
+type NativeButton = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children" | "disabled">;
+
+/**
+ * Button: primary (ink fill), secondary (paper fill, 1.5px frame) or text
+ * (underline draws in). Sizes S 36 / M 44 / L 56px. Disabled uses
+ * aria-disabled, so callers ignore clicks while it is set.
+ */
+export function Button({
+  variant,
+  size,
+  arrow,
+  keycap,
+  status,
+  statusLabel,
+  loadingLabel,
+  state,
+  disabled,
+  className,
+  children,
+  type = "button",
+  ...rest
+}: ButtonLook & NativeButton) {
+  const look = {
+    variant,
+    size,
+    arrow,
+    keycap,
+    status,
+    statusLabel,
+    loadingLabel,
+    state,
+    disabled,
+    children,
+  };
+  return (
+    <button type={type} {...rest} {...hostProps(look, className)}>
+      <Faces {...look} />
+    </button>
+  );
+}
 
 type Href = React.ComponentProps<typeof Link>["href"];
 
+/** A link that looks like a button (internal routes). */
 export function ButtonLink({
   href,
-  variant = "primary",
-  children,
-  className = "",
-}: {
-  href: Href;
-  variant?: ButtonVariant;
-  children: React.ReactNode;
-  className?: string;
-}) {
+  className,
+  ...look
+}: ButtonLook & { href: Href; className?: string }) {
   return (
-    <Link href={href} className={`${buttonClass(variant)} ${className}`}>
-      {children}
+    <Link href={href} {...hostProps(look, className)}>
+      <Faces {...look} />
     </Link>
+  );
+}
+
+/** A plain anchor in button form; external targets get the small arrow. */
+export function ButtonAnchor({
+  className,
+  external,
+  ...props
+}: ButtonLook &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "children"> & { external?: boolean }) {
+  const {
+    variant,
+    size,
+    arrow,
+    keycap,
+    status,
+    statusLabel,
+    loadingLabel,
+    state,
+    disabled,
+    children,
+    ...rest
+  } = props;
+  const look = { variant, size, arrow, keycap, status, statusLabel, loadingLabel, state, disabled };
+  const label = (
+    <>
+      {children}
+      {external ? <ExternalGlyph /> : null}
+    </>
+  );
+  return (
+    <a {...rest} {...hostProps({ ...look, children: label }, className)}>
+      <Faces {...look}>{label}</Faces>
+    </a>
   );
 }

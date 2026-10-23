@@ -76,6 +76,25 @@ strictly black-and-white design. Everything else in the spec stays.
 | Landing | sentence + lead + dial graphic, mode cards, axes overview, "how it works", promises band | one screen: wordmark, one sentence, the mode table; the other sections moved to /method | D-079 |
 | Design page | `/design-system` | `/styleguide` (noindex, unlinked): every component and state in both modes side by side | D-079 |
 
+
+## 0d. Design V2 (2026-10-23)
+
+The owner kept the black-and-white system (tokens, fonts, modes, palette guard)
+and asked for modern brutalist pages with refined interaction. This revises
+three rules of the reset.
+
+| Area | Design reset (D-079) | Design V2 | Entries |
+|---|---|---|---|
+| Motion | none; instant inverts | a token-based interaction system: wipes, arrow rolls, springs, sliding indicators; transform and clip-path only; instant under reduced motion | D-080 |
+| Radius | zero everywhere | `--radius-control` (0 or 999px) for controls only, in three switchable styles: sharp, pill, offset | D-080 |
+| Focus ring | 3px at 3px | 2px at 3px, flipped inside inverted bands | D-080 |
+| Landing | one screen: wordmark, sentence, mode table | full home page: hero with headline, mode rows and a live hero field; stat strip; 01 how it works; 02 the 12 axes; 03 index; privacy band; footer wordmark | D-081 |
+| Mode table | table with a START label in the corner | whole-row links that wipe to inverted | D-080 |
+| Answer options | five cells | five full-width rows with keycaps and an "[X]" that draws in | D-080 |
+| Header | ruled row of cells | sticky, 1px rule, an ordered-dither band on scroll; segmented EN/DE/FR and LIGHT/DARK; a full-screen inverted sheet on phones | D-080 |
+| Structure | boxes everywhere, 2px | less boxing, more air: 2px for structure, 1px for dense data, 8px spacing grid, sections padded `clamp(64px, 10vw, 160px)` | D-080 |
+| Review | `/styleguide` | plus `/styleguide/buttons` (state matrix), `/styleguide/screens` (test screen, result poster), `/styleguide/home-a` and `/home-b`, captures in `docs/design/` | D-081 |
+
 ---
 
 ## A. Project & stack
@@ -648,7 +667,9 @@ rejects:
 
 Its unit test proves the previous design would fail. A runtime audit in the e2e suite checks
 every rendered element and pseudo-element in both modes. Dithered photos are exempt by
-construction.
+construction. Since D-080, transient mid-animation blends are fine (a wipe is half ink, half
+paper for 220ms); every resting state is pure ink or paper, and the radius rule allows exactly
+`var(--radius-control)`.
 **Why:** owner's design reset. WCAG AA contrast is now 21:1 everywhere.
 
 **D-076 · 🟢 · Fonts (supersedes D-058).** **Archivo** (Omnibus-Type, variable 100–900) for display
@@ -695,7 +716,9 @@ frame, with author, licence and a source link always visible underneath. Licence
 portrait (John Stuart Mill, London Stereoscopic Company, c. 1870) used on the styleguide. Entry
 avatars are generated glyphs (D-033).
 
-**D-079 · ✅/🟢 · Brutalist rules, states and pages.**
+**D-079 · ✅/🟢 · Brutalist rules, states and pages.** *Revised by D-080/D-081 (2026-10-23): the
+"no motion", "zero radius everywhere" and "one-screen landing" rules no longer hold; the focus
+ring is now 2px.*
 - **Form:** zero radius, zero shadow, 2px solid borders (1px hairlines for dense data), a strict
   12-column grid, sections as bordered cells that share one rule, numbered section headers
   ("01"), ruled tables.
@@ -724,10 +747,140 @@ avatars are generated glyphs (D-033).
   legends and static previews of the compass and web view on the anchor catalog. The localized
   slugs are `/styleguide` (EN, DE) and `/guide-de-style` (FR).
 
+
+**D-080 · ✅/🟢 · Interaction system and control styles (Design V2).**
+- **Tokens:** `--ease-out` cubic-bezier(0.22, 1, 0.36, 1); `--ease-spring` as `linear()` with at
+  most 3% overshoot (falls back to `--ease-out`); `--dur-fast` 120ms, `--dur` 220ms,
+  `--dur-slow` 360ms (large surfaces only). Only transform and clip-path animate; no animation
+  library. With `prefers-reduced-motion` every duration token is 0s, so wipes become instant
+  inverts and drift, sweeps and springs stop. Forced colours keep the text markers plus a
+  system-colour outline.
+- **Hover** exists only under `(hover: hover) and (pointer: fine)`; Tailwind's `hover:` variant
+  is redefined to match. Touch gets `:active` only; nothing essential is hover-only (on touch the
+  mode rows spell out START).
+- **The wipe:** each interactive host carries an aria-hidden copy of its own content in
+  inverted colours, revealed left to right with clip-path. Fill and label flip in the same
+  frame, so there is never an unreadable one. Used by buttons, mode rows and answer rows.
+- **Buttons:** labels in mono caps with 0.08em tracking. Optional rolling arrow (1.5px stroke)
+  and keycap hint. Sizes S 36 / M 44 / L 56; S keeps a 44px touch target with an invisible
+  margin. Variants:
+  - primary: ink fill
+  - secondary: paper fill and a 1.5px frame
+  - text: the underline draws in over 160ms
+
+  States:
+  - hover: wipe plus arrow roll
+  - press: scale(0.98), released with the spring
+  - focus: 2px ring at 3px
+  - loading: three stepped ticks at fixed width, `aria-busy`; the label keeps its place and
+    name
+  - success: a checkmark draws in over 240ms
+  - error: words only ("FAILED, RETRY")
+  - disabled: dashed and `aria-disabled`, no hover or press
+- **Control styles** via `data-controls` on `<html>`. The inline script sets it before paint from
+  a review-only localStorage key, and the styleguide offers the "[ SHARP / PILL / OFFSET ]"
+  switch:
+  - **sharp** (default): radius 0
+  - **pill**: `--radius-control: 999px` for buttons, segmented controls, tags and inputs; rows,
+    cells, tables and graphics stay square
+  - **offset**: radius 0 plus a solid 4px ink block behind (a pseudo-element, no blur); hover
+    lifts 1px, press moves the button into its shadow
+
+  Mixing styles on one screen is not possible, since there is one attribute. Once the owner
+  picks one, the switch and the key are removed.
+- **Segmented control** (theme, test length, axis picker, the on/off switch): equal segments
+  and an inverted copy of the labels clipped to the selected segment, which slides with
+  clip-path. Radiogroup semantics, roving focus, arrow keys. EN/DE/FR uses the same look but
+  stays a set of links with `aria-current`, because changing language is navigation, not a
+  form choice.
+- **Navigation:** the underline draws in on hover; the current section has a bar that slides
+  between items (transform only) plus brackets. On phones a native popover gives a full-screen
+  inverted sheet in display type, items arriving in 40ms steps. It works without JavaScript.
+- **Header:** sticky, solid paper, a 1px rule. An 8px ordered-dither band (8×8 Bayer, dense to
+  empty) appears once the page has scrolled, in place of a shadow or blur.
+- **Rows:**
+  - Mode rows are whole-row links, at least 72px tall: wipe, START slides in, arrow rolls.
+    Standard carries a permanent inverted RECOMMENDED tag; Deep is dashed, says "opens soon"
+    and has no hover.
+  - Answer rows are full-width: press wipes, the chosen row stays inverted and its "[X]" draws
+    in over 120ms. Keycaps 1–5 show on desktop; auto-advance waits `ADVANCE_DELAY_MS` = 180.
+  - Only clickable rows and cards have hover effects. The axes table rows qualify, because they
+    reveal what the axis measures.
+- **Sliders:** a ruled track with ticks, a thumb that grows while dragged, a bordered readout
+  that follows it, arrow keys, optional snap to ticks (10 points).
+- **Links:** underlined at rest (colour cannot set them apart); a 2px rule draws in on hover;
+  external links get a small arrow. **Tooltips:** 300ms hover delay, 120ms entrance, at once on
+  focus or tap, Escape closes. They are `display: none` when closed, so they never widen the
+  page, and are shifted to stay in the viewport.
+- **Structure:** 2px rules for structure, 1px for dense data and the sticky header. An 8px
+  spacing grid, sections padded `clamp(64px, 10vw, 160px)`, borders not nested inside
+  components, a rotated running head in the left margin on wide screens, nothing below 12px.
+- **Not built:**
+  - **View transitions:** optional. Next's client-side navigation would need an experimental
+    flag, which is not worth it for ≤ 160ms.
+  - **The ideology ticker:** optional, and it would duplicate the index.
+
+**D-081 · 🟢 · Home page and app screens (Design V2, for review).**
+- **Composition:**
+  1. header
+  2. hero: headline, one-sentence subline, mode rows, hero field
+  3. stat strip, counted from the data at build time: 12 axes, N ideologies, 36/72/144
+     questions, 0 accounts
+  4. "01 / How it works": giant numerals 1–2–3 and small 1-bit diagrams
+  5. "02 / The 12 axes" on an inverted band: a ruled table of code, name, poles and a tick
+     scale; hover or focus shows what the axis measures
+  6. "03 / Index of ideologies": book-style index with dotted leaders, shapes and codes, plus
+     counts per spectrum
+  7. an inverted privacy band in display type
+  8. footer: three ruled columns, then the wordmark across the full width, cropped at the
+     bottom
+- **Two variants** for the owner to choose between, both responding to the control-style
+  switch. The current `/` keeps the reset's landing (with mode rows) until the choice.
+  - `/styleguide/home-a` "specimen": headline and modes on 5 columns, the field on 7 columns
+    and two rows
+  - `/styleguide/home-b` "typographic": the headline up to ~11vw across the grid, modes on 7
+    columns, the field a smaller figure on 5
+
+  On phones both run headline, field, modes. Headline tracking is −0.02em at weight 800 with
+  0.92 leading; no glyph collisions at 390, 768, 1440 or 1920px.
+- **Hero field (FIG. 01):**
+  - **Data:** the real catalog on the overall map. `lib/catalog/map.ts` is the one PCA used by
+    both build-derived and the field, and `derived.json` stayed byte-identical. One scale for
+    both components, so distances are honest.
+  - **Drawing:** halftone density from a Gaussian kernel; spectrum markers drawn on paper
+    knock-outs; crop marks and rulers; the caption "FIG. 01 — CATALOG, N ENTRIES" and the
+    variance share. Marker size, kernel width and label count scale with N.
+  - **Labels:** placed greedily without collisions; five majors fit a phone, minors appear only
+    on wide figures.
+  - **Server render:** a complete SVG, so it works without JavaScript and never blocks LCP.
+  - **Live layer** (1.9 KB gzipped):
+    - deterministic stepped drift at 10 fps (zero at frame 0, so the server picture is the
+      first frame)
+    - paused off screen or in a background tab, static with reduced motion
+    - a crosshair snapping to the nearest ideology, with a mono readout (name, code, PC1, PC2)
+    - click or tap to jump to the index entry, until entry pages exist (Phase 5)
+    - arrow keys and Enter for keyboard users, with a live region
+
+    A "View as list" disclosure lists every entry.
+- **App screens, designed now** (`/styleguide/screens`):
+  - **Test screen (Phase 3):** a huge question number; the statement in display type; answer
+    rows; progress as one tick per question.
+  - **Result poster:** a giant match numeral; the ideology in display type; spectrum shape,
+    code and family; 12 ruled axis rows with black bars and a hatched uncertainty band. It
+    doubles as the share card (Phase 8).
+
+  Dashboard and compass reuse the halftone and dashed dated trail from D-077.
+- **Captures:** `npm run design:capture` writes 16 full-page screenshots and three WebM
+  recordings, one per control style, to `docs/design/`.
+- **Measured** (local production build, mobile Lighthouse):
+  - home A: performance 99, accessibility 100, best practices 100, CLS 0
+  - home B: performance 97, accessibility 100, best practices 100, CLS 0
+
 ## H. Open items
 
-- Owner's design review of the black-and-white reset on `/styleguide` (D-075–D-079); Phase 3
-  starts after it.
+- **Owner's choice (blocks Phase 3):** home variant A (specimen) or B (typographic), and control
+  style sharp, pill or offset (D-080, D-081). Then the winner moves to `/`, the style is fixed
+  and the review switch is removed.
 - Final domain (before Phase 7).
 - Optional: rewrite the first commit's author field (machine-local address) — needs a force push
   of `main`; owner's call.

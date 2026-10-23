@@ -30,6 +30,8 @@ describe("palette guard", () => {
     expect(checkCss(".a { opacity: 0.5; }")).toHaveLength(1);
     expect(checkCss(".a { backdrop-filter: blur(4px); }")).toHaveLength(1);
     expect(checkCss(".a { box-shadow: none; border-radius: 0; opacity: 1; }")).toEqual([]);
+    expect(checkCss(".btn { border-radius: var(--radius-control); }")).toEqual([]);
+    expect(checkCss(".btn { border-radius: var(--radius-big); }")).toHaveLength(1);
   });
 
   it("ignores comments and property names that contain colour words", () => {

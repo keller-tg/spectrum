@@ -21,6 +21,7 @@ export function AxisBar({
   interval,
   locale,
   description,
+  band = "bracket",
 }: {
   axis: AxisId;
   value: number;
@@ -28,6 +29,8 @@ export function AxisBar({
   locale: Locale;
   /** Spoken version of the bar, e.g. "Distribution: +42, toward Markets". */
   description: string;
+  /** How the uncertainty range is drawn: a hairline bracket or a hatched band. */
+  band?: "bracket" | "hatch";
 }) {
   const def = AXES[axis];
   const from = Math.min(0, value);
@@ -63,7 +66,17 @@ export function AxisBar({
           className="absolute inset-y-1 w-[3px] -translate-x-1/2 bg-ink"
           style={{ left: `${pct(value)}%` }}
         />
-        {interval ? (
+        {interval && band === "hatch" ? (
+          <span
+            aria-hidden="true"
+            className="hatch absolute inset-y-1.5"
+            style={{
+              left: `${pct(interval[0])}%`,
+              width: `${pct(interval[1]) - pct(interval[0])}%`,
+            }}
+          />
+        ) : null}
+        {interval && band === "bracket" ? (
           <span
             aria-hidden="true"
             className="absolute top-0 h-2 border-x border-t border-ink"

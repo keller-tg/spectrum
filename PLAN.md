@@ -8,8 +8,9 @@ Source of truth: **Master spec v2** (2026-10-21). Every choice and its status is
 [DECISIONS.md](DECISIONS.md), whose first section lists what changed from v1.
 
 Status: Phase 0 ✅ · Phase 1 ✅ · Phase 2 ✅ (engine, schemas, 72 EN questions, 53 anchor ideologies,
-calibration; question revision 2 approved 2026-10-23) · **Design reset ✅ (black and white, §13).
-Stopped for the owner's design review on `/styleguide`; Phase 3 starts after approval.**
+calibration; question revision 2 approved 2026-10-23) · Design reset ✅ · **Design V2 ✅ (§13).
+Stopped for the owner's choice of home variant (A specimen / B typographic) and control style
+(sharp / pill / offset); Phase 3 starts after it.**
 ---
 
 ## 1. Principles
@@ -488,37 +489,54 @@ Phase 2 already adds **~40 stub ideologies** (coordinates and metadata, no pages
 anchors across all 9 spectra, including parent/child variants. They become full Tier A entries in
 Phase 5.
 
-## 13. Design (reset 2026-10-23, D-075–D-079)
+## 13. Design (reset 2026-10-23, V2 the same day; D-075–D-081)
 
-Minimalist, brutalist, strictly black and white. This replaces the Phase 1 look (cream paper,
-deep green, one deep-red accent, a display serif, per-spectrum tints, playful micro-interactions,
-rounded cards). **Removed, and why:** the owner asked for a strictly two-colour design. Every
-greyscale step, tint, shadow, blur and soft corner was another colour or effect to keep apart in
-two modes. The spectrum tints and the accent carried meaning by colour alone, which the new
-encodings carry by shape, pattern and words. The playful motion did not fit the new tone.
-DECISIONS §0c lists each removed piece with its replacement.
+"Technical specimen sheet meets Swiss poster": strictly black and white, a visible 12-column
+grid, extreme scale contrast, small mono annotations, one living data figure and carefully
+built controls.
 
-- **Palette:** `--ink` and `--paper` only (black on white; white on black in dark mode). Mode
-  follows the system, the "[ LIGHT / DARK ]" toggle is stored in localStorage, an inline script
-  sets it before paint, theme-color covers both modes, forced colours are respected, print is
-  always ink on white. Enforced by `check-palette` (script + CI) and a runtime e2e audit.
-- **Form:** zero radius and shadow, 2px rules (1px hairlines for dense data), a 12-column grid,
-  sections as bordered cells, numbered section headers, ruled tables.
-- **Type:** Archivo heavy for display headings (tight leading), Archivo regular for running text
-  (≥ 16 px, ~65ch, line-height 1.6), IBM Plex Mono for UI, small uppercase labels and all
-  numbers; huge mono numerals for match percentages. Self-hosted.
-- **States:** hover and press invert; selected = inverted + "[X]" or brackets; disabled = dashed;
-  focus = 3px outline at 3px offset; links underlined; errors and success in words.
-- **Motion:** none. Functional animation only, with a static reduced-motion fallback.
-- **Without colour:** spectrum shapes + codes with a legend; axis codes; the strip's
-  filled/empty squares; halftone density; solid vs dashed lines; hatched vs empty fills; inverted
-  selection. Every chart has a data-table alternative.
-- **Images:** 1-bit dither at build, attribution visible; generated glyphs instead of avatars;
-  ISO codes instead of flags. Share cards, PDF and print are black and white too.
-- **Landing:** one screen: wordmark, one sentence, the three modes as a ruled table. The axes
-  overview, "how it works" and the promises live on /method.
-- **`/styleguide`** (noindex, unlinked) shows every component and state in both modes side by
-  side, plus the shape and pattern legends, for design review.
+**History.** The Phase 1 look was cream paper, deep green, a deep-red accent, a display serif,
+per-spectrum tints, playful motion and rounded cards. The owner replaced it with a strict
+two-colour design: every grey, tint, shadow, blur and soft corner was another colour or effect,
+and tints carried meaning by colour alone (DECISIONS §0c). Design V2 then kept the two colours
+but brought back motion as a disciplined interaction system, made corners a control-only token
+in three styles, and replaced the one-screen landing with a full home page (DECISIONS §0d).
+
+- **Palette:** `--ink` and `--paper` only (black on white; white on black in dark mode);
+  inverted bands flip the tokens relative to the nearest theme. Depth comes only from 1-bit
+  techniques: halftone, hatching, ordered dither. Resting states are pure ink or paper.
+  Enforced by `check-palette` (script + CI) and the e2e colour audit (also in the pill style).
+- **Motion (D-080):** tokens `--ease-out`, `--ease-spring` (≤ 3% overshoot), 120/220/360ms;
+  transform and clip-path only; hover only for fine pointers; instant under reduced motion.
+- **Controls (D-080):**
+  - buttons with a synchronised wipe, arrow roll, spring press, loading ticks, a success draw
+    and error words
+  - segmented controls with a sliding inverted indicator
+  - whole-row mode links and full-width answer rows
+  - sliders with a following readout
+  - links whose underline draws in; tooltips with a 300ms delay
+  - three control styles (sharp, pill, offset) to choose from
+- **Structure:** 2px rules for structure, 1px for dense data; 8px spacing grid; numbered
+  sections with a rotated running head; generous section padding; nothing below 12px.
+- **Type:** Archivo 800 for display (−0.02em, leading 0.92), Archivo 400 for text (≥ 16px,
+  ≤ 65ch, 1.6), IBM Plex Mono for UI, labels and numbers. Self-hosted.
+- **Without colour:**
+  - spectrum shapes plus codes, with a legend
+  - axis codes; the strip's filled and empty squares
+  - halftone density; solid vs dashed lines; hatched vs empty fills
+  - inverted selection with "[X]"
+  - a data-table alternative for every chart
+- **Images:** 1-bit dither at build with visible attribution; generated glyphs; ISO codes, no
+  flags. Share cards, PDF and print are black and white.
+- **Home (D-081):** hero (headline, subline, mode rows, the live catalog field), stat strip,
+  01 how it works, 02 the twelve axes, 03 index of ideologies, privacy band, footer wordmark.
+  Two variants for review: `/styleguide/home-a` and `/styleguide/home-b`.
+- **App screens:** the test screen and the result poster are designed on `/styleguide/screens`
+  and built in Phase 3 and Phase 8.
+- **Review:**
+  - `/styleguide`: every component and state in both modes, plus the control-style switch
+  - `/styleguide/buttons`: the state matrix
+  - `docs/design/`: screenshots and recordings (`npm run design:capture`)
 
 ## 14. Quality bar
 
@@ -530,6 +548,7 @@ DECISIONS §0c lists each removed piece with its replacement.
   tracked from Phase 3.
 - WCAG AA (ink on paper is 21:1); 44px touch targets; no horizontal page scroll down to 320px.
 - Two colours only: `npm run check:palette` locally and in CI, plus the e2e colour audit (D-075).
+- Mobile Lighthouse ≥ 95, CLS ≈ 0, INP < 200ms; core content works with JavaScript disabled (e2e).
 - SEO: per-page metadata, hreflang, JSON-LD, sitemap and per-page OG.
 - No third-party scripts, no tracking cookies.
 
@@ -540,6 +559,7 @@ DECISIONS §0c lists each removed piece with its replacement.
 | 0 | Plan (re-synced to spec v2) | ✅ |
 | 1 | Scaffold, design system, i18n: Next 16 app, tokens, fonts, theme, next-intl with localized pathnames (en/de/fr UI), layout shell, stub pages for every route, design-system page, lint/format/Vitest/Playwright wiring | `/en` `/de` `/fr` with localized slugs; lint blocks string literals; check and e2e smoke green |
 | 1b | **Design reset:** black-and-white tokens, self-hosted fonts, base components, `/styleguide`, palette guard (script, CI, e2e audit), dither pipeline | ✅ check + e2e green; **STOP for design review** |
+| 1c | **Design V2:** interaction tokens, controls in three styles, sticky header and mobile sheet, hero field, home sections, two home variants, button matrix, app screens, captures in `docs/design/` | ✅ check + e2e green; **STOP: owner picks home variant and control style** |
 | 2 | Engine, schemas, **36 Quick + 72 Standard EN questions**, ~40 anchor stubs, validator, build-derived (PCA, indices, τ), calibration suite, `docs/scoring.md` | calibration numbers reported; (b) and (c) pass; **STOP for question review** |
 | 3 | Test UI + results page; first Vercel preview deploy; **pilot page + `pilot-analysis`** (§7a) | e2e full flow; LHCI tracked; pilot file round-trips through the analysis |
 | 4 | Modern compass (static) | 60 fps; axe clean |

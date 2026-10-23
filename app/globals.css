@@ -1,10 +1,20 @@
 @import "tailwindcss";
+@import "./controls.css";
 
-/* Brutalist black and white (D-075). Two colours, swapped between modes; no
-   greys, accents, gradients, shadows, opacity, blur or radius anywhere.
-   scripts/check-palette.ts enforces this in CI. Dark styles follow the
-   data-theme attribute that the inline theme script sets before first paint. */
+/* Black and white, brutalist, with careful motion (D-075, D-080).
+   Resting states use only ink and paper; depth comes from 1-bit techniques
+   (halftone, hatching, ordered dither). scripts/check-palette.ts enforces it.
+   Dark styles follow the data-theme attribute set before first paint. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Hover only where a fine pointer can hover; touch gets the press state only. */
+@custom-variant hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @slot;
+    }
+  }
+}
 
 /* ---------- The two tokens ---------- */
 :root {
@@ -36,6 +46,78 @@
   color-scheme: light;
 }
 
+/* Inverted bands flip the tokens relative to the nearest theme, so focus rings,
+   links and controls inside them stay visible. @scope proximity picks the
+   closest theme when frames are nested. */
+[data-invert] {
+  --ink: #fff;
+  --paper: #000;
+}
+@scope ([data-theme="dark"]) {
+  [data-invert] {
+    --ink: #000;
+    --paper: #fff;
+  }
+}
+@scope ([data-theme="light"]) {
+  [data-invert] {
+    --ink: #fff;
+    --paper: #000;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  @scope (:root:not([data-theme])) {
+    [data-invert] {
+      --ink: #000;
+      --paper: #fff;
+    }
+  }
+}
+[data-invert] {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+/* ---------- Motion and shape tokens ---------- */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Spring with at most 3% overshoot. */
+  --ease-spring: linear(
+    0,
+    0.06 2%,
+    0.25 6%,
+    0.55 12%,
+    0.82 20%,
+    0.97 28%,
+    1.025 36%,
+    1.03 44%,
+    1.015 56%,
+    1.004 70%,
+    1
+  );
+  --dur-fast: 120ms;
+  --dur: 220ms;
+  --dur-slow: 360ms;
+  /* Controls only: 0 (sharp, offset) or 999px (pill). Cells, tables and graphics stay square. */
+  --radius-control: 0px;
+  --header-h: 3.5rem;
+}
+@supports not (transition-timing-function: linear(0, 1)) {
+  :root {
+    --ease-spring: var(--ease-out);
+  }
+}
+:root[data-controls="pill"] {
+  --radius-control: 999px;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0s;
+    --dur: 0s;
+    --dur-slow: 0s;
+  }
+}
+
 /* Tailwind only knows ink and paper (plus its built-in transparent and
    current); every other colour, radius, shadow and blur scale is removed. */
 @theme inline {
@@ -62,7 +144,11 @@
   --perspective-*: initial;
   --animate-*: initial;
 
-  --text-display-xl: clamp(2.25rem, 1rem + 4.6vw, 5.25rem);
+  --text-display-hero: clamp(2.75rem, 0.6rem + 9.4vw, 11rem);
+  --text-display-hero--line-height: 0.92;
+  --text-display-specimen: clamp(2.5rem, 1rem + 3.9vw, 5.25rem);
+  --text-display-specimen--line-height: 0.93;
+  --text-display-xl: clamp(2.5rem, 1rem + 5.4vw, 6.5rem);
   --text-display-xl--line-height: 0.92;
   --text-display-lg: clamp(2rem, 1.3rem + 3vw, 4rem);
   --text-display-lg--line-height: 0.95;
@@ -78,6 +164,7 @@
     background-color: var(--paper);
     color: var(--ink);
     scrollbar-color: var(--ink) var(--paper);
+    scroll-padding-top: calc(var(--header-h) + 1rem);
     -webkit-text-size-adjust: 100%;
   }
 
@@ -96,17 +183,18 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--ink);
+    outline: 2px solid var(--ink);
     outline-offset: 3px;
   }
 
   a {
+    color: inherit;
     text-decoration-line: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
   }
 
-  button:not(:disabled),
+  button:not(:disabled, [aria-disabled="true"]),
   summary {
     cursor: pointer;
   }
@@ -129,18 +217,27 @@
 
 /* ---------- Primitives ---------- */
 @layer components {
-  /* Display headings: the heavy grotesque, tight leading. */
+  /* Display headings: the heavy grotesque, tight leading, letters never touching. */
   .display {
     font-family: var(--font-sans);
-    font-weight: 850;
-    letter-spacing: -0.025em;
+    font-weight: 800;
+    letter-spacing: -0.02em;
   }
 
-  /* Small uppercase mono labels. */
+  /* Small uppercase mono labels (never below 12px). */
   .label {
     font-family: var(--font-mono);
     font-size: 0.8125rem;
     font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Measurement-style annotations: tiny, but still 12px. */
+  .annot {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
     line-height: 1.3;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -154,9 +251,18 @@
     max-width: 65ch;
   }
 
+  .section-pad {
+    padding-block: clamp(4rem, 10vw, 10rem);
+  }
+
+  /* Rotated running head in the left margin (desktop). */
+  .vertical-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
   /* Current and selected items wear brackets as a text marker, so the state
-     survives without the inverted block (forced colours, print). The "/ ''"
-     alt text keeps screen readers from announcing the brackets. */
+     survives without the inverted block (forced colours, print). */
   .bracketed[aria-current="page"]::before,
   .bracketed[aria-selected="true"]::before {
     content: "[";
@@ -168,62 +274,24 @@
     content: "]" / "";
   }
 
-  /* "[ ]" / "[X]" before a visually hidden native checkbox or radio. */
-  .check-mark::before {
-    content: "[ ]";
-    content: "[ ]" / "";
-    white-space: pre;
-  }
-  :checked + .check-mark::before {
-    content: "[X]";
-    content: "[X]" / "";
-  }
-
-  /* Text links invert on hover, like every other control. */
-  .link:hover {
-    background-color: var(--ink);
-    color: var(--paper);
-  }
-
-  /* Range slider: a ruled track and a solid rectangular thumb. */
-  .range {
-    appearance: none;
-    width: 100%;
-    height: 2.75rem;
-    margin: 0;
-    background: transparent;
-  }
-  .range::-webkit-slider-runnable-track {
-    height: 2px;
-    background-color: var(--ink);
-  }
-  .range::-moz-range-track {
-    height: 2px;
-    background-color: var(--ink);
-  }
-  .range::-webkit-slider-thumb {
-    appearance: none;
-    box-sizing: border-box;
-    width: 1rem;
-    height: 2rem;
-    margin-top: calc(-1rem + 1px);
-    border: 3px solid var(--paper);
-    border-radius: 0;
-    background-color: var(--ink);
-  }
-  .range::-moz-range-thumb {
-    box-sizing: border-box;
-    width: 1rem;
-    height: 2rem;
-    border: 3px solid var(--paper);
-    border-radius: 0;
-    background-color: var(--ink);
-  }
-
   /* Modal backdrop: a halftone screen instead of a dimmed, blurred page. */
   .modal::backdrop {
     background-color: var(--ink);
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='1.1'/%3E%3C/svg%3E");
+    mask-size: 6px 6px;
+  }
+
+  /* An 8px ordered-dither fade (8×8 Bayer, dense to empty), under the sticky header. */
+  .dither-fade {
+    background-color: var(--ink);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M0 0h8v1H0zM0 1h2v1H0zM3 1h3v1H3zM7 1h1v1H7zM0 2h1v1H0zM2 2h3v1H2zM6 2h2v1H6zM1 3h1v1H1zM3 3h1v1H3zM5 3h1v1H5zM7 3h1v1H7zM0 4h1v1H0zM2 4h1v1H2zM4 4h1v1H4zM6 4h1v1H6zM1 5h1v1H1zM5 5h1v1H5zM2 6h1v1H2zM6 6h1v1H6z'/%3E%3C/svg%3E");
+    mask-size: 8px 8px;
+  }
+
+  /* 45° hatching as a 1-bit fill (uncertainty bands, comparison areas). */
+  .hatch {
+    background-color: var(--ink);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Cpath d='M0 5.2 5.2 0H6v.8L.8 6H0zM0 0h.8L0 .8zM5.2 6 6 5.2V6z'/%3E%3C/svg%3E");
     mask-size: 6px 6px;
   }
 
@@ -233,9 +301,9 @@
   }
 }
 
-/* ---------- Motion: none by default ---------- */
-/* State changes are instant. Functional animation (trail playback, graph
-   layout) checks this query itself and falls back to a static view. */
+/* ---------- Motion safety net ---------- */
+/* With reduced motion every duration token is 0s, so wipes become instant
+   inverts; this also stops keyframe animations (drift, ticks, draws). */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -248,9 +316,9 @@
 }
 
 /* ---------- High contrast ---------- */
-/* Forced colours replace ink and paper with the user's system colours, which
-   also removes inverted backgrounds. Selection stays readable through the
-   text markers ("[X]", brackets) plus an outline drawn in the system colour. */
+/* Forced colours replace ink and paper with system colours, which also removes
+   inverted fills. Selection stays readable through the text markers plus an
+   outline drawn in the system colour. */
 @media (forced-colors: active) {
   [aria-checked="true"],
   [aria-pressed="true"],
@@ -267,7 +335,8 @@
   :root,
   :root:not([data-theme]),
   :root[data-theme="dark"],
-  [data-theme] {
+  [data-theme],
+  [data-invert] {
     --ink: #000;
     --paper: #fff;
     color-scheme: light;

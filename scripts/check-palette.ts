@@ -6,7 +6,7 @@
  * - CSS: colour literals only as the value of an --ink or --paper declaration,
  *   and only #000 or #fff. No named colours, colour functions or gradients;
  *   box-shadow, text-shadow, filter and backdrop-filter must be none,
- *   border-radius 0, opacity 1.
+ *   border-radius 0 or the control token var(--radius-control), opacity 1.
  * - TS/TSX/JS: every string literal is checked for colour literals; in UI code
  *   (app/, components/) also for Tailwind utilities outside the two-colour theme
  *   (palette colours, opacity modifiers, opacity-*, shadow-*, rounded-*, blur
@@ -202,8 +202,12 @@ export function checkCss(text: string): Finding[] {
       for (const n of namedIn(value)) report(`named colour ${n} in ${prop}`);
     if (/^(?:box-shadow|text-shadow|filter|backdrop-filter)$/.test(prop) && value !== "none")
       report(`${prop} must be none`);
-    if (/^border(?:-[a-z]+)*-radius$/.test(prop) && !/^0(?:px)?$/.test(value))
-      report(`${prop} must be 0`);
+    // Only controls may round, and only through the control-style token (D-080).
+    if (
+      /^border(?:-[a-z]+)*-radius$/.test(prop) &&
+      !/^(?:0(?:px)?|inherit|var\(--radius-control\))$/.test(value)
+    )
+      report(`${prop} must be 0 or var(--radius-control)`);
     if (prop === "opacity" && value !== "1") report("opacity must be 1");
   };
   for (const ch of src) {

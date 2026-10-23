@@ -22,7 +22,7 @@ export function TextField({ id, label, hint, error, className = "", ...input }: 
         id={id}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy}
-        className="mt-2 block min-h-11 w-full border-2 border-ink bg-paper px-3 py-2 font-mono text-base text-ink disabled:border-dashed aria-invalid:border-4"
+        className="field-input mt-2 block min-h-11 w-full border-[1.5px] border-ink bg-paper px-4 py-2 font-mono text-base text-ink disabled:border-dashed aria-invalid:border-[3px]"
         {...input}
       />
       {hint ? (
@@ -44,7 +44,7 @@ interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "id"
   children: React.ReactNode;
 }
 
-/** A native checkbox drawn as "[ ]" / "[X]"; the input stays in the a11y tree. */
+/** A native checkbox drawn as "[ ]" / "[X]" (the X draws in); the input stays in the a11y tree. */
 export function Checkbox({ id, children, className = "", ...input }: CheckboxProps) {
   return (
     <label
@@ -54,8 +54,10 @@ export function Checkbox({ id, children, className = "", ...input }: CheckboxPro
       <input id={id} type="checkbox" className="peer sr-only" {...input} />
       <span
         aria-hidden="true"
-        className="check-mark shrink-0 font-bold group-hover:bg-ink group-hover:text-paper peer-focus-visible:outline-3 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-ink peer-disabled:group-hover:bg-paper peer-disabled:group-hover:text-ink"
-      />
+        className="check-mark shrink-0 font-bold whitespace-pre peer-focus-visible:outline-2 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-ink"
+      >
+        [<span className="mark-x">{"X"}</span>]
+      </span>
       <span className="peer-disabled:underline peer-disabled:decoration-dashed">{children}</span>
     </label>
   );

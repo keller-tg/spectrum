@@ -17,7 +17,8 @@
     "figures": "Personnalités",
     "parties": "Partis",
     "dashboard": "Tableau de bord",
-    "menu": "Menu"
+    "menu": "Menu",
+    "close": "Fermer"
   },
   "locale": {
     "label": "Langue",
@@ -55,7 +56,9 @@
       "mode": "Mode",
       "questions": "Questions",
       "minutes": "Minutes",
-      "action": "Commencer"
+      "action": "Commencer",
+      "questionsShort": "Q.",
+      "minutesShort": "Min"
     },
     "recommended": "Recommandé",
     "opensSoon": "Bientôt disponible",
@@ -74,7 +77,67 @@
         "blurb": "La lecture la plus détaillée : douze questions par axe."
       }
     },
-    "modesNote": "Vous pourrez prolonger un test court plus tard en gardant vos réponses. Ce que vous voyez ici est le test entier : aucune étape cachée."
+    "modesNote": "Vous pourrez prolonger un test court plus tard en gardant vos réponses. Ce que vous voyez ici est le test entier : aucune étape cachée.",
+    "kicker": "Spectrum · un test politique sur douze axes · gratuit · sans compte",
+    "subline": "Répondez à de courtes affirmations et découvrez votre position, les idéologies les plus proches et le degré de certitude de ce portrait.",
+    "rowQuestions": "{count} questions",
+    "rowMinutes": "environ {minutes} minutes",
+    "field": {
+      "description": "{count} idéologies du catalogue placées sur la carte d’ensemble, les deux premières composantes principales des douze axes. Plus les points de trame sont gros, plus il y a d’idéologies proches ; chaque repère indique son spectre par sa forme.",
+      "caption": "Fig. 01 — Catalogue, {count} entrées",
+      "axes": "CP1 × CP2 · {share} % de la variance",
+      "list": "Afficher en liste ({count})",
+      "nearest": "La plus proche",
+      "keyboard": "Carte du catalogue. Les flèches parcourent les idéologies, Entrée mène à l’entrée de l’index.",
+      "open": "Cliquez pour l’entrée de l’index",
+      "pc1": "CP1",
+      "pc2": "CP2"
+    },
+    "stats": {
+      "label": "En chiffres",
+      "axes": "Axes, mesurés séparément",
+      "ideologies": "Idéologies au catalogue",
+      "questions": "Questions : rapide, standard, approfondi",
+      "accounts": "Comptes nécessaires"
+    },
+    "how": {
+      "kicker": "Comment ça marche",
+      "title": "Trois étapes, sans compte",
+      "steps": {
+        "answer": {
+          "title": "Répondre",
+          "body": "Réagissez à des affirmations simples sur une échelle en cinq points. Pas sûr ? Passez. Une question passée ne compte pas comme neutre."
+        },
+        "see": {
+          "title": "Voir douze positions",
+          "body": "Chaque axe reçoit un score et un degré de confiance. Quand vos réponses tirent dans des directions différentes, les résultats le disent."
+        },
+        "explore": {
+          "title": "Explorer et suivre",
+          "body": "Comparez-vous aux idéologies, pays, personnalités et partis, et voyez comment vos opinions évoluent."
+        }
+      }
+    },
+    "axes": {
+      "kicker": "Les 12 axes",
+      "title": "Douze axes indépendants",
+      "lead": "Chaque axe est mesuré séparément. Pendant le test, vous ne voyez jamais à quel axe appartient une affirmation ; vous le découvrez avec vos résultats.",
+      "code": "Code",
+      "axis": "Axe",
+      "scale": "Échelle de −100 à +100"
+    },
+    "index": {
+      "kicker": "Index",
+      "title": "Index des idéologies",
+      "lead": "Les {count} entrées actuelles du catalogue, de A à Z, chacune avec son spectre. Les pages complètes arrivent avec le catalogue.",
+      "counts": "Entrées par spectre"
+    },
+    "privacy": {
+      "kicker": "04 / Confidentialité",
+      "statement": "Vos réponses restent dans votre navigateur.",
+      "body": "Pas de compte, pas de pistage, pas de publicité. Rien n’atteint un serveur, sauf si vous choisissez la synchronisation chiffrée.",
+      "link": "Comment vos données sont traitées"
+    }
   },
   "stub": {
     "phaseNote": "Cette page arrive à la phase {phase} du développement.",
@@ -220,20 +283,16 @@
   },
   "styleguide": {
     "title": "Guide de style",
-    "lead": "Tous les composants et leurs états dans les deux modes, pour la revue du design. Cette page n’est ni liée ni indexée.",
-    "modeSwitch": "Page entière",
+    "lead": "Tous les composants et leurs états dans les deux modes, pour la revue du design. Les états de survol sont aussi montrés figés, pour être vérifiés sans pointeur.",
     "light": "Mode clair",
     "dark": "Mode sombre",
     "dataTable": "Afficher le tableau de données",
     "sections": {
-      "type": "Palette et typographie",
+      "type": "Palette, typographie et mouvement",
       "buttons": "Boutons",
       "inputs": "Champs",
-      "answer": "Options de réponse",
-      "cells": "Cellules et titres de section",
-      "table": "Tableaux réglés",
+      "cells": "Cellules, titres et tableaux",
       "nav": "Navigation et onglets",
-      "toggle": "Interrupteurs",
       "sliders": "Curseurs et barres d’axe",
       "overlays": "Infobulle et fenêtre",
       "legend": "Légendes",
@@ -241,7 +300,11 @@
       "radar": "Radar",
       "compass": "Codage de la boussole",
       "web": "Vue en réseau",
-      "images": "Images et glyphes"
+      "images": "Images et glyphes",
+      "links": "Liens",
+      "segmented": "Contrôles segmentés",
+      "modes": "Lignes de mode",
+      "answers": "Lignes de réponse"
     },
     "palette": {
       "note": "Deux couleurs, inversées d’un mode à l’autre. Ni gris, ni accent, ni dégradé, ni ombre, ni transparence, ni flou, ni coins arrondis. Un contrôle CI refuse toute autre couleur."
@@ -252,19 +315,22 @@
       "mono": "Interface, libellés et chiffres : IBM Plex Mono",
       "numeral": "Pourcentage de correspondance",
       "sampleHeadline": "Où placeriez-vous la limite ?",
-      "sampleBody": "Chaque axe est mesuré séparément. Une position sur l’un ne dit rien des autres ; c’est précisément pourquoi douze lignes décrivent mieux une personne qu’une seule."
+      "sampleBody": "Chaque axe est mesuré séparément. Une position sur l’un ne dit rien des autres ; c’est précisément pourquoi douze lignes décrivent mieux une personne qu’une seule.",
+      "motion": "Jetons de mouvement et de forme"
     },
     "buttons": {
-      "note": "Le survol et l’appui inversent encre et papier. Le focus est un contour de 3 px, décalé de 3 px. Désactivé : un cadre en tirets.",
-      "order": "Normal · survol ou appui · focus · désactivé",
+      "note": "Au survol, la couleur opposée balaie depuis la gauche et le libellé bascule avec elle ; la flèche roule. L’appui réduit à 98 % puis rebondit. Le focus est un anneau de 2 px décalé de 3 px. Désactivé : un cadre en tirets.",
+      "order": "Repos · survol (figé) · désactivé",
       "primary": "Principal",
       "secondary": "Secondaire",
       "text": "Texte",
       "primaryText": "Commencer",
       "secondaryText": "Comparer",
       "textText": "En savoir plus",
-      "link": "Lien dans le texte",
-      "linkSentence": "Les liens sont toujours soulignés, comme <link>celui-ci</link>, et s’inversent au survol."
+      "sizes": "Tailles",
+      "live": "Essayer",
+      "save": "Enregistrer le résultat",
+      "sync": "Synchroniser"
     },
     "inputs": {
       "note": "Les libellés se placent au-dessus des champs. Les erreurs sont écrites en toutes lettres et épaississent le cadre ; la couleur ne porte jamais de sens.",
@@ -277,18 +343,17 @@
       "checked": "Option choisie"
     },
     "answer": {
-      "note": "Cinq cellules réglées et un bouton « passer » séparé. La réponse choisie est inversée et marquée [X] ; le survol inverse aussi. Les touches 1 à 5 répondent.",
+      "note": "Des lignes pleine largeur. L’appui balaie la ligne ; la ligne choisie reste inversée et son [X] se trace. Les touches 1 à 5 s’affichent sur ordinateur. Avec l’avance automatique, le test attend 180 ms pour que le choix se voie.",
       "selected": "Une réponse choisie",
       "skipped": "Question passée"
     },
     "cells": {
-      "note": "Les sections sont des cellules encadrées sur une grille de 12 colonnes. Les cellules voisines partagent un même filet de 2 px.",
+      "note": "La structure utilise des filets de 2 px, les données denses 1 px. Les sections sont des cellules sur une grille de 12 colonnes ; les tableaux sont réglés, les nombres alignés à droite en chiffres tabulaires, les pays en codes ISO.",
       "sampleTitle": "Une section numérotée",
       "cellTitle": "Cellule",
       "cellBody": "Le contenu se range dans des cellules réglées plutôt que dans des cartes flottantes."
     },
     "table": {
-      "note": "Cadre et filet d’en-tête de 2 px, filets fins de 1 px. Les nombres sont alignés à droite en chiffres tabulaires. Les pays apparaissent en codes ISO, jamais en drapeaux.",
       "caption": "Exemple : six idéologies d’ancrage",
       "name": "Nom",
       "spectrum": "Spectre",
@@ -300,7 +365,7 @@
       "fr": "France"
     },
     "nav": {
-      "note": "La page courante est inversée et entre crochets. Les onglets suivent la même règle et répondent aux flèches du clavier.",
+      "note": "Le survol trace un soulignement ; la section courante a une barre qui glisse au changement de page, plus des crochets. Sur mobile, le menu s’ouvre en feuille inversée plein écran, en grands caractères.",
       "header": "Cellules d’en-tête",
       "tabs": "Onglets",
       "tabsLabel": "Vues du résultat",
@@ -309,23 +374,23 @@
       "tabMap": "Carte",
       "panelAxes": "Douze barres, une par axe.",
       "panelRadar": "Les douze axes en une seule forme.",
-      "panelMap": "La carte d’ensemble de l’espace politique."
+      "panelMap": "La carte d’ensemble de l’espace politique.",
+      "sheet": "Pour voir le menu mobile, rétrécissez la fenêtre et appuyez sur MENU ; il fonctionne sans JavaScript."
     },
     "toggle": {
-      "note": "Le mot actif est inversé. Le sélecteur de thème de l’en-tête fonctionne de la même façon.",
       "advance": "Avancer automatiquement",
-      "labels": "Afficher les noms d’axes",
       "disabled": "Indisponible",
       "on": "Oui",
       "off": "Non"
     },
     "sliders": {
-      "note": "Des barres noires sur des pistes réglées, graduées tous les 10 points. Le crochet au-dessus indique la plage d’incertitude. Le curseur est un bloc plein.",
+      "note": "Des barres noires sur des pistes réglées, graduées tous les 10 points ; l’incertitude en crochet fin ou en bande hachurée. Le curseur grossit pendant le glissement et une étiquette encadrée le suit.",
       "bar": "{axis} : {score}, vers {pole}, probablement entre {low} et {high}",
-      "disabled": "Curseur désactivé"
+      "disabled": "Curseur désactivé",
+      "snap": "S’aimante aux graduations"
     },
     "overlays": {
-      "note": "Les deux s’ouvrent sans délai. La fenêtre est un dialogue natif posé sur une trame de points ; Échap la ferme.",
+      "note": "L’infobulle s’ouvre après 300 ms de survol, aussitôt au focus ou au toucher, et apparaît en 120 ms. La fenêtre est un dialogue natif posé sur une trame de points ; Échap la ferme.",
       "tooltipLabel": "Ce que mesure cet axe",
       "open": "Ouvrir la fenêtre",
       "modalTitle": "À propos de cette affirmation",
@@ -344,7 +409,8 @@
       "halftone": "Trame : plus les points sont gros, plus il y a d’idéologies proches",
       "you": "Vous : la taille du cercle indique l’incertitude, la croix marque le point",
       "ghost": "Comparaison fantôme : un contour creux et tireté",
-      "selected": "Nœud sélectionné : inversé"
+      "selected": "Nœud sélectionné : inversé",
+      "dither": "Tramage ordonné : la bande sous l’en-tête fixe"
     },
     "strip": {
       "note": "Douze codes d’axe à deux lettres, groupés par domaine.",
@@ -381,6 +447,84 @@
       "glyphsNote": "Chaque entrée du catalogue reçoit un motif symétrique 5×5 dérivé de son identifiant : original, sans symbole, sans visage.",
       "flags": "Pays",
       "flagsNote": "Pas de drapeaux. Les pays sont nommés et codés en texte, p. ex. CH, DE, FR."
+    },
+    "kicker": "Interne · non indexé",
+    "pages": {
+      "buttons": "Matrice des boutons",
+      "screens": "Écrans de l’app",
+      "home-a": "Accueil A : spécimen",
+      "home-b": "Accueil B : typographique"
+    },
+    "controls": {
+      "label": "Style des contrôles",
+      "sharp": "Net",
+      "pill": "Pilule",
+      "offset": "Décalé",
+      "note": "Le style s’applique à tout le site et reste mémorisé dans ce navigateur, pour la revue uniquement. « Net » reste le style par défaut jusqu’à votre choix."
+    },
+    "links": {
+      "note": "Les liens sont soulignés au repos, car la couleur ne peut pas les distinguer ; au survol, un filet de 2 px se trace depuis la gauche. Les liens externes portent une petite flèche.",
+      "sentence": "Un lien dans le texte ressemble à <link>celui-ci</link>.",
+      "internal": "Lire la méthode",
+      "external": "Code source sur GitHub"
+    },
+    "segmented": {
+      "note": "Un même contrôle pour la langue, le thème, la longueur du test et le choix d’axe : des segments égaux et un indicateur inversé qui glisse de l’un à l’autre. Les flèches déplacent la sélection.",
+      "mode": "Longueur du test",
+      "axis": "Choix d’axe",
+      "map": "Carte",
+      "switch": "Interrupteur"
+    },
+    "modes": {
+      "note": "Chaque mode est un lien sur toute la ligne. Au survol, la ligne s’inverse par balayage, COMMENCER glisse et la flèche roule (figé sur Rapide dans le cadre clair). Approfondi est en tirets et pas encore cliquable."
+    },
+    "matrix": {
+      "kicker": "Guide de style",
+      "title": "Matrice des boutons",
+      "lead": "Chaque variante, taille et état, avec survol et appui figés. Changez le style des contrôles pour comparer net, pilule et décalé.",
+      "size": "Taille",
+      "sizes": {
+        "s": "S · 36",
+        "m": "M · 44",
+        "l": "L · 56"
+      },
+      "states": {
+        "rest": "Repos",
+        "hover": "Survol",
+        "focus": "Focus",
+        "active": "Appui",
+        "loading": "Chargement",
+        "success": "Réussite",
+        "error": "Erreur",
+        "disabled": "Désactivé"
+      },
+      "loadingLabel": "Enregistrement",
+      "successLabel": "Enregistré",
+      "errorLabel": "Échec, réessayer"
+    },
+    "home": {
+      "lead": "Variante de la page d’accueil pour la revue du design.",
+      "specimen": "Accueil A : spécimen",
+      "typographic": "Accueil B : typographique"
+    },
+    "screens": {
+      "kicker": "Guide de style",
+      "title": "Écrans de l’app",
+      "lead": "Conçus maintenant, construits dans leurs phases : l’écran du test (phase 3) et l’affiche de résultat, qui sert aussi de carte de partage.",
+      "test": "Écran du test",
+      "questionOf": "Question {n} sur {count}",
+      "mode": "Standard",
+      "progress": "Progression dans le test",
+      "back": "Retour",
+      "explain": "Qu’est-ce que cela veut dire ?",
+      "result": "Affiche de résultat",
+      "posterLabel": "Affiche de résultat, exemple",
+      "posterHead": "Spectrum · résultat · 12 axes",
+      "example": "Données d’exemple",
+      "match": "Correspondance la plus proche",
+      "bar": "{axis} : {score}, vers {pole}, probablement entre {low} et {high}",
+      "posterFoot": "spectrum-six-rho.vercel.app",
+      "legend": "Barre : score · bande hachurée : plage probable"
     }
   }
 }
