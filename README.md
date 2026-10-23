@@ -19,14 +19,16 @@ npm run dev                  # http://localhost:3000 → redirects to /en, /de o
 
 | Command | What it does |
 |---|---|
-| `npm run check` | privacy guard → validate data → derive → lint → typecheck → unit tests (must pass before every commit) |
+| `npm run check` | privacy guard → palette guard → validate data → derive → lint → typecheck → unit tests (must pass before every commit) |
 | `npm run check:privacy` | fails if the owner's personal email appears in the repo (`:history` scans every commit); needs `PRIVACY_GUARD_SHA256` in `.env.local` (hashes only) |
+| `npm run check:palette` | fails on any colour other than `--ink`/`--paper` and on opacity, shadows, radius, blur or gradients (also a CI job) |
+| `npm run images` | turns the photos in `data/images/` into 1-bit dither PNGs in `public/images/` (runs before `dev` and `build`) |
 | `npm run validate` | zod + semantic checks on all content (also runs before every build) |
 | `npm run derive` | build-time PCA map, category indices, similarity τ, neighbours → `generated/` |
 | `npm run calibration` | full calibration report → `docs/calibration-report.md` (see below) |
 | `npm run gen:index` | regenerate catalog index files after adding entries |
 | `npm run check-sources` | check every source URL (network; CI job, not part of the build) |
-| `npm run e2e` | builds, starts and runs the Playwright smoke suite (desktop + mobile, axe a11y checks) |
+| `npm run e2e` | builds, starts and runs the Playwright smoke suite (desktop + mobile, axe a11y checks, colour audit in both modes) |
 | `npm run format` | Prettier |
 
 Playwright needs a browser once: `npx playwright install chromium`.

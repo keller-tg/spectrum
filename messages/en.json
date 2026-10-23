@@ -21,11 +21,21 @@
   },
   "locale": {
     "label": "Language",
-    "names": { "en": "English", "de": "Deutsch", "fr": "Français" },
-    "short": { "en": "EN", "de": "DE", "fr": "FR" }
+    "names": {
+      "en": "English",
+      "de": "Deutsch",
+      "fr": "Français"
+    },
+    "short": {
+      "en": "EN",
+      "de": "DE",
+      "fr": "FR"
+    }
   },
   "theme": {
-    "toggle": "Switch between light and dark theme"
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark"
   },
   "footer": {
     "disclaimer": "Spectrum is an interpretation tool. It reads your answers through a model with real limits; it does not measure who you are.",
@@ -36,64 +46,35 @@
     "privacyLink": "Privacy",
     "imprint": "Imprint",
     "source": "Source code",
-    "designSystem": "Design system",
     "status": "Working title, in development."
   },
   "home": {
-    "kicker": "Twelve axes · Free · No account",
-    "title": "Politics doesn’t fit on <em>one line</em>.",
-    "lead": "Answer short statements, then see where you stand on twelve independent axes, which ideologies, countries, figures and parties sit closest, and how certain that picture is.",
+    "sentence": "Twelve axes, because politics doesn’t fit on one line.",
     "chooseMode": "Choose a length",
-    "modeCount": "{count} questions",
-    "modeTime": "about {minutes} min",
+    "table": {
+      "mode": "Mode",
+      "questions": "Questions",
+      "minutes": "Minutes",
+      "action": "Start"
+    },
     "recommended": "Recommended",
     "opensSoon": "Opens soon",
     "start": "Start",
     "modes": {
-      "quick": { "name": "Quick", "blurb": "A first sketch of where you stand." },
-      "standard": { "name": "Standard", "blurb": "A sharper picture with sturdier confidence." },
-      "deep": { "name": "Deep", "blurb": "The most detailed reading: twelve questions per axis." }
-    },
-    "modesNote": "You can extend a shorter test later and keep your answers. What you see here is the whole test: no hidden extra rounds.",
-    "axesKicker": "The instrument",
-    "axesTitle": "Twelve axes in four domains",
-    "axesLead": "Each axis is independent. You can favour markets and open borders, or collective ownership and tradition. During the test you never see which axis a statement belongs to; that is revealed with your results.",
-    "howKicker": "The method",
-    "howTitle": "How it works",
-    "how": {
-      "answer": {
-        "title": "Answer",
-        "body": "React to plain statements on a five-point scale. Not sure? Skip it. A skip is not counted as neutral."
+      "quick": {
+        "name": "Quick",
+        "blurb": "A first sketch of where you stand."
       },
-      "see": {
-        "title": "See twelve positions",
-        "body": "Each axis gets a score and a confidence. Where your answers pull in different directions, the results say so."
+      "standard": {
+        "name": "Standard",
+        "blurb": "A sharper picture with sturdier confidence."
       },
-      "explore": {
-        "title": "Explore and track",
-        "body": "Compare yourself with ideologies, countries, figures and parties, and see how your views move over time."
+      "deep": {
+        "name": "Deep",
+        "blurb": "The most detailed reading: twelve questions per axis."
       }
     },
-    "promisesKicker": "The terms",
-    "promisesTitle": "What you can count on",
-    "promises": {
-      "local": {
-        "title": "Local-first",
-        "body": "Results are saved in your browser. Nothing reaches a server unless you choose encrypted sync."
-      },
-      "tracking": {
-        "title": "No tracking",
-        "body": "No ads, no analytics, no third-party scripts. No cookies unless you create a profile."
-      },
-      "honest": {
-        "title": "Honest uncertainty",
-        "body": "Matches are spread out, not inflated, and every result shows how confident it is."
-      },
-      "neutral": {
-        "title": "Even-handed catalog",
-        "body": "Every ideology, mainstream or fringe, gets the same encyclopedic treatment, criticisms included."
-      }
-    }
+    "modesNote": "You can extend a shorter test later and keep your answers. What you see here is the whole test: no hidden extra rounds."
   },
   "stub": {
     "phaseNote": "This page arrives in phase {phase} of the build.",
@@ -154,7 +135,43 @@
     },
     "method": {
       "title": "Method",
-      "lead": "How answers become scores, how matches are calculated, and where the model’s limits are."
+      "lead": "How answers become scores, how matches are calculated, and where the model’s limits are.",
+      "axesTitle": "Twelve axes in four domains",
+      "axesLead": "Each axis is independent. You can favour markets and open borders, or collective ownership and tradition. During the test you never see which axis a statement belongs to; that is revealed with your results.",
+      "howTitle": "How it works",
+      "how": {
+        "answer": {
+          "title": "Answer",
+          "body": "React to plain statements on a five-point scale. Not sure? Skip it. A skip is not counted as neutral."
+        },
+        "see": {
+          "title": "See twelve positions",
+          "body": "Each axis gets a score and a confidence. Where your answers pull in different directions, the results say so."
+        },
+        "explore": {
+          "title": "Explore and track",
+          "body": "Compare yourself with ideologies, countries, figures and parties, and see how your views move over time."
+        }
+      },
+      "termsTitle": "What you can count on",
+      "terms": {
+        "local": {
+          "title": "Local-first",
+          "body": "Results are saved in your browser. Nothing reaches a server unless you choose encrypted sync."
+        },
+        "tracking": {
+          "title": "No tracking",
+          "body": "No ads, no analytics, no third-party scripts. No cookies unless you create a profile."
+        },
+        "honest": {
+          "title": "Honest uncertainty",
+          "body": "Matches are spread out, not inflated, and every result shows how confident it is."
+        },
+        "neutral": {
+          "title": "Even-handed catalog",
+          "body": "Every ideology, mainstream or fringe, gets the same encyclopedic treatment, criticisms included."
+        }
+      }
     },
     "privacy": {
       "title": "Privacy",
@@ -165,10 +182,6 @@
       "title": "Imprint",
       "lead": "Legal notice and contact details.",
       "pending": "The responsible party will be named here before public launch."
-    },
-    "designSystem": {
-      "title": "Design system",
-      "lead": "Tokens and components that every page is built from."
     }
   },
   "notFound": {
@@ -205,29 +218,169 @@
     "skip": "Unsure, skip this one",
     "groupLabel": "Your answer"
   },
-  "ds": {
-    "kicker": "Internal reference",
-    "type": "Typography",
-    "typeDisplay": "Display: Bodoni Moda",
-    "typeText": "Text and interface: Schibsted Grotesk",
-    "sampleHeadline": "Where would you draw the line?",
-    "sampleBody": "Each axis is measured on its own. A position on one says nothing about the others, which is exactly why twelve lines describe a person better than one.",
-    "colour": "Colour",
-    "colourNote": "Every pairing used for text meets WCAG AA in both themes. Deep red is reserved for you and for primary actions.",
-    "spectra": "Spectrum tints",
-    "spectraNote": "Tints identify spectra on charts and chips. They are always paired with a written label, never colour alone.",
-    "glyphs": "Axis glyphs",
-    "glyphsNote": "Twenty-four original glyphs, one per pole. Strips show the glyph of the pole an entry leans to.",
-    "strip": "Twelve-icon strip",
-    "stripNote": "Opacity follows how strongly an entry leans; a dot means near the centre.",
-    "stripExampleA": "Example profile A",
-    "stripExampleB": "Example profile B",
-    "controls": "Controls",
-    "scaleNote": "The answer scale keeps a fixed layout so buttons never move between questions. Skip sits apart from neutral.",
-    "buttons": "Buttons",
-    "primary": "Primary action",
-    "secondary": "Secondary",
-    "quiet": "Quiet link",
-    "chips": "Chips"
+  "styleguide": {
+    "title": "Styleguide",
+    "lead": "Every component and state in both modes, for design review. This page is not linked and not indexed.",
+    "modeSwitch": "Whole page",
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "dataTable": "Show data table",
+    "sections": {
+      "type": "Palette and type",
+      "buttons": "Buttons",
+      "inputs": "Inputs",
+      "answer": "Answer options",
+      "cells": "Cells and section headers",
+      "table": "Ruled tables",
+      "nav": "Navigation and tabs",
+      "toggle": "Toggles",
+      "sliders": "Sliders and axis bars",
+      "overlays": "Tooltip and modal",
+      "legend": "Legends",
+      "strip": "Twelve-axis strip",
+      "radar": "Radar",
+      "compass": "Compass encodings",
+      "web": "Web view",
+      "images": "Images and glyphs"
+    },
+    "palette": {
+      "note": "Two colours, swapped between modes. No greys, accents, gradients, shadows, opacity, blur or rounded corners. A CI check rejects any other colour."
+    },
+    "type": {
+      "display": "Display: Archivo, weight 850",
+      "prose": "Text: Archivo, weight 400",
+      "mono": "Interface, labels and numbers: IBM Plex Mono",
+      "numeral": "Match percentage",
+      "sampleHeadline": "Where would you draw the line?",
+      "sampleBody": "Each axis is measured on its own. A position on one says nothing about the others, which is exactly why twelve lines describe a person better than one."
+    },
+    "buttons": {
+      "note": "Hover and press invert ink and paper. Focus is a 3px outline with a 3px gap. Disabled is a dashed frame.",
+      "order": "Default · hover or press · focus · disabled",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "text": "Text",
+      "primaryText": "Start",
+      "secondaryText": "Compare",
+      "textText": "Read more",
+      "link": "Link in text",
+      "linkSentence": "Links are always underlined, like <link>this one</link>, and invert on hover."
+    },
+    "inputs": {
+      "note": "Labels sit above fields. Errors are written out and thicken the frame; colour never carries meaning.",
+      "search": "Search ideologies",
+      "searchHint": "A name, family or tag.",
+      "placeholder": "e.g. federalism",
+      "error": "Error: type at least two letters.",
+      "disabled": "Not available",
+      "consent": "I understand that this file contains my political views.",
+      "checked": "Selected option"
+    },
+    "answer": {
+      "note": "Five ruled cells and a separate skip. The chosen answer is inverted and marked [X]; hover inverts too. Keys 1–5 answer.",
+      "selected": "One answer chosen",
+      "skipped": "Skipped"
+    },
+    "cells": {
+      "note": "Sections are bordered cells on a 12-column grid. Neighbouring cells share one 2px rule.",
+      "sampleTitle": "A numbered section",
+      "cellTitle": "Cell",
+      "cellBody": "Content sits in ruled cells instead of floating cards."
+    },
+    "table": {
+      "note": "2px frame and header rule, 1px hairlines. Numbers are right-aligned with tabular figures. Countries appear as ISO codes, never as flags.",
+      "caption": "Example: six anchor ideologies",
+      "name": "Name",
+      "spectrum": "Spectrum",
+      "isoCaption": "Countries as ISO codes",
+      "iso": "Code",
+      "country": "Country",
+      "ch": "Switzerland",
+      "de": "Germany",
+      "fr": "France"
+    },
+    "nav": {
+      "note": "The current page is inverted and bracketed. Tabs follow the same rule and answer to the arrow keys.",
+      "header": "Header cells",
+      "tabs": "Tabs",
+      "tabsLabel": "Result views",
+      "tabAxes": "Axes",
+      "tabRadar": "Radar",
+      "tabMap": "Map",
+      "panelAxes": "Twelve bars, one per axis.",
+      "panelRadar": "All twelve axes in one shape.",
+      "panelMap": "The overall map of the political space."
+    },
+    "toggle": {
+      "note": "The active word is inverted. The theme switch in the header works the same way.",
+      "advance": "Advance automatically",
+      "labels": "Show axis labels",
+      "disabled": "Unavailable",
+      "on": "On",
+      "off": "Off"
+    },
+    "sliders": {
+      "note": "Black bars on ruled tracks with ticks every 10 points. The bracket above shows the uncertainty range. The slider thumb is a solid block.",
+      "bar": "{axis}: {score}, toward {pole}, likely between {low} and {high}",
+      "disabled": "Disabled slider"
+    },
+    "overlays": {
+      "note": "Both open instantly. The modal is a native dialog over a halftone screen; Escape closes it.",
+      "tooltipLabel": "What this axis measures",
+      "open": "Open dialog",
+      "modalTitle": "About this statement",
+      "modalBody": "Overlays have a 2px frame and no shadow. The page behind is covered by a dot screen instead of being dimmed or blurred.",
+      "close": "Close"
+    },
+    "legend": {
+      "note": "Every encoding has a written key. Spectra are told apart by shape plus code, never by shape alone.",
+      "spectra": "Spectra",
+      "charts": "Chart encodings",
+      "solid": "Solid line: you, or the first series",
+      "dashed": "Dashed line: the comparison series",
+      "dotted": "Sparse dots: older steps of your trail",
+      "hatch": "Hatched fill: your area",
+      "empty": "Empty fill: the comparison area",
+      "halftone": "Halftone: bigger dots, more ideologies nearby",
+      "you": "You: the circle’s size shows uncertainty, the crosshair marks the point",
+      "ghost": "Ghost compare: a hollow, dashed outline",
+      "selected": "Selected node: inverted"
+    },
+    "strip": {
+      "note": "Twelve two-letter axis codes, grouped by domain.",
+      "exampleA": "Example profile A",
+      "exampleB": "Example profile B",
+      "howTitle": "How to read it",
+      "how": "Each code has four squares: the left two belong to the first pole, the right two to the second. One filled square means the entry leans that way, two mean it leans strongly, none means it sits near the centre."
+    },
+    "radar": {
+      "note": "Centre = −100, solid inner ring = 0, outer ring = +100 on every axis. First profile: solid line, hatched fill, solid corners. Comparison: dashed line, empty fill, hollow corners.",
+      "title": "Radar: example profile A against B",
+      "you": "Profile A",
+      "friend": "Profile B",
+      "axis": "Axis"
+    },
+    "compass": {
+      "note": "Static preview of the Phase 4 compass on the anchor catalog: distribution across, state power up.",
+      "title": "Compass preview: distribution and state power",
+      "summary": "Halftone dots show where ideologies cluster. One marker per spectrum, your position with its uncertainty circle, three earlier results as a trail, and a friend as a ghost.",
+      "you": "YOU",
+      "ghost": "FRIEND",
+      "point": "Point"
+    },
+    "web": {
+      "note": "Static preview of the Phase 10 web view: placement from the overall map, each node joined to its two nearest neighbours. Hover over a node to see its name.",
+      "title": "Web view preview: seventeen anchor ideologies",
+      "node": "Ideology",
+      "neighbours": "Nearest neighbours"
+    },
+    "images": {
+      "note": "Photos become 1-bit ordered-dither images at build time. Author, licence and source stay visible under every image.",
+      "source": "Source",
+      "glyphs": "Generated entry glyphs",
+      "glyphsNote": "Each catalog entry gets a symmetric 5×5 pattern derived from its id: original, no symbols, no faces.",
+      "flags": "Countries",
+      "flagsNote": "No flags. Countries are named and coded in text, e.g. CH, DE, FR."
+    }
   }
 }

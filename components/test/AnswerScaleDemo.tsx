@@ -3,9 +3,15 @@
 import { useState } from "react";
 import { AnswerScale, type AnswerValue } from "./AnswerScale";
 
-export function AnswerScaleDemo() {
-  const [value, setValue] = useState<AnswerValue | null>(null);
-  const [skipped, setSkipped] = useState(false);
+export function AnswerScaleDemo({
+  initial = null,
+  initialSkipped = false,
+}: {
+  initial?: AnswerValue | null;
+  initialSkipped?: boolean;
+}) {
+  const [value, setValue] = useState<AnswerValue | null>(initial);
+  const [skipped, setSkipped] = useState(initialSkipped);
   return (
     <AnswerScale
       value={value}

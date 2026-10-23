@@ -9,14 +9,15 @@ export type AnswerValue = -2 | -1 | 0 | 1 | 2;
 const OPTIONS: {
   value: AnswerValue;
   key: "stronglyDisagree" | "disagree" | "neutral" | "agree" | "stronglyAgree";
-  size: number;
 }[] = [
-  { value: -2, key: "stronglyDisagree", size: 30 },
-  { value: -1, key: "disagree", size: 22 },
-  { value: 0, key: "neutral", size: 15 },
-  { value: 1, key: "agree", size: 22 },
-  { value: 2, key: "stronglyAgree", size: 30 },
+  { value: -2, key: "stronglyDisagree" },
+  { value: -1, key: "disagree" },
+  { value: 0, key: "neutral" },
+  { value: 1, key: "agree" },
+  { value: 2, key: "stronglyAgree" },
 ];
+
+const MARK = { on: "[X]", off: "[ ]" } as const;
 
 interface AnswerScaleProps {
   value: AnswerValue | null | undefined;
@@ -25,10 +26,15 @@ interface AnswerScaleProps {
   onSkip: () => void;
 }
 
+const cell =
+  "relative flex min-h-14 w-full items-center gap-4 border-r-2 border-b-2 border-ink px-4 py-3 text-left hover:bg-ink hover:text-paper focus-visible:z-10 active:bg-ink active:text-paper aria-checked:bg-ink aria-checked:text-paper aria-pressed:bg-ink aria-pressed:text-paper";
+const option = `${cell} sm:min-h-32 sm:flex-col sm:items-start sm:justify-between`;
+
 /**
- * Five-point scale plus a separate skip. Geometry is fixed (same grid, same
- * marker sizes) so nothing moves between questions. Arrow keys move within
- * the group; the test page adds global 1–5 shortcuts.
+ * Five ruled cells plus a separate skip. Geometry is fixed (same grid, same
+ * cell sizes) so nothing moves between questions. The chosen cell is inverted
+ * and marked "[X]". Arrow keys move within the group; the test page adds
+ * global 1–5 shortcuts, which the key numbers show.
  */
 export function AnswerScale({ value, skipped = false, onAnswer, onSkip }: AnswerScaleProps) {
   const t = useTranslations("scale");
@@ -47,8 +53,8 @@ export function AnswerScale({ value, skipped = false, onAnswer, onSkip }: Answer
     event.preventDefault();
     const next = (index + delta + OPTIONS.length) % OPTIONS.length;
     refs.current[next]?.focus();
-    const option = OPTIONS[next];
-    if (option) onAnswer(option.value);
+    const chosen = OPTIONS[next];
+    if (chosen) onAnswer(chosen.value);
   };
 
   return (
@@ -56,13 +62,13 @@ export function AnswerScale({ value, skipped = false, onAnswer, onSkip }: Answer
       <div
         role="radiogroup"
         aria-label={t("groupLabel")}
-        className="grid grid-cols-1 gap-2 sm:grid-cols-5 sm:gap-3"
+        className="grid grid-cols-1 border-t-2 border-l-2 border-ink sm:grid-cols-5"
       >
-        {OPTIONS.map((option, index) => {
-          const checked = value === option.value;
+        {OPTIONS.map((o, index) => {
+          const checked = value === o.value;
           return (
             <button
-              key={option.value}
+              key={o.value}
               ref={(el) => {
                 refs.current[index] = el;
               }}
@@ -70,48 +76,30 @@ export function AnswerScale({ value, skipped = false, onAnswer, onSkip }: Answer
               role="radio"
               aria-checked={checked}
               tabIndex={index === focusIndex ? 0 : -1}
-              onClick={() => onAnswer(option.value)}
+              onClick={() => onAnswer(o.value)}
               onKeyDown={(e) => onKeyDown(e, index)}
-              className={`group flex min-h-14 items-center gap-4 rounded-xl border px-4 py-3 text-left transition-[background-color,border-color,transform] duration-150 ease-out active:scale-[0.98] sm:min-h-36 sm:flex-col sm:justify-center sm:gap-3 sm:px-2 sm:text-center ${
-                checked
-                  ? "border-accent bg-accent/8"
-                  : "border-rule-strong bg-paper-raised hover:border-ink"
-              }`}
+              className={option}
             >
-              <span className="grid w-8 shrink-0 place-items-center sm:h-8 sm:w-auto">
-                <span
-                  aria-hidden="true"
-                  className={`block rounded-full border-2 transition-colors duration-150 ${checked ? "border-accent bg-accent" : "border-ink-3 group-hover:border-ink"}`}
-                  style={{ width: option.size, height: option.size }}
-                />
-              </span>
               <span
-                className={`text-sm leading-tight font-semibold ${checked ? "text-ink" : "text-ink-2 group-hover:text-ink"}`}
+                aria-hidden="true"
+                className="label flex shrink-0 gap-3 sm:w-full sm:justify-between"
               >
-                <span
-                  aria-hidden="true"
-                  className="tabular mr-2 text-xs font-normal text-ink-3 sm:hidden"
-                >
-                  {index + 1}
-                </span>
-                {t(option.key)}
+                <span>{index + 1}</span>
+                <span className="whitespace-pre">{checked ? MARK.on : MARK.off}</span>
               </span>
+              <span className="label text-[0.9375rem]">{t(o.key)}</span>
             </button>
           );
         })}
       </div>
-      <button
-        type="button"
-        onClick={onSkip}
-        aria-pressed={skipped}
-        className={`mt-3 w-full rounded-xl border border-dashed px-4 py-3 text-sm font-medium transition-colors sm:mt-4 ${
-          skipped
-            ? "border-ink bg-paper-sunk text-ink"
-            : "border-rule-strong text-ink-2 hover:border-ink hover:text-ink"
-        }`}
-      >
-        {t("skip")}
-      </button>
+      <div className="mt-3 border-t-2 border-l-2 border-ink">
+        <button type="button" onClick={onSkip} aria-pressed={skipped} className={cell}>
+          <span aria-hidden="true" className="label whitespace-pre">
+            {skipped ? MARK.on : MARK.off}
+          </span>
+          <span className="label text-[0.9375rem]">{t("skip")}</span>
+        </button>
+      </div>
     </div>
   );
 }

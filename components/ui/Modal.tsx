@@ -1,0 +1,54 @@
+"use client";
+
+import { useId, useRef } from "react";
+import { buttonClass } from "./Button";
+
+/**
+ * Native modal <dialog>: focus moves in and back, Escape closes, the page
+ * behind is inert. The backdrop is a halftone screen (globals.css).
+ */
+export function Modal({
+  triggerLabel,
+  title,
+  closeLabel,
+  children,
+}: {
+  triggerLabel: string;
+  title: string;
+  closeLabel: string;
+  children: React.ReactNode;
+}) {
+  const ref = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
+  return (
+    <>
+      <button
+        type="button"
+        className={buttonClass("secondary")}
+        onClick={() => ref.current?.showModal()}
+      >
+        {triggerLabel}
+      </button>
+      <dialog
+        ref={ref}
+        aria-labelledby={titleId}
+        className="modal m-auto w-[min(36rem,calc(100vw-2rem))] border-2 border-ink bg-paper p-0 text-ink"
+      >
+        <div className="flex items-stretch justify-between border-b-2 border-ink">
+          <h2 id={titleId} className="label flex items-center px-4 py-2">
+            {title}
+          </h2>
+          <form method="dialog" className="flex">
+            <button
+              type="submit"
+              className="label min-h-11 border-l-2 border-ink px-4 hover:bg-ink hover:text-paper"
+            >
+              {closeLabel}
+            </button>
+          </form>
+        </div>
+        <div className="prose-text p-4">{children}</div>
+      </dialog>
+    </>
+  );
+}

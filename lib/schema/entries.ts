@@ -157,6 +157,7 @@ export const commonsImageSchema = z.object({
   licenseUrl: z.url().optional(),
   attribution: nonEmpty,
 });
+export type CommonsImage = z.infer<typeof commonsImageSchema>;
 
 export const bookSchema = z.object({
   title: nonEmpty,

@@ -8,8 +8,8 @@ Source of truth: **Master spec v2** (2026-10-21). Every choice and its status is
 [DECISIONS.md](DECISIONS.md), whose first section lists what changed from v1.
 
 Status: Phase 0 ✅ · Phase 1 ✅ · Phase 2 ✅ (engine, schemas, 72 EN questions, 53 anchor ideologies,
-calibration). **Stopped for the owner's review of the question list** (`docs/question-bank.md`).
-
+calibration; question revision 2 approved 2026-10-23) · **Design reset ✅ (black and white, §13).
+Stopped for the owner's design review on `/styleguide`; Phase 3 starts after approval.**
 ---
 
 ## 1. Principles
@@ -37,7 +37,9 @@ calibration). **Stopped for the owner's review of the question list** (`docs/que
 | Concern | Choice |
 |---|---|
 | Framework | Next.js **16.4** (App Router, RSC, Turbopack), React 19.2, TypeScript strict |
-| Styling | Tailwind **4.3** (CSS-first `@theme` tokens), CSS variables for light/dark |
+| Styling | Tailwind **4.3** (CSS-first `@theme`), theme cut down to two colour tokens, `--ink` and `--paper` (D-075) |
+| Fonts | Archivo + IBM Plex Mono, self-hosted via `next/font/local` (D-076) |
+| Images | sharp at build time: Commons photos → 1-bit ordered dither (D-078) |
 | i18n | next-intl **4.14**: `en`, `de` (standard German, ß), `fr`. `de-ch` comes later as a build-time ß→ss transform plus a Swiss vocabulary list. Localized `pathnames`, `localePrefix: 'always'`, locale cookie off |
 | Validation | zod **4** |
 | DB (opt-in sync only) | Postgres on Neon (EU, Frankfurt) + Drizzle ORM |
@@ -67,11 +69,12 @@ data/                     axes, spectrums, families, rubric, questions/, ideolog
                           regimes/, figures/, parties/<iso2>/
 lib/engine/               PURE scoring/matching/calibration
 lib/schema/               zod schemas and inferred types
+lib/design/               the two colour tokens (ink, paper) for TS consumers
 lib/catalog/              typed accessors, localized slug maps, search index
 lib/storage/ lib/sync/    client: IndexedDB, E2E crypto, sync client
 lib/server/               server-only: db, tokens, rate limit
-components/               ui/ test/ results/ compass/ charts/ dashboard/ explorer/ share/
-scripts/                  validate-data, build-derived, check-sources, check-privacy, fetch-commons, calibration-report, pilot-analysis
+components/               ui/ test/ results/ compass/ charts/ dashboard/ explorer/ share/ styleguide/
+scripts/                  validate-data, build-derived, build-images, check-sources, check-privacy, check-palette, fetch-commons, calibration-report, pilot-analysis
 generated/                build outputs (PCA, indices, τ, neighbours, web layout), gitignored
 docs/                     scoring.md, content-style.md, adding-content.md, refreshing-parties.md
 tests/e2e/                Playwright
@@ -416,11 +419,13 @@ The page has a sticky TOC with localized anchors. Sections:
 
 ## 9. Modern compass (Phase 4, then trail in Phase 8)
 
-- **Rendering:** Canvas 2D for the gradient, kernel density and points, with an SVG overlay for
-  labels and focus. d3-zoom for pan/zoom and d3-delaunay for hit-testing. Labels are
+- **Rendering:** Canvas 2D for the halftone density (dot size = how many ideologies sit nearby)
+  and points, with an SVG overlay for labels and focus. Points are spectrum shapes with codes
+  (D-077); no colour anywhere. d3-zoom for pan/zoom and d3-delaunay for hit-testing. Labels are
   collision-avoided and get more detailed as you zoom.
-- **You:** an uncertainty ellipse (radii from confidence on X and Y), with a trail, scrubber and
-  playback.
+- **You:** an outlined uncertainty ellipse (radii from confidence on X and Y) with a crosshair.
+  The trail is a dashed path with arrowheads and date labels, more dotted with age, with a
+  scrubber and playback (reduced motion: static path). The ghost compare is hollow and dashed.
 - **Axis picker:** 12 axes plus the indices, or **Map**, a build-time PCA over all 12 axes with
   stored loadings, so anything projects exactly. The web view starts from the same coordinates.
 - **Also:** small multiples, layers, spectrum and family filters, and a ghost compare.
@@ -447,10 +452,13 @@ The page has a sticky TOC with localized anchors. Sections:
 ## 11. Share, compare (Phase 8) · Explorer (Phase 10) · Optional (Phase 11)
 
 - **Share and compare:** OG images per result (on Share only) and per entry, generated on demand
-  and cached. PNG card, PDF via a print stylesheet, JSON. Friend compare overlays radars and gives
-  per-axis deltas and a compatibility score.
-- **Explorer:** catalog pages with search, filters and the 12-icon strip; one SSG page per complete
-  entry. A force-directed web view collapsible by family. A sandbox. Procedural original SVG avatars.
+  and cached. PNG card, PDF via a print stylesheet, JSON, all black and white in the site's fonts.
+  Friend compare overlays radars (solid + hatched vs dashed + empty) and gives per-axis deltas and
+  a compatibility score.
+- **Explorer:** catalog pages with search, filters and the twelve-axis strip (codes + filled/empty
+  squares); one SSG page per complete entry. A force-directed web view collapsible by family
+  (nodes = spectrum shapes, 1px edges, labels on hover/zoom, selected node inverted). A sandbox.
+  Generated monochrome entry glyphs; countries as ISO codes, no flags.
 - **Optional (feature-flagged):**
   - AI explain with the current Haiku model, re-verified at implementation time
   - a community layer as a separate anonymous submission with k-anonymous density
@@ -472,24 +480,45 @@ The page has a sticky TOC with localized anchors. Sections:
 5. **Inclusion:** real adherents or a real literature, with ≥2 independent sources. Satirical or
    online-invented labels are excluded unless tagged `online-satirical`, and are hidden from
    matching. Near-duplicates become aliases or variants.
-6. Images are Commons only, with metadata from the Commons API and a licence allowlist. No copied
+6. Images are Commons only, with metadata from the Commons API and a licence allowlist, and become
+   1-bit ordered-dither images at build time with attribution under each (D-078). No copied
    prose.
 
 Phase 2 already adds **~40 stub ideologies** (coordinates and metadata, no pages) as calibration
 anchors across all 9 spectra, including parent/child variants. They become full Tier A entries in
 Phase 5.
 
-## 13. Design (Phase 1)
+## 13. Design (reset 2026-10-23, D-075–D-079)
 
-- **Look:** warm cream, deep green, one deep-red accent reserved for "you" and primary actions,
-  strong display serif, and tints per spectrum that pass AA and stay distinguishable under
-  colour-vision deficiency.
-- **Theme:** light/dark follows the system, the toggle is stored in localStorage, and an inline
-  script prevents a flash.
-- **Motion:** mobile-first, playful micro-interactions, `prefers-reduced-motion`, and no
-  scroll-reveal gaps.
-- **Design-system page:** type, colour, spectrum tints, the 12-icon strip, controls and focus
-  states.
+Minimalist, brutalist, strictly black and white. This replaces the Phase 1 look (cream paper,
+deep green, one deep-red accent, a display serif, per-spectrum tints, playful micro-interactions,
+rounded cards). **Removed, and why:** the owner asked for a strictly two-colour design. Every
+greyscale step, tint, shadow, blur and soft corner was another colour or effect to keep apart in
+two modes. The spectrum tints and the accent carried meaning by colour alone, which the new
+encodings carry by shape, pattern and words. The playful motion did not fit the new tone.
+DECISIONS §0c lists each removed piece with its replacement.
+
+- **Palette:** `--ink` and `--paper` only (black on white; white on black in dark mode). Mode
+  follows the system, the "[ LIGHT / DARK ]" toggle is stored in localStorage, an inline script
+  sets it before paint, theme-color covers both modes, forced colours are respected, print is
+  always ink on white. Enforced by `check-palette` (script + CI) and a runtime e2e audit.
+- **Form:** zero radius and shadow, 2px rules (1px hairlines for dense data), a 12-column grid,
+  sections as bordered cells, numbered section headers, ruled tables.
+- **Type:** Archivo heavy for display headings (tight leading), Archivo regular for running text
+  (≥ 16 px, ~65ch, line-height 1.6), IBM Plex Mono for UI, small uppercase labels and all
+  numbers; huge mono numerals for match percentages. Self-hosted.
+- **States:** hover and press invert; selected = inverted + "[X]" or brackets; disabled = dashed;
+  focus = 3px outline at 3px offset; links underlined; errors and success in words.
+- **Motion:** none. Functional animation only, with a static reduced-motion fallback.
+- **Without colour:** spectrum shapes + codes with a legend; axis codes; the strip's
+  filled/empty squares; halftone density; solid vs dashed lines; hatched vs empty fills; inverted
+  selection. Every chart has a data-table alternative.
+- **Images:** 1-bit dither at build, attribution visible; generated glyphs instead of avatars;
+  ISO codes instead of flags. Share cards, PDF and print are black and white too.
+- **Landing:** one screen: wordmark, one sentence, the three modes as a ruled table. The axes
+  overview, "how it works" and the promises live on /method.
+- **`/styleguide`** (noindex, unlinked) shows every component and state in both modes side by
+  side, plus the shape and pattern legends, for design review.
 
 ## 14. Quality bar
 
@@ -499,7 +528,8 @@ Phase 5.
 - Playwright smoke and axe checks run from Phase 1 (basic) and Phase 3 (full flow).
 - LHCI ≥ 95 on home, test, results, dashboard, catalog and detail pages, gated in Phase 12 and
   tracked from Phase 3.
-- WCAG AA.
+- WCAG AA (ink on paper is 21:1); 44px touch targets; no horizontal page scroll down to 320px.
+- Two colours only: `npm run check:palette` locally and in CI, plus the e2e colour audit (D-075).
 - SEO: per-page metadata, hreflang, JSON-LD, sitemap and per-page OG.
 - No third-party scripts, no tracking cookies.
 
@@ -509,6 +539,7 @@ Phase 5.
 |---|---|---|
 | 0 | Plan (re-synced to spec v2) | ✅ |
 | 1 | Scaffold, design system, i18n: Next 16 app, tokens, fonts, theme, next-intl with localized pathnames (en/de/fr UI), layout shell, stub pages for every route, design-system page, lint/format/Vitest/Playwright wiring | `/en` `/de` `/fr` with localized slugs; lint blocks string literals; check and e2e smoke green |
+| 1b | **Design reset:** black-and-white tokens, self-hosted fonts, base components, `/styleguide`, palette guard (script, CI, e2e audit), dither pipeline | ✅ check + e2e green; **STOP for design review** |
 | 2 | Engine, schemas, **36 Quick + 72 Standard EN questions**, ~40 anchor stubs, validator, build-derived (PCA, indices, τ), calibration suite, `docs/scoring.md` | calibration numbers reported; (b) and (c) pass; **STOP for question review** |
 | 3 | Test UI + results page; first Vercel preview deploy; **pilot page + `pilot-analysis`** (§7a) | e2e full flow; LHCI tracked; pilot file round-trips through the analysis |
 | 4 | Modern compass (static) | 60 fps; axe clean |

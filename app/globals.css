@@ -1,133 +1,75 @@
 @import "tailwindcss";
 
-/* Dark styles follow the data-theme attribute set before paint by the inline
-   theme script (system preference unless the user chose otherwise). */
+/* Brutalist black and white (D-075). Two colours, swapped between modes; no
+   greys, accents, gradients, shadows, opacity, blur or radius anywhere.
+   scripts/check-palette.ts enforces this in CI. Dark styles follow the
+   data-theme attribute that the inline theme script sets before first paint. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-/* ---------- Tokens: light (default) ---------- */
+/* ---------- The two tokens ---------- */
 :root {
-  --paper: #f3ede0;
-  --paper-raised: #faf6ee;
-  --paper-sunk: #e9e1d0;
-  --ink: #12332b;
-  --ink-2: #3f5c53;
-  --ink-3: #526b63;
-  --rule: rgb(18 51 43 / 0.16);
-  --rule-strong: rgb(18 51 43 / 0.32);
-  --forest: #163f35;
-  --on-forest: #f3ede0;
-  --accent: #a3191f;
-  --accent-ink: #fff8f2;
-  --focus: #a3191f;
-  --grain-opacity: 0.05;
-
-  --sp-radical-left: #8c2254;
-  --sp-left: #b23d66;
-  --sp-centre: #6a4e9e;
-  --sp-right: #2c5b9a;
-  --sp-far-right: #6e4a2c;
-  --sp-third-position: #5f6b17;
-  --sp-libertarian: #835c06;
-  --sp-anarchist: #2a2a2a;
-  --sp-theocratic: #226b70;
-
+  --ink: #000;
+  --paper: #fff;
   color-scheme: light;
 }
 
-/* ---------- Tokens: dark ---------- */
 @media (prefers-color-scheme: dark) {
   /* No-JS fallback; with JS the data-theme attribute always wins. */
   :root:not([data-theme]) {
-    --paper: #0d1c18;
-    --paper-raised: #13261f;
-    --paper-sunk: #091511;
-    --ink: #eee7d7;
-    --ink-2: #bcc6bc;
-    --ink-3: #93a39a;
-    --rule: rgb(238 231 215 / 0.14);
-    --rule-strong: rgb(238 231 215 / 0.3);
-    --forest: #e9e1d0;
-    --on-forest: #0d1c18;
-    --accent: #f0645a;
-    --accent-ink: #1a0605;
-    --focus: #f0645a;
-    --grain-opacity: 0.07;
-    --sp-radical-left: #e88ab4;
-    --sp-left: #f3a0b6;
-    --sp-centre: #b9a3ea;
-    --sp-right: #86aeea;
-    --sp-far-right: #d2a57e;
-    --sp-third-position: #bac86e;
-    --sp-libertarian: #e7bc55;
-    --sp-anarchist: #d8d2c4;
-    --sp-theocratic: #74c4c6;
+    --ink: #fff;
+    --paper: #000;
     color-scheme: dark;
   }
 }
 
-:root[data-theme="dark"] {
-  --paper: #0d1c18;
-  --paper-raised: #13261f;
-  --paper-sunk: #091511;
-  --ink: #eee7d7;
-  --ink-2: #bcc6bc;
-  --ink-3: #93a39a;
-  --rule: rgb(238 231 215 / 0.14);
-  --rule-strong: rgb(238 231 215 / 0.3);
-  --forest: #e9e1d0;
-  --on-forest: #0d1c18;
-  --accent: #f0645a;
-  --accent-ink: #1a0605;
-  --focus: #f0645a;
-  --grain-opacity: 0.07;
-  --sp-radical-left: #e88ab4;
-  --sp-left: #f3a0b6;
-  --sp-centre: #b9a3ea;
-  --sp-right: #86aeea;
-  --sp-far-right: #d2a57e;
-  --sp-third-position: #bac86e;
-  --sp-libertarian: #e7bc55;
-  --sp-anarchist: #d8d2c4;
-  --sp-theocratic: #74c4c6;
+:root[data-theme="dark"],
+[data-theme="dark"] {
+  --ink: #fff;
+  --paper: #000;
   color-scheme: dark;
 }
 
+/* A nested frame can pin either mode (the styleguide shows both side by side). */
+[data-theme="light"] {
+  --ink: #000;
+  --paper: #fff;
+  color-scheme: light;
+}
+
+/* Tailwind only knows ink and paper (plus its built-in transparent and
+   current); every other colour, radius, shadow and blur scale is removed. */
 @theme inline {
-  --font-display: var(--font-bodoni), "Bodoni 72", "Didot", Georgia, serif;
-  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
-
-  --color-paper: var(--paper);
-  --color-paper-raised: var(--paper-raised);
-  --color-paper-sunk: var(--paper-sunk);
+  --color-*: initial;
   --color-ink: var(--ink);
-  --color-ink-2: var(--ink-2);
-  --color-ink-3: var(--ink-3);
-  --color-rule: var(--rule);
-  --color-rule-strong: var(--rule-strong);
-  --color-forest: var(--forest);
-  --color-on-forest: var(--on-forest);
-  --color-accent: var(--accent);
-  --color-accent-ink: var(--accent-ink);
+  --color-paper: var(--paper);
 
-  --color-sp-radical-left: var(--sp-radical-left);
-  --color-sp-left: var(--sp-left);
-  --color-sp-centre: var(--sp-centre);
-  --color-sp-right: var(--sp-right);
-  --color-sp-far-right: var(--sp-far-right);
-  --color-sp-third-position: var(--sp-third-position);
-  --color-sp-libertarian: var(--sp-libertarian);
-  --color-sp-anarchist: var(--sp-anarchist);
-  --color-sp-theocratic: var(--sp-theocratic);
+  --font-*: initial;
+  --font-mono:
+    var(--font-mono-latin), var(--font-mono-ext), ui-monospace, "SFMono-Regular", Menlo, Consolas,
+    monospace;
+  --font-sans:
+    var(--font-grotesk), var(--font-grotesk-ext), ui-sans-serif, system-ui, "Helvetica Neue", Arial,
+    sans-serif;
 }
 
 @theme {
-  --text-display-xl: clamp(2.75rem, 1.6rem + 5.2vw, 6rem);
-  --text-display-xl--line-height: 0.98;
-  --text-display-lg: clamp(2.1rem, 1.5rem + 2.8vw, 3.75rem);
-  --text-display-lg--line-height: 1.02;
-  --text-display-md: clamp(1.6rem, 1.3rem + 1.3vw, 2.35rem);
-  --text-display-md--line-height: 1.08;
-  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --radius-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --text-shadow-*: initial;
+  --blur-*: initial;
+  --perspective-*: initial;
+  --animate-*: initial;
+
+  --text-display-xl: clamp(2.25rem, 1rem + 4.6vw, 5.25rem);
+  --text-display-xl--line-height: 0.92;
+  --text-display-lg: clamp(2rem, 1.3rem + 3vw, 4rem);
+  --text-display-lg--line-height: 0.95;
+  --text-display-md: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem);
+  --text-display-md--line-height: 1;
+  --text-numeral: clamp(4rem, 2rem + 9vw, 9rem);
+  --text-numeral--line-height: 0.85;
 }
 
 /* ---------- Base ---------- */
@@ -135,37 +77,38 @@
   html {
     background-color: var(--paper);
     color: var(--ink);
+    scrollbar-color: var(--ink) var(--paper);
     -webkit-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
   }
 
   body {
-    font-family: var(--font-sans);
-    font-feature-settings: "kern", "liga";
     min-height: 100dvh;
     background-color: var(--paper);
-  }
-
-  /* Paper grain: a few hundred bytes of SVG noise, purely decorative. */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    opacity: var(--grain-opacity);
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums;
   }
 
   ::selection {
-    background-color: var(--accent);
-    color: var(--accent-ink);
+    background-color: var(--ink);
+    color: var(--paper);
   }
 
   :focus-visible {
-    outline: 2px solid var(--focus);
+    outline: 3px solid var(--ink);
     outline-offset: 3px;
-    border-radius: 2px;
+  }
+
+  a {
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+  }
+
+  button:not(:disabled),
+  summary {
+    cursor: pointer;
   }
 
   h1,
@@ -178,64 +121,121 @@
     text-wrap: pretty;
   }
 
-  .tabular {
-    font-variant-numeric: tabular-nums;
-  }
-}
-
-/* ---------- Editorial primitives ---------- */
-@layer components {
-  .kicker {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-  }
-
-  /* Display headings: Bodoni with optical sizing for big sizes. */
-  .display {
-    font-family: var(--font-display);
-    font-optical-sizing: auto;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-  }
-
-  .display em,
-  .display.italic,
-  .display .italic {
-    font-family: var(--font-bodoni-italic), var(--font-display);
-  }
-
-  .display em {
+  ::placeholder {
+    color: var(--ink);
     font-style: italic;
-    font-weight: 500;
-    color: var(--accent);
-  }
-
-  .rule-top {
-    border-top: 1px solid var(--rule-strong);
-  }
-
-  .hairline {
-    border-color: var(--rule);
-  }
-
-  /* Animated underline for text links. */
-  .link-ink {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.22em;
-    text-decoration-color: var(--rule-strong);
-    transition: text-decoration-color 160ms ease;
-  }
-  .link-ink:hover {
-    text-decoration-color: currentColor;
   }
 }
 
-/* ---------- Motion ---------- */
+/* ---------- Primitives ---------- */
+@layer components {
+  /* Display headings: the heavy grotesque, tight leading. */
+  .display {
+    font-family: var(--font-sans);
+    font-weight: 850;
+    letter-spacing: -0.025em;
+  }
+
+  /* Small uppercase mono labels. */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Running text: the grotesque at a comfortable measure. */
+  .prose-text {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    max-width: 65ch;
+  }
+
+  /* Current and selected items wear brackets as a text marker, so the state
+     survives without the inverted block (forced colours, print). The "/ ''"
+     alt text keeps screen readers from announcing the brackets. */
+  .bracketed[aria-current="page"]::before,
+  .bracketed[aria-selected="true"]::before {
+    content: "[";
+    content: "[" / "";
+  }
+  .bracketed[aria-current="page"]::after,
+  .bracketed[aria-selected="true"]::after {
+    content: "]";
+    content: "]" / "";
+  }
+
+  /* "[ ]" / "[X]" before a visually hidden native checkbox or radio. */
+  .check-mark::before {
+    content: "[ ]";
+    content: "[ ]" / "";
+    white-space: pre;
+  }
+  :checked + .check-mark::before {
+    content: "[X]";
+    content: "[X]" / "";
+  }
+
+  /* Text links invert on hover, like every other control. */
+  .link:hover {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+
+  /* Range slider: a ruled track and a solid rectangular thumb. */
+  .range {
+    appearance: none;
+    width: 100%;
+    height: 2.75rem;
+    margin: 0;
+    background: transparent;
+  }
+  .range::-webkit-slider-runnable-track {
+    height: 2px;
+    background-color: var(--ink);
+  }
+  .range::-moz-range-track {
+    height: 2px;
+    background-color: var(--ink);
+  }
+  .range::-webkit-slider-thumb {
+    appearance: none;
+    box-sizing: border-box;
+    width: 1rem;
+    height: 2rem;
+    margin-top: calc(-1rem + 1px);
+    border: 3px solid var(--paper);
+    border-radius: 0;
+    background-color: var(--ink);
+  }
+  .range::-moz-range-thumb {
+    box-sizing: border-box;
+    width: 1rem;
+    height: 2rem;
+    border: 3px solid var(--paper);
+    border-radius: 0;
+    background-color: var(--ink);
+  }
+
+  /* Modal backdrop: a halftone screen instead of a dimmed, blurred page. */
+  .modal::backdrop {
+    background-color: var(--ink);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='1.1'/%3E%3C/svg%3E");
+    mask-size: 6px 6px;
+  }
+
+  /* 1-bit images keep hard pixels at any scale, so no grey ever appears. */
+  .dithered {
+    image-rendering: pixelated;
+  }
+}
+
+/* ---------- Motion: none by default ---------- */
+/* State changes are instant. Functional animation (trail playback, graph
+   layout) checks this query itself and falls back to a static view. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -247,16 +247,37 @@
   }
 }
 
-/* Load-in: elements start visible (no blank gaps if JS or animation fails);
-   the animation only adds a short rise. */
-@keyframes rise {
-  from {
-    transform: translateY(6px);
-  }
-  to {
-    transform: none;
+/* ---------- High contrast ---------- */
+/* Forced colours replace ink and paper with the user's system colours, which
+   also removes inverted backgrounds. Selection stays readable through the
+   text markers ("[X]", brackets) plus an outline drawn in the system colour. */
+@media (forced-colors: active) {
+  [aria-checked="true"],
+  [aria-pressed="true"],
+  [aria-selected="true"],
+  [aria-current="page"],
+  [aria-current="true"] {
+    outline: 3px solid;
+    outline-offset: -5px;
   }
 }
-.rise {
-  animation: rise 520ms var(--ease-out-quart) both;
+
+/* ---------- Print: always ink on white ---------- */
+@media print {
+  :root,
+  :root:not([data-theme]),
+  :root[data-theme="dark"],
+  [data-theme] {
+    --ink: #000;
+    --paper: #fff;
+    color-scheme: light;
+  }
+
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  main a[href^="http"]::after {
+    content: " (" attr(href) ")";
+  }
 }

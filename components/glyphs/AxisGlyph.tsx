@@ -30,7 +30,7 @@ const GLYPHS: Record<AxisId, Record<PoleSide, React.ReactNode>> = {
     // Private: a keyhole in a frame.
     pos: (
       <>
-        <rect x="5.5" y="4.5" width="13" height="15" rx="1.5" />
+        <rect x="5.5" y="4.5" width="13" height="15" />
         <circle cx="12" cy="10.5" r="2" />
         <path d="M12 12.5v3.5" />
       </>
@@ -52,7 +52,7 @@ const GLYPHS: Record<AxisId, Record<PoleSide, React.ReactNode>> = {
     // Liberty: an open padlock.
     neg: (
       <>
-        <rect x="5" y="11" width="14" height="9" rx="1.5" />
+        <rect x="5" y="11" width="14" height="9" />
         <path d="M8.5 11V7.5a3.5 3.5 0 0 1 6.8-1.2" />
       </>
     ),
@@ -211,9 +211,9 @@ export function AxisGlyph({ axis, side, size = 24, ...rest }: AxisGlyphProps) {
       height={size}
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.6}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeWidth={1.75}
+      strokeLinecap="square"
+      strokeLinejoin="miter"
       aria-hidden="true"
       focusable="false"
       {...rest}

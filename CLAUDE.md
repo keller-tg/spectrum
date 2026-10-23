@@ -12,8 +12,12 @@
   next-intl's root-params request config.
 - UI text: messages/*.json (en/de/fr, standard German with ß, French typographic spaces —
   tests enforce key parity and spacing). Content text: localized fields in /data.
-- Colours are CSS tokens in app/globals.css (light + dark); text pairs must pass WCAG AA
-  (axe runs in e2e for both themes).
+- Design is strictly black and white (D-075–D-079): the only colours are `--ink` and `--paper`
+  (app/globals.css, mirrored in lib/design/tokens.ts). No other colour, grey, opacity, shadow,
+  radius, blur or gradient; `npm run check:palette` and the e2e colour audit fail on any.
+  States: hover/press invert, selected = inverted + "[X]"/brackets, disabled = dashed, focus =
+  3px outline. Meaning never rides on colour: use shapes, codes, patterns and words. New
+  components get a section on /styleguide in both modes.
 - The repo is public: never commit secrets or personal data.
 - Never put the owner's personal data (email, real name beyond the commit identity, machine name)
   in any file, HTTP header or request. For a User-Agent contact use the repo URL:

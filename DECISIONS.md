@@ -55,6 +55,27 @@ The spec answered them all.
 | Personal data | rule in CLAUDE.md | **privacy guard** (script + CI on every push, full history), hash-only secret; User-Agent contact = repo URL | D-073 |
 | Hosting | Vercel team unknown | team `sos-kellohs-projects`, project `spectrum`, Next.js preset, Node 24.x; live | D-001, D-074 |
 
+
+## 0c. Design reset (2026-10-23)
+
+The owner replaced the Phase 1 look ("Design" in the master spec) with a minimalist, brutalist,
+strictly black-and-white design. Everything else in the spec stays.
+
+| Area | Before (Phase 1) | Now | Entries |
+|---|---|---|---|
+| Palette | cream paper, deep-green ink, three ink shades, rule tints, one deep-red accent, nine spectrum tints, separate dark values | **two tokens, `--ink` and `--paper`**: black on white, white on black in dark mode; nothing else | D-075 |
+| Enforcement | axe contrast checks | `check-palette` (script + CI) and a runtime colour audit in e2e | D-075 |
+| Fonts | Bodoni Moda (+ italic) and Schibsted Grotesk via `next/font/google` | **Archivo** (heavy display, regular text) + **IBM Plex Mono** (UI, labels, numbers), self-hosted via `next/font/local` | D-076 |
+| Form | rounded cards and chips, soft shadows, backdrop blur, paper grain, colour glow | zero radius, zero shadow, 2px rules (1px hairlines), 12-column grid, numbered sections, ruled tables | D-079 |
+| Motion | micro-interactions, rise-in, spinning dial ring, hover lifts | none; instant states; functional animation only, with a reduced-motion fallback | D-079 |
+| States | accent borders and tinted fills | hover/press invert, selected = inverted + "[X]" or brackets, disabled = dashed, focus = 3px outline at 3px, errors in words | D-079 |
+| Spectra | colour tints with a dot | marker shape + 1–3 letter code + legend | D-077 |
+| Axis strip | 12 pole glyphs, opacity = strength | 12 two-letter codes over four filled/empty squares | D-077 |
+| Charts | colour gradient compass, red "you", tinted fills | halftone density, outlined circle + crosshair, dashed trail with dates, solid vs dashed lines, hatched vs empty fills | D-077 |
+| Images | Commons photos as they are; colour avatars | 1-bit ordered dither at build time, attribution under each; generated monochrome glyphs; ISO codes instead of flags | D-078 |
+| Landing | sentence + lead + dial graphic, mode cards, axes overview, "how it works", promises band | one screen: wordmark, one sentence, the mode table; the other sections moved to /method | D-079 |
+| Design page | `/design-system` | `/styleguide` (noindex, unlinked): every component and state in both modes side by side | D-079 |
+
 ---
 
 ## A. Project & stack
@@ -84,7 +105,7 @@ next-intl documents static rendering through `generateStaticParams` + `next/root
 nothing about Cache Components. Every page is plain SSG/ISR, which is all the app needs.
 Revisit if next-intl documents support.
 
-**D-058 · 🟢 · Fonts.** Bodoni Moda (display, optical-size axis) + Schibsted Grotesk (text/UI),
+**D-058 · ~~superseded by D-076~~ · Fonts.** Bodoni Moda (display, optical-size axis) + Schibsted Grotesk (text/UI),
 self-hosted via `next/font`. Only the `latin` subset is preloaded (it covers en/de/fr); latin-ext
 loads on demand. The italic display face is a separate, non-preloaded face, since it sets only
 words of emphasis.
@@ -325,6 +346,9 @@ position twice. **Adopted:**
 - replacing #53 for axis 7 difficulty (decide after the pilot)
 - replacing #58 (an alliance item the owner did not flag)
 
+**Owner, 2026-10-23:** revision 2 approved as written. Axes 6 and 8 keep the owner's labels; #53
+and #58 wait for the pilot data.
+
 **Documented, not changed:**
 - #61's country anchoring: ten years is current law in CH/AT
 - #38's overlap with axis 4
@@ -527,10 +551,11 @@ Wikipedia), academic works, datasets (V-Dem, CHES; licences to be checked), and 
 Subagents cite only URLs they opened. A link checker runs in CI. No copied prose.
 
 **D-032 · 🟢 · Images:** Commons only, with metadata from the Commons API and a licence allowlist
-(PD, CC0, CC BY, CC BY-SA). Self-hosted, optimized copies.
+(PD, CC0, CC BY, CC BY-SA). Self-hosted copies, turned into 1-bit dither images at build time
+(D-078).
 
-**D-033 · 🟢 · Avatars:** procedural original geometric SVG emblems; no characters, no real-world
-symbols.
+**D-033 · 🟢 · Avatars:** generated, original, monochrome glyphs (D-078): a 5×5 mirror-symmetric
+pattern of squares derived from the entry id. No characters, no faces, no real-world symbols.
 
 **D-034 · 🟢 · What a country's coordinates mean:** the policy regime in force as of a stated date,
 not public opinion. Regimes cover a stated period.
@@ -545,8 +570,9 @@ and are off at launch (see D-042 on the Impressum).
 **D-043 · ✅ · Reference site:** sets the mood only. None of its code, text, questions or data is
 used.
 
-**D-045 · 🟢 · Spectrum colours:** muted tints checked for AA contrast and colour-vision
-deficiency. Deep red is reserved for "you" and primary actions.
+**D-045 · ~~superseded by D-077~~ · Spectrum colours:** muted tints checked for AA contrast and
+colour-vision deficiency. Deep red was reserved for "you" and primary actions. The design now has
+no colour; spectra are shapes plus codes.
 
 **D-046 · ✅ · Catalog staging:** Tier A (~120 core ideologies, full pages), then regimes,
 countries, figures and parties, then Tier B (~180+) in batches with the same gates. Gates are never
@@ -584,9 +610,12 @@ classification, coordinate drift) before merge. Its findings and my resolutions 
 
 ## F. Rendering & optional features
 
-**D-038 · 🟢 · OG images** are generated on demand and cached, not at build time.
+**D-038 · 🟢 · OG images** are generated on demand and cached, not at build time. They are black
+and white with the site's two fonts (D-075, D-076); satori reads TTF/OTF/WOFF but not WOFF2, so
+Phase 8 adds `.woff` copies of the same faces.
 
-**D-039 · 🟢 · PDF** uses a print stylesheet and `window.print()`.
+**D-039 · 🟢 · PDF** uses a print stylesheet and `window.print()`. The print rules (already in
+`app/globals.css`) force ink on white in every mode and hide navigation and controls.
 
 **D-040 · 🟢 · AI explain (Phase 11)** uses the current Haiku model (the Claude Code environment
 lists `claude-haiku-5-5`; re-verify against Anthropic docs then). It sends rounded scores only,
@@ -594,8 +623,111 @@ asks for consent, is labelled AI-generated, cached and rate-limited, and is off 
 
 ---
 
-## G. Open items
 
+## G. Design (black and white, 2026-10-23)
+
+**D-075 · ✅ · Two colours.** The only colours are the CSS tokens `--ink` and `--paper`: `#000` on
+`#fff` in light mode, `#fff` on `#000` in dark mode (`lib/design/tokens.ts` mirrors them for
+theme-color and, later, OG images). No greys, accents, gradients, shadows, opacity, blur or rounded
+corners. Mode follows `prefers-color-scheme`; the text toggle "[ LIGHT / DARK ]" stores a choice
+in localStorage, the inline script applies it before first paint and adds a theme-color meta
+for it. Nested `data-theme` frames are allowed (the styleguide shows both modes at once).
+Forced-colours mode is respected: no `forced-color-adjust: none`, SVG paints in `currentColor`,
+and selected states add an outline in the system colour because inverted backgrounds disappear
+there. Print always uses ink on white.
+**Enforcement:** Tailwind's theme is cut down to ink and paper (plus the built-in transparent
+and current), and its radius, shadow, blur and animation scales are removed.
+`scripts/check-palette.ts` runs in `npm run check` and in CI (`.github/workflows/palette.yml`). It
+parses CSS and TypeScript (string literals only, so comments and prose never trip it) and
+rejects:
+- colour literals outside the token declarations
+- named and system colours, and colour functions
+- gradients, opacity, shadows, radius and filters
+- Tailwind palette colours and opacity modifiers
+- SVG opacity attributes and gradient or blur elements
+
+Its unit test proves the previous design would fail. A runtime audit in the e2e suite checks
+every rendered element and pseudo-element in both modes. Dithered photos are exempt by
+construction.
+**Why:** owner's design reset. WCAG AA contrast is now 21:1 everywhere.
+
+**D-076 · 🟢 · Fonts (supersedes D-058).** **Archivo** (Omnibus-Type, variable 100–900) for display
+headings at weight 850 with tight leading, and at 400 for running text (≥ 16 px, ~65ch,
+line-height 1.6). **IBM Plex Mono** 400/700 for the interface, labels (small uppercase, tracked)
+and every number (mono figures are tabular). Both are SIL OFL 1.1 and self-hosted from
+`app/fonts/` via `next/font/local`, licences next to the files, with no font request to any
+other host. Latin is preloaded (≈65 KB for three files); latin-ext loads only when a page uses
+one of its characters. **Why:** a heavy neutral grotesque gives the black-and-white pages their
+weight without ornament; a mono with tabular figures makes numbers and labels line up in ruled
+tables. Archivo's black weight reads as a poster grotesque, not a fashion face, and Plex Mono
+pairs with it without competing. Widths other than normal were dropped to keep the preload small.
+
+**D-077 · ✅/🟢 · Encodings without colour.**
+- **Spectra:** each has a marker shape and a 1–3 letter code, always shown together and keyed
+  in a legend (`SpectrumLegend`): radical left ■ RL, left □ L, centre ○ C, right ◇ R,
+  far right ◆ FR, third position ⋈ TP (bowtie), libertarian △ LB, anarchist ▽ AN,
+  theocratic ⬡ TH. Only the two outer ends of the left–right line are filled, so the fill means
+  "further out on that line" and applies to both sides alike. Crosses, stars and other shapes
+  with political or religious associations are avoided. Codes are localized (DE: M, ER, DP; FR:
+  GR, G, D, ED); shapes are fixed. Hollow markers are filled with paper so they knock out
+  halftone dots behind them.
+- **Axes:** each axis has a localized two-letter code (EN: DI OW TR SP CE PA SC RS EC NW IN MI),
+  used on radar spokes, compact tables and the strip.
+- **Twelve-axis strip:** the code over four small squares, two per pole. One filled square =
+  leans, two = strong (|score| ≥ 60), none = near the centre (|score| < 15). The styleguide
+  explains how to read it; the accessible label spells out every axis.
+- **Charts:** your series is a solid line with a hatched fill and solid corners, a comparison is
+  dashed with an empty fill and hollow corners. Axis results are black bars on ruled tracks
+  with ticks every 10 and an uncertainty bracket. Compass: halftone dot size shows density, you
+  are an outlined circle (radius from confidence) with a crosshair, past results form a dashed
+  path with arrowheads and dates (sparser dots with age), a ghost compare is hollow and dashed.
+  Web view: spectrum shapes as nodes, 1px edges, labels on hover, selected node inverted.
+- Every chart keeps a text alternative: a title/description plus a "Show data table" disclosure.
+- **Flags** are dropped; countries appear by name and ISO code.
+
+**D-078 · 🟢 · Images at build time.** `scripts/build-images.ts` (sharp, run by `prebuild` and
+`predev`) turns each source in `data/images/` into a 1-bit PNG via an 8×8 Bayer ordered dither:
+greyscale, normalised, resized to its output size, thresholded. Outputs go to `public/images/`
+(gitignored) and contain only pure black and white pixels (the 320×402 sample is 6 KB). They are
+shown at their own size with `image-rendering: pixelated`, so scaling never adds grey, in a 2px
+frame, with author, licence and a source link always visible underneath. Licence data stays in
+`data/images.ts` (Commons API, never typed from memory). The first source is a public-domain
+portrait (John Stuart Mill, London Stereoscopic Company, c. 1870) used on the styleguide. Entry
+avatars are generated glyphs (D-033).
+
+**D-079 · ✅/🟢 · Brutalist rules, states and pages.**
+- **Form:** zero radius, zero shadow, 2px solid borders (1px hairlines for dense data), a strict
+  12-column grid, sections as bordered cells that share one rule, numbered section headers
+  ("01"), ruled tables.
+- **States without colour:** hover and press invert ink and paper. Selected is inverted plus a
+  text marker ("[X]" for options, brackets for the current page and the selected tab). Disabled
+  is a dashed border. Focus is a 3px solid outline at 3px offset in both modes. Links are
+  underlined. Errors and success are words (an invalid field also gets a 4px frame).
+- **Motion:** none by default. A global reduced-motion rule stays as a safety net for the
+  functional animation that comes later (trail playback, graph layout).
+- **Landing:** one screen with the wordmark, one sentence ("Twelve axes, because politics doesn't
+  fit on one line.") and the modes as a ruled table (Quick 36 / Standard 72 / Deep 144, with
+  minutes). Deep shows a dashed row and says "Opens soon". The axes overview, "how it works" and
+  the promises moved to /method, so no content was lost. An e2e test checks that the table fits
+  the first screen on desktop and phone.
+- **Wordmark and favicon:** "SPECTRUM" in bold mono capitals after a square glyph (a framed
+  field with one solid square); the favicon is the same glyph and follows the system mode.
+  Below 360px only the glyph shows, and the link keeps its accessible name.
+- **Header:** one ruled row of cells (wordmark, sections, EN/DE/FR, theme). Under 1024px the
+  sections move into a text "MENU" disclosure, and under 768px so does the theme toggle.
+- **Base components** (`components/ui`, `components/charts`): button, text field, checkbox, answer
+  options, cell grid, ruled table (scrolls inside its own focusable region on narrow screens, so
+  the page never scrolls sideways), nav, toggle, tabs, slider and axis bar, tooltip, modal
+  (native `<dialog>` over a halftone backdrop), legends, section header, figure image, entry glyph.
+- **`/styleguide`** replaces `/design-system`. It is noindex, in no nav or sitemap, and shows every
+  component and state in a light and a dark frame side by side, plus the shape and pattern
+  legends and static previews of the compass and web view on the anchor catalog. The localized
+  slugs are `/styleguide` (EN, DE) and `/guide-de-style` (FR).
+
+## H. Open items
+
+- Owner's design review of the black-and-white reset on `/styleguide` (D-075–D-079); Phase 3
+  starts after it.
 - Final domain (before Phase 7).
 - Optional: rewrite the first commit's author field (machine-local address) — needs a force push
   of `main`; owner's call.

@@ -21,11 +21,21 @@
   },
   "locale": {
     "label": "Langue",
-    "names": { "en": "English", "de": "Deutsch", "fr": "Français" },
-    "short": { "en": "EN", "de": "DE", "fr": "FR" }
+    "names": {
+      "en": "English",
+      "de": "Deutsch",
+      "fr": "Français"
+    },
+    "short": {
+      "en": "EN",
+      "de": "DE",
+      "fr": "FR"
+    }
   },
   "theme": {
-    "toggle": "Basculer entre thème clair et thème sombre"
+    "label": "Thème",
+    "light": "Clair",
+    "dark": "Sombre"
   },
   "footer": {
     "disclaimer": "Spectrum est un outil d’interprétation. Il lit vos réponses à travers un modèle aux limites bien réelles ; il ne mesure pas qui vous êtes.",
@@ -36,21 +46,25 @@
     "privacyLink": "Confidentialité",
     "imprint": "Mentions légales",
     "source": "Code source",
-    "designSystem": "Système de design",
     "status": "Titre provisoire, en développement."
   },
   "home": {
-    "kicker": "Douze axes · Gratuit · Sans compte",
-    "title": "La politique ne tient pas sur <em>une seule ligne</em>.",
-    "lead": "Répondez à de courtes affirmations, puis découvrez votre position sur douze axes indépendants, les idéologies, pays, personnalités et partis les plus proches, et le degré de certitude de ce portrait.",
+    "sentence": "Douze axes, parce que la politique ne tient pas sur une seule ligne.",
     "chooseMode": "Choisissez une durée",
-    "modeCount": "{count} questions",
-    "modeTime": "environ {minutes} min",
+    "table": {
+      "mode": "Mode",
+      "questions": "Questions",
+      "minutes": "Minutes",
+      "action": "Commencer"
+    },
     "recommended": "Recommandé",
     "opensSoon": "Bientôt disponible",
     "start": "Commencer",
     "modes": {
-      "quick": { "name": "Rapide", "blurb": "Une première esquisse de votre position." },
+      "quick": {
+        "name": "Rapide",
+        "blurb": "Une première esquisse de votre position."
+      },
       "standard": {
         "name": "Standard",
         "blurb": "Un portrait plus net, avec une confiance plus solide."
@@ -60,46 +74,7 @@
         "blurb": "La lecture la plus détaillée : douze questions par axe."
       }
     },
-    "modesNote": "Vous pourrez prolonger un test court plus tard en gardant vos réponses. Ce que vous voyez ici est le test entier : aucune étape cachée.",
-    "axesKicker": "L’instrument",
-    "axesTitle": "Douze axes, quatre domaines",
-    "axesLead": "Chaque axe est indépendant. On peut préférer le marché et les frontières ouvertes, ou la propriété collective et la tradition. Pendant le test, vous ne voyez jamais à quel axe se rattache une affirmation ; vos résultats le révèlent.",
-    "howKicker": "La méthode",
-    "howTitle": "Comment ça marche",
-    "how": {
-      "answer": {
-        "title": "Répondre",
-        "body": "Réagissez à des affirmations simples sur une échelle à cinq points. Pas sûr ? Passez. Passer ne compte pas comme neutre."
-      },
-      "see": {
-        "title": "Voir douze positions",
-        "body": "Chaque axe reçoit un score et un degré de confiance. Quand vos réponses tirent dans des sens opposés, les résultats le disent."
-      },
-      "explore": {
-        "title": "Explorer et suivre",
-        "body": "Comparez-vous aux idéologies, pays, personnalités et partis, et voyez vos opinions évoluer avec le temps."
-      }
-    },
-    "promisesKicker": "Les engagements",
-    "promisesTitle": "Ce sur quoi vous pouvez compter",
-    "promises": {
-      "local": {
-        "title": "Local d’abord",
-        "body": "Les résultats sont enregistrés dans votre navigateur. Rien n’atteint un serveur, sauf si vous choisissez la synchronisation chiffrée."
-      },
-      "tracking": {
-        "title": "Aucun pistage",
-        "body": "Pas de publicité, pas de mesure d’audience, pas de scripts tiers. Pas de cookies, sauf si vous créez un profil."
-      },
-      "honest": {
-        "title": "Incertitude assumée",
-        "body": "Les correspondances ne sont pas gonflées, et chaque résultat indique son degré de confiance."
-      },
-      "neutral": {
-        "title": "Catalogue équitable",
-        "body": "Chaque idéologie, dominante ou marginale, reçoit le même traitement encyclopédique, critiques comprises."
-      }
-    }
+    "modesNote": "Vous pourrez prolonger un test court plus tard en gardant vos réponses. Ce que vous voyez ici est le test entier : aucune étape cachée."
   },
   "stub": {
     "phaseNote": "Cette page arrive à la phase {phase} du développement.",
@@ -160,7 +135,43 @@
     },
     "method": {
       "title": "Méthode",
-      "lead": "Comment les réponses deviennent des scores, comment les correspondances sont calculées et où s’arrêtent les limites du modèle."
+      "lead": "Comment les réponses deviennent des scores, comment les correspondances sont calculées et où s’arrêtent les limites du modèle.",
+      "axesTitle": "Douze axes, quatre domaines",
+      "axesLead": "Chaque axe est indépendant. On peut préférer le marché et les frontières ouvertes, ou la propriété collective et la tradition. Pendant le test, vous ne voyez jamais à quel axe se rattache une affirmation ; vos résultats le révèlent.",
+      "howTitle": "Comment ça marche",
+      "how": {
+        "answer": {
+          "title": "Répondre",
+          "body": "Réagissez à des affirmations simples sur une échelle à cinq points. Pas sûr ? Passez. Passer ne compte pas comme neutre."
+        },
+        "see": {
+          "title": "Voir douze positions",
+          "body": "Chaque axe reçoit un score et un degré de confiance. Quand vos réponses tirent dans des sens opposés, les résultats le disent."
+        },
+        "explore": {
+          "title": "Explorer et suivre",
+          "body": "Comparez-vous aux idéologies, pays, personnalités et partis, et voyez vos opinions évoluer avec le temps."
+        }
+      },
+      "termsTitle": "Ce sur quoi vous pouvez compter",
+      "terms": {
+        "local": {
+          "title": "Local d’abord",
+          "body": "Les résultats sont enregistrés dans votre navigateur. Rien n’atteint un serveur, sauf si vous choisissez la synchronisation chiffrée."
+        },
+        "tracking": {
+          "title": "Aucun pistage",
+          "body": "Pas de publicité, pas de mesure d’audience, pas de scripts tiers. Pas de cookies, sauf si vous créez un profil."
+        },
+        "honest": {
+          "title": "Incertitude assumée",
+          "body": "Les correspondances ne sont pas gonflées, et chaque résultat indique son degré de confiance."
+        },
+        "neutral": {
+          "title": "Catalogue équitable",
+          "body": "Chaque idéologie, dominante ou marginale, reçoit le même traitement encyclopédique, critiques comprises."
+        }
+      }
     },
     "privacy": {
       "title": "Confidentialité",
@@ -171,10 +182,6 @@
       "title": "Mentions légales",
       "lead": "Informations légales et contact.",
       "pending": "La personne responsable sera indiquée ici avant le lancement public."
-    },
-    "designSystem": {
-      "title": "Système de design",
-      "lead": "Les fondations et composants dont chaque page est faite."
     }
   },
   "notFound": {
@@ -211,29 +218,169 @@
     "skip": "Je ne sais pas, passer",
     "groupLabel": "Votre réponse"
   },
-  "ds": {
-    "kicker": "Référence interne",
-    "type": "Typographie",
-    "typeDisplay": "Titres : Bodoni Moda",
-    "typeText": "Texte et interface : Schibsted Grotesk",
-    "sampleHeadline": "Où placeriez-vous la limite ?",
-    "sampleBody": "Chaque axe est mesuré séparément. Une position sur l’un ne dit rien des autres ; c’est précisément pourquoi douze lignes décrivent mieux une personne qu’une seule.",
-    "colour": "Couleur",
-    "colourNote": "Chaque association utilisée pour du texte respecte le niveau AA des WCAG dans les deux thèmes. Le rouge profond est réservé à vous et aux actions principales.",
-    "spectra": "Teintes des spectres",
-    "spectraNote": "Les teintes identifient les spectres dans les graphiques et les étiquettes. Elles accompagnent toujours un libellé écrit, jamais seules.",
-    "glyphs": "Glyphes des axes",
-    "glyphsNote": "Vingt-quatre glyphes originaux, un par pôle. Les bandeaux montrent le glyphe du pôle vers lequel penche une entrée.",
-    "strip": "Bandeau à douze icônes",
-    "stripNote": "L’opacité suit la force de l’inclinaison ; un point signifie proche du centre.",
-    "stripExampleA": "Profil d’exemple A",
-    "stripExampleB": "Profil d’exemple B",
-    "controls": "Commandes",
-    "scaleNote": "L’échelle de réponse garde une mise en page fixe pour que les boutons ne bougent jamais d’une question à l’autre. Passer est séparé de neutre.",
-    "buttons": "Boutons",
-    "primary": "Action principale",
-    "secondary": "Secondaire",
-    "quiet": "Lien discret",
-    "chips": "Étiquettes"
+  "styleguide": {
+    "title": "Guide de style",
+    "lead": "Tous les composants et leurs états dans les deux modes, pour la revue du design. Cette page n’est ni liée ni indexée.",
+    "modeSwitch": "Page entière",
+    "light": "Mode clair",
+    "dark": "Mode sombre",
+    "dataTable": "Afficher le tableau de données",
+    "sections": {
+      "type": "Palette et typographie",
+      "buttons": "Boutons",
+      "inputs": "Champs",
+      "answer": "Options de réponse",
+      "cells": "Cellules et titres de section",
+      "table": "Tableaux réglés",
+      "nav": "Navigation et onglets",
+      "toggle": "Interrupteurs",
+      "sliders": "Curseurs et barres d’axe",
+      "overlays": "Infobulle et fenêtre",
+      "legend": "Légendes",
+      "strip": "Bande des douze axes",
+      "radar": "Radar",
+      "compass": "Codage de la boussole",
+      "web": "Vue en réseau",
+      "images": "Images et glyphes"
+    },
+    "palette": {
+      "note": "Deux couleurs, inversées d’un mode à l’autre. Ni gris, ni accent, ni dégradé, ni ombre, ni transparence, ni flou, ni coins arrondis. Un contrôle CI refuse toute autre couleur."
+    },
+    "type": {
+      "display": "Titres : Archivo, graisse 850",
+      "prose": "Texte : Archivo, graisse 400",
+      "mono": "Interface, libellés et chiffres : IBM Plex Mono",
+      "numeral": "Pourcentage de correspondance",
+      "sampleHeadline": "Où placeriez-vous la limite ?",
+      "sampleBody": "Chaque axe est mesuré séparément. Une position sur l’un ne dit rien des autres ; c’est précisément pourquoi douze lignes décrivent mieux une personne qu’une seule."
+    },
+    "buttons": {
+      "note": "Le survol et l’appui inversent encre et papier. Le focus est un contour de 3 px, décalé de 3 px. Désactivé : un cadre en tirets.",
+      "order": "Normal · survol ou appui · focus · désactivé",
+      "primary": "Principal",
+      "secondary": "Secondaire",
+      "text": "Texte",
+      "primaryText": "Commencer",
+      "secondaryText": "Comparer",
+      "textText": "En savoir plus",
+      "link": "Lien dans le texte",
+      "linkSentence": "Les liens sont toujours soulignés, comme <link>celui-ci</link>, et s’inversent au survol."
+    },
+    "inputs": {
+      "note": "Les libellés se placent au-dessus des champs. Les erreurs sont écrites en toutes lettres et épaississent le cadre ; la couleur ne porte jamais de sens.",
+      "search": "Rechercher des idéologies",
+      "searchHint": "Un nom, une famille ou une étiquette.",
+      "placeholder": "p. ex. fédéralisme",
+      "error": "Erreur : saisissez au moins deux lettres.",
+      "disabled": "Indisponible",
+      "consent": "Je comprends que ce fichier contient mes opinions politiques.",
+      "checked": "Option choisie"
+    },
+    "answer": {
+      "note": "Cinq cellules réglées et un bouton « passer » séparé. La réponse choisie est inversée et marquée [X] ; le survol inverse aussi. Les touches 1 à 5 répondent.",
+      "selected": "Une réponse choisie",
+      "skipped": "Question passée"
+    },
+    "cells": {
+      "note": "Les sections sont des cellules encadrées sur une grille de 12 colonnes. Les cellules voisines partagent un même filet de 2 px.",
+      "sampleTitle": "Une section numérotée",
+      "cellTitle": "Cellule",
+      "cellBody": "Le contenu se range dans des cellules réglées plutôt que dans des cartes flottantes."
+    },
+    "table": {
+      "note": "Cadre et filet d’en-tête de 2 px, filets fins de 1 px. Les nombres sont alignés à droite en chiffres tabulaires. Les pays apparaissent en codes ISO, jamais en drapeaux.",
+      "caption": "Exemple : six idéologies d’ancrage",
+      "name": "Nom",
+      "spectrum": "Spectre",
+      "isoCaption": "Pays en codes ISO",
+      "iso": "Code",
+      "country": "Pays",
+      "ch": "Suisse",
+      "de": "Allemagne",
+      "fr": "France"
+    },
+    "nav": {
+      "note": "La page courante est inversée et entre crochets. Les onglets suivent la même règle et répondent aux flèches du clavier.",
+      "header": "Cellules d’en-tête",
+      "tabs": "Onglets",
+      "tabsLabel": "Vues du résultat",
+      "tabAxes": "Axes",
+      "tabRadar": "Radar",
+      "tabMap": "Carte",
+      "panelAxes": "Douze barres, une par axe.",
+      "panelRadar": "Les douze axes en une seule forme.",
+      "panelMap": "La carte d’ensemble de l’espace politique."
+    },
+    "toggle": {
+      "note": "Le mot actif est inversé. Le sélecteur de thème de l’en-tête fonctionne de la même façon.",
+      "advance": "Avancer automatiquement",
+      "labels": "Afficher les noms d’axes",
+      "disabled": "Indisponible",
+      "on": "Oui",
+      "off": "Non"
+    },
+    "sliders": {
+      "note": "Des barres noires sur des pistes réglées, graduées tous les 10 points. Le crochet au-dessus indique la plage d’incertitude. Le curseur est un bloc plein.",
+      "bar": "{axis} : {score}, vers {pole}, probablement entre {low} et {high}",
+      "disabled": "Curseur désactivé"
+    },
+    "overlays": {
+      "note": "Les deux s’ouvrent sans délai. La fenêtre est un dialogue natif posé sur une trame de points ; Échap la ferme.",
+      "tooltipLabel": "Ce que mesure cet axe",
+      "open": "Ouvrir la fenêtre",
+      "modalTitle": "À propos de cette affirmation",
+      "modalBody": "Les fenêtres ont un cadre de 2 px et aucune ombre. La page derrière est couverte d’une trame de points au lieu d’être assombrie ou floutée.",
+      "close": "Fermer"
+    },
+    "legend": {
+      "note": "Chaque codage a une légende écrite. Les spectres se distinguent par la forme et le code, jamais par la forme seule.",
+      "spectra": "Spectres",
+      "charts": "Codage des graphiques",
+      "solid": "Trait plein : vous, ou la première série",
+      "dashed": "Trait tireté : la série comparée",
+      "dotted": "Points espacés : les étapes anciennes de votre parcours",
+      "hatch": "Surface hachurée : votre surface",
+      "empty": "Surface vide : la surface comparée",
+      "halftone": "Trame : plus les points sont gros, plus il y a d’idéologies proches",
+      "you": "Vous : la taille du cercle indique l’incertitude, la croix marque le point",
+      "ghost": "Comparaison fantôme : un contour creux et tireté",
+      "selected": "Nœud sélectionné : inversé"
+    },
+    "strip": {
+      "note": "Douze codes d’axe à deux lettres, groupés par domaine.",
+      "exampleA": "Profil d’exemple A",
+      "exampleB": "Profil d’exemple B",
+      "howTitle": "Comment la lire",
+      "how": "Chaque code a quatre carrés : les deux de gauche appartiennent au premier pôle, les deux de droite au second. Un carré plein signifie que l’entrée penche de ce côté, deux qu’elle y penche nettement, aucun qu’elle se situe près du centre."
+    },
+    "radar": {
+      "note": "Centre = −100, anneau intérieur plein = 0, anneau extérieur = +100 sur chaque axe. Premier profil : trait plein, surface hachurée, sommets pleins. Comparaison : trait tireté, surface vide, sommets creux.",
+      "title": "Radar : profil d’exemple A contre B",
+      "you": "Profil A",
+      "friend": "Profil B",
+      "axis": "Axe"
+    },
+    "compass": {
+      "note": "Aperçu statique de la boussole de la phase 4 sur le catalogue d’ancrage : répartition à l’horizontale, pouvoir de l’État à la verticale.",
+      "title": "Aperçu de la boussole : répartition et pouvoir de l’État",
+      "summary": "La trame montre où les idéologies se concentrent. Un repère par spectre, votre position avec son cercle d’incertitude, trois résultats antérieurs en parcours et une autre personne en fantôme.",
+      "you": "VOUS",
+      "ghost": "AUTRE",
+      "point": "Point"
+    },
+    "web": {
+      "note": "Aperçu statique de la vue en réseau de la phase 10 : position tirée de la carte d’ensemble, chaque nœud relié à ses deux plus proches voisins. Survolez un nœud pour voir son nom.",
+      "title": "Aperçu de la vue en réseau : dix-sept idéologies d’ancrage",
+      "node": "Idéologie",
+      "neighbours": "Plus proches voisins"
+    },
+    "images": {
+      "note": "À la compilation, les photos deviennent des images 1 bit en tramage ordonné. Auteur, licence et source restent visibles sous chaque image.",
+      "source": "Source",
+      "glyphs": "Glyphes générés",
+      "glyphsNote": "Chaque entrée du catalogue reçoit un motif symétrique 5×5 dérivé de son identifiant : original, sans symbole, sans visage.",
+      "flags": "Pays",
+      "flagsNote": "Pas de drapeaux. Les pays sont nommés et codés en texte, p. ex. CH, DE, FR."
+    }
   }
 }

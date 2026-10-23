@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
+import { PALETTE, type ThemeName } from "@/lib/design/tokens";
 import { THEME_STORAGE_KEY } from "./ThemeScript";
+
+const THEMES: readonly ThemeName[] = ["light", "dark"];
 
 function readStored(): string | null {
   try {
@@ -12,8 +15,39 @@ function readStored(): string | null {
   }
 }
 
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  return () => observer.disconnect();
+}
+
+const currentTheme = () => document.documentElement.getAttribute("data-theme") as ThemeName | null;
+
+function choose(theme: ThemeName) {
+  document.documentElement.setAttribute("data-theme", theme);
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    // Storage unavailable (private mode): the choice lasts for this page only.
+  }
+  let meta = document.querySelector<HTMLMetaElement>("meta[data-theme-choice]");
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.name = "theme-color";
+    meta.setAttribute("data-theme-choice", "");
+    document.head.prepend(meta);
+  }
+  meta.content = PALETTE[theme].paper;
+}
+
+/**
+ * "[ LIGHT / DARK ]": two text buttons. The pressed look comes from the
+ * data-theme attribute in CSS, so it is right before hydration; aria-pressed
+ * follows once the client knows the theme. Hidden when no script ran.
+ */
 export function ThemeToggle() {
   const t = useTranslations("theme");
+  const theme = useSyncExternalStore(subscribe, currentTheme, () => null);
 
   // Follow the system theme live until the user makes an explicit choice.
   useEffect(() => {
@@ -26,53 +60,40 @@ export function ThemeToggle() {
     return () => media.removeEventListener("change", onChange);
   }, []);
 
-  const toggle = () => {
-    const root = document.documentElement;
-    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, next);
-    } catch {
-      // Storage unavailable (private mode): the choice lasts for this page only.
-    }
+  const pressed: Record<ThemeName, string> = {
+    light: "bg-ink text-paper dark:bg-paper dark:text-ink dark:hover:bg-ink dark:hover:text-paper",
+    dark: "hover:bg-ink hover:text-paper dark:bg-ink dark:text-paper",
   };
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-label={t("toggle")}
-      title={t("toggle")}
-      className="grid size-9 place-items-center rounded-full text-ink-2 transition-colors hover:bg-paper-sunk hover:text-ink"
+    <div
+      role="group"
+      aria-label={t("label")}
+      className="label flex items-stretch [:root:not([data-theme])_&]:hidden"
     >
-      {/* Moon in light mode, sun in dark mode; CSS decides, so SSR never mismatches. */}
-      <svg
-        viewBox="0 0 24 24"
-        width="18"
-        height="18"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        aria-hidden="true"
-        className="dark:hidden"
-      >
-        <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" />
-      </svg>
-      <svg
-        viewBox="0 0 24 24"
-        width="18"
-        height="18"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        aria-hidden="true"
-        className="hidden dark:block"
-      >
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" />
-      </svg>
-    </button>
+      <span aria-hidden="true" className="flex items-center pr-1">
+        [
+      </span>
+      {THEMES.map((name, i) => (
+        <span key={name} className="flex items-stretch">
+          {i > 0 ? (
+            <span aria-hidden="true" className="flex items-center px-1">
+              /
+            </span>
+          ) : null}
+          <button
+            type="button"
+            aria-pressed={theme === null ? undefined : theme === name}
+            onClick={() => choose(name)}
+            className={`min-h-11 min-w-11 px-1.5 uppercase ${pressed[name]}`}
+          >
+            {t(name)}
+          </button>
+        </span>
+      ))}
+      <span aria-hidden="true" className="flex items-center pl-1">
+        ]
+      </span>
+    </div>
   );
 }
