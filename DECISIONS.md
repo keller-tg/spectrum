@@ -950,11 +950,20 @@ ring is now 2px.*
     - Tailwind motion utilities or inline transitions in UI code;
     - a wipe panel rendered by hand.
 
+
+**D-084 · 🟡 · Home variant and control style: safe defaults (2026-10-23).** The owner approved
+the design without naming a home variant or a control style. Defaults, both cheap to reverse:
+- `/` now renders home A, "specimen", where the live catalog field shows what the product does
+  above the fold.
+- The control style stays **sharp**, the documented default.
+- `/styleguide/home-b` and the review-only style switch stay, so the choice can still be made.
+  Switching to B is a one-line change in `app/[locale]/page.tsx`; fixing a style means
+  removing the switch and its storage key.
+
 ## H. Open items
 
-- **Owner's choice (blocks Phase 3):** home variant A (specimen) or B (typographic), and control
-  style sharp, pill or offset (D-080, D-081). Then the winner moves to `/`, the style is fixed
-  and the review switch is removed.
+- **Owner's choice, defaults applied (D-084):** home A and sharp are live on the branch; confirm
+  or switch (B, pill, offset). Then the review switch goes.
 - Final domain (before Phase 7).
 - Optional: rewrite the first commit's author field (machine-local address) — needs a force push
   of `main`; owner's call.
