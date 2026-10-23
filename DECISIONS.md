@@ -876,6 +876,26 @@ ring is now 2px.*
   - home A: performance 99, accessibility 100, best practices 100, CLS 0
   - home B: performance 97, accessibility 100, best practices 100, CLS 0
 
+
+**D-082 · 🟢 · Display preferences survive a language switch (bug fix, 2026-10-23).**
+- **Symptom:** after EN → DE (any pair) the LIGHT/DARK toggle vanished until a reload, and the
+  control style fell back to its default.
+- **Root cause:** `app/[locale]/layout.tsx` is the root layout and renders `<html>`. A locale
+  change remounts it, and React 19 strips every attribute it does not render from the `<html>`
+  singleton on remount. `data-theme` and `data-controls` were written by the pre-paint inline
+  script, outside React, and that script does not run again on a client-side navigation. The
+  toggle hides itself without `data-theme`, so it disappeared.
+- **Fix:** one self-contained `applyPreferences()` (`lib/design/preferences.ts`). It is
+  serialized into the inline script for first paint, and run again by `<PreferenceSync />` in a
+  layout effect each time the root layout mounts, which is the same commit in which React
+  clears the attributes, before paint. No reload, no flash. Keeping the locale out of the root
+  layout was rejected: `<html lang>` needs the locale, and next-intl's static rendering relies
+  on it as a root param (D-057).
+- **Also:** focus returns to the chosen language after the switch (it fell to `<body>`).
+- **Regression test:** `tests/e2e/locale-state.spec.ts` checks all six locale pairs on desktop
+  and phone: theme, control style, `lang`, hreflang, soft navigation, focus, and that the
+  toggle still works.
+
 ## H. Open items
 
 - **Owner's choice (blocks Phase 3):** home variant A (specimen) or B (typographic), and control

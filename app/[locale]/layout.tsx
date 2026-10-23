@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { PreferenceSync } from "@/components/layout/PreferenceSync";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 import { routing } from "@/i18n/routing";
 import { PALETTE } from "@/lib/design/tokens";
@@ -60,6 +61,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
         >
           {t("skipToContent")}
         </a>
+        <PreferenceSync />
         <NextIntlClientProvider messages={clientMessages}>
           <SiteHeader />
           <main id="main" className="flex-1">

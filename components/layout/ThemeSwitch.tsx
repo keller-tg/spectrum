@@ -4,7 +4,7 @@ import { useEffect, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import { Segmented } from "@/components/ui/Segmented";
 import { PALETTE, type ThemeName } from "@/lib/design/tokens";
-import { THEME_STORAGE_KEY } from "./ThemeScript";
+import { THEME_STORAGE_KEY } from "@/lib/design/preferences";
 
 function readStored(): string | null {
   try {

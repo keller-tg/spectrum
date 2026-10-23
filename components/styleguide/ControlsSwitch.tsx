@@ -1,11 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import {
-  CONTROL_STYLES,
-  CONTROLS_STORAGE_KEY,
-  type ControlStyle,
-} from "@/components/layout/ThemeScript";
+import { CONTROL_STYLES, CONTROLS_STORAGE_KEY, type ControlStyle } from "@/lib/design/preferences";
 import { Segmented } from "@/components/ui/Segmented";
 
 function subscribe(onChange: () => void) {
