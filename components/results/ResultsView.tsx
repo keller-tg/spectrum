@@ -73,17 +73,26 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
     [scored],
   );
 
-  if (result === undefined) return <p className="annot px-4 py-16 text-center">{t("loading")}</p>;
-
-  if (!result || !scored || !report)
+  // Loading and empty states keep the same header and height as the result, so
+  // nothing shifts when this browser's store answers.
+  if (result === undefined || !result || !scored || !report)
     return (
       <div className="mx-auto max-w-[96rem] px-4 pt-10 pb-20 sm:px-6 lg:px-10">
         <h1 className="display text-display-lg">{t("title")}</h1>
-        <p className="prose-text mt-5">{t("empty")}</p>
-        <div className="mt-8">
-          <ButtonLink href="/test" size="l" arrow>
-            {t("takeTest")}
-          </ButtonLink>
+        <p className="prose-text mt-4">{t("lead")}</p>
+        <div className="mt-10 min-h-[75svh]">
+          {result === undefined ? (
+            <p className="annot">{t("loading")}</p>
+          ) : (
+            <>
+              <p className="prose-text">{t("empty")}</p>
+              <div className="mt-8">
+                <ButtonLink href="/test" size="l" arrow>
+                  {t("takeTest")}
+                </ButtonLink>
+              </div>
+            </>
+          )}
         </div>
       </div>
     );
@@ -123,13 +132,13 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
 
   return (
     <div className="mx-auto max-w-[96rem] px-4 pt-10 pb-20 sm:px-6 lg:px-10">
+      <h1 className="display text-display-lg">{t("title")}</h1>
+      <p className="prose-text mt-4">{t("lead")}</p>
       {!store?.persistent ? (
-        <p role="status" className="annot mb-6 border border-ink px-4 py-2 font-bold">
+        <p role="status" className="annot mt-6 border border-ink px-4 py-2 font-bold">
           {t("notStored")}
         </p>
       ) : null}
-      <h1 className="display text-display-lg">{t("title")}</h1>
-      <p className="prose-text mt-4">{t("lead")}</p>
 
       <div className="mt-10 grid gap-12 lg:grid-cols-[13rem_minmax(0,1fr)]">
         <nav aria-label={t("toc")} className="hidden lg:block">

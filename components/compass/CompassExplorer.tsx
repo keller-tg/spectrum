@@ -125,16 +125,6 @@ export function CompassExplorer({ catalog }: { catalog: CatalogData }) {
             <p className="annot">{t("swapNote")}</p>
           </div>
         )}
-        {user === null ? (
-          <div className="border-[1.5px] border-dashed border-ink p-4">
-            <p className="prose-text text-base">{t("noResult")}</p>
-            <div className="mt-4">
-              <ButtonLink href="/test" arrow>
-                {t("takeTest")}
-              </ButtonLink>
-            </div>
-          </div>
-        ) : null}
       </section>
       <div className="min-w-0 lg:col-start-1 lg:row-start-1">
         <CompassFigure
@@ -148,6 +138,16 @@ export function CompassExplorer({ catalog }: { catalog: CatalogData }) {
         />
       </div>
       <div className="grid min-w-0 gap-8 lg:col-start-1">
+        {user === null ? (
+          <div className="border-[1.5px] border-dashed border-ink p-4">
+            <p className="prose-text text-base">{t("noResult")}</p>
+            <div className="mt-4">
+              <ButtonLink href="/test" arrow>
+                {t("takeTest")}
+              </ButtonLink>
+            </div>
+          </div>
+        ) : null}
         <Legend
           title={t("key")}
           items={[
