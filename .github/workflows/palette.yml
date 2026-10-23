@@ -1,7 +1,7 @@
 # Fails on any colour other than ink and paper, and on the effects the design
-# bans with them: opacity, shadows, rounded corners, blur, gradients (D-075).
-# See scripts/check-palette.ts.
-name: Palette guard
+# bans with them (D-075, scripts/check-palette.ts), and on motion outside the
+# shared tokens and components (D-083, scripts/check-motion.ts).
+name: Design guards
 
 on:
   push:
@@ -23,3 +23,5 @@ jobs:
         run: npm ci --ignore-scripts
       - name: Ink and paper only
         run: node scripts/check-palette.ts
+      - name: Motion through the shared tokens and components (D-083)
+        run: node scripts/check-motion.ts

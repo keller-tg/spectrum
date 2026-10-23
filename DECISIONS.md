@@ -935,6 +935,20 @@ ring is now 2px.*
 - **Segmented controls** use the same inverting panel, one segment wide and moved by
   `translateX`. **Header band, mobile sheet and START word** are transform-only now; they
   were clip-path.
+- **Shared and enforced:**
+  - **Tokens:** `--ease-out`, `--ease-spring`, `--dur-fast`, `--dur`, `--dur-slow`,
+    `--dur-wipe`, `--dur-wipe-row`, `--dur-underline`, `--dur-draw`, `--dur-check` and
+    `--dur-ticks`, all 0s under reduced motion.
+  - **Components and classes:** `<Wipe />` + `.wipe-host`, `<WipeDirection />`,
+    `<SegmentIndicator />` and `<RollingArrow />`.
+  - **`scripts/check-motion.ts`** (in `npm run check` and the "Design guards" CI job, with unit
+    tests) fails on:
+    - transitions of anything but transform or clip-path (display, overlay and visibility are
+      allowed as discrete);
+    - raw durations outside the tokens, and keyframes that change other properties;
+    - `mix-blend-mode` outside `app/controls.css`;
+    - Tailwind motion utilities or inline transitions in UI code;
+    - a wipe panel rendered by hand.
 
 ## H. Open items
 
