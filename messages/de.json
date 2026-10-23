@@ -642,7 +642,7 @@
     "kicker": "Pilot · nicht öffentlich",
     "title": "Hilf beim Testen der Fragen",
     "intro": "Danke für deine Hilfe. Du machst den normalen Test; am Ende speichert dein Browser eine kleine Antwortdatei.",
-    "contains": "Die Datei enthält deine Antwort auf jede Frage (oder ein Überspringen), wie lange jede Antwort dauerte, die Testlänge, die Sprache und, falls du ihn angibst, einen Ländercode. Sie enthält keinen Namen, kein Datum und keine Angaben zu deinem Gerät.",
+    "contains": "Die Datei enthält deine Antwort auf jede Frage (oder ein Überspringen), wie lange jede Antwort dauerte (auf eine Zehntelsekunde gerundet), die Testlänge, die Version der Fragen und der Auswertung und, falls du ihn angibst, einen Ländercode. Sie enthält keinen Namen, kein Datum und keine Uhrzeit, keine Spracheinstellung, keine Angaben zu deinem Gerät oder Browser und keine Kennung.",
     "sensitive": "Politische Ansichten sind sensible persönliche Daten. Mach bitte nur mit, wenn das für dich in Ordnung ist.",
     "nothingStored": "Nichts wird an einen Server geschickt oder dort gespeichert, und diese Seite setzt keine Cookies. Bis die Datei gespeichert ist, bleiben deine Antworten nur in diesem Browser-Tab, sodass ein Sprachwechsel oder Neuladen sie nicht löscht. Sie werden gelöscht, wenn die Datei gespeichert ist, wenn du sie verwirfst oder wenn du den Tab schließt.",
     "yourChoice": "Du entscheidest, ob und an wen du die Datei weitergibst.",
@@ -656,7 +656,14 @@
     "thanks": "Danke",
     "saved": "Deine Antworten wurden als {name} gespeichert. Gib die Datei nur weiter, wenn du willst.",
     "cleared": "Die Antworten wurden von dieser Seite gelöscht.",
-    "discard": "Meine Antworten verwerfen"
+    "discard": "Meine Antworten verwerfen",
+    "linkable": "Sobald du die Datei jemandem schickst, lässt sie sich mit dir verknüpfen, denn die Person weiß, wer sie geschickt hat. Die Dateien werden getrennt von den Nachrichten aufbewahrt, mit denen sie kamen.",
+    "sampleTitle": "So sieht die Datei aus",
+    "sampleNote": "Beispielwerte. Am Ende siehst du deine genaue Datei, bevor du sie speicherst.",
+    "sampleMore": "… eine Zeile pro Frage, insgesamt {count}",
+    "reviewTitle": "Deine Datei",
+    "reviewLead": "Das ist der genaue Inhalt der Datei; sonst steht nichts darin. Speichere sie und entscheide dann, ob du sie weitergibst.",
+    "save": "Datei speichern"
   },
   "compass": {
     "controls": "Ansicht des Kompasses",

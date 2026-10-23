@@ -642,7 +642,7 @@
     "kicker": "Pilot · not public",
     "title": "Help test the questions",
     "intro": "Thank you for helping. You take the normal test; at the end your browser saves one small answers file.",
-    "contains": "The file contains your answer to each question (or a skip), how long each answer took, the test length, the language and, if you add it, a country code. It contains no name, no date and no information about your device.",
+    "contains": "The file contains your answer to each question (or a skip), how long each answer took (rounded to a tenth of a second), the test length, the version of the questions and of the scoring and, if you add it, a country code. It contains no name, no date or time, no language setting, no information about your device or browser and no ID.",
     "sensitive": "Political views are sensitive personal data. Please take part only if you are comfortable with that.",
     "nothingStored": "Nothing is sent to or stored on any server, and this page uses no cookies. Until the file is saved, your answers are kept only in this browser tab, so changing the language or reloading does not lose them. They are deleted when the file is saved, when you discard them or when you close the tab.",
     "yourChoice": "You decide whether to pass the file on, and to whom.",
@@ -654,9 +654,16 @@
     "start": "Start the pilot",
     "banner": "Pilot: answers stay on this page and become a file at the end.",
     "thanks": "Thank you",
-    "saved": "Your answers were saved as {name}. Pass it on only if you want to.",
+    "saved": "Your answers were saved as {name}. Pass the file on only if you want to.",
     "cleared": "The answers have been cleared from this page.",
-    "discard": "Discard my answers"
+    "discard": "Discard my answers",
+    "linkable": "Once you send the file to someone, it becomes linkable to you, because they know who sent it. The files are kept separately from the messages they arrived with.",
+    "sampleTitle": "What the file looks like",
+    "sampleNote": "Example values. At the end you see your exact file before you save it.",
+    "sampleMore": "… one line per question, {count} in all",
+    "reviewTitle": "Your file",
+    "reviewLead": "This is the exact content of the file; nothing else is in it. Save it, then decide whether to pass it on.",
+    "save": "Save the file"
   },
   "compass": {
     "controls": "Compass view",

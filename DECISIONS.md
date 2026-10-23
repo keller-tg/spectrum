@@ -1071,6 +1071,24 @@ the design without naming a home variant or a control style. Defaults, both chea
   next-intl's request config loaded `messages/<segment>.json` for an unchecked explicit
   locale. Every locale is now validated there and an unknown one is a 404.
 
+**D-089 · 🟢 · Pilot file minimised and shown before saving (2026-10-23).**
+- **Format version 2.** The `locale` field is dropped, since the language is a profile
+  signal. Answer times are rounded to 100 ms, so they carry no fine device timing.
+- **One fixed file name,** `spectrum-pilot.json`. The random name was not persistent, but it
+  was still an identifier with no use. When collecting, save each received file under any
+  name in the folder you pass to `pilot-analysis`.
+- **Never in the file:** a name, any date or time, language, device, browser or user-agent
+  data, or any ID.
+- **Kept, because the analysis needs them:** bank and engine versions, mode, and the
+  optional, participant-entered country.
+- **Consent screen:** shows the real structure with example values. It also says that a
+  sent file becomes linkable to its sender, and that files are kept apart from the messages
+  that carried them. The wording names no person.
+- **Review step after the last question:** shows the exact JSON, with "Save the file" and
+  "Discard my answers". e2e checks that the saved bytes equal the text shown and that only the
+  allowed keys exist.
+- Version 1 files are not accepted. No real pilot files existed yet.
+
 ## H. Open items
 
 - **Owner's choice, defaults applied (D-084):** home A and sharp are live on the branch; confirm

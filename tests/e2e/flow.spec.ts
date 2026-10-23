@@ -117,19 +117,31 @@ test("the pilot needs consent, stores nothing and its file round-trips through t
   await expect(start).toHaveAttribute("aria-disabled", "true");
   await page.locator("#pilot-country").fill("ch");
   await page.locator("label[for=pilot-consent]").click();
+  // The consent screen shows the file's structure before anything is answered.
+  await expect(page.getByText("What the file looks like")).toBeVisible();
+  await expect(page.locator("pre").first()).toContainText('"format": "spectrum-pilot"');
   await start.click();
   await answerAll(page, 1, 36);
+  // Finishing shows the exact file; saving downloads exactly that.
+  await page.getByRole("button", { name: /See my results/ }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Your file");
+  const shown = await page.getByLabel("Your file").textContent();
   const [download] = await Promise.all([
     page.waitForEvent("download"),
-    page.getByRole("button", { name: /See my results/ }).click(),
+    page.getByRole("button", { name: /Save the file/ }).click(),
   ]);
-  expect(download.suggestedFilename()).toMatch(/^spectrum-pilot-[0-9a-f]{10}\.json$/);
+  expect(download.suggestedFilename()).toBe("spectrum-pilot.json");
   const dir = mkdtempSync(join(tmpdir(), "pilot-"));
   const path = join(dir, download.suggestedFilename());
   await download.saveAs(path);
-  const file = pilotFileSchema.parse(
-    JSON.parse(await (await import("node:fs/promises")).readFile(path, "utf8")),
+  const raw = await (await import("node:fs/promises")).readFile(path, "utf8");
+  expect(raw).toBe(shown);
+  const file = pilotFileSchema.parse(JSON.parse(raw));
+  // Minimal: no language, date, device or ID fields; times rounded to 100 ms.
+  expect(Object.keys(file).sort()).toEqual(
+    ["answers", "bankVersion", "country", "engineVersion", "format", "mode", "version"].sort(),
   );
+  for (const a of Object.values(file.answers)) if (a.ms !== undefined) expect(a.ms % 100).toBe(0);
   expect(file.country).toBe("CH");
   expect(Object.keys(file.answers)).toHaveLength(36);
   writeFileSync(join(dir, "copy.json"), JSON.stringify(file));

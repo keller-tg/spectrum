@@ -17,11 +17,10 @@ function population(n: number, seed: number, offsets?: Record<string, number>): 
     const answers = simulateAnswers(standard, coords, { sigma: 0.6, rng, ms: 4000, offsets });
     return pilotFileSchema.parse({
       format: "spectrum-pilot",
-      version: 1,
+      version: 2,
       bankVersion: "test",
       engineVersion: ENGINE_VERSION,
       mode: "standard",
-      locale: "en",
       answers,
     });
   });

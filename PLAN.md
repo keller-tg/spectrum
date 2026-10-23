@@ -389,10 +389,14 @@ correlations.
 - The participant takes the normal test (Standard by default) with the real UI. Answers stay in
   this tab's sessionStorage (no IndexedDB, no cookie, no request), so a language switch or reload
   keeps them; they are removed on download, on "Discard" and when the tab closes (D-087).
-- **Download:** one JSON file, `spectrum-pilot-<random>.json`:
-  `{ format: "spectrum-pilot", version: 1, bankVersion, engineVersion, mode, locale, answers:
-  { [questionId]: { r, ms } }, country? }`. No name, no timestamp finer than the month, no
-  device data. The schema lives in `lib/schema/pilot.ts` and is validated on both ends.
+- **Review, then download (D-089):** finishing shows the exact file; "Save the file" downloads
+  `spectrum-pilot.json` (one fixed name, so the name is no identifier):
+  `{ format: "spectrum-pilot", version: 2, bankVersion, engineVersion, mode, answers:
+  { [questionId]: { r, ms? } }, country? }`, times rounded to 100 ms. No name, no date or time,
+  no language, no device or browser data, no ID. The consent screen shows the same structure with
+  example values and says that a sent file becomes linkable to its sender, and that files are
+  kept apart from the messages that carried them. The schema lives in `lib/schema/pilot.ts` and
+  is validated on both ends.
 - **`npm run pilot-analysis -- <folder>`** (`scripts/pilot-analysis.ts`) reads every file in the
   folder and reports, as Markdown to stdout and `generated/pilot-report.md` (gitignored):
   - per item: n, skip rate, answer distribution, agree rate (+1/+2), mean, SD, and the implied

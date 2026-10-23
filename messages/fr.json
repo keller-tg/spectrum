@@ -642,7 +642,7 @@
     "kicker": "Pilote · non public",
     "title": "Aidez à tester les questions",
     "intro": "Merci de votre aide. Vous faites le test normal ; à la fin, votre navigateur enregistre un petit fichier de réponses.",
-    "contains": "Le fichier contient votre réponse à chaque question (ou le fait de l’avoir passée), le temps de chaque réponse, la longueur du test, la langue et, si vous l’indiquez, un code de pays. Il ne contient ni nom, ni date, ni information sur votre appareil.",
+    "contains": "Le fichier contient votre réponse à chaque question (ou le fait de l’avoir passée), le temps de chaque réponse (arrondi au dixième de seconde), la longueur du test, la version des questions et du calcul et, si vous l’indiquez, un code de pays. Il ne contient ni nom, ni date ou heure, ni réglage de langue, ni information sur votre appareil ou votre navigateur, ni identifiant.",
     "sensitive": "Les opinions politiques sont des données personnelles sensibles. Ne participez que si cela vous convient.",
     "nothingStored": "Rien n’est envoyé ni stocké sur un serveur, et cette page n’utilise aucun cookie. Jusqu’à l’enregistrement du fichier, vos réponses sont conservées uniquement dans cet onglet du navigateur ; changer de langue ou recharger la page ne les efface donc pas. Elles sont supprimées à l’enregistrement du fichier, si vous les abandonnez ou à la fermeture de l’onglet.",
     "yourChoice": "Vous décidez de transmettre ou non le fichier, et à qui.",
@@ -654,9 +654,16 @@
     "start": "Commencer le pilote",
     "banner": "Pilote : les réponses restent sur cette page et deviennent un fichier à la fin.",
     "thanks": "Merci",
-    "saved": "Vos réponses ont été enregistrées sous {name}. Transmettez-les seulement si vous le souhaitez.",
+    "saved": "Vos réponses ont été enregistrées sous {name}. Ne transmettez le fichier que si vous le souhaitez.",
     "cleared": "Les réponses ont été effacées de cette page.",
-    "discard": "Abandonner mes réponses"
+    "discard": "Abandonner mes réponses",
+    "linkable": "Dès que vous envoyez le fichier à quelqu’un, il peut être relié à vous, puisque cette personne sait qui l’a envoyé. Les fichiers sont conservés séparément des messages qui les ont apportés.",
+    "sampleTitle": "À quoi ressemble le fichier",
+    "sampleNote": "Valeurs d’exemple. À la fin, vous voyez votre fichier exact avant de l’enregistrer.",
+    "sampleMore": "… une ligne par question, {count} au total",
+    "reviewTitle": "Votre fichier",
+    "reviewLead": "Voici le contenu exact du fichier ; il ne contient rien d’autre. Enregistrez-le, puis décidez si vous le transmettez.",
+    "save": "Enregistrer le fichier"
   },
   "compass": {
     "controls": "Vue de la boussole",
