@@ -34,7 +34,7 @@ export async function SiteHeader() {
           <ul className="flex h-full">
             {NAV.map(([key, href]) => (
               <li key={key} className="flex">
-                <NavLink href={href} className="nav-link bracketed label flex items-center px-4">
+                <NavLink href={href} className="nav-link label flex items-center px-4">
                   {t(key)}
                 </NavLink>
               </li>

@@ -30,11 +30,13 @@
     "motion:capture": "tsx scripts/capture-motion.ts",
     "design:capture": "tsx scripts/capture-design.ts",
     "calibration": "tsx scripts/calibration-report.ts",
+    "pilot-analysis": "tsx scripts/pilot-analysis.ts",
     "check-sources": "tsx scripts/check-sources.ts",
     "prebuild": "npm run validate && npm run derive && npm run images",
     "export:questions": "tsx scripts/export-questions.ts"
   },
   "dependencies": {
+    "idb": "^8.0.4",
     "next": "^16.4.2",
     "next-intl": "^4.14.9",
     "react": "^19.3.0",

@@ -41,6 +41,7 @@ export const routing = defineRouting({
     "/method": { en: "/method", de: "/methode", fr: "/methode" },
     "/privacy": { en: "/privacy", de: "/datenschutz", fr: "/confidentialite" },
     "/imprint": { en: "/imprint", de: "/impressum", fr: "/mentions-legales" },
+    "/pilot": "/pilot",
     "/styleguide": { en: "/styleguide", de: "/styleguide", fr: "/guide-de-style" },
     "/styleguide/buttons": {
       en: "/styleguide/buttons",

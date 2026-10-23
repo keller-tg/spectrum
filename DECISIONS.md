@@ -960,6 +960,38 @@ the design without naming a home variant or a control style. Defaults, both chea
   Switching to B is a one-line change in `app/[locale]/page.tsx`; fixing a style means
   removing the switch and its storage key.
 
+**D-085 · 🟢 · Phase 3: test, results and pilot (2026-10-23).**
+- **Storage:** IndexedDB database `spectrum` v1 (`lib/storage/db.ts`), with three stores:
+  - `drafts`: one key per mode, so Quick and Standard keep separate drafts;
+  - `results`: auto-increment;
+  - `settings`: auto-advance.
+
+  If IndexedDB is unavailable, a memory store takes over and the test shows a notice (D-019).
+  Answers given before the store has opened are merged into the stored draft, not dropped.
+- **Upgrade by prefix:** Quick is the first 36 items of Standard. "Sharpen" copies the Quick
+  answers into the Standard draft and opens question 37. Answers are never re-asked.
+- **Statements are English in DE and FR** until Phase 9: they are marked `lang="en"` and the
+  test shows a one-line notice. The UI around them is translated.
+- **Results are computed in the browser.**
+  - The catalog data (coordinates, τ, indices, Map PCA, versions) is serialised at build time
+    from `generated/derived.json` into the page; nothing is fetched at runtime.
+  - The stored answers are re-scored whenever the page opens (§6.8).
+  - "Most unusual" and "most typical" mean relative to the catalog of ideologies, not to other
+    people. There is no population data, and the copy says so.
+- **Share:** pressing the button encodes the result code. `/results/<code>` is the only
+  dynamic route: it decodes on the server, stores nothing, and gives a broken or tampered code
+  a plain message. The private `/results` page never puts anything in the URL (D-018).
+- **Pilot:**
+  - It keeps answers in memory only: no IndexedDB, no cookie.
+  - A language switch remounts the page and loses the pilot answers. That is accepted for an
+    unlinked page, and the consent screen says so.
+  - The analysis treats a mirror pair as consistent unless the two answers point in opposite
+    directions.
+- **Not in this phase:**
+  - Deep has no static pages until the Deep bank exists (Phase 9).
+  - The results page links to the compass instead of embedding a preview (added in Phase 4).
+  - The radar, eras, countries, figures and parties sections wait for their data (Phase 5).
+
 ## H. Open items
 
 - **Owner's choice, defaults applied (D-084):** home A and sharp are live on the branch; confirm

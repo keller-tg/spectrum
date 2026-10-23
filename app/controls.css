@@ -30,9 +30,11 @@
     border-radius: inherit;
     pointer-events: none;
   }
+  /* Overhangs by 1px inside the clipping wrapper, so sub-pixel rounding of
+     the composited layer never leaves a seam at the edges. */
   .wipe-panel {
     position: absolute;
-    inset: 0;
+    inset: -1px;
     background-color: var(--blend-light);
     mix-blend-mode: difference;
     transform: translateX(var(--wipe-from));

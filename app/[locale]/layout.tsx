@@ -14,7 +14,16 @@ import { fontVariables } from "../fonts";
 import "../globals.css";
 
 /** Message namespaces that client components need; everything else stays on the server. */
-const CLIENT_NAMESPACES = ["locale", "theme", "scale"] as const;
+const CLIENT_NAMESPACES = [
+  "locale",
+  "theme",
+  "scale",
+  "test",
+  "results",
+  "anchors",
+  "home",
+  "pilot",
+] as const;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

@@ -8,9 +8,8 @@ Source of truth: **Master spec v2** (2026-10-21). Every choice and its status is
 [DECISIONS.md](DECISIONS.md), whose first section lists what changed from v1.
 
 Status: Phase 0 ✅ · Phase 1 ✅ · Phase 2 ✅ (engine, schemas, 72 EN questions, 53 anchor ideologies,
-calibration; question revision 2 approved 2026-10-23) · Design reset ✅ · **Design V2 ✅ (§13).
-Stopped for the owner's choice of home variant (A specimen / B typographic) and control style
-(sharp / pill / offset); Phase 3 starts after it.**
+calibration; question revision 2 approved 2026-10-23) · Design reset ✅ · Design V2 ✅ (§13,
+approved; defaults in D-084) · **Phase 3 ✅ (test, results, share, pilot; D-085)** · Phase 4 in progress.
 ---
 
 ## 1. Principles
@@ -371,6 +370,9 @@ Results store their answers and the versions used. When versions differ the app 
   toggled. A progress bar shows "12 / 72".
 - After Quick, the user is offered "36 more questions to sharpen this", which keeps their answers
   (likewise Standard → Deep).
+- **Built (D-085):** `components/test/` (TestProvider, QuestionStage, TestScreen),
+  `lib/storage/db.ts`, `lib/test/result.ts`. Quick and Standard have static pages for every
+  question; Deep follows its bank.
 
 ## 7a. Pilot (Phase 3, D-072)
 
@@ -417,6 +419,10 @@ The page has a sticky TOC with localized anchors. Sections:
 - uncertainty: runner-ups, tensions, the placement-confidence indicator
 - share, available only on press
 - edit answers, and a link to the dashboard
+
+Built in Phase 3 (D-085): summary poster, axes, unusual/typical, indices, matches with
+"furthest", uncertainty, share and continue/upgrade (`components/results/`, `lib/results/`).
+The radar, eras and non-ideology matches wait for their data.
 
 ## 9. Modern compass (Phase 4, then trail in Phase 8)
 

@@ -1,15 +1,18 @@
 /**
- * Progress as one tick per question (36, 72 or 144): answered ticks are tall,
- * the current one is a solid block, the rest are short.
+ * Progress as one tick per question (36, 72 or 144): answered or skipped
+ * questions are tall ticks, the current one is a solid block, open ones short.
  */
 export function TickProgress({
   total,
   current,
+  done,
   label,
 }: {
   total: number;
   /** 1-based number of the question on screen. */
   current: number;
+  /** Which questions already have an answer or a skip; defaults to all before `current`. */
+  done?: readonly boolean[];
   label: string;
 }) {
   return (
@@ -22,12 +25,15 @@ export function TickProgress({
       className="grid h-6 items-end"
       style={{ gridTemplateColumns: `repeat(${total}, minmax(0, 1fr))` }}
     >
-      {Array.from({ length: total }, (_, i) => (
-        <span
-          key={i}
-          className={`mx-auto block bg-ink ${i + 1 < current ? "h-4 w-px" : i + 1 === current ? "h-6 w-[3px]" : "h-2 w-px"}`}
-        />
-      ))}
+      {Array.from({ length: total }, (_, i) => {
+        const isDone = done ? Boolean(done[i]) : i + 1 < current;
+        return (
+          <span
+            key={i}
+            className={`mx-auto block bg-ink ${i + 1 === current ? "h-6 w-[3px]" : isDone ? "h-4 w-px" : "h-2 w-px"}`}
+          />
+        );
+      })}
     </div>
   );
 }

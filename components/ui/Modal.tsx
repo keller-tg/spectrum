@@ -12,17 +12,20 @@ export function Modal({
   title,
   closeLabel,
   children,
+  triggerRef,
 }: {
   triggerLabel: string;
   title: string;
   closeLabel: string;
   children: React.ReactNode;
+  /** Lets a keyboard shortcut open the dialog through its trigger. */
+  triggerRef?: React.Ref<HTMLButtonElement>;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   return (
     <>
-      <Button variant="secondary" arrow onClick={() => ref.current?.showModal()}>
+      <Button ref={triggerRef} variant="secondary" arrow onClick={() => ref.current?.showModal()}>
         {triggerLabel}
       </Button>
       <dialog

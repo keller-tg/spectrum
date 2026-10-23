@@ -36,7 +36,9 @@ export async function ModeRows({
           <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <span className="display text-2xl sm:text-3xl">{t(`modes.${id}.name`)}</span>
             {id === "standard" ? (
-              <span className="tag annot bg-ink px-2 py-1 font-bold text-paper">{t("recommended")}</span>
+              <span className="tag annot bg-ink px-2 py-1 font-bold text-paper">
+                {t("recommended")}
+              </span>
             ) : null}
             {!open ? <span className="annot font-bold">{t("opensSoon")}</span> : null}
           </span>

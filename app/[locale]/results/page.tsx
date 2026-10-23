@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { PageStub } from "@/components/ui/PageStub";
+import { ResultsView } from "@/components/results/ResultsView";
 import type { Locale } from "@/data/locales";
+import { catalogData } from "@/lib/catalog/client-data";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export async function generateMetadata({
@@ -18,7 +19,8 @@ export async function generateMetadata({
   });
 }
 
-export default async function Page() {
-  const t = await getTranslations("pages.results");
-  return <PageStub title={t("title")} lead={t("lead")} phase={3} />;
+/** Static shell; the result itself comes from this browser's store, never from the URL. */
+export default async function Page({ params }: PageProps<"/[locale]/results">) {
+  const locale = (await params).locale as Locale;
+  return <ResultsView catalog={catalogData(locale)} />;
 }

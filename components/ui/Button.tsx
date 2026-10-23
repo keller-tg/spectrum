@@ -76,7 +76,9 @@ function hostProps(look: ButtonLook, className = "") {
   } as const;
 }
 
-type NativeButton = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children" | "disabled">;
+type NativeButton = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children" | "disabled"> & {
+  ref?: React.Ref<HTMLButtonElement>;
+};
 
 /**
  * Button: primary (ink fill), secondary (paper fill, 1.5px frame) or text

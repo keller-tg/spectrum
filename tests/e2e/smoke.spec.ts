@@ -205,6 +205,7 @@ test("hover wipes a mode row in; keyboard focus draws a 2px ring", async ({ page
   await page.goto("/en");
   const row = page.getByRole("link", { name: /Quick/ });
   const panel = row.locator(".wipe-panel");
+  await row.scrollIntoViewIfNeeded();
   await expect(panel).toHaveCSS("transform", /^matrix\(1, 0, 0, 1, -/);
   await row.hover();
   await expect(panel).toHaveCSS("transform", "none");
@@ -220,6 +221,7 @@ test("the wipe follows the pointer's side and never sticks (D-083)", async ({ pa
   await page.goto("/en");
   const row = page.getByRole("link", { name: /Standard/ });
   const panel = row.locator(".wipe-panel");
+  await row.scrollIntoViewIfNeeded();
   const box = (await row.boundingBox())!;
   const y = box.y + box.height / 2;
   // Enter from the right: the panel starts on the right.
