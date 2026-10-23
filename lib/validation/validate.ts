@@ -3,6 +3,7 @@ import { MODES } from "@/data/modes";
 import { RUBRIC } from "@/data/rubric";
 import { familySchema, ideologySchema, type Family, type Ideology } from "@/lib/schema/entries";
 import { questionSchema, questionTextSchema, type Question } from "@/lib/schema/questions";
+import { contentLint } from "./content-lint";
 
 export interface Issue {
   level: "error" | "warning";
@@ -283,6 +284,7 @@ export function validateIdeologies(
       out.push(issue("error", where, "at least one axis must be defining (salience ≥ 0.8)"));
     if (e.tags.includes("online-satirical") && e.tier === "A")
       out.push(issue("error", where, "online/satirical labels cannot be Tier A"));
+    for (const m of contentLint(e)) out.push(issue(m.level, where, m.message));
   }
 
   // Near-duplicates must be related or merged (D-050).

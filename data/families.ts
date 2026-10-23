@@ -174,4 +174,76 @@ export const FAMILIES: readonly Family[] = [
       en: "Currents that make religious law or clerical rule the basis of the state.",
     },
   },
+  {
+    id: "feminism",
+    names: { en: "Feminism" },
+    spectrumHome: "left",
+    description: {
+      en: "Traditions that analyse and seek to end sex-based inequality, from liberal reform to socialist and anarchist currents.",
+    },
+  },
+  {
+    id: "left-populism",
+    names: { en: "Left-wing populism" },
+    spectrumHome: "left",
+    description: {
+      en: "Movements that frame politics as ordinary people against economic and political elites, combined with redistributive demands.",
+    },
+  },
+  {
+    id: "pan-africanism",
+    names: { en: "Pan-Africanism" },
+    spectrumHome: "left",
+    description: {
+      en: "Movements for the political and economic unity and self-determination of Africans and the African diaspora.",
+    },
+  },
+  {
+    id: "agrarianism",
+    names: { en: "Agrarianism" },
+    spectrumHome: "centre",
+    description: {
+      en: "Politics centred on smallholders, rural communities and the value of farming as a way of life.",
+    },
+  },
+  {
+    id: "communitarianism",
+    names: { en: "Communitarianism" },
+    spectrumHome: "centre",
+    description: {
+      en: "Thought that stresses community, shared values and social responsibility as a counterweight to individualism.",
+    },
+  },
+  {
+    id: "muslim-democracy",
+    names: { en: "Muslim democracy" },
+    spectrumHome: "centre",
+    description: {
+      en: "Parties and thinkers that combine Islamic values with electoral democracy and pluralism, by analogy with Christian democracy.",
+    },
+  },
+  {
+    id: "authoritarian-conservatism",
+    names: { en: "Authoritarian conservatism" },
+    spectrumHome: "far-right",
+    description: {
+      en: "Regimes and movements that defend tradition, religion and hierarchy through non-democratic rule, distinct from fascism's mass mobilisation.",
+    },
+  },
+  {
+    id: "ethnonationalism",
+    names: { en: "Ethnonationalism" },
+    spectrumHome: "far-right",
+    description: {
+      en: "Movements that define the nation by shared ancestry and seek an ethnically homogeneous state.",
+    },
+  },
+  {
+    id: "religious-nationalism",
+    names: { en: "Religious nationalism" },
+    spectrumHome: "far-right",
+    description: {
+      en: "Movements that define the nation by a religious identity and seek to shape the state around it.",
+    },
+  },
 ];

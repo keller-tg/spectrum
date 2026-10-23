@@ -1106,6 +1106,43 @@ the design without naming a home variant or a control style. Defaults, both chea
   view at once while only the markers glide (now p95 16.7 ms, max 16.8 ms). This revises the
   "dots scale" detail of D-086.
 
+**D-091 · 🟢 · Tier A plan: 123 ideologies in 11 batches (2026-10-23).**
+- **Scope:** the 53 Phase 2 stubs become complete entries (full EN content, upgraded
+  sources), plus 70 new ones, including every must-add from the Phase 2 review (D-066).
+- **Families:** nine new ones in `data/families.ts`: feminism, left-populism, pan-africanism,
+  agrarianism, communitarianism, muslim-democracy, authoritarian-conservatism,
+  ethnonationalism and religious-nationalism.
+- **Process:** one Sonnet generation subagent per batch and one reviewer subagent per batch
+  (D-055).
+  - Gates: `docs/content-style.md`, `scripts/check-entries.ts` and
+    `lib/validation/content-lint.ts`, which is now part of the build.
+  - New build errors: two independent sites, one non-Wikipedia secondary source, criticisms
+    from ≥2 perspectives, a third-person voice and no exclamations for extremist entries.
+
+| Batch | Upgrade (stub → complete) | New |
+|---|---|---|
+| 01 radical left, Marxist | marxism-leninism, maoism, titoism, trotskyism, council-communism, juche | marxism, left-communism, luxemburgism, dengism, hoxhaism, castroism |
+| 02 radical left / socialist | democratic-confederalism, eco-socialism, left-accelerationism, democratic-socialism | autonomism, bolivarianism, market-socialism, eurocommunism, christian-socialism, liberation-theology, ethical-socialism, guild-socialism |
+| 03 left | social-democracy, green-politics | nordic-model, fabianism, labourism, left-wing-populism, african-socialism, pan-africanism, socialist-feminism, third-way, liberal-feminism |
+| 04 centre, liberal | classical-liberalism, social-liberalism, ordoliberalism, georgism, distributism, christian-democracy | neoliberalism, radical-centrism, civic-nationalism, property-owning-democracy, european-federalism, liberal-internationalism |
+| 05 centre, other | semi-direct-federal-democracy, kemalism, technocracy, transhumanism | pirate-politics, deliberative-democracy, muslim-democracy, communitarianism, agrarianism, ecomodernism |
+| 06 right | liberal-conservatism, national-conservatism, paleoconservatism, gaullism, constitutional-monarchism | neoconservatism, traditionalist-conservatism, one-nation-conservatism, social-conservatism, thatcherism, fusionism, carlism |
+| 07 far right | fascism, national-socialism, ecofascism, populist-radical-right, absolute-monarchism, neoreaction | falangism, francoism, integral-nationalism, white-nationalism, identitarianism, alt-right |
+| 08 third position, statist | baathism, peronism, national-bolshevism, strasserism, third-positionism | nasserism, neo-eurasianism, national-syndicalism, national-anarchism, bonapartism, developmental-authoritarianism, hindutva |
+| 09 libertarian | libertarianism, minarchism, anarcho-capitalism, geolibertarianism, effective-accelerationism | paleolibertarianism, objectivism, left-libertarianism, agorism |
+| 10 anarchist | anarcho-communism, anarcho-syndicalism, mutualism, green-anarchism, anarcho-primitivism, libertarian-municipalism | individualist-anarchism, egoist-anarchism, anarcha-feminism, anarcho-pacifism, christian-anarchism, insurrectionary-anarchism, platformism |
+| 11 theocratic | islamism, khomeinism, salafi-jihadism, christian-reconstructionism | dominionism (becomes the parent of Christian reconstructionism), catholic-integralism, wahhabism, kahanism |
+
+- **Placement calls I made, for the reviewers to challenge:**
+  - **Spectrum:** eurocommunism, Christian socialism and liberation theology are left;
+    Dengism, Castroism and Bolivarianism are radical left; the Third Way is centre.
+  - **Spectrum and family:** Francoism and integral nationalism are far right in a new
+    authoritarian-conservatism family, not fascism. Hindutva is far right in
+    religious-nationalism. Kahanism is theocratic in religious-nationalism.
+  - **Third position:** national syndicalism, in the fascism family.
+  - **Wahhabism instead of quietist Salafism:** Wahhabism is a state doctrine; quietist
+    Salafism seeks no state power, so it does not meet the theocratic criterion.
+
 ## H. Open items
 
 - **Owner's choice, defaults applied (D-084):** home A and sharp are live on the branch; confirm
