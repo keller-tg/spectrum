@@ -5,12 +5,10 @@ import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 
 export default getRequestConfig(async ({ locale }) => {
-  let resolved = locale;
-  if (!resolved) {
-    const fromParams = await rootParams.locale();
-    if (!hasLocale(routing.locales, fromParams)) notFound();
-    resolved = fromParams;
-  }
+  // An explicit locale comes from page params too, so it is checked like the root param:
+  // "/sitemap.xml" reaches [locale] as "sitemap.xml" and must be a 404, not a missing module.
+  const resolved = locale ?? (await rootParams.locale());
+  if (!hasLocale(routing.locales, resolved)) notFound();
   return {
     locale: resolved,
     messages: (await import(`../messages/${resolved}.json`)).default,

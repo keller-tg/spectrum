@@ -3,8 +3,11 @@ import { CONTENT_COMPLETE, LOCALES, type Locale } from "@/data/locales";
 import { getPathname } from "@/i18n/navigation";
 import { SITE_URL } from "@/lib/seo/site";
 
-/** Public, indexable static routes. Personal pages (results, dashboard) never appear. */
-const ROUTES = [
+/**
+ * Public, indexable static routes. Personal pages (results, dashboard) never appear.
+ * Not served before launch (D-088); `npm run sitemap` writes generated/sitemap.xml to check it.
+ */
+export const ROUTES = [
   "/",
   "/test",
   "/compass",
@@ -19,7 +22,7 @@ const ROUTES = [
   "/imprint",
 ] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export function sitemapEntries(): MetadataRoute.Sitemap {
   const indexable = LOCALES.filter((l) => CONTENT_COMPLETE[l]);
   const url = (locale: Locale, href: (typeof ROUTES)[number]) =>
     `${SITE_URL}${getPathname({ locale, href })}`;

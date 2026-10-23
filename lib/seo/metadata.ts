@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CONTENT_COMPLETE, LOCALES, type Locale } from "@/data/locales";
 import { getPathname } from "@/i18n/navigation";
+import { LAUNCHED } from "./launch";
 
 type Href = Parameters<typeof getPathname>[0]["href"];
 
@@ -31,7 +32,7 @@ export function pageMetadata({
   hrefFor,
   noindex,
 }: PageMetaInput): Metadata {
-  const indexable = !noindex && CONTENT_COMPLETE[locale];
+  const indexable = LAUNCHED && !noindex && CONTENT_COMPLETE[locale];
   return {
     title,
     description,

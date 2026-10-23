@@ -33,7 +33,8 @@
     "pilot-analysis": "tsx scripts/pilot-analysis.ts",
     "check-sources": "tsx scripts/check-sources.ts",
     "prebuild": "npm run validate && npm run derive && npm run images",
-    "export:questions": "tsx scripts/export-questions.ts"
+    "export:questions": "tsx scripts/export-questions.ts",
+    "sitemap": "tsx scripts/sitemap.ts"
   },
   "dependencies": {
     "idb": "^8.0.4",

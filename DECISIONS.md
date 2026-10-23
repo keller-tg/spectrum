@@ -1056,6 +1056,21 @@ the design without naming a home variant or a control style. Defaults, both chea
 - e2e: answer 10, switch EN → DE → FR → EN. The answers and position remain, no non-GET
   request is made, and there are no cookies and no IndexedDB.
 
+**D-088 · 🟢 · Nothing is indexed before launch (2026-10-23).** Until the owner says "launch":
+- **Header:** every response carries `X-Robots-Tag: noindex, nofollow` (`next.config.ts`).
+- **robots.txt:** `Disallow: /`, with no sitemap line.
+- **Page metadata:** `pageMetadata` emits `noindex` too.
+- **Sitemap:** generation stays (`lib/seo/sitemap.ts`). `npm run sitemap` writes
+  `generated/sitemap.xml` for checking, but `/sitemap.xml` returns 404.
+- **Launch:** set `SPECTRUM_LAUNCHED=1` in the Vercel project and add back `app/sitemap.ts`
+  (`export default sitemapEntries`). The pilot keeps its own noindex either way.
+- **Guard:** `tests/e2e/noindex.spec.ts` crawls every internal link from `/en`, `/de` and
+  `/fr`, plus the pilot, a share code and a 404. It fails on any response without the header,
+  and it also checks robots.txt and the sitemap 404.
+- **Side fix:** a locale-shaped path with a dot (`/sitemap.xml`, `/foo.xml`) returned 500.
+  next-intl's request config loaded `messages/<segment>.json` for an unchecked explicit
+  locale. Every locale is now validated there and an unknown one is a 404.
+
 ## H. Open items
 
 - **Owner's choice, defaults applied (D-084):** home A and sharp are live on the branch; confirm
