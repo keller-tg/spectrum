@@ -23,6 +23,7 @@ const CLIENT_NAMESPACES = [
   "anchors",
   "home",
   "pilot",
+  "compass",
 ] as const;
 
 export function generateStaticParams() {

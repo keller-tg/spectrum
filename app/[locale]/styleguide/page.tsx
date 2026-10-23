@@ -13,6 +13,7 @@ import { ButtonDemo } from "@/components/styleguide/ButtonDemo";
 import { CompassDemo } from "@/components/styleguide/CompassDemo";
 import { ControlsSwitch } from "@/components/styleguide/ControlsSwitch";
 import { SegmentedDemo } from "@/components/styleguide/SegmentedDemo";
+import { SelectDemo } from "@/components/styleguide/SelectDemo";
 import { ToggleDemo } from "@/components/styleguide/ToggleDemo";
 import { WebGraphDemo } from "@/components/styleguide/WebGraphDemo";
 import { AnswerRowsDemo } from "@/components/test/AnswerRows";
@@ -393,7 +394,7 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
           {t("segmented.note")}
         </SectionHeader>
         <ModePair labels={modeLabels}>
-          {() => (
+          {(mode) => (
             <>
               <Row label={t("segmented.mode")}>
                 <SegmentedDemo
@@ -416,6 +417,22 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
                     })),
                   ]}
                   initial="map"
+                />
+              </Row>
+              <Row label={t("segmented.select")}>
+                <SelectDemo
+                  id={`sg-select-${mode}`}
+                  label={t("segmented.select")}
+                  groups={[
+                    {
+                      label: t("segmented.axis"),
+                      options: (["distribution", "liberty", "borders"] as const).map((a) => ({
+                        value: a,
+                        label: AXES[a].name[locale],
+                      })),
+                    },
+                  ]}
+                  initial="liberty"
                 />
               </Row>
               <Row label={t("segmented.switch")}>

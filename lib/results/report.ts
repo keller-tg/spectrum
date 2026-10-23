@@ -36,8 +36,12 @@ export interface Report {
   indices: IndexRow[];
 }
 
+/** Half-width of the likely range, in points; the compass draws the same width. */
+export const rangeHalfWidth = (confidence: number) =>
+  RANGE_AT_ZERO_CONFIDENCE * (1 - confidence) + 4;
+
 export function axisRange(score: number, confidence: number): [number, number] {
-  const half = RANGE_AT_ZERO_CONFIDENCE * (1 - confidence) + 4;
+  const half = rangeHalfWidth(confidence);
   return [Math.max(-100, score - half), Math.min(100, score + half)];
 }
 

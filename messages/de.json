@@ -478,7 +478,8 @@
       "mode": "Testlänge",
       "axis": "Achsenwahl",
       "map": "Karte",
-      "switch": "Schalter"
+      "switch": "Schalter",
+      "select": "Auswahlliste"
     },
     "modes": {
       "note": "Jeder Modus ist ein Link über die ganze Zeile. Beim Hover wischt die Zeile ins Inverse, STARTEN gleitet herein und der Pfeil rollt (im hellen Rahmen auf Schnell fixiert). Vertieft ist gestrichelt und noch nicht anklickbar."
@@ -568,7 +569,8 @@
       "indices": "Bereichsindizes",
       "ideologies": "Nächste Ideologien",
       "uncertainty": "Wie sicher das ist",
-      "share": "Teilen und weiter"
+      "share": "Teilen und weiter",
+      "compass": "Auf der Karte"
     },
     "posterHead": "Spectrum · Ergebnis · {mode}",
     "lowQuality": "Deine Antworten folgen einem Muster, das diese Deutung weniger verlässlich macht (siehe „Wie sicher das ist“). Nimm sie als grobe Skizze.",
@@ -631,7 +633,10 @@
     "moreButton": "{count} weitere beantworten",
     "edit": "Antworten ändern",
     "retake": "Neu beginnen",
-    "dashboard": "Verlauf"
+    "dashboard": "Verlauf",
+    "compassLead": "Dein Ergebnis auf der Gesamtkarte, zwischen den {count} Ideologien des Katalogs. Die schraffierte Ellipse ist dein wahrscheinlicher Bereich; im Kompass kannst du zwei beliebige Achsen wählen.",
+    "compassCaption": "Abb. — Du und {count} Ideologien",
+    "compassOpen": "Kompass öffnen"
   },
   "pilot": {
     "kicker": "Pilot · nicht öffentlich",
@@ -652,5 +657,41 @@
     "thanks": "Danke",
     "saved": "Deine Antworten wurden als {name} gespeichert. Gib die Datei nur weiter, wenn du willst.",
     "cleared": "Die Antworten wurden von dieser Seite gelöscht."
+  },
+  "compass": {
+    "controls": "Ansicht des Kompasses",
+    "view": "Ansicht",
+    "map": "Karte",
+    "axes": "Zwei Achsen",
+    "mapNote": "Die Gesamtkarte zeigt die beiden Richtungen, in denen sich die Ideologien des Katalogs am stärksten unterscheiden, zusammengesetzt aus allen zwölf Achsen. Zusammen erfassen sie {share} % der Unterschiede; Abstände auf der Karte erzählen also nur einen Teil.",
+    "xAxis": "Waagrecht (X)",
+    "yAxis": "Senkrecht (Y)",
+    "swapNote": "Wählst du die Dimension der anderen Achse, werden die beiden getauscht.",
+    "groupAxes": "Achsen",
+    "groupIndices": "Kategorie-Indizes",
+    "indexName": "Index {name}",
+    "pc": "HK{k}",
+    "pcName": "HK{k} · {share} % der Unterschiede",
+    "poleNeg": "{name} −",
+    "polePos": "{name} +",
+    "you": "Du",
+    "caption": "Abb. — Katalog, {count} Ideologien",
+    "axesLine": "X: {x} · Y: {y}",
+    "description": "{count} Ideologien aus dem Katalog, platziert nach {x} (waagrecht) und {y} (senkrecht). Größere Rasterpunkte bedeuten mehr Ideologien in der Nähe; jede Markierung zeigt ihr Spektrum durch ihre Form.",
+    "descriptionYou": "Dein letztes Ergebnis ist die schraffierte Ellipse mit Fadenkreuz; sie ist breiter, wo deine Antworten weniger eindeutig waren.",
+    "keyboard": "Kompass. Pfeiltasten springen zur nächsten Ideologie in dieser Richtung; Escape hebt die Auswahl auf.",
+    "announceView": "Ansicht: {x} gegen {y}.",
+    "announceYou": "Du: {x}, {y}.",
+    "announcePoint": "{name}, {code}: {x}, {y}.",
+    "table": "Als Tabelle anzeigen ({count})",
+    "tableCaption": "Positionen auf {x} (X) und {y} (Y)",
+    "colName": "Ideologie",
+    "colSpectrum": "Spektrum",
+    "noResult": "In diesem Browser gibt es noch kein Ergebnis. Mach den Test, um zu sehen, wo du auf dieser Karte stehst; dein Ergebnis bleibt auf diesem Gerät.",
+    "takeTest": "Zum Test",
+    "key": "Legende",
+    "density": "Raster: größere Punkte, mehr Ideologien in der Nähe",
+    "youRange": "Du: wahrscheinlicher Bereich, breiter bei weniger Sicherheit",
+    "spectra": "Spektren"
   }
 }

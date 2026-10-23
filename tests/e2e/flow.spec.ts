@@ -49,6 +49,14 @@ test("Quick → results → share → upgrade to Standard → results", async ({
   await expect(page.locator("#axes")).toBeAttached();
   await expectNoSeriousA11yIssues(page);
 
+  // The result sits on the mini compass, and on the compass page, from this browser only.
+  await expect(page.locator("#result-compass-desc")).toContainText("hatched ellipse");
+  await page.goto("/en/compass");
+  await expect(page.locator("#compass-desc")).toContainText("hatched ellipse");
+  await expect(page.getByText("There is no result in this browser yet")).toHaveCount(0);
+  await expect(page).toHaveURL(/\/en\/compass$/);
+  await page.goto("/en/results");
+
   // A share code exists only after pressing the button.
   await expect(page.locator("#share-url")).toHaveCount(0);
   await page.getByRole("button", { name: /Create a share link/ }).click();

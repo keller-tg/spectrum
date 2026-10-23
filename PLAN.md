@@ -9,7 +9,7 @@ Source of truth: **Master spec v2** (2026-10-21). Every choice and its status is
 
 Status: Phase 0 ✅ · Phase 1 ✅ · Phase 2 ✅ (engine, schemas, 72 EN questions, 53 anchor ideologies,
 calibration; question revision 2 approved 2026-10-23) · Design reset ✅ · Design V2 ✅ (§13,
-approved; defaults in D-084) · **Phase 3 ✅ (test, results, share, pilot; D-085)** · Phase 4 in progress.
+approved; defaults in D-084) · Phase 3 ✅ (test, results, share, pilot; D-085) · **Phase 4 ✅ (static compass, D-086)**.
 ---
 
 ## 1. Principles
@@ -438,6 +438,11 @@ The radar, eras and non-ideology matches wait for their data.
 - **Also:** small multiples, layers, spectrum and family filters, and a ghost compare.
 - **A11y:** a keyboard model, an aria-live summary and a table fallback.
 - **Performance and export:** 60 fps target and PNG export.
+- **Built in Phase 4 (D-086):** `/compass` and the results page's mini compass. SVG instead of
+  Canvas; halftone density, spectrum markers, the user's hatched uncertainty ellipse, Map or
+  any two of 12 axes + 4 indices, width-fitted collision-free labels, a keyboard model, a live
+  region and a table. Zoom, filters, layers, small multiples, ghost, PNG export and the trail
+  are still open.
 
 ## 10. Dashboard (Phase 6) & sync (Phase 7)
 

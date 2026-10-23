@@ -25,6 +25,9 @@ import {
   SectionHead,
 } from "./ResultSections";
 import { ShareBox } from "./ShareBox";
+import { CompassFigure } from "@/components/compass/CompassFigure";
+import { userInput } from "@/lib/compass/user";
+import { dimensions, MAP_VIEW } from "@/lib/compass/geometry";
 
 /** The next longer mode whose questions exist, for "N more questions". */
 function nextMode(mode: ModeId): ModeId | null {
@@ -64,6 +67,11 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
     () => (scored ? buildReport(scored.scores, scored.confidences, catalog) : null),
     [scored, catalog],
   );
+  const dims = useMemo(() => dimensions(catalog), [catalog]);
+  const userMark = useMemo(
+    () => (scored ? userInput(scored.scores, scored.confidences) : null),
+    [scored],
+  );
 
   if (result === undefined) return <p className="annot px-4 py-16 text-center">{t("loading")}</p>;
 
@@ -89,11 +97,15 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
     ["positions", t("sections.positions")],
     ["radar", t("sections.radar")],
     ["indices", t("sections.indices")],
+    ["compass", t("sections.compass")],
     ["ideologies", t("sections.ideologies")],
     ["uncertainty", t("sections.uncertainty")],
     ["share", t("sections.share")],
   ] as const;
-  const id = (key: (typeof sections)[number][0]) => ta(key);
+  type Key = (typeof sections)[number][0];
+  const id = (key: Key) => ta(key);
+  const num = (key: Key) => sections.findIndex(([k]) => k === key) + 1;
+  const label = (key: Key) => sections.find(([k]) => k === key)?.[1] ?? "";
   const tensions = AXIS_IDS.filter((a) => scored.axes[a].tension);
 
   const continueWith = async (mode: ModeId, from: number) => {
@@ -138,7 +150,7 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
 
         <div className="min-w-0 space-y-20">
           <section aria-labelledby={id("summary")}>
-            <SectionHead id={id("summary")} number={1} title={sections[0][1]} />
+            <SectionHead id={id("summary")} number={num("summary")} title={label("summary")} />
             <div className="mt-8">
               <ResultPoster
                 report={report}
@@ -160,7 +172,7 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
           </section>
 
           <section aria-labelledby={id("axes")}>
-            <SectionHead id={id("axes")} number={2} title={sections[1][1]} />
+            <SectionHead id={id("axes")} number={num("axes")} title={label("axes")} />
             <p className="prose-text mt-6">{t("axesLead")}</p>
             <div className="mt-6">
               <AxisRows axes={report.axes} locale={locale} />
@@ -168,14 +180,18 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
           </section>
 
           <section aria-labelledby={id("positions")}>
-            <SectionHead id={id("positions")} number={3} title={sections[2][1]} />
+            <SectionHead
+              id={id("positions")}
+              number={num("positions")}
+              title={label("positions")}
+            />
             <div className="mt-8">
               <Positions report={report} locale={locale} />
             </div>
           </section>
 
           <section aria-labelledby={id("radar")}>
-            <SectionHead id={id("radar")} number={4} title={sections[3][1]} />
+            <SectionHead id={id("radar")} number={num("radar")} title={label("radar")} />
             <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
               <Radar
                 id="result-radar"
@@ -202,15 +218,38 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
           </section>
 
           <section aria-labelledby={id("indices")}>
-            <SectionHead id={id("indices")} number={5} title={sections[4][1]} />
+            <SectionHead id={id("indices")} number={num("indices")} title={label("indices")} />
             <p className="prose-text mt-6">{t("indicesLead")}</p>
             <div className="mt-6">
               <IndexRows indices={report.indices} locale={locale} />
             </div>
           </section>
 
+          <section aria-labelledby={id("compass")}>
+            <SectionHead id={id("compass")} number={num("compass")} title={label("compass")} />
+            <p className="prose-text mt-6">{t("compassLead", { count: catalog.entries.length })}</p>
+            <div className="mt-6 max-w-3xl">
+              <CompassFigure
+                id="result-compass"
+                entries={catalog.entries}
+                dims={dims}
+                view={MAP_VIEW}
+                user={userMark}
+                explained={catalog.map.explained}
+                caption={t("compassCaption", { count: catalog.entries.length })}
+              />
+            </div>
+            <p className="mt-6">
+              <TextLink href="/compass">{t("compassOpen")}</TextLink>
+            </p>
+          </section>
+
           <section aria-labelledby={id("ideologies")}>
-            <SectionHead id={id("ideologies")} number={6} title={sections[5][1]} />
+            <SectionHead
+              id={id("ideologies")}
+              number={num("ideologies")}
+              title={label("ideologies")}
+            />
             <p className="prose-text mt-6">{t("matchesLead", { count: catalog.entries.length })}</p>
             <div className="mt-6">
               <MatchList items={report.summary.top} />
@@ -220,7 +259,11 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
           </section>
 
           <section aria-labelledby={id("uncertainty")}>
-            <SectionHead id={id("uncertainty")} number={7} title={sections[6][1]} />
+            <SectionHead
+              id={id("uncertainty")}
+              number={num("uncertainty")}
+              title={label("uncertainty")}
+            />
             <dl className="mt-8 grid border-t-2 border-ink">
               <div className="border-b border-ink py-4">
                 <dt className="annot font-bold">{t("overall")}</dt>
@@ -262,7 +305,7 @@ export function ResultsView({ catalog }: { catalog: CatalogData }) {
           </section>
 
           <section aria-labelledby={id("share")}>
-            <SectionHead id={id("share")} number={8} title={sections[7][1]} />
+            <SectionHead id={id("share")} number={num("share")} title={label("share")} />
             <div className="mt-8">
               <ShareBox
                 result={{

@@ -94,6 +94,7 @@ const REVIEW_PAGES = [
   "/en/styleguide/screens",
   "/en/styleguide/home-a",
   "/en/styleguide/home-b",
+  "/en/compass",
 ];
 
 test("root redirects to a locale", async ({ page }) => {

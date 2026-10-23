@@ -1,0 +1,12 @@
+/* Compass (PLAN §9, D-086). Markers, halftone dots, labels and the user's mark
+   glide to a new view by transform only, on the shared slow token, so they are
+   instant under reduced motion. The plot never reflows. */
+.cmp-move {
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+/* SVG children transform in viewBox units from the origin. */
+svg .cmp-move {
+  transform-box: view-box;
+  transform-origin: 0 0;
+}

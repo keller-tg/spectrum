@@ -478,7 +478,8 @@
       "mode": "Longueur du test",
       "axis": "Choix d’axe",
       "map": "Carte",
-      "switch": "Interrupteur"
+      "switch": "Interrupteur",
+      "select": "Liste déroulante"
     },
     "modes": {
       "note": "Chaque mode est un lien sur toute la ligne. Au survol, la ligne s’inverse par balayage, COMMENCER glisse et la flèche roule (figé sur Rapide dans le cadre clair). Approfondi est en tirets et pas encore cliquable."
@@ -568,7 +569,8 @@
       "indices": "Indices par domaine",
       "ideologies": "Idéologies les plus proches",
       "uncertainty": "Degré de certitude",
-      "share": "Partager et continuer"
+      "share": "Partager et continuer",
+      "compass": "Sur la carte"
     },
     "posterHead": "Spectrum · résultat · {mode}",
     "lowQuality": "Vos réponses suivent un schéma qui rend cette lecture moins fiable (voir « Degré de certitude »). Prenez-la comme une esquisse.",
@@ -631,7 +633,10 @@
     "moreButton": "Répondre à {count} de plus",
     "edit": "Modifier les réponses",
     "retake": "Recommencer",
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "compassLead": "Votre résultat sur la carte d’ensemble, parmi les {count} idéologies du catalogue. L’ellipse hachurée est votre zone probable ; la boussole permet de choisir deux axes quelconques.",
+    "compassCaption": "Fig. — Vous et {count} idéologies",
+    "compassOpen": "Ouvrir la boussole"
   },
   "pilot": {
     "kicker": "Pilote · non public",
@@ -652,5 +657,41 @@
     "thanks": "Merci",
     "saved": "Vos réponses ont été enregistrées sous {name}. Transmettez-les seulement si vous le souhaitez.",
     "cleared": "Les réponses ont été effacées de cette page."
+  },
+  "compass": {
+    "controls": "Vue de la boussole",
+    "view": "Vue",
+    "map": "Carte",
+    "axes": "Deux axes",
+    "mapNote": "La carte d’ensemble montre les deux directions dans lesquelles les idéologies du catalogue diffèrent le plus, combinées à partir des douze axes. Ensemble, elles couvrent {share} % des différences ; les distances sur la carte ne racontent donc qu’une partie de l’histoire.",
+    "xAxis": "Horizontal (X)",
+    "yAxis": "Vertical (Y)",
+    "swapNote": "Choisir la dimension de l’autre axe intervertit les deux.",
+    "groupAxes": "Axes",
+    "groupIndices": "Indices par catégorie",
+    "indexName": "Indice {name}",
+    "pc": "CP{k}",
+    "pcName": "CP{k} · {share} % des différences",
+    "poleNeg": "{name} −",
+    "polePos": "{name} +",
+    "you": "Vous",
+    "caption": "Fig. — Catalogue, {count} idéologies",
+    "axesLine": "X : {x} · Y : {y}",
+    "description": "{count} idéologies du catalogue placées selon {x} (horizontal) et {y} (vertical). Des points de trame plus gros signifient plus d’idéologies à proximité ; chaque marqueur indique son spectre par sa forme.",
+    "descriptionYou": "Votre dernier résultat est l’ellipse hachurée avec un réticule ; elle est plus large là où vos réponses étaient moins nettes.",
+    "keyboard": "Boussole. Les flèches passent à l’idéologie la plus proche dans cette direction ; Échap efface la sélection.",
+    "announceView": "Vue : {x} contre {y}.",
+    "announceYou": "Vous : {x}, {y}.",
+    "announcePoint": "{name}, {code} : {x}, {y}.",
+    "table": "Voir sous forme de tableau ({count})",
+    "tableCaption": "Positions sur {x} (X) et {y} (Y)",
+    "colName": "Idéologie",
+    "colSpectrum": "Spectre",
+    "noResult": "Il n’y a pas encore de résultat dans ce navigateur. Faites le test pour voir où vous vous situez sur cette carte ; votre résultat reste sur cet appareil.",
+    "takeTest": "Faire le test",
+    "key": "Légende",
+    "density": "Trame : points plus gros, plus d’idéologies à proximité",
+    "youRange": "Vous : zone probable, plus large quand c’est moins sûr",
+    "spectra": "Spectres"
   }
 }

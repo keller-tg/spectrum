@@ -429,7 +429,8 @@ three axes are shown instead.
 points project exactly. The web view starts from the same coordinates. UMAP was rejected because
 it distorts global distances and can't place new points exactly.
 
-**D-017 · 🟢 · Compass:** Canvas 2D + d3 modules (no regl), with an SVG label overlay.
+**D-017 · 🟢 · Compass (superseded by D-086):** Canvas 2D + d3 modules (no regl), with an SVG label overlay.
+*Revised by D-086: the static compass is SVG; Canvas returns only if zoom or the trail need it.*
 
 **D-018 · ✅ · URLs:** own results are read from IndexedDB with no code in the URL. The share code
 (31 characters, scores only) is created only on Share.
@@ -991,6 +992,55 @@ the design without naming a home variant or a control style. Defaults, both chea
   - Deep has no static pages until the Deep bank exists (Phase 9).
   - The results page links to the compass instead of embedding a preview (added in Phase 4).
   - The radar, eras, countries, figures and parties sections wait for their data (Phase 5).
+
+**D-086 · 🟢 · Phase 4: the static compass (2026-10-23).**
+- **SVG, not Canvas** (revises D-017). The figure renders on the server, so it works without
+  JavaScript and its first paint is the real picture. 53 markers plus a 30 × 30 halftone
+  lattice is about 1,000 nodes; at 300 entries it is about 1,250. A view change measured a
+  median frame under one vsync in the e2e frame test.
+- **One linear model for every dimension** (`lib/compass/geometry.ts`):
+  - The 12 axes, the usable category indices (D-015, all four today) and the two map
+    components (D-016) are each written as weights over the 12 coordinates.
+  - So the catalog, the user and the user's uncertainty project the same way, and unit tests
+    check them against the engine's index and the build-time PCA.
+- **Scales:**
+  - Axes and indices share the fixed −100…+100 scale.
+  - Map fits one span to the catalog for both components, so distances stay honest.
+- **Halftone:**
+  - It is a fixed lattice of dots, each scaled to the kernel density at that point.
+  - The kernel narrows as the catalog grows, so structure survives at 300+.
+  - A view change animates each dot's `scale` and each marker's `translate`. That is
+    transform only, on `--dur-slow`, and instant under reduced motion.
+- **You:**
+  - The latest stored result appears as an outlined, hatched ellipse with a crosshair and a
+    "You" tag.
+  - The radii are the results page's likely-range half-widths, combined across axes as if
+    the axes were independent (√Σ(wᵢhᵢ)²). That is a display choice, not a statistical claim.
+  - The ellipse is not animated in size; it snaps while its centre glides.
+  - It is read from IndexedDB in the browser and never enters the URL.
+- **Labels:**
+  - Greedy and collision-free, fitted to the rendered width, because the text stays 12px.
+  - The outermost entry of each spectrum goes first.
+  - Labels avoid every marker's knock-out and the "You" tag.
+  - A phone shows a handful and a desktop a few dozen. A unit test checks that none overlap
+    at 53 and 300 entries.
+- **Pole names** sit outside the plot (above it, and below it in a row), so they never hide
+  data.
+- **Keyboard and text alternatives:**
+  - The plot is one focusable group. Arrow keys go to the nearest entry in that direction
+    within a 60° cone, wrapping at the edge. Escape clears.
+  - A polite live region announces each step and each view change.
+  - A table lists every entry, plus "You", with both values.
+- **Mini compass:** the results page shows the Map view with the user (a new section, "On
+  the map").
+- **Deferred:**
+  - zoom and pan;
+  - spectrum and family filters, layers, small multiples and the ghost compare;
+  - PNG export;
+  - the trail (Phase 8).
+
+  The picker offers a "Map" or "Two axes" mode. Choosing the other axis's dimension swaps the
+  two axes instead of plotting one against itself.
 
 ## H. Open items
 

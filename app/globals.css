@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./controls.css";
+@import "./charts.css";
 
 /* Black and white, brutalist, with careful motion (D-075, D-080).
    Resting states use only ink and paper; depth comes from 1-bit techniques

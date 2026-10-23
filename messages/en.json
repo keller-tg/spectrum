@@ -478,7 +478,8 @@
       "mode": "Test length",
       "axis": "Axis picker",
       "map": "Map",
-      "switch": "Switch"
+      "switch": "Switch",
+      "select": "Select"
     },
     "modes": {
       "note": "Each mode is one link across the whole row. On hover the row wipes to inverted, START slides in and the arrow rolls (pinned on Quick in the light frame). Deep is dashed and not clickable yet."
@@ -568,7 +569,8 @@
       "indices": "Category indices",
       "ideologies": "Closest ideologies",
       "uncertainty": "How sure this is",
-      "share": "Share and next steps"
+      "share": "Share and next steps",
+      "compass": "On the map"
     },
     "posterHead": "Spectrum · result · {mode}",
     "lowQuality": "Your answers follow a pattern that makes this reading less reliable (see “How sure this is”). Treat it as a rough sketch.",
@@ -631,7 +633,10 @@
     "moreButton": "Answer {count} more",
     "edit": "Change answers",
     "retake": "Start again",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "compassLead": "Your result on the overall map, among the {count} ideologies of the catalog. The hatched ellipse is your likely range; the compass lets you pick any two axes.",
+    "compassCaption": "Fig. — You and {count} ideologies",
+    "compassOpen": "Open the compass"
   },
   "pilot": {
     "kicker": "Pilot · not public",
@@ -652,5 +657,41 @@
     "thanks": "Thank you",
     "saved": "Your answers were saved as {name}. Pass it on only if you want to.",
     "cleared": "The answers have been cleared from this page."
+  },
+  "compass": {
+    "controls": "Compass view",
+    "view": "View",
+    "map": "Map",
+    "axes": "Two axes",
+    "mapNote": "The overall map shows the two directions in which the catalog's ideologies differ most, combined from all twelve axes. Together they cover {share}% of the differences; distances on the map are therefore only part of the story.",
+    "xAxis": "Horizontal (X)",
+    "yAxis": "Vertical (Y)",
+    "swapNote": "Choosing the other axis's dimension swaps the two.",
+    "groupAxes": "Axes",
+    "groupIndices": "Category indices",
+    "indexName": "{name} index",
+    "pc": "PC{k}",
+    "pcName": "PC{k} · {share}% of the differences",
+    "poleNeg": "{name} −",
+    "polePos": "{name} +",
+    "you": "You",
+    "caption": "Fig. — Catalog, {count} ideologies",
+    "axesLine": "X: {x} · Y: {y}",
+    "description": "{count} ideologies from the catalog placed by {x} (horizontal) and {y} (vertical). Bigger halftone dots mean more ideologies nearby; each marker shows its spectrum by shape.",
+    "descriptionYou": "Your latest result is the hatched ellipse with a crosshair; the ellipse is wider where your answers were less certain.",
+    "keyboard": "Compass. Arrow keys step to the nearest ideology in that direction; Escape clears.",
+    "announceView": "Showing {x} against {y}.",
+    "announceYou": "You: {x}, {y}.",
+    "announcePoint": "{name}, {code}: {x}, {y}.",
+    "table": "View as table ({count})",
+    "tableCaption": "Positions on {x} (X) and {y} (Y)",
+    "colName": "Ideology",
+    "colSpectrum": "Spectrum",
+    "noResult": "There is no result in this browser yet. Take the test to see where you sit on this map; your result stays on this device.",
+    "takeTest": "Take the test",
+    "key": "Key",
+    "density": "Halftone: bigger dots, more ideologies nearby",
+    "youRange": "You: likely range, wider when less certain",
+    "spectra": "Spectra"
   }
 }
