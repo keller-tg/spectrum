@@ -22,9 +22,7 @@ export default async function Page() {
   const t = await getTranslations("pages.imprint");
   return (
     <PageStub title={t("title")} lead={t("lead")} phase={12}>
-      <p className="mt-6 rounded-lg border border-rule-strong bg-paper-raised p-4 text-ink">
-        {t("pending")}
-      </p>
+      <p className="prose-text mt-6 border-2 border-ink p-4">{t("pending")}</p>
     </PageStub>
   );
 }

@@ -52,3 +52,6 @@ next-env.d.ts
 
 # pilot answer files are personal data: never commit
 /pilot-data/
+
+# dithered photos are built from data/images at build time
+/public/images/

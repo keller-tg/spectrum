@@ -1,9 +1,13 @@
-export const THEME_STORAGE_KEY = "spectrum-theme";
+import { preferenceScript } from "@/lib/design/preferences";
 
-// Runs during HTML parsing, before first paint, so there is no theme flash.
-// Stored choice wins; otherwise the system preference applies.
-const script = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
+export {
+  CONTROL_STYLES,
+  CONTROLS_STORAGE_KEY,
+  THEME_STORAGE_KEY,
+  type ControlStyle,
+} from "@/lib/design/preferences";
 
+/** Runs during HTML parsing, before first paint, so there is no theme flash. */
 export function ThemeScript() {
-  return <script dangerouslySetInnerHTML={{ __html: script }} />;
+  return <script dangerouslySetInnerHTML={{ __html: preferenceScript() }} />;
 }

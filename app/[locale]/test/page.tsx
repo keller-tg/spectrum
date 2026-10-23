@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { ModeCards } from "@/components/home/ModeCards";
+import { ModeRows } from "@/components/home/ModeRows";
 import type { Locale } from "@/data/locales";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -18,11 +18,15 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/test">):
 export default async function Page({ params }: PageProps<"/[locale]/test">) {
   const locale = (await params).locale as Locale;
   const t = await getTranslations("pages.test");
+  const th = await getTranslations("home");
   return (
-    <div className="mx-auto max-w-6xl px-4 pt-16 sm:px-6 sm:pt-24">
-      <h1 className="display rise text-display-lg text-ink">{t("title")}</h1>
-      <p className="mt-5 mb-12 max-w-2xl text-lg leading-relaxed text-ink-2">{t("lead")}</p>
-      <ModeCards locale={locale} />
+    <div className="mx-auto max-w-7xl px-4 pt-10 pb-12 sm:pt-16">
+      <h1 className="display text-display-lg">{t("title")}</h1>
+      <p className="prose-text mt-5">{t("lead")}</p>
+      <div className="mt-10 max-w-4xl">
+        <ModeRows locale={locale} blurbs />
+        <p className="prose-text mt-4">{th("modesNote")}</p>
+      </div>
     </div>
   );
 }

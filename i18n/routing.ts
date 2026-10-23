@@ -41,7 +41,28 @@ export const routing = defineRouting({
     "/method": { en: "/method", de: "/methode", fr: "/methode" },
     "/privacy": { en: "/privacy", de: "/datenschutz", fr: "/confidentialite" },
     "/imprint": { en: "/imprint", de: "/impressum", fr: "/mentions-legales" },
-    "/design-system": { en: "/design-system", de: "/designsystem", fr: "/systeme-de-design" },
+    "/pilot": "/pilot",
+    "/styleguide": { en: "/styleguide", de: "/styleguide", fr: "/guide-de-style" },
+    "/styleguide/buttons": {
+      en: "/styleguide/buttons",
+      de: "/styleguide/buttons",
+      fr: "/guide-de-style/boutons",
+    },
+    "/styleguide/screens": {
+      en: "/styleguide/screens",
+      de: "/styleguide/screens",
+      fr: "/guide-de-style/ecrans",
+    },
+    "/styleguide/home-a": {
+      en: "/styleguide/home-a",
+      de: "/styleguide/home-a",
+      fr: "/guide-de-style/accueil-a",
+    },
+    "/styleguide/home-b": {
+      en: "/styleguide/home-b",
+      de: "/styleguide/home-b",
+      fr: "/guide-de-style/accueil-b",
+    },
   },
 });
 

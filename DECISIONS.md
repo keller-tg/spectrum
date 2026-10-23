@@ -55,6 +55,46 @@ The spec answered them all.
 | Personal data | rule in CLAUDE.md | **privacy guard** (script + CI on every push, full history), hash-only secret; User-Agent contact = repo URL | D-073 |
 | Hosting | Vercel team unknown | team `sos-kellohs-projects`, project `spectrum`, Next.js preset, Node 24.x; live | D-001, D-074 |
 
+
+## 0c. Design reset (2026-10-23)
+
+The owner replaced the Phase 1 look ("Design" in the master spec) with a minimalist, brutalist,
+strictly black-and-white design. Everything else in the spec stays.
+
+| Area | Before (Phase 1) | Now | Entries |
+|---|---|---|---|
+| Palette | cream paper, deep-green ink, three ink shades, rule tints, one deep-red accent, nine spectrum tints, separate dark values | **two tokens, `--ink` and `--paper`**: black on white, white on black in dark mode; nothing else | D-075 |
+| Enforcement | axe contrast checks | `check-palette` (script + CI) and a runtime colour audit in e2e | D-075 |
+| Fonts | Bodoni Moda (+ italic) and Schibsted Grotesk via `next/font/google` | **Archivo** (heavy display, regular text) + **IBM Plex Mono** (UI, labels, numbers), self-hosted via `next/font/local` | D-076 |
+| Form | rounded cards and chips, soft shadows, backdrop blur, paper grain, colour glow | zero radius, zero shadow, 2px rules (1px hairlines), 12-column grid, numbered sections, ruled tables | D-079 |
+| Motion | micro-interactions, rise-in, spinning dial ring, hover lifts | none; instant states; functional animation only, with a reduced-motion fallback | D-079 |
+| States | accent borders and tinted fills | hover/press invert, selected = inverted + "[X]" or brackets, disabled = dashed, focus = 3px outline at 3px, errors in words | D-079 |
+| Spectra | colour tints with a dot | marker shape + 1–3 letter code + legend | D-077 |
+| Axis strip | 12 pole glyphs, opacity = strength | 12 two-letter codes over four filled/empty squares | D-077 |
+| Charts | colour gradient compass, red "you", tinted fills | halftone density, outlined circle + crosshair, dashed trail with dates, solid vs dashed lines, hatched vs empty fills | D-077 |
+| Images | Commons photos as they are; colour avatars | 1-bit ordered dither at build time, attribution under each; generated monochrome glyphs; ISO codes instead of flags | D-078 |
+| Landing | sentence + lead + dial graphic, mode cards, axes overview, "how it works", promises band | one screen: wordmark, one sentence, the mode table; the other sections moved to /method | D-079 |
+| Design page | `/design-system` | `/styleguide` (noindex, unlinked): every component and state in both modes side by side | D-079 |
+
+
+## 0d. Design V2 (2026-10-23)
+
+The owner kept the black-and-white system (tokens, fonts, modes, palette guard)
+and asked for modern brutalist pages with refined interaction. This revises
+three rules of the reset.
+
+| Area | Design reset (D-079) | Design V2 | Entries |
+|---|---|---|---|
+| Motion | none; instant inverts | a token-based interaction system: wipes, arrow rolls, springs, sliding indicators; transform and clip-path only; instant under reduced motion | D-080 |
+| Radius | zero everywhere | `--radius-control` (0 or 999px) for controls only, in three switchable styles: sharp, pill, offset | D-080 |
+| Focus ring | 3px at 3px | 2px at 3px, flipped inside inverted bands | D-080 |
+| Landing | one screen: wordmark, sentence, mode table | full home page: hero with headline, mode rows and a live hero field; stat strip; 01 how it works; 02 the 12 axes; 03 index; privacy band; footer wordmark | D-081 |
+| Mode table | table with a START label in the corner | whole-row links that wipe to inverted | D-080 |
+| Answer options | five cells | five full-width rows with keycaps and an "[X]" that draws in | D-080 |
+| Header | ruled row of cells | sticky, 1px rule, an ordered-dither band on scroll; segmented EN/DE/FR and LIGHT/DARK; a full-screen inverted sheet on phones | D-080 |
+| Structure | boxes everywhere, 2px | less boxing, more air: 2px for structure, 1px for dense data, 8px spacing grid, sections padded `clamp(64px, 10vw, 160px)` | D-080 |
+| Review | `/styleguide` | plus `/styleguide/buttons` (state matrix), `/styleguide/screens` (test screen, result poster), `/styleguide/home-a` and `/home-b`, captures in `docs/design/` | D-081 |
+
 ---
 
 ## A. Project & stack
@@ -84,7 +124,7 @@ next-intl documents static rendering through `generateStaticParams` + `next/root
 nothing about Cache Components. Every page is plain SSG/ISR, which is all the app needs.
 Revisit if next-intl documents support.
 
-**D-058 · 🟢 · Fonts.** Bodoni Moda (display, optical-size axis) + Schibsted Grotesk (text/UI),
+**D-058 · ~~superseded by D-076~~ · Fonts.** Bodoni Moda (display, optical-size axis) + Schibsted Grotesk (text/UI),
 self-hosted via `next/font`. Only the `latin` subset is preloaded (it covers en/de/fr); latin-ext
 loads on demand. The italic display face is a separate, non-preloaded face, since it sets only
 words of emphasis.
@@ -325,6 +365,9 @@ position twice. **Adopted:**
 - replacing #53 for axis 7 difficulty (decide after the pilot)
 - replacing #58 (an alliance item the owner did not flag)
 
+**Owner, 2026-10-23:** revision 2 approved as written. Axes 6 and 8 keep the owner's labels; #53
+and #58 wait for the pilot data.
+
 **Documented, not changed:**
 - #61's country anchoring: ten years is current law in CH/AT
 - #38's overlap with axis 4
@@ -386,7 +429,8 @@ three axes are shown instead.
 points project exactly. The web view starts from the same coordinates. UMAP was rejected because
 it distorts global distances and can't place new points exactly.
 
-**D-017 · 🟢 · Compass:** Canvas 2D + d3 modules (no regl), with an SVG label overlay.
+**D-017 · 🟢 · Compass (superseded by D-086):** Canvas 2D + d3 modules (no regl), with an SVG label overlay.
+*Revised by D-086: the static compass is SVG; Canvas returns only if zoom or the trail need it.*
 
 **D-018 · ✅ · URLs:** own results are read from IndexedDB with no code in the URL. The share code
 (31 characters, scores only) is created only on Share.
@@ -527,10 +571,11 @@ Wikipedia), academic works, datasets (V-Dem, CHES; licences to be checked), and 
 Subagents cite only URLs they opened. A link checker runs in CI. No copied prose.
 
 **D-032 · 🟢 · Images:** Commons only, with metadata from the Commons API and a licence allowlist
-(PD, CC0, CC BY, CC BY-SA). Self-hosted, optimized copies.
+(PD, CC0, CC BY, CC BY-SA). Self-hosted copies, turned into 1-bit dither images at build time
+(D-078).
 
-**D-033 · 🟢 · Avatars:** procedural original geometric SVG emblems; no characters, no real-world
-symbols.
+**D-033 · 🟢 · Avatars:** generated, original, monochrome glyphs (D-078): a 5×5 mirror-symmetric
+pattern of squares derived from the entry id. No characters, no faces, no real-world symbols.
 
 **D-034 · 🟢 · What a country's coordinates mean:** the policy regime in force as of a stated date,
 not public opinion. Regimes cover a stated period.
@@ -545,8 +590,9 @@ and are off at launch (see D-042 on the Impressum).
 **D-043 · ✅ · Reference site:** sets the mood only. None of its code, text, questions or data is
 used.
 
-**D-045 · 🟢 · Spectrum colours:** muted tints checked for AA contrast and colour-vision
-deficiency. Deep red is reserved for "you" and primary actions.
+**D-045 · ~~superseded by D-077~~ · Spectrum colours:** muted tints checked for AA contrast and
+colour-vision deficiency. Deep red was reserved for "you" and primary actions. The design now has
+no colour; spectra are shapes plus codes.
 
 **D-046 · ✅ · Catalog staging:** Tier A (~120 core ideologies, full pages), then regimes,
 countries, figures and parties, then Tier B (~180+) in batches with the same gates. Gates are never
@@ -584,9 +630,12 @@ classification, coordinate drift) before merge. Its findings and my resolutions 
 
 ## F. Rendering & optional features
 
-**D-038 · 🟢 · OG images** are generated on demand and cached, not at build time.
+**D-038 · 🟢 · OG images** are generated on demand and cached, not at build time. They are black
+and white with the site's two fonts (D-075, D-076); satori reads TTF/OTF/WOFF but not WOFF2, so
+Phase 8 adds `.woff` copies of the same faces.
 
-**D-039 · 🟢 · PDF** uses a print stylesheet and `window.print()`.
+**D-039 · 🟢 · PDF** uses a print stylesheet and `window.print()`. The print rules (already in
+`app/globals.css`) force ink on white in every mode and hide navigation and controls.
 
 **D-040 · 🟢 · AI explain (Phase 11)** uses the current Haiku model (the Claude Code environment
 lists `claude-haiku-5-5`; re-verify against Anthropic docs then). It sends rounded scores only,
@@ -594,8 +643,473 @@ asks for consent, is labelled AI-generated, cached and rate-limited, and is off 
 
 ---
 
-## G. Open items
 
+## G. Design (black and white, 2026-10-23)
+
+**D-075 · ✅ · Two colours.** The only colours are the CSS tokens `--ink` and `--paper`: `#000` on
+`#fff` in light mode, `#fff` on `#000` in dark mode (`lib/design/tokens.ts` mirrors them for
+theme-color and, later, OG images). No greys, accents, gradients, shadows, opacity, blur or rounded
+corners. Mode follows `prefers-color-scheme`; the text toggle "[ LIGHT / DARK ]" stores a choice
+in localStorage, the inline script applies it before first paint and adds a theme-color meta
+for it. Nested `data-theme` frames are allowed (the styleguide shows both modes at once).
+Forced-colours mode is respected: no `forced-color-adjust: none`, SVG paints in `currentColor`,
+and selected states add an outline in the system colour because inverted backgrounds disappear
+there. Print always uses ink on white.
+**Enforcement:** Tailwind's theme is cut down to ink and paper (plus the built-in transparent
+and current), and its radius, shadow, blur and animation scales are removed.
+`scripts/check-palette.ts` runs in `npm run check` and in CI (`.github/workflows/palette.yml`). It
+parses CSS and TypeScript (string literals only, so comments and prose never trip it) and
+rejects:
+- colour literals outside the token declarations
+- named and system colours, and colour functions
+- gradients, opacity, shadows, radius and filters
+- Tailwind palette colours and opacity modifiers
+- SVG opacity attributes and gradient or blur elements
+
+Its unit test proves the previous design would fail. A runtime audit in the e2e suite checks
+every rendered element and pseudo-element in both modes. Dithered photos are exempt by
+construction. Since D-080, transient mid-animation blends are fine (a wipe is half ink, half
+paper for 220ms); every resting state is pure ink or paper, and the radius rule allows exactly
+`var(--radius-control)`.
+**Why:** owner's design reset. WCAG AA contrast is now 21:1 everywhere.
+
+**D-076 · 🟢 · Fonts (supersedes D-058).** **Archivo** (Omnibus-Type, variable 100–900) for display
+headings at weight 850 with tight leading, and at 400 for running text (≥ 16 px, ~65ch,
+line-height 1.6). **IBM Plex Mono** 400/700 for the interface, labels (small uppercase, tracked)
+and every number (mono figures are tabular). Both are SIL OFL 1.1 and self-hosted from
+`app/fonts/` via `next/font/local`, licences next to the files, with no font request to any
+other host. Latin is preloaded (≈65 KB for three files); latin-ext loads only when a page uses
+one of its characters. **Why:** a heavy neutral grotesque gives the black-and-white pages their
+weight without ornament; a mono with tabular figures makes numbers and labels line up in ruled
+tables. Archivo's black weight reads as a poster grotesque, not a fashion face, and Plex Mono
+pairs with it without competing. Widths other than normal were dropped to keep the preload small.
+
+**D-077 · ✅/🟢 · Encodings without colour.**
+- **Spectra:** each has a marker shape and a 1–3 letter code, always shown together and keyed
+  in a legend (`SpectrumLegend`): radical left ■ RL, left □ L, centre ○ C, right ◇ R,
+  far right ◆ FR, third position ⋈ TP (bowtie), libertarian △ LB, anarchist ▽ AN,
+  theocratic ⬡ TH. Only the two outer ends of the left–right line are filled, so the fill means
+  "further out on that line" and applies to both sides alike. Crosses, stars and other shapes
+  with political or religious associations are avoided. Codes are localized (DE: M, ER, DP; FR:
+  GR, G, D, ED); shapes are fixed. Hollow markers are filled with paper so they knock out
+  halftone dots behind them.
+- **Axes:** each axis has a localized two-letter code (EN: DI OW TR SP CE PA SC RS EC NW IN MI),
+  used on radar spokes, compact tables and the strip.
+- **Twelve-axis strip:** the code over four small squares, two per pole. One filled square =
+  leans, two = strong (|score| ≥ 60), none = near the centre (|score| < 15). The styleguide
+  explains how to read it; the accessible label spells out every axis.
+- **Charts:** your series is a solid line with a hatched fill and solid corners, a comparison is
+  dashed with an empty fill and hollow corners. Axis results are black bars on ruled tracks
+  with ticks every 10 and an uncertainty bracket. Compass: halftone dot size shows density, you
+  are an outlined circle (radius from confidence) with a crosshair, past results form a dashed
+  path with arrowheads and dates (sparser dots with age), a ghost compare is hollow and dashed.
+  Web view: spectrum shapes as nodes, 1px edges, labels on hover, selected node inverted.
+- Every chart keeps a text alternative: a title/description plus a "Show data table" disclosure.
+- **Flags** are dropped; countries appear by name and ISO code.
+
+**D-078 · 🟢 · Images at build time.** `scripts/build-images.ts` (sharp, run by `prebuild` and
+`predev`) turns each source in `data/images/` into a 1-bit PNG via an 8×8 Bayer ordered dither:
+greyscale, normalised, resized to its output size, thresholded. Outputs go to `public/images/`
+(gitignored) and contain only pure black and white pixels (the 320×402 sample is 6 KB). They are
+shown at their own size with `image-rendering: pixelated`, so scaling never adds grey, in a 2px
+frame, with author, licence and a source link always visible underneath. Licence data stays in
+`data/images.ts` (Commons API, never typed from memory). The first source is a public-domain
+portrait (John Stuart Mill, London Stereoscopic Company, c. 1870) used on the styleguide. Entry
+avatars are generated glyphs (D-033).
+
+**D-079 · ✅/🟢 · Brutalist rules, states and pages.** *Revised by D-080/D-081 (2026-10-23): the
+"no motion", "zero radius everywhere" and "one-screen landing" rules no longer hold; the focus
+ring is now 2px.*
+- **Form:** zero radius, zero shadow, 2px solid borders (1px hairlines for dense data), a strict
+  12-column grid, sections as bordered cells that share one rule, numbered section headers
+  ("01"), ruled tables.
+- **States without colour:** hover and press invert ink and paper. Selected is inverted plus a
+  text marker ("[X]" for options, brackets for the current page and the selected tab). Disabled
+  is a dashed border. Focus is a 3px solid outline at 3px offset in both modes. Links are
+  underlined. Errors and success are words (an invalid field also gets a 4px frame).
+- **Motion:** none by default. A global reduced-motion rule stays as a safety net for the
+  functional animation that comes later (trail playback, graph layout).
+- **Landing:** one screen with the wordmark, one sentence ("Twelve axes, because politics doesn't
+  fit on one line.") and the modes as a ruled table (Quick 36 / Standard 72 / Deep 144, with
+  minutes). Deep shows a dashed row and says "Opens soon". The axes overview, "how it works" and
+  the promises moved to /method, so no content was lost. An e2e test checks that the table fits
+  the first screen on desktop and phone.
+- **Wordmark and favicon:** "SPECTRUM" in bold mono capitals after a square glyph (a framed
+  field with one solid square); the favicon is the same glyph and follows the system mode.
+  Below 360px only the glyph shows, and the link keeps its accessible name.
+- **Header:** one ruled row of cells (wordmark, sections, EN/DE/FR, theme). Under 1024px the
+  sections move into a text "MENU" disclosure, and under 768px so does the theme toggle.
+- **Base components** (`components/ui`, `components/charts`): button, text field, checkbox, answer
+  options, cell grid, ruled table (scrolls inside its own focusable region on narrow screens, so
+  the page never scrolls sideways), nav, toggle, tabs, slider and axis bar, tooltip, modal
+  (native `<dialog>` over a halftone backdrop), legends, section header, figure image, entry glyph.
+- **`/styleguide`** replaces `/design-system`. It is noindex, in no nav or sitemap, and shows every
+  component and state in a light and a dark frame side by side, plus the shape and pattern
+  legends and static previews of the compass and web view on the anchor catalog. The localized
+  slugs are `/styleguide` (EN, DE) and `/guide-de-style` (FR).
+
+
+**D-080 · ✅/🟢 · Interaction system and control styles (Design V2).**
+- **Tokens:** `--ease-out` cubic-bezier(0.22, 1, 0.36, 1); `--ease-spring` as `linear()` with at
+  most 3% overshoot (falls back to `--ease-out`); `--dur-fast` 120ms, `--dur` 220ms,
+  `--dur-slow` 360ms (large surfaces only). Only transform and clip-path animate; no animation
+  library. With `prefers-reduced-motion` every duration token is 0s, so wipes become instant
+  inverts and drift, sweeps and springs stop. Forced colours keep the text markers plus a
+  system-colour outline.
+- **Hover** exists only under `(hover: hover) and (pointer: fine)`; Tailwind's `hover:` variant
+  is redefined to match. Touch gets `:active` only; nothing essential is hover-only (on touch the
+  mode rows spell out START).
+- **The wipe:** each interactive host carries an aria-hidden copy of its own content in
+  inverted colours, revealed left to right with clip-path. Fill and label flip in the same
+  frame, so there is never an unreadable one. Used by buttons, mode rows and answer rows.
+- **Buttons:** labels in mono caps with 0.08em tracking. Optional rolling arrow (1.5px stroke)
+  and keycap hint. Sizes S 36 / M 44 / L 56; S keeps a 44px touch target with an invisible
+  margin. Variants:
+  - primary: ink fill
+  - secondary: paper fill and a 1.5px frame
+  - text: the underline draws in over 160ms
+
+  States:
+  - hover: wipe plus arrow roll
+  - press: scale(0.98), released with the spring
+  - focus: 2px ring at 3px
+  - loading: three stepped ticks at fixed width, `aria-busy`; the label keeps its place and
+    name
+  - success: a checkmark draws in over 240ms
+  - error: words only ("FAILED, RETRY")
+  - disabled: dashed and `aria-disabled`, no hover or press
+- **Control styles** via `data-controls` on `<html>`. The inline script sets it before paint from
+  a review-only localStorage key, and the styleguide offers the "[ SHARP / PILL / OFFSET ]"
+  switch:
+  - **sharp** (default): radius 0
+  - **pill**: `--radius-control: 999px` for buttons, segmented controls, tags and inputs; rows,
+    cells, tables and graphics stay square
+  - **offset**: radius 0 plus a solid 4px ink block behind (a pseudo-element, no blur); hover
+    lifts 1px, press moves the button into its shadow
+
+  Mixing styles on one screen is not possible, since there is one attribute. Once the owner
+  picks one, the switch and the key are removed.
+- **Segmented control** (theme, test length, axis picker, the on/off switch): equal segments
+  and an inverted copy of the labels clipped to the selected segment, which slides with
+  clip-path. Radiogroup semantics, roving focus, arrow keys. EN/DE/FR uses the same look but
+  stays a set of links with `aria-current`, because changing language is navigation, not a
+  form choice.
+- **Navigation:** the underline draws in on hover; the current section has a bar that slides
+  between items (transform only) plus brackets. On phones a native popover gives a full-screen
+  inverted sheet in display type, items arriving in 40ms steps. It works without JavaScript.
+- **Header:** sticky, solid paper, a 1px rule. An 8px ordered-dither band (8×8 Bayer, dense to
+  empty) appears once the page has scrolled, in place of a shadow or blur.
+- **Rows:**
+  - Mode rows are whole-row links, at least 72px tall: wipe, START slides in, arrow rolls.
+    Standard carries a permanent inverted RECOMMENDED tag; Deep is dashed, says "opens soon"
+    and has no hover.
+  - Answer rows are full-width: press wipes, the chosen row stays inverted and its "[X]" draws
+    in over 120ms. Keycaps 1–5 show on desktop; auto-advance waits `ADVANCE_DELAY_MS` = 180.
+  - Only clickable rows and cards have hover effects. The axes table rows qualify, because they
+    reveal what the axis measures.
+- **Sliders:** a ruled track with ticks, a thumb that grows while dragged, a bordered readout
+  that follows it, arrow keys, optional snap to ticks (10 points).
+- **Links:** underlined at rest (colour cannot set them apart); a 2px rule draws in on hover;
+  external links get a small arrow. **Tooltips:** 300ms hover delay, 120ms entrance, at once on
+  focus or tap, Escape closes. They are `display: none` when closed, so they never widen the
+  page, and are shifted to stay in the viewport.
+- **Structure:** 2px rules for structure, 1px for dense data and the sticky header. An 8px
+  spacing grid, sections padded `clamp(64px, 10vw, 160px)`, borders not nested inside
+  components, a rotated running head in the left margin on wide screens, nothing below 12px.
+- **Not built:**
+  - **View transitions:** optional. Next's client-side navigation would need an experimental
+    flag, which is not worth it for ≤ 160ms.
+  - **The ideology ticker:** optional, and it would duplicate the index.
+
+**D-081 · 🟢 · Home page and app screens (Design V2, for review).**
+- **Composition:**
+  1. header
+  2. hero: headline, one-sentence subline, mode rows, hero field
+  3. stat strip, counted from the data at build time: 12 axes, N ideologies, 36/72/144
+     questions, 0 accounts
+  4. "01 / How it works": giant numerals 1–2–3 and small 1-bit diagrams
+  5. "02 / The 12 axes" on an inverted band: a ruled table of code, name, poles and a tick
+     scale; hover or focus shows what the axis measures
+  6. "03 / Index of ideologies": book-style index with dotted leaders, shapes and codes, plus
+     counts per spectrum
+  7. an inverted privacy band in display type
+  8. footer: three ruled columns, then the wordmark across the full width, cropped at the
+     bottom
+- **Two variants** for the owner to choose between, both responding to the control-style
+  switch. The current `/` keeps the reset's landing (with mode rows) until the choice.
+  - `/styleguide/home-a` "specimen": headline and modes on 5 columns, the field on 7 columns
+    and two rows
+  - `/styleguide/home-b` "typographic": the headline up to ~11vw across the grid, modes on 7
+    columns, the field a smaller figure on 5
+
+  On phones both run headline, field, modes. Headline tracking is −0.02em at weight 800 with
+  0.92 leading; no glyph collisions at 390, 768, 1440 or 1920px.
+- **Hero field (FIG. 01):**
+  - **Data:** the real catalog on the overall map. `lib/catalog/map.ts` is the one PCA used by
+    both build-derived and the field, and `derived.json` stayed byte-identical. One scale for
+    both components, so distances are honest.
+  - **Drawing:** halftone density from a Gaussian kernel; spectrum markers drawn on paper
+    knock-outs; crop marks and rulers; the caption "FIG. 01 — CATALOG, N ENTRIES" and the
+    variance share. Marker size, kernel width and label count scale with N.
+  - **Labels:** placed greedily without collisions; five majors fit a phone, minors appear only
+    on wide figures.
+  - **Server render:** a complete SVG, so it works without JavaScript and never blocks LCP.
+  - **Live layer** (1.9 KB gzipped):
+    - deterministic stepped drift at 10 fps (zero at frame 0, so the server picture is the
+      first frame)
+    - paused off screen or in a background tab, static with reduced motion
+    - a crosshair snapping to the nearest ideology, with a mono readout (name, code, PC1, PC2)
+    - click or tap to jump to the index entry, until entry pages exist (Phase 5)
+    - arrow keys and Enter for keyboard users, with a live region
+
+    A "View as list" disclosure lists every entry.
+- **App screens, designed now** (`/styleguide/screens`):
+  - **Test screen (Phase 3):** a huge question number; the statement in display type; answer
+    rows; progress as one tick per question.
+  - **Result poster:** a giant match numeral; the ideology in display type; spectrum shape,
+    code and family; 12 ruled axis rows with black bars and a hatched uncertainty band. It
+    doubles as the share card (Phase 8).
+
+  Dashboard and compass reuse the halftone and dashed dated trail from D-077.
+- **Captures:** `npm run design:capture` writes 16 full-page screenshots and three WebM
+  recordings, one per control style, to `docs/design/`.
+- **Measured** (local production build, mobile Lighthouse):
+  - home A: performance 99, accessibility 100, best practices 100, CLS 0
+  - home B: performance 97, accessibility 100, best practices 100, CLS 0
+
+
+**D-082 · 🟢 · Display preferences survive a language switch (bug fix, 2026-10-23).**
+- **Symptom:** after EN → DE (any pair) the LIGHT/DARK toggle vanished until a reload, and the
+  control style fell back to its default.
+- **Root cause:** `app/[locale]/layout.tsx` is the root layout and renders `<html>`. A locale
+  change remounts it, and React 19 strips every attribute it does not render from the `<html>`
+  singleton on remount. `data-theme` and `data-controls` were written by the pre-paint inline
+  script, outside React, and that script does not run again on a client-side navigation. The
+  toggle hides itself without `data-theme`, so it disappeared.
+- **Fix:** one self-contained `applyPreferences()` (`lib/design/preferences.ts`). It is
+  serialized into the inline script for first paint, and run again by `<PreferenceSync />` in a
+  layout effect each time the root layout mounts, which is the same commit in which React
+  clears the attributes, before paint. No reload, no flash. Keeping the locale out of the root
+  layout was rejected: `<html lang>` needs the locale, and next-intl's static rendering relies
+  on it as a root param (D-057).
+- **Also:** focus returns to the chosen language after the switch (it fell to `<body>`).
+- **Regression test:** `tests/e2e/locale-state.spec.ts` checks all six locale pairs on desktop
+  and phone: theme, control style, `lang`, hreflang, soft navigation, focus, and that the
+  toggle still works.
+
+
+**D-083 · 🟢 · Motion rebuilt on one composited, direction-aware wipe (2026-10-23).**
+- **Audit:** `scripts/capture-motion.ts` records the interactions at quarter speed and traces
+  a mode-row hover with a per-frame probe. Both builds were measured on the same page.
+
+  | | Before | After |
+  |---|---|---|
+  | Wipe | revealed an aria-hidden duplicate of the content with clip-path | one slide panel |
+  | Paints | 19 | 13 (≤ 0.29 ms each) |
+  | Moving frames | 28 | 47 |
+  | Largest step per frame | 1.0 (a full-row snap in one frame) | 0.19 |
+  | Duration | 220 ms on a 1 300 px row | 380 ms on rows, 200 ms on controls |
+  | Direction | always from the left | entry and exit side |
+  | Keyboard focus | ring only | ring and wipe |
+  | Longest frame | 16.8 ms | 16.8 ms |
+
+  Clips: `docs/design/motion-before.webm` and `motion-after.webm`.
+- **New model:** each host gets `<Wipe />`, one aria-hidden panel, `will-change: transform`,
+  moved only by `transform`. It inverts what lies under it with `mix-blend-mode: difference`
+  against `--blend-light`, an alias of whichever token is white in the current scope, so no
+  third colour exists.
+  - On pure black and white, difference with white is an exact ink↔paper swap. Fill, label,
+    tags, arrows and focus rings flip in the same pixel and frame, with no duplicated content
+    to keep in sync.
+  - Resting states stay pure ink or paper; the colour audit checks them.
+  - Forced colours hide the panels (system colours would not invert cleanly); print hides
+    them too.
+- **Direction:** `<WipeDirection />` is one delegated listener in the root layout. A mouse
+  entering a host sets `data-wipe-in` and moves the resting panel, without animation, to the
+  entry side first. Leaving sets the exit side, so the panel goes out that way. A panel still
+  moving just reverses from where it is, which is the interruptible case. Touch keeps
+  `:active` only. Without JavaScript, CSS `:hover` (under `scripting: none`) wipes from the
+  left.
+- **One "engaged" state** drives everything: the pointer (`data-wipe-in`), keyboard focus
+  (`:focus-visible`) and pinned styleguide states (`data-state="hover"`). It covers the wipe,
+  arrow roll, START slide-in, text-button underline and the offset lift.
+- **Segmented controls** use the same inverting panel, one segment wide and moved by
+  `translateX`. **Header band, mobile sheet and START word** are transform-only now; they
+  were clip-path.
+- **Shared and enforced:**
+  - **Tokens:** `--ease-out`, `--ease-spring`, `--dur-fast`, `--dur`, `--dur-slow`,
+    `--dur-wipe`, `--dur-wipe-row`, `--dur-underline`, `--dur-draw`, `--dur-check` and
+    `--dur-ticks`, all 0s under reduced motion.
+  - **Components and classes:** `<Wipe />` + `.wipe-host`, `<WipeDirection />`,
+    `<SegmentIndicator />` and `<RollingArrow />`.
+  - **`scripts/check-motion.ts`** (in `npm run check` and the "Design guards" CI job, with unit
+    tests) fails on:
+    - transitions of anything but transform or clip-path (display, overlay and visibility are
+      allowed as discrete);
+    - raw durations outside the tokens, and keyframes that change other properties;
+    - `mix-blend-mode` outside `app/controls.css`;
+    - Tailwind motion utilities or inline transitions in UI code;
+    - a wipe panel rendered by hand.
+
+
+**D-084 · 🟡 · Home variant and control style: safe defaults (2026-10-23).** The owner approved
+the design without naming a home variant or a control style. Defaults, both cheap to reverse:
+- `/` now renders home A, "specimen", where the live catalog field shows what the product does
+  above the fold.
+- The control style stays **sharp**, the documented default.
+- `/styleguide/home-b` and the review-only style switch stay, so the choice can still be made.
+  Switching to B is a one-line change in `app/[locale]/page.tsx`; fixing a style means
+  removing the switch and its storage key.
+
+**D-085 · 🟢 · Phase 3: test, results and pilot (2026-10-23).**
+- **Storage:** IndexedDB database `spectrum` v1 (`lib/storage/db.ts`), with three stores:
+  - `drafts`: one key per mode, so Quick and Standard keep separate drafts;
+  - `results`: auto-increment;
+  - `settings`: auto-advance.
+
+  If IndexedDB is unavailable, a memory store takes over and the test shows a notice (D-019).
+  Answers given before the store has opened are merged into the stored draft, not dropped.
+- **Upgrade by prefix:** Quick is the first 36 items of Standard. "Sharpen" copies the Quick
+  answers into the Standard draft and opens question 37. Answers are never re-asked.
+- **Statements are English in DE and FR** until Phase 9: they are marked `lang="en"` and the
+  test shows a one-line notice. The UI around them is translated.
+- **Results are computed in the browser.**
+  - The catalog data (coordinates, τ, indices, Map PCA, versions) is serialised at build time
+    from `generated/derived.json` into the page; nothing is fetched at runtime.
+  - The stored answers are re-scored whenever the page opens (§6.8).
+  - "Most unusual" and "most typical" mean relative to the catalog of ideologies, not to other
+    people. There is no population data, and the copy says so.
+- **Share:** pressing the button encodes the result code. `/results/<code>` is the only
+  dynamic route: it decodes on the server, stores nothing, and gives a broken or tampered code
+  a plain message. The private `/results` page never puts anything in the URL (D-018).
+- **Pilot:**
+  - It keeps answers in memory only: no IndexedDB, no cookie.
+  - ~~A language switch remounts the page and loses the pilot answers.~~ Fixed by D-087.
+  - The analysis treats a mirror pair as consistent unless the two answers point in opposite
+    directions.
+- **Not in this phase:**
+  - Deep has no static pages until the Deep bank exists (Phase 9).
+  - The results page links to the compass instead of embedding a preview (added in Phase 4).
+  - The radar, eras, countries, figures and parties sections wait for their data (Phase 5).
+
+**D-086 · 🟢 · Phase 4: the static compass (2026-10-23).**
+- **SVG, not Canvas** (revises D-017). The figure renders on the server, so it works without
+  JavaScript and its first paint is the real picture. 53 markers plus a 30 × 30 halftone
+  lattice is about 1,000 nodes; at 300 entries it is about 1,250. A view change measured a
+  median frame under one vsync in the e2e frame test.
+- **One linear model for every dimension** (`lib/compass/geometry.ts`):
+  - The 12 axes, the usable category indices (D-015, all four today) and the two map
+    components (D-016) are each written as weights over the 12 coordinates.
+  - So the catalog, the user and the user's uncertainty project the same way, and unit tests
+    check them against the engine's index and the build-time PCA.
+- **Scales:**
+  - Axes and indices share the fixed −100…+100 scale.
+  - Map fits one span to the catalog for both components, so distances stay honest.
+- **Halftone:**
+  - It is a fixed lattice of dots, each scaled to the kernel density at that point.
+  - The kernel narrows as the catalog grows, so structure survives at 300+.
+  - A view change animates each marker's `translate` (transform only, on `--dur-slow`,
+    instant under reduced motion). The halftone redraws at once as one path (D-090).
+- **You:**
+  - The latest stored result appears as an outlined, hatched ellipse with a crosshair and a
+    "You" tag.
+  - The radii are the results page's likely-range half-widths, combined across axes as if
+    the axes were independent (√Σ(wᵢhᵢ)²). That is a display choice, not a statistical claim.
+  - The ellipse is not animated in size; it snaps while its centre glides.
+  - It is read from IndexedDB in the browser and never enters the URL.
+- **Labels:**
+  - Greedy and collision-free, fitted to the rendered width, because the text stays 12px.
+  - The outermost entry of each spectrum goes first.
+  - Labels avoid every marker's knock-out and the "You" tag.
+  - A phone shows a handful and a desktop a few dozen. A unit test checks that none overlap
+    at 53 and 300 entries.
+- **Pole names** sit outside the plot (above it, and below it in a row), so they never hide
+  data.
+- **Keyboard and text alternatives:**
+  - The plot is one focusable group. Arrow keys go to the nearest entry in that direction
+    within a 60° cone, wrapping at the edge. Escape clears.
+  - A polite live region announces each step and each view change.
+  - A table lists every entry, plus "You", with both values.
+- **Mini compass:** the results page shows the Map view with the user (a new section, "On
+  the map").
+- **Deferred:**
+  - zoom and pan;
+  - spectrum and family filters, layers, small multiples and the ghost compare;
+  - PNG export;
+  - the trail (Phase 8).
+
+  The picker offers a "Map" or "Two axes" mode. Choosing the other axis's dimension swaps the
+  two axes instead of plotting one against itself.
+
+**D-087 · 🟢 · Pilot answers survive a language switch (2026-10-23).**
+- A language switch remounts the root layout, which used to drop the pilot's in-memory
+  answers.
+- The unfinished pilot (mode, country, answers, position, auto-advance) now lives in this
+  tab's `sessionStorage` under `spectrum-pilot`.
+  - It is restored in a layout effect, before paint, so the consent screen never flashes.
+  - It is removed on download, on "Discard my answers" and when the tab closes.
+  - It is never sent anywhere.
+- sessionStorage instead of state above the locale layout, because no layout sits above
+  `[locale]`. Adding one would make every page pay for the pilot.
+- The consent text now says where the answers are kept, and the warning not to switch
+  languages is gone.
+- e2e: answer 10, switch EN → DE → FR → EN. The answers and position remain, no non-GET
+  request is made, and there are no cookies and no IndexedDB.
+
+**D-088 · 🟢 · Nothing is indexed before launch (2026-10-23).** Until the owner says "launch":
+- **Header:** every response carries `X-Robots-Tag: noindex, nofollow` (`next.config.ts`).
+- **robots.txt:** `Disallow: /`, with no sitemap line.
+- **Page metadata:** `pageMetadata` emits `noindex` too.
+- **Sitemap:** generation stays (`lib/seo/sitemap.ts`). `npm run sitemap` writes
+  `generated/sitemap.xml` for checking, but `/sitemap.xml` returns 404.
+- **Launch:** set `SPECTRUM_LAUNCHED=1` in the Vercel project and add back `app/sitemap.ts`
+  (`export default sitemapEntries`). The pilot keeps its own noindex either way.
+- **Guard:** `tests/e2e/noindex.spec.ts` crawls every internal link from `/en`, `/de` and
+  `/fr`, plus the pilot, a share code and a 404. It fails on any response without the header,
+  and it also checks robots.txt and the sitemap 404.
+- **Side fix:** a locale-shaped path with a dot (`/sitemap.xml`, `/foo.xml`) returned 500.
+  next-intl's request config loaded `messages/<segment>.json` for an unchecked explicit
+  locale. Every locale is now validated there and an unknown one is a 404.
+
+**D-089 · 🟢 · Pilot file minimised and shown before saving (2026-10-23).**
+- **Format version 2.** The `locale` field is dropped, since the language is a profile
+  signal. Answer times are rounded to 100 ms, so they carry no fine device timing.
+- **One fixed file name,** `spectrum-pilot.json`. The random name was not persistent, but it
+  was still an identifier with no use. When collecting, save each received file under any
+  name in the folder you pass to `pilot-analysis`.
+- **Never in the file:** a name, any date or time, language, device, browser or user-agent
+  data, or any ID.
+- **Kept, because the analysis needs them:** bank and engine versions, mode, and the
+  optional, participant-entered country.
+- **Consent screen:** shows the real structure with example values. It also says that a
+  sent file becomes linkable to its sender, and that files are kept apart from the messages
+  that carried them. The wording names no person.
+- **Review step after the last question:** shows the exact JSON, with "Save the file" and
+  "Discard my answers". e2e checks that the saved bytes equal the text shown and that only the
+  allowed keys exist.
+- Version 1 files are not accepted. No real pilot files existed yet.
+
+**D-090 · 🟢 · Strict frame budget under CPU throttling (2026-10-23).**
+- **Test:** `tests/e2e/frames.spec.ts` slows the CPU 4× over CDP. It records every
+  `requestAnimationFrame` interval while the pointer sweeps the home page's mode rows (row
+  wipes, from alternating sides) and the test screen's answer rows (hovered and pressed,
+  auto-advance off) and buttons.
+- **Assertions:** p95 frame time under 20 ms and no frame over 50 ms. The compass view-change
+  test uses the same rule.
+- **Measured** in five repeated runs: p95 16.7–16.8 ms everywhere; the worst single frame was
+  33.4 ms, on home in two runs.
+- **No lenient median fallback is kept.** The strict check was stable locally. CI doesn't run
+  Playwright yet; if a slower CI runner flakes there, the fallback is a median under 20 ms
+  with p95 under 33 ms, documented here before it lands.
+- **The strict test caught the compass:** 900 individually transitioning halftone dots gave
+  p95 50 ms and a 100 ms frame at 4×. The halftone is now one `<path>` that shows the new
+  view at once while only the markers glide (now p95 16.7 ms, max 16.8 ms). This revises the
+  "dots scale" detail of D-086.
+
+## H. Open items
+
+- **Owner's choice, defaults applied (D-084):** home A and sharp are live on the branch; confirm
+  or switch (B, pill, offset). Then the review switch goes.
 - Final domain (before Phase 7).
 - Optional: rewrite the first commit's author field (machine-local address) — needs a force push
   of `main`; owner's call.

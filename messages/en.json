@@ -17,15 +17,26 @@
     "figures": "Figures",
     "parties": "Parties",
     "dashboard": "Dashboard",
-    "menu": "Menu"
+    "menu": "Menu",
+    "close": "Close"
   },
   "locale": {
     "label": "Language",
-    "names": { "en": "English", "de": "Deutsch", "fr": "Français" },
-    "short": { "en": "EN", "de": "DE", "fr": "FR" }
+    "names": {
+      "en": "English",
+      "de": "Deutsch",
+      "fr": "Français"
+    },
+    "short": {
+      "en": "EN",
+      "de": "DE",
+      "fr": "FR"
+    }
   },
   "theme": {
-    "toggle": "Switch between light and dark theme"
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark"
   },
   "footer": {
     "disclaimer": "Spectrum is an interpretation tool. It reads your answers through a model with real limits; it does not measure who you are.",
@@ -36,63 +47,96 @@
     "privacyLink": "Privacy",
     "imprint": "Imprint",
     "source": "Source code",
-    "designSystem": "Design system",
     "status": "Working title, in development."
   },
   "home": {
-    "kicker": "Twelve axes · Free · No account",
-    "title": "Politics doesn’t fit on <em>one line</em>.",
-    "lead": "Answer short statements, then see where you stand on twelve independent axes, which ideologies, countries, figures and parties sit closest, and how certain that picture is.",
+    "sentence": "Twelve axes, because politics doesn’t fit on one line.",
     "chooseMode": "Choose a length",
-    "modeCount": "{count} questions",
-    "modeTime": "about {minutes} min",
+    "table": {
+      "mode": "Mode",
+      "questions": "Questions",
+      "minutes": "Minutes",
+      "action": "Start",
+      "questionsShort": "Qs",
+      "minutesShort": "Min"
+    },
     "recommended": "Recommended",
     "opensSoon": "Opens soon",
     "start": "Start",
     "modes": {
-      "quick": { "name": "Quick", "blurb": "A first sketch of where you stand." },
-      "standard": { "name": "Standard", "blurb": "A sharper picture with sturdier confidence." },
-      "deep": { "name": "Deep", "blurb": "The most detailed reading: twelve questions per axis." }
+      "quick": {
+        "name": "Quick",
+        "blurb": "A first sketch of where you stand."
+      },
+      "standard": {
+        "name": "Standard",
+        "blurb": "A sharper picture with sturdier confidence."
+      },
+      "deep": {
+        "name": "Deep",
+        "blurb": "The most detailed reading: twelve questions per axis."
+      }
     },
     "modesNote": "You can extend a shorter test later and keep your answers. What you see here is the whole test: no hidden extra rounds.",
-    "axesKicker": "The instrument",
-    "axesTitle": "Twelve axes in four domains",
-    "axesLead": "Each axis is independent. You can favour markets and open borders, or collective ownership and tradition. During the test you never see which axis a statement belongs to; that is revealed with your results.",
-    "howKicker": "The method",
-    "howTitle": "How it works",
+    "kicker": "Spectrum · a twelve-axis political test · free · no account",
+    "subline": "Answer short statements and see where you stand, which ideologies sit closest, and how sure that picture is.",
+    "rowQuestions": "{count} questions",
+    "rowMinutes": "about {minutes} minutes",
+    "field": {
+      "description": "{count} ideologies from the catalog placed on the overall map, the first two principal components of all twelve axes. Bigger halftone dots mean more ideologies nearby; each marker shows its spectrum by shape.",
+      "caption": "Fig. 01 — Catalog, {count} entries",
+      "axes": "PC1 × PC2 · {share}% of variance",
+      "list": "View as list ({count})",
+      "nearest": "Nearest",
+      "keyboard": "Catalog map. Arrow keys step through the ideologies, Enter jumps to the index entry.",
+      "open": "Click for the index entry",
+      "pc1": "PC1",
+      "pc2": "PC2"
+    },
+    "stats": {
+      "label": "In numbers",
+      "axes": "Axes, measured separately",
+      "ideologies": "Ideologies in the catalog",
+      "questions": "Questions: quick, standard, deep",
+      "accounts": "Accounts needed"
+    },
     "how": {
-      "answer": {
-        "title": "Answer",
-        "body": "React to plain statements on a five-point scale. Not sure? Skip it. A skip is not counted as neutral."
-      },
-      "see": {
-        "title": "See twelve positions",
-        "body": "Each axis gets a score and a confidence. Where your answers pull in different directions, the results say so."
-      },
-      "explore": {
-        "title": "Explore and track",
-        "body": "Compare yourself with ideologies, countries, figures and parties, and see how your views move over time."
+      "kicker": "How it works",
+      "title": "Three steps, no account",
+      "steps": {
+        "answer": {
+          "title": "Answer",
+          "body": "React to plain statements on a five-point scale. Not sure? Skip it. A skip is not counted as neutral."
+        },
+        "see": {
+          "title": "See twelve positions",
+          "body": "Each axis gets a score and a confidence. Where your answers pull in different directions, the results say so."
+        },
+        "explore": {
+          "title": "Explore and track",
+          "body": "Compare yourself with ideologies, countries, figures and parties, and see how your views move over time."
+        }
       }
     },
-    "promisesKicker": "The terms",
-    "promisesTitle": "What you can count on",
-    "promises": {
-      "local": {
-        "title": "Local-first",
-        "body": "Results are saved in your browser. Nothing reaches a server unless you choose encrypted sync."
-      },
-      "tracking": {
-        "title": "No tracking",
-        "body": "No ads, no analytics, no third-party scripts. No cookies unless you create a profile."
-      },
-      "honest": {
-        "title": "Honest uncertainty",
-        "body": "Matches are spread out, not inflated, and every result shows how confident it is."
-      },
-      "neutral": {
-        "title": "Even-handed catalog",
-        "body": "Every ideology, mainstream or fringe, gets the same encyclopedic treatment, criticisms included."
-      }
+    "axes": {
+      "kicker": "The 12 axes",
+      "title": "Twelve independent axes",
+      "lead": "Each axis is measured on its own. During the test you never see which axis a statement belongs to; that is revealed with your results.",
+      "code": "Code",
+      "axis": "Axis",
+      "scale": "Scale from −100 to +100"
+    },
+    "index": {
+      "kicker": "Index",
+      "title": "Index of ideologies",
+      "lead": "All {count} entries in the catalog so far, A to Z, each with its spectrum. Full pages arrive with the catalog.",
+      "counts": "Entries per spectrum"
+    },
+    "privacy": {
+      "kicker": "04 / Privacy",
+      "statement": "Your answers stay in your browser.",
+      "body": "No account, no tracking, no ads. Nothing reaches a server unless you choose encrypted sync.",
+      "link": "How your data is handled"
     }
   },
   "stub": {
@@ -114,7 +158,11 @@
     },
     "sharedResult": {
       "title": "A shared result",
-      "lead": "Someone shared their position on the twelve axes with you."
+      "lead": "Someone shared their position on the twelve axes with you.",
+      "kicker": "Shared result",
+      "broken": "This share link does not work",
+      "brokenBody": "The code is incomplete or was changed, so it cannot be read. Ask for the link again, or take the test yourself.",
+      "yourTurn": "Where do you stand? The test takes 5 to 10 minutes and needs no account."
     },
     "compare": {
       "title": "Compare",
@@ -154,7 +202,43 @@
     },
     "method": {
       "title": "Method",
-      "lead": "How answers become scores, how matches are calculated, and where the model’s limits are."
+      "lead": "How answers become scores, how matches are calculated, and where the model’s limits are.",
+      "axesTitle": "Twelve axes in four domains",
+      "axesLead": "Each axis is independent. You can favour markets and open borders, or collective ownership and tradition. During the test you never see which axis a statement belongs to; that is revealed with your results.",
+      "howTitle": "How it works",
+      "how": {
+        "answer": {
+          "title": "Answer",
+          "body": "React to plain statements on a five-point scale. Not sure? Skip it. A skip is not counted as neutral."
+        },
+        "see": {
+          "title": "See twelve positions",
+          "body": "Each axis gets a score and a confidence. Where your answers pull in different directions, the results say so."
+        },
+        "explore": {
+          "title": "Explore and track",
+          "body": "Compare yourself with ideologies, countries, figures and parties, and see how your views move over time."
+        }
+      },
+      "termsTitle": "What you can count on",
+      "terms": {
+        "local": {
+          "title": "Local-first",
+          "body": "Results are saved in your browser. Nothing reaches a server unless you choose encrypted sync."
+        },
+        "tracking": {
+          "title": "No tracking",
+          "body": "No ads, no analytics, no third-party scripts. No cookies unless you create a profile."
+        },
+        "honest": {
+          "title": "Honest uncertainty",
+          "body": "Matches are spread out, not inflated, and every result shows how confident it is."
+        },
+        "neutral": {
+          "title": "Even-handed catalog",
+          "body": "Every ideology, mainstream or fringe, gets the same encyclopedic treatment, criticisms included."
+        }
+      }
     },
     "privacy": {
       "title": "Privacy",
@@ -165,10 +249,6 @@
       "title": "Imprint",
       "lead": "Legal notice and contact details.",
       "pending": "The responsible party will be named here before public launch."
-    },
-    "designSystem": {
-      "title": "Design system",
-      "lead": "Tokens and components that every page is built from."
     }
   },
   "notFound": {
@@ -188,7 +268,8 @@
     "parties": "parties",
     "eras": "eras",
     "uncertainty": "uncertainty",
-    "share": "share"
+    "share": "share",
+    "indices": "indices"
   },
   "axisStrip": {
     "label": "Position on the twelve axes",
@@ -205,29 +286,419 @@
     "skip": "Unsure, skip this one",
     "groupLabel": "Your answer"
   },
-  "ds": {
-    "kicker": "Internal reference",
-    "type": "Typography",
-    "typeDisplay": "Display: Bodoni Moda",
-    "typeText": "Text and interface: Schibsted Grotesk",
-    "sampleHeadline": "Where would you draw the line?",
-    "sampleBody": "Each axis is measured on its own. A position on one says nothing about the others, which is exactly why twelve lines describe a person better than one.",
-    "colour": "Colour",
-    "colourNote": "Every pairing used for text meets WCAG AA in both themes. Deep red is reserved for you and for primary actions.",
-    "spectra": "Spectrum tints",
-    "spectraNote": "Tints identify spectra on charts and chips. They are always paired with a written label, never colour alone.",
-    "glyphs": "Axis glyphs",
-    "glyphsNote": "Twenty-four original glyphs, one per pole. Strips show the glyph of the pole an entry leans to.",
-    "strip": "Twelve-icon strip",
-    "stripNote": "Opacity follows how strongly an entry leans; a dot means near the centre.",
-    "stripExampleA": "Example profile A",
-    "stripExampleB": "Example profile B",
-    "controls": "Controls",
-    "scaleNote": "The answer scale keeps a fixed layout so buttons never move between questions. Skip sits apart from neutral.",
-    "buttons": "Buttons",
-    "primary": "Primary action",
-    "secondary": "Secondary",
-    "quiet": "Quiet link",
-    "chips": "Chips"
+  "styleguide": {
+    "title": "Styleguide",
+    "lead": "Every component and state in both modes, for design review. Hover states are also shown pinned, so they can be checked without a pointer.",
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "dataTable": "Show data table",
+    "sections": {
+      "type": "Palette, type and motion",
+      "buttons": "Buttons",
+      "inputs": "Inputs",
+      "cells": "Cells, headers and tables",
+      "nav": "Navigation and tabs",
+      "sliders": "Sliders and axis bars",
+      "overlays": "Tooltip and modal",
+      "legend": "Legends",
+      "strip": "Twelve-axis strip",
+      "radar": "Radar",
+      "compass": "Compass encodings",
+      "web": "Web view",
+      "images": "Images and glyphs",
+      "links": "Links",
+      "segmented": "Segmented controls",
+      "modes": "Mode rows",
+      "answers": "Answer rows"
+    },
+    "palette": {
+      "note": "Two colours, swapped between modes. No greys, accents, gradients, shadows, opacity, blur or rounded corners. A CI check rejects any other colour."
+    },
+    "type": {
+      "display": "Display: Archivo, weight 850",
+      "prose": "Text: Archivo, weight 400",
+      "mono": "Interface, labels and numbers: IBM Plex Mono",
+      "numeral": "Match percentage",
+      "sampleHeadline": "Where would you draw the line?",
+      "sampleBody": "Each axis is measured on its own. A position on one says nothing about the others, which is exactly why twelve lines describe a person better than one.",
+      "motion": "Motion and shape tokens"
+    },
+    "buttons": {
+      "note": "Hover wipes the opposite colour in from the left while the label flips with it; the arrow rolls. Press scales to 98% and springs back. Focus is a 2px ring at 3px. Disabled is dashed.",
+      "order": "Rest · hover (pinned) · disabled",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "text": "Text",
+      "primaryText": "Start",
+      "secondaryText": "Compare",
+      "textText": "Read more",
+      "sizes": "Sizes",
+      "live": "Try it",
+      "save": "Save result",
+      "sync": "Sync now"
+    },
+    "inputs": {
+      "note": "Labels sit above fields. Errors are written out and thicken the frame; colour never carries meaning.",
+      "search": "Search ideologies",
+      "searchHint": "A name, family or tag.",
+      "placeholder": "e.g. federalism",
+      "error": "Error: type at least two letters.",
+      "disabled": "Not available",
+      "consent": "I understand that this file contains my political views.",
+      "checked": "Selected option"
+    },
+    "answer": {
+      "note": "Full-width rows. Pressing wipes the row in; the chosen row stays inverted and its [X] draws in. Keycaps 1–5 show on desktop. With auto-advance on, the test waits 180ms so the choice registers.",
+      "selected": "One answer chosen",
+      "skipped": "Skipped"
+    },
+    "cells": {
+      "note": "Structure uses 2px rules, dense data 1px. Sections are cells on a 12-column grid; tables are ruled, numbers right-aligned in tabular figures, countries as ISO codes.",
+      "sampleTitle": "A numbered section",
+      "cellTitle": "Cell",
+      "cellBody": "Content sits in ruled cells instead of floating cards."
+    },
+    "table": {
+      "caption": "Example: six anchor ideologies",
+      "name": "Name",
+      "spectrum": "Spectrum",
+      "isoCaption": "Countries as ISO codes",
+      "iso": "Code",
+      "country": "Country",
+      "ch": "Switzerland",
+      "de": "Germany",
+      "fr": "France"
+    },
+    "nav": {
+      "note": "Hover draws an underline; the current section has a bar that slides when the route changes, plus brackets. On phones the menu opens as a full-screen inverted sheet in display type.",
+      "header": "Header cells",
+      "tabs": "Tabs",
+      "tabsLabel": "Result views",
+      "tabAxes": "Axes",
+      "tabRadar": "Radar",
+      "tabMap": "Map",
+      "panelAxes": "Twelve bars, one per axis.",
+      "panelRadar": "All twelve axes in one shape.",
+      "panelMap": "The overall map of the political space.",
+      "sheet": "Try the mobile sheet by narrowing the window and pressing MENU; it works without JavaScript."
+    },
+    "toggle": {
+      "advance": "Advance automatically",
+      "disabled": "Unavailable",
+      "on": "On",
+      "off": "Off"
+    },
+    "sliders": {
+      "note": "Black bars on ruled tracks with ticks every 10 points; uncertainty as a hairline bracket or a hatched band. The slider thumb grows while dragged and a bordered readout follows it.",
+      "bar": "{axis}: {score}, toward {pole}, likely between {low} and {high}",
+      "disabled": "Disabled slider",
+      "snap": "Snaps to ticks"
+    },
+    "overlays": {
+      "note": "The tooltip opens after 300ms of hover, at once on focus or tap, and comes in over 120ms. The modal is a native dialog over a halftone screen; Escape closes it.",
+      "tooltipLabel": "What this axis measures",
+      "open": "Open dialog",
+      "modalTitle": "About this statement",
+      "modalBody": "Overlays have a 2px frame and no shadow. The page behind is covered by a dot screen instead of being dimmed or blurred.",
+      "close": "Close"
+    },
+    "legend": {
+      "note": "Every encoding has a written key. Spectra are told apart by shape plus code, never by shape alone.",
+      "spectra": "Spectra",
+      "charts": "Chart encodings",
+      "solid": "Solid line: you, or the first series",
+      "dashed": "Dashed line: the comparison series",
+      "dotted": "Sparse dots: older steps of your trail",
+      "hatch": "Hatched fill: your area",
+      "empty": "Empty fill: the comparison area",
+      "halftone": "Halftone: bigger dots, more ideologies nearby",
+      "you": "You: the circle’s size shows uncertainty, the crosshair marks the point",
+      "ghost": "Ghost compare: a hollow, dashed outline",
+      "selected": "Selected node: inverted",
+      "dither": "Ordered dither: the band under the sticky header"
+    },
+    "strip": {
+      "note": "Twelve two-letter axis codes, grouped by domain.",
+      "exampleA": "Example profile A",
+      "exampleB": "Example profile B",
+      "howTitle": "How to read it",
+      "how": "Each code has four squares: the left two belong to the first pole, the right two to the second. One filled square means the entry leans that way, two mean it leans strongly, none means it sits near the centre."
+    },
+    "radar": {
+      "note": "Centre = −100, solid inner ring = 0, outer ring = +100 on every axis. First profile: solid line, hatched fill, solid corners. Comparison: dashed line, empty fill, hollow corners.",
+      "title": "Radar: example profile A against B",
+      "you": "Profile A",
+      "friend": "Profile B",
+      "axis": "Axis"
+    },
+    "compass": {
+      "note": "Static preview of the Phase 4 compass on the anchor catalog: distribution across, state power up.",
+      "title": "Compass preview: distribution and state power",
+      "summary": "Halftone dots show where ideologies cluster. One marker per spectrum, your position with its uncertainty circle, three earlier results as a trail, and a friend as a ghost.",
+      "you": "YOU",
+      "ghost": "FRIEND",
+      "point": "Point"
+    },
+    "web": {
+      "note": "Static preview of the Phase 10 web view: placement from the overall map, each node joined to its two nearest neighbours. Hover over a node to see its name.",
+      "title": "Web view preview: seventeen anchor ideologies",
+      "node": "Ideology",
+      "neighbours": "Nearest neighbours"
+    },
+    "images": {
+      "note": "Photos become 1-bit ordered-dither images at build time. Author, licence and source stay visible under every image.",
+      "source": "Source",
+      "glyphs": "Generated entry glyphs",
+      "glyphsNote": "Each catalog entry gets a symmetric 5×5 pattern derived from its id: original, no symbols, no faces.",
+      "flags": "Countries",
+      "flagsNote": "No flags. Countries are named and coded in text, e.g. CH, DE, FR."
+    },
+    "kicker": "Internal · not indexed",
+    "pages": {
+      "buttons": "Button state matrix",
+      "screens": "App screens",
+      "home-a": "Home A: specimen",
+      "home-b": "Home B: typographic"
+    },
+    "controls": {
+      "label": "Control style",
+      "sharp": "Sharp",
+      "pill": "Pill",
+      "offset": "Offset",
+      "note": "The control style applies to the whole site and is remembered in this browser, for review only. Sharp is the default until a choice is made."
+    },
+    "links": {
+      "note": "Links are underlined at rest, because colour cannot set them apart; on hover a 2px rule draws in from the left. Links that leave the site carry a small arrow.",
+      "sentence": "A link inside running text looks like <link>this one</link>.",
+      "internal": "Read the method",
+      "external": "Source code on GitHub"
+    },
+    "segmented": {
+      "note": "One control for language, theme, test length and axis picker: equal segments and an inverted indicator that slides between them. Arrow keys move the selection.",
+      "mode": "Test length",
+      "axis": "Axis picker",
+      "map": "Map",
+      "switch": "Switch",
+      "select": "Select"
+    },
+    "modes": {
+      "note": "Each mode is one link across the whole row. On hover the row wipes to inverted, START slides in and the arrow rolls (pinned on Quick in the light frame). Deep is dashed and not clickable yet."
+    },
+    "matrix": {
+      "kicker": "Styleguide",
+      "title": "Button state matrix",
+      "lead": "Every variant, size and state, with hover and press pinned. Switch the control style to compare sharp, pill and offset.",
+      "size": "Size",
+      "sizes": {
+        "s": "S · 36",
+        "m": "M · 44",
+        "l": "L · 56"
+      },
+      "states": {
+        "rest": "Rest",
+        "hover": "Hover",
+        "focus": "Focus",
+        "active": "Active",
+        "loading": "Loading",
+        "success": "Success",
+        "error": "Error",
+        "disabled": "Disabled"
+      },
+      "loadingLabel": "Saving",
+      "successLabel": "Saved",
+      "errorLabel": "Failed, retry"
+    },
+    "home": {
+      "lead": "Home page variant for design review.",
+      "specimen": "Home A: specimen",
+      "typographic": "Home B: typographic"
+    },
+    "screens": {
+      "kicker": "Styleguide",
+      "title": "App screens",
+      "lead": "Designed now, built in their phases: the test screen (Phase 3) and the result poster, which doubles as the share card.",
+      "test": "Test screen",
+      "questionOf": "Question {n} of {count}",
+      "mode": "Standard",
+      "progress": "Progress through the test",
+      "back": "Back",
+      "explain": "What does this mean?",
+      "result": "Result poster",
+      "posterLabel": "Result poster, example",
+      "posterHead": "Spectrum · result · 12 axes",
+      "example": "Example data",
+      "match": "Closest match",
+      "bar": "{axis}: {score}, toward {pole}, likely between {low} and {high}",
+      "posterFoot": "spectrum-six-rho.vercel.app",
+      "legend": "Bar: score · hatched band: likely range"
+    }
+  },
+  "test": {
+    "questionOf": "Question {n} of {count}",
+    "explain": "What does this mean?",
+    "explainTitle": "About this statement",
+    "close": "Close",
+    "keys": "Keys: 1–5 answer · 0 skip · ← → move · ? explain",
+    "progress": "Progress through the test",
+    "back": "Back",
+    "next": "Next",
+    "autoAdvance": "Next question after answering",
+    "on": "On",
+    "off": "Off",
+    "openLeft": "{count, plural, one {# question is still open.} other {# questions are still open.}}",
+    "goToOpen": "Go to the first open one",
+    "allDone": "Every question has an answer or a skip.",
+    "finish": "See my results",
+    "finishing": "Working out your results",
+    "notStored": "This browser does not allow local storage, so your answers last only until you close the tab.",
+    "englishOnly": "The statements are in English for now; translations follow."
+  },
+  "results": {
+    "title": "Your results",
+    "lead": "Read from this browser only; nothing about your result is in the address bar or on a server.",
+    "loading": "Loading your result",
+    "empty": "There is no result in this browser yet. Results are stored on this device only, so a result from another browser will not show here.",
+    "takeTest": "Take the test",
+    "notStored": "This browser does not allow local storage, so this result disappears when you close the tab.",
+    "toc": "Sections",
+    "sections": {
+      "summary": "Summary",
+      "axes": "Twelve axes",
+      "positions": "Where you stand out",
+      "radar": "Your shape",
+      "indices": "Category indices",
+      "ideologies": "Closest ideologies",
+      "uncertainty": "How sure this is",
+      "share": "Share and next steps",
+      "compass": "On the map"
+    },
+    "posterHead": "Spectrum · result · {mode}",
+    "lowQuality": "Your answers follow a pattern that makes this reading less reliable (see “How sure this is”). Treat it as a rough sketch.",
+    "closest": "Closest ideology",
+    "family": "Family: {name}",
+    "variant": "Closest variant: {name} ({percent}%)",
+    "atrocityNote": "This ideology is tied to mass atrocities. A match describes positions on the twelve axes, not support for what was done in its name.",
+    "inBetween": "You sit between {a} and {b}: the two are almost equally close.",
+    "honest": "Percentages are similarity on twelve axes, spread out on purpose: 100% would mean identical positions. This is an interpretation, not a measurement of who you are.",
+    "axisBar": "{axis}: {score}, toward {pole}, likely between {low} and {high}",
+    "confidence": "Confidence {percent}%",
+    "measured": "What this measured:",
+    "unusual": "Most unusual position",
+    "typical": "Most typical position",
+    "unusualBody": "Only {percent}% of the ideologies in the catalog sit within 15 points of you here.",
+    "typicalBody": "{percent}% of the ideologies in the catalog sit within 15 points of you here.",
+    "indexName": "{name} index",
+    "indexUnusable": "shown as its three axes",
+    "indexBar": "{name} index: {score}",
+    "indexFormula": "Index = {formula}, scaled to ±100 · explains {share}% of the catalog's variance in this category",
+    "placementLow": "Placement of this entry is uncertain.",
+    "furthest": "Furthest from you",
+    "axesLead": "Each bar runs from the first pole (−100) to the second (+100). The hatched band is the likely range: wider when your answers on that axis were few or pulled in different directions.",
+    "you": "You",
+    "radarTitle": "Your twelve scores against {name}",
+    "dataTable": "Show the numbers",
+    "axis": "Axis",
+    "radarHow": "The centre is −100 on every axis, the solid inner ring 0, the outer ring +100. Your profile is the solid, hatched shape; the dashed outline is your closest ideology.",
+    "compassLink": "Place yourself on the compass",
+    "indicesLead": "Each index summarises the three axes of a category with weights learned from the catalog (its first principal component). Where one number would hide too much, the three axes are shown instead.",
+    "matchesLead": "Ranked among {count} ideologies in the catalog. Variants are grouped under their parent ideology.",
+    "moreCatalogs": "Countries, historical regimes, figures and parties join the matches as their catalogs are built.",
+    "overall": "Overall confidence",
+    "overallBody": "{percent}% across the twelve axes, from {answered} answers and {skipped} skips. Skips are never counted as neutral.",
+    "tensions": "Tensions",
+    "tensionsBody": "Your answers pulled in different directions on: {axes}. Those scores sit near the middle of a wider range.",
+    "tensionsNone": "No axis where your answers pulled clearly apart.",
+    "placement": "Placement of the closest ideology",
+    "placementBody": {
+      "high": "{name} is placed with high confidence in the catalog.",
+      "medium": "{name} is placed with medium confidence; its sources differ on some axes.",
+      "low": "{name} is placed with low confidence, so it never leads the summary when another match is about as close."
+    },
+    "quality": "Answer pattern",
+    "flags": {
+      "straightline": "Many answers were the same.",
+      "acquiescence": "Answers leaned towards agreeing whatever the statement said.",
+      "contradiction": "Some paired statements were answered in opposite directions.",
+      "fast": "Answers came very quickly.",
+      "sparse": "Many questions were skipped."
+    },
+    "shareLead": "Sharing creates a short link with your twelve rounded scores and confidences, never your answers. Until you press the button, no link exists.",
+    "shareCreate": "Create a share link",
+    "shareLink": "Your share link",
+    "copy": "Copy link",
+    "copied": "Copied",
+    "copyFailed": "Copy failed, select the link",
+    "shareNative": "Share",
+    "more": "{count} more questions sharpen this result, and your answers so far are kept.",
+    "moreButton": "Answer {count} more",
+    "edit": "Change answers",
+    "retake": "Start again",
+    "dashboard": "Dashboard",
+    "compassLead": "Your result on the overall map, among the {count} ideologies of the catalog. The hatched ellipse is your likely range; the compass lets you pick any two axes.",
+    "compassCaption": "Fig. — You and {count} ideologies",
+    "compassOpen": "Open the compass"
+  },
+  "pilot": {
+    "kicker": "Pilot · not public",
+    "title": "Help test the questions",
+    "intro": "Thank you for helping. You take the normal test; at the end your browser saves one small answers file.",
+    "contains": "The file contains your answer to each question (or a skip), how long each answer took (rounded to a tenth of a second), the test length, the version of the questions and of the scoring and, if you add it, a country code. It contains no name, no date or time, no language setting, no information about your device or browser and no ID.",
+    "sensitive": "Political views are sensitive personal data. Please take part only if you are comfortable with that.",
+    "nothingStored": "Nothing is sent to or stored on any server, and this page uses no cookies. Until the file is saved, your answers are kept only in this browser tab, so changing the language or reloading does not lose them. They are deleted when the file is saved, when you discard them or when you close the tab.",
+    "yourChoice": "You decide whether to pass the file on, and to whom.",
+    "length": "Test length",
+    "country": "Country (optional)",
+    "countryHint": "Two letters, e.g. CH, DE, GB. Leave it empty if you prefer.",
+    "countryError": "Error: use two letters, such as CH.",
+    "consent": "I understand what the file contains and that it holds my political views.",
+    "start": "Start the pilot",
+    "banner": "Pilot: answers stay on this page and become a file at the end.",
+    "thanks": "Thank you",
+    "saved": "Your answers were saved as {name}. Pass the file on only if you want to.",
+    "cleared": "The answers have been cleared from this page.",
+    "discard": "Discard my answers",
+    "linkable": "Once you send the file to someone, it becomes linkable to you, because they know who sent it. The files are kept separately from the messages they arrived with.",
+    "sampleTitle": "What the file looks like",
+    "sampleNote": "Example values. At the end you see your exact file before you save it.",
+    "sampleMore": "… one line per question, {count} in all",
+    "reviewTitle": "Your file",
+    "reviewLead": "This is the exact content of the file; nothing else is in it. Save it, then decide whether to pass it on.",
+    "save": "Save the file"
+  },
+  "compass": {
+    "controls": "Compass view",
+    "view": "View",
+    "map": "Map",
+    "axes": "Two axes",
+    "mapNote": "The overall map shows the two directions in which the catalog's ideologies differ most, combined from all twelve axes. Together they cover {share}% of the differences; distances on the map are therefore only part of the story.",
+    "xAxis": "Horizontal (X)",
+    "yAxis": "Vertical (Y)",
+    "swapNote": "Choosing the other axis's dimension swaps the two.",
+    "groupAxes": "Axes",
+    "groupIndices": "Category indices",
+    "indexName": "{name} index",
+    "pc": "PC{k}",
+    "pcName": "PC{k} · {share}% of the differences",
+    "poleNeg": "{name} −",
+    "polePos": "{name} +",
+    "you": "You",
+    "caption": "Fig. — Catalog, {count} ideologies",
+    "axesLine": "X: {x} · Y: {y}",
+    "description": "{count} ideologies from the catalog placed by {x} (horizontal) and {y} (vertical). Bigger halftone dots mean more ideologies nearby; each marker shows its spectrum by shape.",
+    "descriptionYou": "Your latest result is the hatched ellipse with a crosshair; the ellipse is wider where your answers were less certain.",
+    "keyboard": "Compass. Arrow keys step to the nearest ideology in that direction; Escape clears.",
+    "announceView": "Showing {x} against {y}.",
+    "announceYou": "You: {x}, {y}.",
+    "announcePoint": "{name}, {code}: {x}, {y}.",
+    "table": "View as table ({count})",
+    "tableCaption": "Positions on {x} (X) and {y} (Y)",
+    "colName": "Ideology",
+    "colSpectrum": "Spectrum",
+    "noResult": "There is no result in this browser yet. Take the test to see where you sit on this map; your result stays on this device.",
+    "takeTest": "Take the test",
+    "key": "Key",
+    "density": "Halftone: bigger dots, more ideologies nearby",
+    "youRange": "You: likely range, wider when less certain",
+    "spectra": "Spectra"
   }
 }

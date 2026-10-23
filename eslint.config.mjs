@@ -27,7 +27,7 @@ const eslintConfig = defineConfig([
         "error",
         {
           mode: "jsx-text-only",
-          words: { exclude: ["^[\\s\\d.,:;·•–—/|×+−%()#§*\\-]+$"] },
+          words: { exclude: ["^[\\s\\d.,:;·•–—/|×+−%()#§*\\[\\]\\-]+$"] },
         },
       ],
       // Accessible names are user-facing text too.

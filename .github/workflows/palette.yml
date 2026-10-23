@@ -1,0 +1,27 @@
+# Fails on any colour other than ink and paper, and on the effects the design
+# bans with them (D-075, scripts/check-palette.ts), and on motion outside the
+# shared tokens and components (D-083, scripts/check-motion.ts).
+name: Design guards
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  two-colours:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install (TypeScript parser only needs node_modules)
+        run: npm ci --ignore-scripts
+      - name: Ink and paper only
+        run: node scripts/check-palette.ts
+      - name: Motion through the shared tokens and components (D-083)
+        run: node scripts/check-motion.ts

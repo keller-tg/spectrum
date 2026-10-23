@@ -39,6 +39,8 @@ export interface AxisDef {
   id: AxisId;
   /** 1-based position, used for display ("Axis 7"). */
   index: number;
+  /** Two-letter code for strips, radar spokes and compact tables (D-077). */
+  code: Localized;
   category: CategoryId;
   name: Localized;
   measures: Localized;
@@ -69,6 +71,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   distribution: {
     id: "distribution",
     index: 1,
+    code: { en: "DI", de: "VE", fr: "RP" },
     category: "economic",
     name: { en: "Distribution", de: "Verteilung", fr: "Répartition" },
     measures: {
@@ -98,6 +101,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   ownership: {
     id: "ownership",
     index: 2,
+    code: { en: "OW", de: "EI", fr: "PR" },
     category: "economic",
     name: { en: "Ownership", de: "Eigentum", fr: "Propriété" },
     measures: {
@@ -127,6 +131,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   trade: {
     id: "trade",
     index: 3,
+    code: { en: "TR", de: "HA", fr: "CO" },
     category: "economic",
     name: { en: "Trade", de: "Handel", fr: "Commerce" },
     measures: {
@@ -156,6 +161,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   liberty: {
     id: "liberty",
     index: 4,
+    code: { en: "SP", de: "SM", fr: "PE" },
     category: "governmental",
     name: { en: "State power", de: "Staatsmacht", fr: "Pouvoir de l’État" },
     measures: {
@@ -185,6 +191,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   centralization: {
     id: "centralization",
     index: 5,
+    code: { en: "CE", de: "ZE", fr: "CE" },
     category: "governmental",
     name: { en: "Centralization", de: "Zentralisierung", fr: "Centralisation" },
     measures: {
@@ -214,6 +221,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   participation: {
     id: "participation",
     index: 6,
+    code: { en: "PA", de: "MB", fr: "PA" },
     category: "governmental",
     name: { en: "Participation", de: "Mitbestimmung", fr: "Participation" },
     measures: {
@@ -251,6 +259,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   tradition: {
     id: "tradition",
     index: 7,
+    code: { en: "SC", de: "GW", fr: "CS" },
     category: "societal",
     name: { en: "Social change", de: "Gesellschaftlicher Wandel", fr: "Changement social" },
     measures: {
@@ -280,6 +289,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   religion: {
     id: "religion",
     index: 8,
+    code: { en: "RS", de: "RS", fr: "RE" },
     category: "societal",
     name: { en: "Religion and state", de: "Religion und Staat", fr: "Religion et État" },
     measures: {
@@ -317,6 +327,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   ecology: {
     id: "ecology",
     index: 9,
+    code: { en: "EC", de: "ÖK", fr: "EC" },
     category: "societal",
     name: { en: "Ecology", de: "Ökologie", fr: "Écologie" },
     measures: {
@@ -350,6 +361,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   nation: {
     id: "nation",
     index: 10,
+    code: { en: "NW", de: "NW", fr: "NM" },
     category: "diplomatic",
     name: { en: "Nation and world", de: "Nation und Welt", fr: "Nation et monde" },
     measures: {
@@ -379,6 +391,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   intervention: {
     id: "intervention",
     index: 11,
+    code: { en: "IN", de: "IA", fr: "IE" },
     category: "diplomatic",
     name: {
       en: "Foreign intervention",
@@ -412,6 +425,7 @@ export const AXES: Record<AxisId, AxisDef> = {
   borders: {
     id: "borders",
     index: 12,
+    code: { en: "MI", de: "MI", fr: "MI" },
     category: "diplomatic",
     name: { en: "Migration", de: "Migration", fr: "Migration" },
     measures: {

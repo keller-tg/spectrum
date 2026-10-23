@@ -1,8 +1,11 @@
+import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { commonsImageSchema } from "@/lib/schema/entries";
 import { AXES, AXIS_IDS, CATEGORIES, CATEGORY_IDS } from "./axes";
+import { IMAGES } from "./images";
 import { LOCALES } from "./locales";
 import { MODE_IDS, MODES } from "./modes";
-import { SPECTRUM_IDS, SPECTRUMS } from "./spectrums";
+import { SPECTRUM_IDS, SPECTRUM_SHAPES, SPECTRUMS } from "./spectrums";
 
 describe("axes", () => {
   it("has twelve axes, indexed 1–12 in order", () => {
@@ -16,6 +19,14 @@ describe("axes", () => {
     for (const c of CATEGORY_IDS) {
       expect(CATEGORIES[c].axes).toHaveLength(3);
       for (const id of CATEGORIES[c].axes) expect(AXES[id].category).toBe(c);
+    }
+  });
+
+  it("has a unique two-letter code per axis in every locale (D-077)", () => {
+    for (const l of LOCALES) {
+      const codes = AXIS_IDS.map((id) => AXES[id].code[l]);
+      for (const code of codes) expect(code, l).toMatch(/^\p{Lu}{2}$/u);
+      expect(new Set(codes).size, l).toBe(12);
     }
   });
 
@@ -56,5 +67,27 @@ describe("spectrums", () => {
     expect(SPECTRUM_IDS).toHaveLength(9);
     for (const id of SPECTRUM_IDS)
       for (const l of LOCALES) expect(SPECTRUMS[id].name[l].length).toBeGreaterThan(0);
+  });
+
+  it("tells the nine spectra apart by shape and by code, never by colour (D-077)", () => {
+    expect(new Set(SPECTRUM_IDS.map((id) => SPECTRUMS[id].shape)).size).toBe(9);
+    expect([...SPECTRUM_IDS.map((id) => SPECTRUMS[id].shape)].sort()).toEqual(
+      [...SPECTRUM_SHAPES].sort(),
+    );
+    for (const l of LOCALES) {
+      const codes = SPECTRUM_IDS.map((id) => SPECTRUMS[id].code[l]);
+      for (const code of codes) expect(code, l).toMatch(/^\p{Lu}{1,3}$/u);
+      expect(new Set(codes).size, l).toBe(9);
+    }
+  });
+});
+
+describe("images", () => {
+  it("have a source file, Commons licence data and alt text in every locale (D-078)", () => {
+    for (const image of IMAGES) {
+      expect(commonsImageSchema.safeParse(image).success, image.id).toBe(true);
+      expect(existsSync(`data/images/${image.file}`), image.file).toBe(true);
+      for (const l of LOCALES) expect(image.alt[l].length, `${image.id} ${l}`).toBeGreaterThan(10);
+    }
   });
 });

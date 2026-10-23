@@ -17,15 +17,26 @@
     "figures": "Personnalités",
     "parties": "Partis",
     "dashboard": "Tableau de bord",
-    "menu": "Menu"
+    "menu": "Menu",
+    "close": "Fermer"
   },
   "locale": {
     "label": "Langue",
-    "names": { "en": "English", "de": "Deutsch", "fr": "Français" },
-    "short": { "en": "EN", "de": "DE", "fr": "FR" }
+    "names": {
+      "en": "English",
+      "de": "Deutsch",
+      "fr": "Français"
+    },
+    "short": {
+      "en": "EN",
+      "de": "DE",
+      "fr": "FR"
+    }
   },
   "theme": {
-    "toggle": "Basculer entre thème clair et thème sombre"
+    "label": "Thème",
+    "light": "Clair",
+    "dark": "Sombre"
   },
   "footer": {
     "disclaimer": "Spectrum est un outil d’interprétation. Il lit vos réponses à travers un modèle aux limites bien réelles ; il ne mesure pas qui vous êtes.",
@@ -36,21 +47,27 @@
     "privacyLink": "Confidentialité",
     "imprint": "Mentions légales",
     "source": "Code source",
-    "designSystem": "Système de design",
     "status": "Titre provisoire, en développement."
   },
   "home": {
-    "kicker": "Douze axes · Gratuit · Sans compte",
-    "title": "La politique ne tient pas sur <em>une seule ligne</em>.",
-    "lead": "Répondez à de courtes affirmations, puis découvrez votre position sur douze axes indépendants, les idéologies, pays, personnalités et partis les plus proches, et le degré de certitude de ce portrait.",
+    "sentence": "Douze axes, parce que la politique ne tient pas sur une seule ligne.",
     "chooseMode": "Choisissez une durée",
-    "modeCount": "{count} questions",
-    "modeTime": "environ {minutes} min",
+    "table": {
+      "mode": "Mode",
+      "questions": "Questions",
+      "minutes": "Minutes",
+      "action": "Commencer",
+      "questionsShort": "Q.",
+      "minutesShort": "Min"
+    },
     "recommended": "Recommandé",
     "opensSoon": "Bientôt disponible",
     "start": "Commencer",
     "modes": {
-      "quick": { "name": "Rapide", "blurb": "Une première esquisse de votre position." },
+      "quick": {
+        "name": "Rapide",
+        "blurb": "Une première esquisse de votre position."
+      },
       "standard": {
         "name": "Standard",
         "blurb": "Un portrait plus net, avec une confiance plus solide."
@@ -61,44 +78,65 @@
       }
     },
     "modesNote": "Vous pourrez prolonger un test court plus tard en gardant vos réponses. Ce que vous voyez ici est le test entier : aucune étape cachée.",
-    "axesKicker": "L’instrument",
-    "axesTitle": "Douze axes, quatre domaines",
-    "axesLead": "Chaque axe est indépendant. On peut préférer le marché et les frontières ouvertes, ou la propriété collective et la tradition. Pendant le test, vous ne voyez jamais à quel axe se rattache une affirmation ; vos résultats le révèlent.",
-    "howKicker": "La méthode",
-    "howTitle": "Comment ça marche",
+    "kicker": "Spectrum · un test politique sur douze axes · gratuit · sans compte",
+    "subline": "Répondez à de courtes affirmations et découvrez votre position, les idéologies les plus proches et le degré de certitude de ce portrait.",
+    "rowQuestions": "{count} questions",
+    "rowMinutes": "environ {minutes} minutes",
+    "field": {
+      "description": "{count} idéologies du catalogue placées sur la carte d’ensemble, les deux premières composantes principales des douze axes. Plus les points de trame sont gros, plus il y a d’idéologies proches ; chaque repère indique son spectre par sa forme.",
+      "caption": "Fig. 01 — Catalogue, {count} entrées",
+      "axes": "CP1 × CP2 · {share} % de la variance",
+      "list": "Afficher en liste ({count})",
+      "nearest": "La plus proche",
+      "keyboard": "Carte du catalogue. Les flèches parcourent les idéologies, Entrée mène à l’entrée de l’index.",
+      "open": "Cliquez pour l’entrée de l’index",
+      "pc1": "CP1",
+      "pc2": "CP2"
+    },
+    "stats": {
+      "label": "En chiffres",
+      "axes": "Axes, mesurés séparément",
+      "ideologies": "Idéologies au catalogue",
+      "questions": "Questions : rapide, standard, approfondi",
+      "accounts": "Comptes nécessaires"
+    },
     "how": {
-      "answer": {
-        "title": "Répondre",
-        "body": "Réagissez à des affirmations simples sur une échelle à cinq points. Pas sûr ? Passez. Passer ne compte pas comme neutre."
-      },
-      "see": {
-        "title": "Voir douze positions",
-        "body": "Chaque axe reçoit un score et un degré de confiance. Quand vos réponses tirent dans des sens opposés, les résultats le disent."
-      },
-      "explore": {
-        "title": "Explorer et suivre",
-        "body": "Comparez-vous aux idéologies, pays, personnalités et partis, et voyez vos opinions évoluer avec le temps."
+      "kicker": "Comment ça marche",
+      "title": "Trois étapes, sans compte",
+      "steps": {
+        "answer": {
+          "title": "Répondre",
+          "body": "Réagissez à des affirmations simples sur une échelle en cinq points. Pas sûr ? Passez. Une question passée ne compte pas comme neutre."
+        },
+        "see": {
+          "title": "Voir douze positions",
+          "body": "Chaque axe reçoit un score et un degré de confiance. Quand vos réponses tirent dans des directions différentes, les résultats le disent."
+        },
+        "explore": {
+          "title": "Explorer et suivre",
+          "body": "Comparez-vous aux idéologies, pays, personnalités et partis, et voyez comment vos opinions évoluent."
+        }
       }
     },
-    "promisesKicker": "Les engagements",
-    "promisesTitle": "Ce sur quoi vous pouvez compter",
-    "promises": {
-      "local": {
-        "title": "Local d’abord",
-        "body": "Les résultats sont enregistrés dans votre navigateur. Rien n’atteint un serveur, sauf si vous choisissez la synchronisation chiffrée."
-      },
-      "tracking": {
-        "title": "Aucun pistage",
-        "body": "Pas de publicité, pas de mesure d’audience, pas de scripts tiers. Pas de cookies, sauf si vous créez un profil."
-      },
-      "honest": {
-        "title": "Incertitude assumée",
-        "body": "Les correspondances ne sont pas gonflées, et chaque résultat indique son degré de confiance."
-      },
-      "neutral": {
-        "title": "Catalogue équitable",
-        "body": "Chaque idéologie, dominante ou marginale, reçoit le même traitement encyclopédique, critiques comprises."
-      }
+    "axes": {
+      "kicker": "Les 12 axes",
+      "title": "Douze axes indépendants",
+      "lead": "Chaque axe est mesuré séparément. Pendant le test, vous ne voyez jamais à quel axe appartient une affirmation ; vous le découvrez avec vos résultats.",
+      "code": "Code",
+      "axis": "Axe",
+      "scale": "Échelle de −100 à +100"
+    },
+    "index": {
+      "kicker": "Index",
+      "title": "Index des idéologies",
+      "lead": "Les {count} entrées actuelles du catalogue, de A à Z, chacune avec son spectre. Les pages complètes arrivent avec le catalogue.",
+      "counts": "Entrées par spectre"
+    },
+    "privacy": {
+      "kicker": "04 / Confidentialité",
+      "statement": "Vos réponses restent dans votre navigateur.",
+      "body": "Pas de compte, pas de pistage, pas de publicité. Rien n’atteint un serveur, sauf si vous choisissez la synchronisation chiffrée.",
+      "link": "Comment vos données sont traitées"
     }
   },
   "stub": {
@@ -120,7 +158,11 @@
     },
     "sharedResult": {
       "title": "Un résultat partagé",
-      "lead": "Quelqu’un a partagé avec vous sa position sur les douze axes."
+      "lead": "Quelqu’un a partagé avec vous sa position sur les douze axes.",
+      "kicker": "Résultat partagé",
+      "broken": "Ce lien de partage ne fonctionne pas",
+      "brokenBody": "Le code est incomplet ou a été modifié ; il ne peut pas être lu. Demandez à nouveau le lien, ou faites le test vous-même.",
+      "yourTurn": "Et vous, où vous situez-vous ? Le test prend de 5 à 10 minutes, sans compte."
     },
     "compare": {
       "title": "Comparer",
@@ -160,7 +202,43 @@
     },
     "method": {
       "title": "Méthode",
-      "lead": "Comment les réponses deviennent des scores, comment les correspondances sont calculées et où s’arrêtent les limites du modèle."
+      "lead": "Comment les réponses deviennent des scores, comment les correspondances sont calculées et où s’arrêtent les limites du modèle.",
+      "axesTitle": "Douze axes, quatre domaines",
+      "axesLead": "Chaque axe est indépendant. On peut préférer le marché et les frontières ouvertes, ou la propriété collective et la tradition. Pendant le test, vous ne voyez jamais à quel axe se rattache une affirmation ; vos résultats le révèlent.",
+      "howTitle": "Comment ça marche",
+      "how": {
+        "answer": {
+          "title": "Répondre",
+          "body": "Réagissez à des affirmations simples sur une échelle à cinq points. Pas sûr ? Passez. Passer ne compte pas comme neutre."
+        },
+        "see": {
+          "title": "Voir douze positions",
+          "body": "Chaque axe reçoit un score et un degré de confiance. Quand vos réponses tirent dans des sens opposés, les résultats le disent."
+        },
+        "explore": {
+          "title": "Explorer et suivre",
+          "body": "Comparez-vous aux idéologies, pays, personnalités et partis, et voyez vos opinions évoluer avec le temps."
+        }
+      },
+      "termsTitle": "Ce sur quoi vous pouvez compter",
+      "terms": {
+        "local": {
+          "title": "Local d’abord",
+          "body": "Les résultats sont enregistrés dans votre navigateur. Rien n’atteint un serveur, sauf si vous choisissez la synchronisation chiffrée."
+        },
+        "tracking": {
+          "title": "Aucun pistage",
+          "body": "Pas de publicité, pas de mesure d’audience, pas de scripts tiers. Pas de cookies, sauf si vous créez un profil."
+        },
+        "honest": {
+          "title": "Incertitude assumée",
+          "body": "Les correspondances ne sont pas gonflées, et chaque résultat indique son degré de confiance."
+        },
+        "neutral": {
+          "title": "Catalogue équitable",
+          "body": "Chaque idéologie, dominante ou marginale, reçoit le même traitement encyclopédique, critiques comprises."
+        }
+      }
     },
     "privacy": {
       "title": "Confidentialité",
@@ -171,10 +249,6 @@
       "title": "Mentions légales",
       "lead": "Informations légales et contact.",
       "pending": "La personne responsable sera indiquée ici avant le lancement public."
-    },
-    "designSystem": {
-      "title": "Système de design",
-      "lead": "Les fondations et composants dont chaque page est faite."
     }
   },
   "notFound": {
@@ -194,7 +268,8 @@
     "parties": "partis",
     "eras": "epoques",
     "uncertainty": "incertitude",
-    "share": "partager"
+    "share": "partager",
+    "indices": "indices"
   },
   "axisStrip": {
     "label": "Position sur les douze axes",
@@ -211,29 +286,419 @@
     "skip": "Je ne sais pas, passer",
     "groupLabel": "Votre réponse"
   },
-  "ds": {
-    "kicker": "Référence interne",
-    "type": "Typographie",
-    "typeDisplay": "Titres : Bodoni Moda",
-    "typeText": "Texte et interface : Schibsted Grotesk",
-    "sampleHeadline": "Où placeriez-vous la limite ?",
-    "sampleBody": "Chaque axe est mesuré séparément. Une position sur l’un ne dit rien des autres ; c’est précisément pourquoi douze lignes décrivent mieux une personne qu’une seule.",
-    "colour": "Couleur",
-    "colourNote": "Chaque association utilisée pour du texte respecte le niveau AA des WCAG dans les deux thèmes. Le rouge profond est réservé à vous et aux actions principales.",
-    "spectra": "Teintes des spectres",
-    "spectraNote": "Les teintes identifient les spectres dans les graphiques et les étiquettes. Elles accompagnent toujours un libellé écrit, jamais seules.",
-    "glyphs": "Glyphes des axes",
-    "glyphsNote": "Vingt-quatre glyphes originaux, un par pôle. Les bandeaux montrent le glyphe du pôle vers lequel penche une entrée.",
-    "strip": "Bandeau à douze icônes",
-    "stripNote": "L’opacité suit la force de l’inclinaison ; un point signifie proche du centre.",
-    "stripExampleA": "Profil d’exemple A",
-    "stripExampleB": "Profil d’exemple B",
-    "controls": "Commandes",
-    "scaleNote": "L’échelle de réponse garde une mise en page fixe pour que les boutons ne bougent jamais d’une question à l’autre. Passer est séparé de neutre.",
-    "buttons": "Boutons",
-    "primary": "Action principale",
-    "secondary": "Secondaire",
-    "quiet": "Lien discret",
-    "chips": "Étiquettes"
+  "styleguide": {
+    "title": "Guide de style",
+    "lead": "Tous les composants et leurs états dans les deux modes, pour la revue du design. Les états de survol sont aussi montrés figés, pour être vérifiés sans pointeur.",
+    "light": "Mode clair",
+    "dark": "Mode sombre",
+    "dataTable": "Afficher le tableau de données",
+    "sections": {
+      "type": "Palette, typographie et mouvement",
+      "buttons": "Boutons",
+      "inputs": "Champs",
+      "cells": "Cellules, titres et tableaux",
+      "nav": "Navigation et onglets",
+      "sliders": "Curseurs et barres d’axe",
+      "overlays": "Infobulle et fenêtre",
+      "legend": "Légendes",
+      "strip": "Bande des douze axes",
+      "radar": "Radar",
+      "compass": "Codage de la boussole",
+      "web": "Vue en réseau",
+      "images": "Images et glyphes",
+      "links": "Liens",
+      "segmented": "Contrôles segmentés",
+      "modes": "Lignes de mode",
+      "answers": "Lignes de réponse"
+    },
+    "palette": {
+      "note": "Deux couleurs, inversées d’un mode à l’autre. Ni gris, ni accent, ni dégradé, ni ombre, ni transparence, ni flou, ni coins arrondis. Un contrôle CI refuse toute autre couleur."
+    },
+    "type": {
+      "display": "Titres : Archivo, graisse 850",
+      "prose": "Texte : Archivo, graisse 400",
+      "mono": "Interface, libellés et chiffres : IBM Plex Mono",
+      "numeral": "Pourcentage de correspondance",
+      "sampleHeadline": "Où placeriez-vous la limite ?",
+      "sampleBody": "Chaque axe est mesuré séparément. Une position sur l’un ne dit rien des autres ; c’est précisément pourquoi douze lignes décrivent mieux une personne qu’une seule.",
+      "motion": "Jetons de mouvement et de forme"
+    },
+    "buttons": {
+      "note": "Au survol, la couleur opposée balaie depuis la gauche et le libellé bascule avec elle ; la flèche roule. L’appui réduit à 98 % puis rebondit. Le focus est un anneau de 2 px décalé de 3 px. Désactivé : un cadre en tirets.",
+      "order": "Repos · survol (figé) · désactivé",
+      "primary": "Principal",
+      "secondary": "Secondaire",
+      "text": "Texte",
+      "primaryText": "Commencer",
+      "secondaryText": "Comparer",
+      "textText": "En savoir plus",
+      "sizes": "Tailles",
+      "live": "Essayer",
+      "save": "Enregistrer le résultat",
+      "sync": "Synchroniser"
+    },
+    "inputs": {
+      "note": "Les libellés se placent au-dessus des champs. Les erreurs sont écrites en toutes lettres et épaississent le cadre ; la couleur ne porte jamais de sens.",
+      "search": "Rechercher des idéologies",
+      "searchHint": "Un nom, une famille ou une étiquette.",
+      "placeholder": "p. ex. fédéralisme",
+      "error": "Erreur : saisissez au moins deux lettres.",
+      "disabled": "Indisponible",
+      "consent": "Je comprends que ce fichier contient mes opinions politiques.",
+      "checked": "Option choisie"
+    },
+    "answer": {
+      "note": "Des lignes pleine largeur. L’appui balaie la ligne ; la ligne choisie reste inversée et son [X] se trace. Les touches 1 à 5 s’affichent sur ordinateur. Avec l’avance automatique, le test attend 180 ms pour que le choix se voie.",
+      "selected": "Une réponse choisie",
+      "skipped": "Question passée"
+    },
+    "cells": {
+      "note": "La structure utilise des filets de 2 px, les données denses 1 px. Les sections sont des cellules sur une grille de 12 colonnes ; les tableaux sont réglés, les nombres alignés à droite en chiffres tabulaires, les pays en codes ISO.",
+      "sampleTitle": "Une section numérotée",
+      "cellTitle": "Cellule",
+      "cellBody": "Le contenu se range dans des cellules réglées plutôt que dans des cartes flottantes."
+    },
+    "table": {
+      "caption": "Exemple : six idéologies d’ancrage",
+      "name": "Nom",
+      "spectrum": "Spectre",
+      "isoCaption": "Pays en codes ISO",
+      "iso": "Code",
+      "country": "Pays",
+      "ch": "Suisse",
+      "de": "Allemagne",
+      "fr": "France"
+    },
+    "nav": {
+      "note": "Le survol trace un soulignement ; la section courante a une barre qui glisse au changement de page, plus des crochets. Sur mobile, le menu s’ouvre en feuille inversée plein écran, en grands caractères.",
+      "header": "Cellules d’en-tête",
+      "tabs": "Onglets",
+      "tabsLabel": "Vues du résultat",
+      "tabAxes": "Axes",
+      "tabRadar": "Radar",
+      "tabMap": "Carte",
+      "panelAxes": "Douze barres, une par axe.",
+      "panelRadar": "Les douze axes en une seule forme.",
+      "panelMap": "La carte d’ensemble de l’espace politique.",
+      "sheet": "Pour voir le menu mobile, rétrécissez la fenêtre et appuyez sur MENU ; il fonctionne sans JavaScript."
+    },
+    "toggle": {
+      "advance": "Avancer automatiquement",
+      "disabled": "Indisponible",
+      "on": "Oui",
+      "off": "Non"
+    },
+    "sliders": {
+      "note": "Des barres noires sur des pistes réglées, graduées tous les 10 points ; l’incertitude en crochet fin ou en bande hachurée. Le curseur grossit pendant le glissement et une étiquette encadrée le suit.",
+      "bar": "{axis} : {score}, vers {pole}, probablement entre {low} et {high}",
+      "disabled": "Curseur désactivé",
+      "snap": "S’aimante aux graduations"
+    },
+    "overlays": {
+      "note": "L’infobulle s’ouvre après 300 ms de survol, aussitôt au focus ou au toucher, et apparaît en 120 ms. La fenêtre est un dialogue natif posé sur une trame de points ; Échap la ferme.",
+      "tooltipLabel": "Ce que mesure cet axe",
+      "open": "Ouvrir la fenêtre",
+      "modalTitle": "À propos de cette affirmation",
+      "modalBody": "Les fenêtres ont un cadre de 2 px et aucune ombre. La page derrière est couverte d’une trame de points au lieu d’être assombrie ou floutée.",
+      "close": "Fermer"
+    },
+    "legend": {
+      "note": "Chaque codage a une légende écrite. Les spectres se distinguent par la forme et le code, jamais par la forme seule.",
+      "spectra": "Spectres",
+      "charts": "Codage des graphiques",
+      "solid": "Trait plein : vous, ou la première série",
+      "dashed": "Trait tireté : la série comparée",
+      "dotted": "Points espacés : les étapes anciennes de votre parcours",
+      "hatch": "Surface hachurée : votre surface",
+      "empty": "Surface vide : la surface comparée",
+      "halftone": "Trame : plus les points sont gros, plus il y a d’idéologies proches",
+      "you": "Vous : la taille du cercle indique l’incertitude, la croix marque le point",
+      "ghost": "Comparaison fantôme : un contour creux et tireté",
+      "selected": "Nœud sélectionné : inversé",
+      "dither": "Tramage ordonné : la bande sous l’en-tête fixe"
+    },
+    "strip": {
+      "note": "Douze codes d’axe à deux lettres, groupés par domaine.",
+      "exampleA": "Profil d’exemple A",
+      "exampleB": "Profil d’exemple B",
+      "howTitle": "Comment la lire",
+      "how": "Chaque code a quatre carrés : les deux de gauche appartiennent au premier pôle, les deux de droite au second. Un carré plein signifie que l’entrée penche de ce côté, deux qu’elle y penche nettement, aucun qu’elle se situe près du centre."
+    },
+    "radar": {
+      "note": "Centre = −100, anneau intérieur plein = 0, anneau extérieur = +100 sur chaque axe. Premier profil : trait plein, surface hachurée, sommets pleins. Comparaison : trait tireté, surface vide, sommets creux.",
+      "title": "Radar : profil d’exemple A contre B",
+      "you": "Profil A",
+      "friend": "Profil B",
+      "axis": "Axe"
+    },
+    "compass": {
+      "note": "Aperçu statique de la boussole de la phase 4 sur le catalogue d’ancrage : répartition à l’horizontale, pouvoir de l’État à la verticale.",
+      "title": "Aperçu de la boussole : répartition et pouvoir de l’État",
+      "summary": "La trame montre où les idéologies se concentrent. Un repère par spectre, votre position avec son cercle d’incertitude, trois résultats antérieurs en parcours et une autre personne en fantôme.",
+      "you": "VOUS",
+      "ghost": "AUTRE",
+      "point": "Point"
+    },
+    "web": {
+      "note": "Aperçu statique de la vue en réseau de la phase 10 : position tirée de la carte d’ensemble, chaque nœud relié à ses deux plus proches voisins. Survolez un nœud pour voir son nom.",
+      "title": "Aperçu de la vue en réseau : dix-sept idéologies d’ancrage",
+      "node": "Idéologie",
+      "neighbours": "Plus proches voisins"
+    },
+    "images": {
+      "note": "À la compilation, les photos deviennent des images 1 bit en tramage ordonné. Auteur, licence et source restent visibles sous chaque image.",
+      "source": "Source",
+      "glyphs": "Glyphes générés",
+      "glyphsNote": "Chaque entrée du catalogue reçoit un motif symétrique 5×5 dérivé de son identifiant : original, sans symbole, sans visage.",
+      "flags": "Pays",
+      "flagsNote": "Pas de drapeaux. Les pays sont nommés et codés en texte, p. ex. CH, DE, FR."
+    },
+    "kicker": "Interne · non indexé",
+    "pages": {
+      "buttons": "Matrice des boutons",
+      "screens": "Écrans de l’app",
+      "home-a": "Accueil A : spécimen",
+      "home-b": "Accueil B : typographique"
+    },
+    "controls": {
+      "label": "Style des contrôles",
+      "sharp": "Net",
+      "pill": "Pilule",
+      "offset": "Décalé",
+      "note": "Le style s’applique à tout le site et reste mémorisé dans ce navigateur, pour la revue uniquement. « Net » reste le style par défaut jusqu’à votre choix."
+    },
+    "links": {
+      "note": "Les liens sont soulignés au repos, car la couleur ne peut pas les distinguer ; au survol, un filet de 2 px se trace depuis la gauche. Les liens externes portent une petite flèche.",
+      "sentence": "Un lien dans le texte ressemble à <link>celui-ci</link>.",
+      "internal": "Lire la méthode",
+      "external": "Code source sur GitHub"
+    },
+    "segmented": {
+      "note": "Un même contrôle pour la langue, le thème, la longueur du test et le choix d’axe : des segments égaux et un indicateur inversé qui glisse de l’un à l’autre. Les flèches déplacent la sélection.",
+      "mode": "Longueur du test",
+      "axis": "Choix d’axe",
+      "map": "Carte",
+      "switch": "Interrupteur",
+      "select": "Liste déroulante"
+    },
+    "modes": {
+      "note": "Chaque mode est un lien sur toute la ligne. Au survol, la ligne s’inverse par balayage, COMMENCER glisse et la flèche roule (figé sur Rapide dans le cadre clair). Approfondi est en tirets et pas encore cliquable."
+    },
+    "matrix": {
+      "kicker": "Guide de style",
+      "title": "Matrice des boutons",
+      "lead": "Chaque variante, taille et état, avec survol et appui figés. Changez le style des contrôles pour comparer net, pilule et décalé.",
+      "size": "Taille",
+      "sizes": {
+        "s": "S · 36",
+        "m": "M · 44",
+        "l": "L · 56"
+      },
+      "states": {
+        "rest": "Repos",
+        "hover": "Survol",
+        "focus": "Focus",
+        "active": "Appui",
+        "loading": "Chargement",
+        "success": "Réussite",
+        "error": "Erreur",
+        "disabled": "Désactivé"
+      },
+      "loadingLabel": "Enregistrement",
+      "successLabel": "Enregistré",
+      "errorLabel": "Échec, réessayer"
+    },
+    "home": {
+      "lead": "Variante de la page d’accueil pour la revue du design.",
+      "specimen": "Accueil A : spécimen",
+      "typographic": "Accueil B : typographique"
+    },
+    "screens": {
+      "kicker": "Guide de style",
+      "title": "Écrans de l’app",
+      "lead": "Conçus maintenant, construits dans leurs phases : l’écran du test (phase 3) et l’affiche de résultat, qui sert aussi de carte de partage.",
+      "test": "Écran du test",
+      "questionOf": "Question {n} sur {count}",
+      "mode": "Standard",
+      "progress": "Progression dans le test",
+      "back": "Retour",
+      "explain": "Qu’est-ce que cela veut dire ?",
+      "result": "Affiche de résultat",
+      "posterLabel": "Affiche de résultat, exemple",
+      "posterHead": "Spectrum · résultat · 12 axes",
+      "example": "Données d’exemple",
+      "match": "Correspondance la plus proche",
+      "bar": "{axis} : {score}, vers {pole}, probablement entre {low} et {high}",
+      "posterFoot": "spectrum-six-rho.vercel.app",
+      "legend": "Barre : score · bande hachurée : plage probable"
+    }
+  },
+  "test": {
+    "questionOf": "Question {n} sur {count}",
+    "explain": "Qu’est-ce que cela veut dire ?",
+    "explainTitle": "À propos de cette affirmation",
+    "close": "Fermer",
+    "keys": "Touches : 1–5 répondre · 0 passer · ← → naviguer · ? expliquer",
+    "progress": "Progression dans le test",
+    "back": "Retour",
+    "next": "Suivante",
+    "autoAdvance": "Question suivante après la réponse",
+    "on": "Oui",
+    "off": "Non",
+    "openLeft": "{count, plural, one {# question reste ouverte.} other {# questions restent ouvertes.}}",
+    "goToOpen": "Aller à la première",
+    "allDone": "Chaque question a une réponse ou a été passée.",
+    "finish": "Voir mes résultats",
+    "finishing": "Calcul de vos résultats",
+    "notStored": "Ce navigateur n’autorise pas le stockage local : vos réponses ne durent que jusqu’à la fermeture de l’onglet.",
+    "englishOnly": "Les affirmations sont en anglais pour l’instant ; les traductions suivront."
+  },
+  "results": {
+    "title": "Vos résultats",
+    "lead": "Lus uniquement dans ce navigateur : rien de votre résultat ne figure dans l’adresse ni sur un serveur.",
+    "loading": "Chargement de votre résultat",
+    "empty": "Aucun résultat dans ce navigateur pour l’instant. Les résultats restent sur cet appareil : un résultat obtenu dans un autre navigateur n’apparaît pas ici.",
+    "takeTest": "Faire le test",
+    "notStored": "Ce navigateur n’autorise pas le stockage local : ce résultat disparaît à la fermeture de l’onglet.",
+    "toc": "Sections",
+    "sections": {
+      "summary": "Synthèse",
+      "axes": "Douze axes",
+      "positions": "Ce qui vous distingue",
+      "radar": "Votre forme",
+      "indices": "Indices par domaine",
+      "ideologies": "Idéologies les plus proches",
+      "uncertainty": "Degré de certitude",
+      "share": "Partager et continuer",
+      "compass": "Sur la carte"
+    },
+    "posterHead": "Spectrum · résultat · {mode}",
+    "lowQuality": "Vos réponses suivent un schéma qui rend cette lecture moins fiable (voir « Degré de certitude »). Prenez-la comme une esquisse.",
+    "closest": "Idéologie la plus proche",
+    "family": "Famille : {name}",
+    "variant": "Variante la plus proche : {name} ({percent} %)",
+    "atrocityNote": "Cette idéologie est liée à des crimes de masse. Une correspondance décrit des positions sur les douze axes, non un soutien à ce qui a été commis en son nom.",
+    "inBetween": "Vous vous situez entre {a} et {b} : les deux sont presque aussi proches l’une que l’autre.",
+    "honest": "Les pourcentages expriment une similarité sur douze axes, volontairement étalée : 100 % signifierait des positions identiques. C’est une interprétation, pas une mesure de qui vous êtes.",
+    "axisBar": "{axis} : {score}, vers {pole}, probablement entre {low} et {high}",
+    "confidence": "Confiance {percent} %",
+    "measured": "Ce que cela a mesuré :",
+    "unusual": "Position la plus singulière",
+    "typical": "Position la plus commune",
+    "unusualBody": "Seulement {percent} % des idéologies du catalogue se trouvent à moins de 15 points de vous ici.",
+    "typicalBody": "{percent} % des idéologies du catalogue se trouvent à moins de 15 points de vous ici.",
+    "indexName": "Indice {name}",
+    "indexUnusable": "affiché en trois axes",
+    "indexBar": "Indice {name} : {score}",
+    "indexFormula": "Indice = {formula}, ramené à ±100 · explique {share} % de la variance du catalogue dans ce domaine",
+    "placementLow": "Le placement de cette entrée est incertain.",
+    "furthest": "La plus éloignée de vous",
+    "axesLead": "Chaque barre va du premier pôle (−100) au second (+100). La bande hachurée est la plage probable : plus large quand vos réponses sur cet axe étaient peu nombreuses ou partaient dans des sens différents.",
+    "you": "Vous",
+    "radarTitle": "Vos douze scores face à {name}",
+    "dataTable": "Afficher les chiffres",
+    "axis": "Axe",
+    "radarHow": "Le centre vaut −100 sur chaque axe, l’anneau intérieur plein 0, l’anneau extérieur +100. Votre profil est la forme pleine et hachurée ; le contour tireté est votre idéologie la plus proche.",
+    "compassLink": "Vous placer sur la boussole",
+    "indicesLead": "Chaque indice résume les trois axes d’un domaine avec des poids tirés du catalogue (sa première composante principale). Quand un seul chiffre cacherait trop, les trois axes sont affichés.",
+    "matchesLead": "Classement parmi {count} idéologies du catalogue. Les variantes sont regroupées sous leur idéologie.",
+    "moreCatalogs": "Pays, régimes historiques, personnalités et partis rejoindront les correspondances au fil de la construction de leurs catalogues.",
+    "overall": "Confiance globale",
+    "overallBody": "{percent} % sur les douze axes, à partir de {answered} réponses et {skipped} questions passées. Une question passée ne compte jamais comme neutre.",
+    "tensions": "Tensions",
+    "tensionsBody": "Vos réponses tiraient dans des sens différents sur : {axes}. Ces scores se situent au milieu d’une plage plus large.",
+    "tensionsNone": "Aucun axe où vos réponses divergeaient nettement.",
+    "placement": "Placement de l’idéologie la plus proche",
+    "placementBody": {
+      "high": "{name} est placée avec une confiance élevée dans le catalogue.",
+      "medium": "{name} est placée avec une confiance moyenne ; ses sources divergent sur certains axes.",
+      "low": "{name} est placée avec une faible confiance : elle ne mène jamais la synthèse quand une autre correspondance est presque aussi proche."
+    },
+    "quality": "Schéma de réponse",
+    "flags": {
+      "straightline": "Beaucoup de réponses étaient identiques.",
+      "acquiescence": "Les réponses penchaient vers l’accord, quelle que soit l’affirmation.",
+      "contradiction": "Certaines paires d’affirmations ont reçu des réponses opposées.",
+      "fast": "Les réponses sont venues très vite.",
+      "sparse": "Beaucoup de questions ont été passées."
+    },
+    "shareLead": "Partager crée un lien court avec vos douze scores arrondis et leurs degrés de confiance, jamais vos réponses. Avant d’appuyer sur le bouton, aucun lien n’existe.",
+    "shareCreate": "Créer un lien de partage",
+    "shareLink": "Votre lien",
+    "copy": "Copier le lien",
+    "copied": "Copié",
+    "copyFailed": "Échec, sélectionnez le lien",
+    "shareNative": "Partager",
+    "more": "{count} questions de plus affinent ce résultat ; vos réponses actuelles sont conservées.",
+    "moreButton": "Répondre à {count} de plus",
+    "edit": "Modifier les réponses",
+    "retake": "Recommencer",
+    "dashboard": "Tableau de bord",
+    "compassLead": "Votre résultat sur la carte d’ensemble, parmi les {count} idéologies du catalogue. L’ellipse hachurée est votre zone probable ; la boussole permet de choisir deux axes quelconques.",
+    "compassCaption": "Fig. — Vous et {count} idéologies",
+    "compassOpen": "Ouvrir la boussole"
+  },
+  "pilot": {
+    "kicker": "Pilote · non public",
+    "title": "Aidez à tester les questions",
+    "intro": "Merci de votre aide. Vous faites le test normal ; à la fin, votre navigateur enregistre un petit fichier de réponses.",
+    "contains": "Le fichier contient votre réponse à chaque question (ou le fait de l’avoir passée), le temps de chaque réponse (arrondi au dixième de seconde), la longueur du test, la version des questions et du calcul et, si vous l’indiquez, un code de pays. Il ne contient ni nom, ni date ou heure, ni réglage de langue, ni information sur votre appareil ou votre navigateur, ni identifiant.",
+    "sensitive": "Les opinions politiques sont des données personnelles sensibles. Ne participez que si cela vous convient.",
+    "nothingStored": "Rien n’est envoyé ni stocké sur un serveur, et cette page n’utilise aucun cookie. Jusqu’à l’enregistrement du fichier, vos réponses sont conservées uniquement dans cet onglet du navigateur ; changer de langue ou recharger la page ne les efface donc pas. Elles sont supprimées à l’enregistrement du fichier, si vous les abandonnez ou à la fermeture de l’onglet.",
+    "yourChoice": "Vous décidez de transmettre ou non le fichier, et à qui.",
+    "length": "Longueur du test",
+    "country": "Pays (facultatif)",
+    "countryHint": "Deux lettres, p. ex. CH, FR, BE. Vous pouvez laisser vide.",
+    "countryError": "Erreur : utilisez deux lettres, comme CH.",
+    "consent": "Je comprends ce que contient le fichier et qu’il comporte mes opinions politiques.",
+    "start": "Commencer le pilote",
+    "banner": "Pilote : les réponses restent sur cette page et deviennent un fichier à la fin.",
+    "thanks": "Merci",
+    "saved": "Vos réponses ont été enregistrées sous {name}. Ne transmettez le fichier que si vous le souhaitez.",
+    "cleared": "Les réponses ont été effacées de cette page.",
+    "discard": "Abandonner mes réponses",
+    "linkable": "Dès que vous envoyez le fichier à quelqu’un, il peut être relié à vous, puisque cette personne sait qui l’a envoyé. Les fichiers sont conservés séparément des messages qui les ont apportés.",
+    "sampleTitle": "À quoi ressemble le fichier",
+    "sampleNote": "Valeurs d’exemple. À la fin, vous voyez votre fichier exact avant de l’enregistrer.",
+    "sampleMore": "… une ligne par question, {count} au total",
+    "reviewTitle": "Votre fichier",
+    "reviewLead": "Voici le contenu exact du fichier ; il ne contient rien d’autre. Enregistrez-le, puis décidez si vous le transmettez.",
+    "save": "Enregistrer le fichier"
+  },
+  "compass": {
+    "controls": "Vue de la boussole",
+    "view": "Vue",
+    "map": "Carte",
+    "axes": "Deux axes",
+    "mapNote": "La carte d’ensemble montre les deux directions dans lesquelles les idéologies du catalogue diffèrent le plus, combinées à partir des douze axes. Ensemble, elles couvrent {share} % des différences ; les distances sur la carte ne racontent donc qu’une partie de l’histoire.",
+    "xAxis": "Horizontal (X)",
+    "yAxis": "Vertical (Y)",
+    "swapNote": "Choisir la dimension de l’autre axe intervertit les deux.",
+    "groupAxes": "Axes",
+    "groupIndices": "Indices par catégorie",
+    "indexName": "Indice {name}",
+    "pc": "CP{k}",
+    "pcName": "CP{k} · {share} % des différences",
+    "poleNeg": "{name} −",
+    "polePos": "{name} +",
+    "you": "Vous",
+    "caption": "Fig. — Catalogue, {count} idéologies",
+    "axesLine": "X : {x} · Y : {y}",
+    "description": "{count} idéologies du catalogue placées selon {x} (horizontal) et {y} (vertical). Des points de trame plus gros signifient plus d’idéologies à proximité ; chaque marqueur indique son spectre par sa forme.",
+    "descriptionYou": "Votre dernier résultat est l’ellipse hachurée avec un réticule ; elle est plus large là où vos réponses étaient moins nettes.",
+    "keyboard": "Boussole. Les flèches passent à l’idéologie la plus proche dans cette direction ; Échap efface la sélection.",
+    "announceView": "Vue : {x} contre {y}.",
+    "announceYou": "Vous : {x}, {y}.",
+    "announcePoint": "{name}, {code} : {x}, {y}.",
+    "table": "Voir sous forme de tableau ({count})",
+    "tableCaption": "Positions sur {x} (X) et {y} (Y)",
+    "colName": "Idéologie",
+    "colSpectrum": "Spectre",
+    "noResult": "Il n’y a pas encore de résultat dans ce navigateur. Faites le test pour voir où vous vous situez sur cette carte ; votre résultat reste sur cet appareil.",
+    "takeTest": "Faire le test",
+    "key": "Légende",
+    "density": "Trame : points plus gros, plus d’idéologies à proximité",
+    "youRange": "Vous : zone probable, plus large quand c’est moins sûr",
+    "spectra": "Spectres"
   }
 }

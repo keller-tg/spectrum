@@ -1,66 +1,62 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { HeaderScroll } from "./HeaderScroll";
 import { LocaleSwitcher } from "./LocaleSwitcher";
-import { Mark } from "./Mark";
-import { MobileMenu } from "./MobileMenu";
+import { Wordmark } from "./Mark";
+import { MobileNav } from "./MobileNav";
+import { NavIndicator } from "./NavIndicator";
 import { NavLink } from "./NavLink";
-import { ThemeToggle } from "./ThemeToggle";
+import { ThemeSwitch } from "./ThemeSwitch";
 
-const NAV = ["test", "compass", "ideologies", "dashboard"] as const;
-const HREF = {
-  test: "/test",
-  compass: "/compass",
-  ideologies: "/ideologies",
-  dashboard: "/dashboard",
-} as const;
+const NAV = [
+  ["test", "/test"],
+  ["compass", "/compass"],
+  ["ideologies", "/ideologies"],
+  ["dashboard", "/dashboard"],
+] as const;
 
+/**
+ * Sticky header: solid paper, a 1px rule, and an 8px ordered-dither band that
+ * appears once the page scrolls (instead of a shadow or blur).
+ */
 export async function SiteHeader() {
   const t = await getTranslations("nav");
   const tm = await getTranslations("meta");
 
-  const links = (itemClass: string) =>
-    NAV.map((key) => (
-      <li key={key}>
-        <NavLink href={HREF[key]} className={itemClass}>
-          {t(key)}
-        </NavLink>
-      </li>
-    ));
-
   return (
-    <header className="relative z-20 border-b border-rule bg-paper/85 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" aria-label={t("home")} className="group flex items-center gap-2.5 text-ink">
-          <span className="transition-transform duration-500 ease-out group-hover:rotate-[30deg]">
-            <Mark />
-          </span>
-          <span className="display text-[1.35rem] leading-none tracking-tight">
-            {tm("siteName")}
-          </span>
+    <header className="site-header" data-print="hide">
+      <div className="mx-auto flex h-14 max-w-[96rem] items-center gap-4 px-4 sm:px-6 lg:px-10">
+        <Link href="/" aria-label={t("home")} className="flex min-h-11 items-center no-underline">
+          <Wordmark name={tm("siteName")} />
         </Link>
 
-        <nav aria-label={t("primary")} className="ml-8 hidden md:block">
-          <ul className="flex items-center gap-7 text-sm font-medium">
-            {links(
-              "relative py-1 text-ink-2 transition-colors hover:text-ink aria-[current=page]:text-ink aria-[current=page]:after:absolute aria-[current=page]:after:inset-x-0 aria-[current=page]:after:-bottom-[13px] aria-[current=page]:after:h-0.5 aria-[current=page]:after:bg-accent",
-            )}
+        <nav aria-label={t("primary")} className="nav relative ml-4 hidden h-full lg:flex">
+          <ul className="flex h-full">
+            {NAV.map(([key, href]) => (
+              <li key={key} className="flex">
+                <NavLink href={href} className="nav-link label flex items-center px-4">
+                  {t(key)}
+                </NavLink>
+              </li>
+            ))}
           </ul>
+          <NavIndicator />
         </nav>
 
-        <div className="ml-auto flex items-center gap-1.5 sm:gap-2.5">
+        <div className="ml-auto flex items-center gap-3">
           <LocaleSwitcher />
-          <ThemeToggle />
-          <MobileMenu label={t("menu")}>
-            <nav aria-label={t("primary")}>
-              <ul className="flex flex-col text-sm font-medium">
-                {links(
-                  "block rounded-md px-3 py-2.5 text-ink-2 hover:bg-paper-sunk hover:text-ink aria-[current=page]:text-ink aria-[current=page]:font-semibold",
-                )}
-              </ul>
-            </nav>
-          </MobileMenu>
+          <ThemeSwitch className="hidden md:inline-grid" />
+          <MobileNav
+            className="lg:hidden"
+            labels={{ menu: t("menu"), close: t("close"), primary: t("primary") }}
+            items={NAV.map(([key, href]) => ({ href, label: t(key) }))}
+          >
+            <ThemeSwitch />
+          </MobileNav>
         </div>
       </div>
+      <span className="site-header-band dither-fade" aria-hidden="true" />
+      <HeaderScroll />
     </header>
   );
 }

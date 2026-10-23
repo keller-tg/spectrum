@@ -17,15 +17,26 @@
     "figures": "Persönlichkeiten",
     "parties": "Parteien",
     "dashboard": "Verlauf",
-    "menu": "Menü"
+    "menu": "Menü",
+    "close": "Schließen"
   },
   "locale": {
     "label": "Sprache",
-    "names": { "en": "English", "de": "Deutsch", "fr": "Français" },
-    "short": { "en": "EN", "de": "DE", "fr": "FR" }
+    "names": {
+      "en": "English",
+      "de": "Deutsch",
+      "fr": "Français"
+    },
+    "short": {
+      "en": "EN",
+      "de": "DE",
+      "fr": "FR"
+    }
   },
   "theme": {
-    "toggle": "Zwischen hellem und dunklem Design wechseln"
+    "label": "Design",
+    "light": "Hell",
+    "dark": "Dunkel"
   },
   "footer": {
     "disclaimer": "Spectrum ist ein Werkzeug zur Deutung. Es liest deine Antworten durch ein Modell mit echten Grenzen; es misst nicht, wer du bist.",
@@ -36,66 +47,96 @@
     "privacyLink": "Datenschutz",
     "imprint": "Impressum",
     "source": "Quellcode",
-    "designSystem": "Designsystem",
     "status": "Arbeitstitel, in Entwicklung."
   },
   "home": {
-    "kicker": "Zwölf Achsen · Kostenlos · Ohne Konto",
-    "title": "Politik passt nicht auf <em>eine Linie</em>.",
-    "lead": "Beantworte kurze Aussagen und sieh, wo du auf zwölf unabhängigen Achsen stehst, welche Ideologien, Länder, Persönlichkeiten und Parteien dir am nächsten sind und wie sicher dieses Bild ist.",
+    "sentence": "Zwölf Achsen, weil Politik nicht auf eine Linie passt.",
     "chooseMode": "Wähle eine Länge",
-    "modeCount": "{count} Fragen",
-    "modeTime": "etwa {minutes} Min.",
+    "table": {
+      "mode": "Modus",
+      "questions": "Fragen",
+      "minutes": "Minuten",
+      "action": "Starten",
+      "questionsShort": "Fr.",
+      "minutesShort": "Min."
+    },
     "recommended": "Empfohlen",
     "opensSoon": "Bald verfügbar",
     "start": "Starten",
     "modes": {
-      "quick": { "name": "Schnell", "blurb": "Eine erste Skizze deiner Position." },
+      "quick": {
+        "name": "Schnell",
+        "blurb": "Eine erste Skizze deiner Position."
+      },
       "standard": {
         "name": "Standard",
         "blurb": "Ein schärferes Bild mit belastbarerer Sicherheit."
       },
-      "deep": { "name": "Vertieft", "blurb": "Die genaueste Auswertung: zwölf Fragen pro Achse." }
+      "deep": {
+        "name": "Vertieft",
+        "blurb": "Die genaueste Auswertung: zwölf Fragen pro Achse."
+      }
     },
     "modesNote": "Einen kürzeren Test kannst du später verlängern, deine Antworten bleiben erhalten. Was du hier siehst, ist der ganze Test: keine versteckten Zusatzrunden.",
-    "axesKicker": "Das Instrument",
-    "axesTitle": "Zwölf Achsen in vier Bereichen",
-    "axesLead": "Jede Achse ist unabhängig. Du kannst Markt und offene Grenzen bevorzugen oder Gemeineigentum und Tradition. Während des Tests siehst du nie, zu welcher Achse eine Aussage gehört; das zeigen erst deine Ergebnisse.",
-    "howKicker": "Die Methode",
-    "howTitle": "So funktioniert es",
+    "kicker": "Spectrum · ein politischer Test mit zwölf Achsen · kostenlos · ohne Konto",
+    "subline": "Beantworte kurze Aussagen und sieh, wo du stehst, welche Ideologien dir am nächsten sind und wie sicher dieses Bild ist.",
+    "rowQuestions": "{count} Fragen",
+    "rowMinutes": "etwa {minutes} Minuten",
+    "field": {
+      "description": "{count} Ideologien aus dem Katalog auf der Gesamtkarte, den ersten beiden Hauptkomponenten aller zwölf Achsen. Größere Rasterpunkte bedeuten mehr Ideologien in der Nähe; jede Markierung zeigt ihr Spektrum durch ihre Form.",
+      "caption": "Abb. 01 — Katalog, {count} Einträge",
+      "axes": "HK1 × HK2 · {share} % der Varianz",
+      "list": "Als Liste zeigen ({count})",
+      "nearest": "Am nächsten",
+      "keyboard": "Katalogkarte. Pfeiltasten gehen die Ideologien durch, Enter springt zum Registereintrag.",
+      "open": "Klick führt zum Registereintrag",
+      "pc1": "HK1",
+      "pc2": "HK2"
+    },
+    "stats": {
+      "label": "In Zahlen",
+      "axes": "Achsen, einzeln gemessen",
+      "ideologies": "Ideologien im Katalog",
+      "questions": "Fragen: schnell, standard, vertieft",
+      "accounts": "Konten nötig"
+    },
     "how": {
-      "answer": {
-        "title": "Antworten",
-        "body": "Reagiere auf klare Aussagen auf einer Fünferskala. Unsicher? Überspringen. Überspringen zählt nicht als neutral."
-      },
-      "see": {
-        "title": "Zwölf Positionen sehen",
-        "body": "Jede Achse erhält einen Wert und eine Sicherheit. Wo deine Antworten in verschiedene Richtungen ziehen, sagen es die Ergebnisse."
-      },
-      "explore": {
-        "title": "Entdecken und verfolgen",
-        "body": "Vergleiche dich mit Ideologien, Ländern, Persönlichkeiten und Parteien und sieh, wie sich deine Ansichten mit der Zeit verschieben."
+      "kicker": "So funktioniert es",
+      "title": "Drei Schritte, kein Konto",
+      "steps": {
+        "answer": {
+          "title": "Antworten",
+          "body": "Reagiere auf einfache Aussagen auf einer Fünf-Punkte-Skala. Unsicher? Überspring sie. Übersprungen zählt nicht als neutral."
+        },
+        "see": {
+          "title": "Zwölf Positionen sehen",
+          "body": "Jede Achse erhält einen Wert und eine Sicherheit. Wo deine Antworten in verschiedene Richtungen ziehen, sagt es das Ergebnis."
+        },
+        "explore": {
+          "title": "Entdecken und verfolgen",
+          "body": "Vergleiche dich mit Ideologien, Ländern, Persönlichkeiten und Parteien und sieh, wie sich deine Ansichten mit der Zeit bewegen."
+        }
       }
     },
-    "promisesKicker": "Die Bedingungen",
-    "promisesTitle": "Worauf du dich verlassen kannst",
-    "promises": {
-      "local": {
-        "title": "Lokal zuerst",
-        "body": "Ergebnisse werden in deinem Browser gespeichert. Nichts erreicht einen Server, außer du wählst die verschlüsselte Synchronisierung."
-      },
-      "tracking": {
-        "title": "Kein Tracking",
-        "body": "Keine Werbung, keine Analyse, keine Skripte von Dritten. Keine Cookies, außer du legst ein Profil an."
-      },
-      "honest": {
-        "title": "Ehrliche Unsicherheit",
-        "body": "Übereinstimmungen werden nicht aufgebläht, und jedes Ergebnis zeigt, wie sicher es ist."
-      },
-      "neutral": {
-        "title": "Ausgewogener Katalog",
-        "body": "Jede Ideologie, ob etabliert oder randständig, wird gleich sachlich behandelt – Kritik inklusive."
-      }
+    "axes": {
+      "kicker": "Die 12 Achsen",
+      "title": "Zwölf unabhängige Achsen",
+      "lead": "Jede Achse wird für sich gemessen. Während des Tests siehst du nie, zu welcher Achse eine Aussage gehört; das zeigt erst das Ergebnis.",
+      "code": "Code",
+      "axis": "Achse",
+      "scale": "Skala von −100 bis +100"
+    },
+    "index": {
+      "kicker": "Register",
+      "title": "Register der Ideologien",
+      "lead": "Alle {count} bisherigen Einträge im Katalog, von A bis Z, jeweils mit Spektrum. Ganze Seiten folgen mit dem Katalog.",
+      "counts": "Einträge pro Spektrum"
+    },
+    "privacy": {
+      "kicker": "04 / Datenschutz",
+      "statement": "Deine Antworten bleiben in deinem Browser.",
+      "body": "Kein Konto, kein Tracking, keine Werbung. Nichts erreicht einen Server, außer du wählst die verschlüsselte Synchronisierung.",
+      "link": "So werden deine Daten behandelt"
     }
   },
   "stub": {
@@ -117,7 +158,11 @@
     },
     "sharedResult": {
       "title": "Ein geteiltes Ergebnis",
-      "lead": "Jemand hat seine Position auf den zwölf Achsen mit dir geteilt."
+      "lead": "Jemand hat seine Position auf den zwölf Achsen mit dir geteilt.",
+      "kicker": "Geteiltes Ergebnis",
+      "broken": "Dieser Link funktioniert nicht",
+      "brokenBody": "Der Code ist unvollständig oder wurde verändert und lässt sich nicht lesen. Bitte um den Link noch einmal oder mach den Test selbst.",
+      "yourTurn": "Wo stehst du? Der Test dauert 5 bis 10 Minuten und braucht kein Konto."
     },
     "compare": {
       "title": "Vergleichen",
@@ -157,7 +202,43 @@
     },
     "method": {
       "title": "Methode",
-      "lead": "Wie aus Antworten Werte werden, wie Übereinstimmungen berechnet werden und wo die Grenzen des Modells liegen."
+      "lead": "Wie aus Antworten Werte werden, wie Übereinstimmungen berechnet werden und wo die Grenzen des Modells liegen.",
+      "axesTitle": "Zwölf Achsen in vier Bereichen",
+      "axesLead": "Jede Achse ist unabhängig. Du kannst Markt und offene Grenzen bevorzugen oder Gemeineigentum und Tradition. Während des Tests siehst du nie, zu welcher Achse eine Aussage gehört; das zeigen erst deine Ergebnisse.",
+      "howTitle": "So funktioniert es",
+      "how": {
+        "answer": {
+          "title": "Antworten",
+          "body": "Reagiere auf klare Aussagen auf einer Fünferskala. Unsicher? Überspringen. Überspringen zählt nicht als neutral."
+        },
+        "see": {
+          "title": "Zwölf Positionen sehen",
+          "body": "Jede Achse erhält einen Wert und eine Sicherheit. Wo deine Antworten in verschiedene Richtungen ziehen, sagen es die Ergebnisse."
+        },
+        "explore": {
+          "title": "Entdecken und verfolgen",
+          "body": "Vergleiche dich mit Ideologien, Ländern, Persönlichkeiten und Parteien und sieh, wie sich deine Ansichten mit der Zeit verschieben."
+        }
+      },
+      "termsTitle": "Worauf du dich verlassen kannst",
+      "terms": {
+        "local": {
+          "title": "Lokal zuerst",
+          "body": "Ergebnisse werden in deinem Browser gespeichert. Nichts erreicht einen Server, außer du wählst die verschlüsselte Synchronisierung."
+        },
+        "tracking": {
+          "title": "Kein Tracking",
+          "body": "Keine Werbung, keine Analyse, keine Skripte von Dritten. Keine Cookies, außer du legst ein Profil an."
+        },
+        "honest": {
+          "title": "Ehrliche Unsicherheit",
+          "body": "Übereinstimmungen werden nicht aufgebläht, und jedes Ergebnis zeigt, wie sicher es ist."
+        },
+        "neutral": {
+          "title": "Ausgewogener Katalog",
+          "body": "Jede Ideologie, ob etabliert oder randständig, wird gleich sachlich behandelt – Kritik inklusive."
+        }
+      }
     },
     "privacy": {
       "title": "Datenschutz",
@@ -168,10 +249,6 @@
       "title": "Impressum",
       "lead": "Rechtliche Angaben und Kontakt.",
       "pending": "Die verantwortliche Stelle wird hier vor dem öffentlichen Start genannt."
-    },
-    "designSystem": {
-      "title": "Designsystem",
-      "lead": "Gestaltungsgrundlagen und Bausteine, aus denen jede Seite besteht."
     }
   },
   "notFound": {
@@ -191,7 +268,8 @@
     "parties": "parteien",
     "eras": "epochen",
     "uncertainty": "unsicherheit",
-    "share": "teilen"
+    "share": "teilen",
+    "indices": "indizes"
   },
   "axisStrip": {
     "label": "Position auf den zwölf Achsen",
@@ -208,29 +286,419 @@
     "skip": "Unsicher, überspringen",
     "groupLabel": "Deine Antwort"
   },
-  "ds": {
-    "kicker": "Interne Referenz",
-    "type": "Typografie",
-    "typeDisplay": "Auszeichnung: Bodoni Moda",
-    "typeText": "Text und Oberfläche: Schibsted Grotesk",
-    "sampleHeadline": "Wo würdest du die Grenze ziehen?",
-    "sampleBody": "Jede Achse wird für sich gemessen. Eine Position auf der einen sagt nichts über die anderen – genau deshalb beschreiben zwölf Linien einen Menschen besser als eine.",
-    "colour": "Farbe",
-    "colourNote": "Jede Kombination für Text erfüllt WCAG AA in beiden Designs. Tiefrot ist dir und den wichtigsten Aktionen vorbehalten.",
-    "spectra": "Spektrumsfarben",
-    "spectraNote": "Farbtöne kennzeichnen Spektren in Diagrammen und Chips. Sie stehen immer neben einer Beschriftung, nie allein.",
-    "glyphs": "Achsen-Glyphen",
-    "glyphsNote": "Vierundzwanzig eigene Glyphen, eine pro Pol. Leisten zeigen die Glyphe des Pols, zu dem ein Eintrag neigt.",
-    "strip": "Leiste mit zwölf Symbolen",
-    "stripNote": "Die Deckkraft folgt der Stärke der Neigung; ein Punkt bedeutet nahe der Mitte.",
-    "stripExampleA": "Beispielprofil A",
-    "stripExampleB": "Beispielprofil B",
-    "controls": "Bedienelemente",
-    "scaleNote": "Die Antwortskala hat ein festes Layout, damit sich Schaltflächen zwischen Fragen nie verschieben. Überspringen steht getrennt von neutral.",
-    "buttons": "Schaltflächen",
-    "primary": "Hauptaktion",
-    "secondary": "Sekundär",
-    "quiet": "Dezenter Link",
-    "chips": "Chips"
+  "styleguide": {
+    "title": "Styleguide",
+    "lead": "Alle Komponenten und Zustände in beiden Modi, für die Designprüfung. Hover-Zustände sind auch fixiert gezeigt, damit man sie ohne Zeiger prüfen kann.",
+    "light": "Heller Modus",
+    "dark": "Dunkler Modus",
+    "dataTable": "Datentabelle anzeigen",
+    "sections": {
+      "type": "Palette, Schrift und Bewegung",
+      "buttons": "Schaltflächen",
+      "inputs": "Eingaben",
+      "cells": "Zellen, Titel und Tabellen",
+      "nav": "Navigation und Tabs",
+      "sliders": "Schieberegler und Achsenbalken",
+      "overlays": "Tooltip und Dialog",
+      "legend": "Legenden",
+      "strip": "Zwölf-Achsen-Leiste",
+      "radar": "Radar",
+      "compass": "Kompass-Kodierung",
+      "web": "Netzansicht",
+      "images": "Bilder und Zeichen",
+      "links": "Links",
+      "segmented": "Segmentierte Auswahl",
+      "modes": "Modus-Zeilen",
+      "answers": "Antwortzeilen"
+    },
+    "palette": {
+      "note": "Zwei Farben, die zwischen den Modi tauschen. Keine Grautöne, Akzente, Verläufe, Schatten, Transparenz, Unschärfe oder runden Ecken. Ein CI-Check weist jede andere Farbe zurück."
+    },
+    "type": {
+      "display": "Überschriften: Archivo, Stärke 850",
+      "prose": "Text: Archivo, Stärke 400",
+      "mono": "Oberfläche, Labels und Zahlen: IBM Plex Mono",
+      "numeral": "Übereinstimmung in Prozent",
+      "sampleHeadline": "Wo würdest du die Linie ziehen?",
+      "sampleBody": "Jede Achse wird für sich gemessen. Eine Position auf der einen sagt nichts über die anderen – genau deshalb beschreiben zwölf Linien einen Menschen besser als eine.",
+      "motion": "Token für Bewegung und Form"
+    },
+    "buttons": {
+      "note": "Beim Hover wischt die Gegenfarbe von links herein, das Label wechselt mit; der Pfeil rollt. Druck skaliert auf 98 % und federt zurück. Fokus ist ein 2-px-Ring mit 3 px Abstand. Deaktiviert ist gestrichelt.",
+      "order": "Ruhe · Hover (fixiert) · deaktiviert",
+      "primary": "Primär",
+      "secondary": "Sekundär",
+      "text": "Text",
+      "primaryText": "Starten",
+      "secondaryText": "Vergleichen",
+      "textText": "Mehr lesen",
+      "sizes": "Größen",
+      "live": "Ausprobieren",
+      "save": "Ergebnis speichern",
+      "sync": "Jetzt synchronisieren"
+    },
+    "inputs": {
+      "note": "Labels stehen über den Feldern. Fehler werden ausgeschrieben und verstärken den Rahmen; Farbe trägt nie Bedeutung.",
+      "search": "Ideologien suchen",
+      "searchHint": "Ein Name, eine Familie oder ein Tag.",
+      "placeholder": "z. B. Föderalismus",
+      "error": "Fehler: Gib mindestens zwei Buchstaben ein.",
+      "disabled": "Nicht verfügbar",
+      "consent": "Ich verstehe, dass diese Datei meine politischen Ansichten enthält.",
+      "checked": "Gewählte Option"
+    },
+    "answer": {
+      "note": "Zeilen über die volle Breite. Druck wischt die Zeile herein; die gewählte Zeile bleibt invertiert, ihr [X] zeichnet sich ein. Tasten 1–5 erscheinen am Desktop. Mit automatischem Weitergehen wartet der Test 180 ms, damit die Wahl sichtbar wird.",
+      "selected": "Eine Antwort gewählt",
+      "skipped": "Übersprungen"
+    },
+    "cells": {
+      "note": "Struktur nutzt 2-px-Linien, dichte Daten 1 px. Abschnitte sind Zellen in einem 12-Spalten-Raster; Tabellen sind liniert, Zahlen rechtsbündig mit Tabellenziffern, Länder als ISO-Codes.",
+      "sampleTitle": "Ein nummerierter Abschnitt",
+      "cellTitle": "Zelle",
+      "cellBody": "Inhalte stehen in linierten Zellen statt in schwebenden Karten."
+    },
+    "table": {
+      "caption": "Beispiel: sechs Anker-Ideologien",
+      "name": "Name",
+      "spectrum": "Spektrum",
+      "isoCaption": "Länder als ISO-Codes",
+      "iso": "Code",
+      "country": "Land",
+      "ch": "Schweiz",
+      "de": "Deutschland",
+      "fr": "Frankreich"
+    },
+    "nav": {
+      "note": "Hover zieht eine Unterstreichung; der aktuelle Bereich hat einen Balken, der beim Seitenwechsel gleitet, dazu Klammern. Auf dem Handy öffnet sich das Menü als vollflächiges, invertiertes Blatt in großer Schrift.",
+      "header": "Zellen der Kopfzeile",
+      "tabs": "Tabs",
+      "tabsLabel": "Ergebnisansichten",
+      "tabAxes": "Achsen",
+      "tabRadar": "Radar",
+      "tabMap": "Karte",
+      "panelAxes": "Zwölf Balken, einer pro Achse.",
+      "panelRadar": "Alle zwölf Achsen in einer Form.",
+      "panelMap": "Die Gesamtkarte des politischen Raums.",
+      "sheet": "Das mobile Menü erscheint, wenn du das Fenster schmal ziehst und MENÜ drückst; es funktioniert ohne JavaScript."
+    },
+    "toggle": {
+      "advance": "Automatisch weiter",
+      "disabled": "Nicht verfügbar",
+      "on": "Ein",
+      "off": "Aus"
+    },
+    "sliders": {
+      "note": "Schwarze Balken auf linierten Spuren mit Strichen alle 10 Punkte; Unsicherheit als Haarlinien-Klammer oder schraffiertes Band. Der Regler wächst beim Ziehen, und eine gerahmte Anzeige folgt ihm.",
+      "bar": "{axis}: {score}, Richtung {pole}, wahrscheinlich zwischen {low} und {high}",
+      "disabled": "Deaktivierter Regler",
+      "snap": "Rastet an Strichen ein"
+    },
+    "overlays": {
+      "note": "Der Tooltip öffnet sich nach 300 ms Hover, sofort bei Fokus oder Tippen, und erscheint in 120 ms. Der Dialog ist ein natives Dialogfenster über einem Punktraster; Escape schließt ihn.",
+      "tooltipLabel": "Was diese Achse misst",
+      "open": "Dialog öffnen",
+      "modalTitle": "Zu dieser Aussage",
+      "modalBody": "Überlagerungen haben einen 2-px-Rahmen und keinen Schatten. Die Seite dahinter wird von einem Punktraster bedeckt, statt abgedunkelt oder weichgezeichnet zu werden.",
+      "close": "Schließen"
+    },
+    "legend": {
+      "note": "Jede Kodierung hat eine geschriebene Legende. Spektren unterscheiden sich durch Form plus Code, nie durch die Form allein.",
+      "spectra": "Spektren",
+      "charts": "Kodierung der Diagramme",
+      "solid": "Durchgezogene Linie: du oder die erste Reihe",
+      "dashed": "Gestrichelte Linie: die Vergleichsreihe",
+      "dotted": "Lockere Punkte: ältere Schritte deines Verlaufs",
+      "hatch": "Schraffierte Fläche: deine Fläche",
+      "empty": "Leere Fläche: die Vergleichsfläche",
+      "halftone": "Raster: größere Punkte, mehr Ideologien in der Nähe",
+      "you": "Du: Die Kreisgröße zeigt die Unsicherheit, das Fadenkreuz markiert den Punkt",
+      "ghost": "Geistervergleich: ein hohler, gestrichelter Umriss",
+      "selected": "Gewählter Knoten: invertiert",
+      "dither": "Geordnetes Dithering: das Band unter der fixierten Kopfzeile"
+    },
+    "strip": {
+      "note": "Zwölf zweistellige Achsencodes, nach Bereich gruppiert.",
+      "exampleA": "Beispielprofil A",
+      "exampleB": "Beispielprofil B",
+      "howTitle": "So liest du sie",
+      "how": "Jeder Code hat vier Quadrate: Die linken zwei gehören zum ersten Pol, die rechten zwei zum zweiten. Ein gefülltes Quadrat heißt, der Eintrag neigt in diese Richtung, zwei heißen deutlich, keines heißt nahe der Mitte."
+    },
+    "radar": {
+      "note": "Mitte = −100, durchgezogener Innenring = 0, Außenring = +100 auf jeder Achse. Erstes Profil: durchgezogene Linie, schraffierte Fläche, volle Ecken. Vergleich: gestrichelte Linie, leere Fläche, hohle Ecken.",
+      "title": "Radar: Beispielprofil A gegen B",
+      "you": "Profil A",
+      "friend": "Profil B",
+      "axis": "Achse"
+    },
+    "compass": {
+      "note": "Statische Vorschau des Kompasses aus Phase 4 mit dem Anker-Katalog: Verteilung waagrecht, Staatsmacht senkrecht.",
+      "title": "Kompass-Vorschau: Verteilung und Staatsmacht",
+      "summary": "Rasterpunkte zeigen, wo sich Ideologien häufen. Eine Markierung pro Spektrum, deine Position mit ihrem Unsicherheitskreis, drei frühere Ergebnisse als Verlauf und eine andere Person als Geist.",
+      "you": "DU",
+      "ghost": "VERGLEICH",
+      "point": "Punkt"
+    },
+    "web": {
+      "note": "Statische Vorschau der Netzansicht aus Phase 10: Lage aus der Gesamtkarte, jeder Knoten mit seinen zwei nächsten Nachbarn verbunden. Fahre über einen Knoten, um seinen Namen zu sehen.",
+      "title": "Vorschau der Netzansicht: siebzehn Anker-Ideologien",
+      "node": "Ideologie",
+      "neighbours": "Nächste Nachbarn"
+    },
+    "images": {
+      "note": "Fotos werden beim Build zu 1-Bit-Bildern mit geordnetem Dithering. Urheber, Lizenz und Quelle stehen sichtbar unter jedem Bild.",
+      "source": "Quelle",
+      "glyphs": "Generierte Eintragszeichen",
+      "glyphsNote": "Jeder Katalogeintrag erhält ein symmetrisches 5×5-Muster aus seiner ID: eigenständig, ohne Symbole, ohne Gesichter.",
+      "flags": "Länder",
+      "flagsNote": "Keine Flaggen. Länder werden im Text benannt und codiert, z. B. CH, DE, FR."
+    },
+    "kicker": "Intern · nicht indexiert",
+    "pages": {
+      "buttons": "Matrix der Schaltflächen",
+      "screens": "App-Bildschirme",
+      "home-a": "Startseite A: Spezimen",
+      "home-b": "Startseite B: typografisch"
+    },
+    "controls": {
+      "label": "Stil der Bedienelemente",
+      "sharp": "Eckig",
+      "pill": "Pille",
+      "offset": "Versatz",
+      "note": "Der Stil gilt für die ganze Website und wird in diesem Browser gespeichert, nur zur Prüfung. Eckig ist der Standard, bis eine Wahl getroffen ist."
+    },
+    "links": {
+      "note": "Links sind in Ruhe unterstrichen, weil Farbe sie nicht abheben kann; beim Hover zieht sich von links eine 2-px-Linie ein. Links nach außen tragen einen kleinen Pfeil.",
+      "sentence": "Ein Link im Fließtext sieht so aus wie <link>dieser hier</link>.",
+      "internal": "Zur Methode",
+      "external": "Quellcode auf GitHub"
+    },
+    "segmented": {
+      "note": "Ein Bedienelement für Sprache, Design, Testlänge und Achsenwahl: gleich breite Segmente und ein invertierter Anzeiger, der zwischen ihnen gleitet. Pfeiltasten verschieben die Auswahl.",
+      "mode": "Testlänge",
+      "axis": "Achsenwahl",
+      "map": "Karte",
+      "switch": "Schalter",
+      "select": "Auswahlliste"
+    },
+    "modes": {
+      "note": "Jeder Modus ist ein Link über die ganze Zeile. Beim Hover wischt die Zeile ins Inverse, STARTEN gleitet herein und der Pfeil rollt (im hellen Rahmen auf Schnell fixiert). Vertieft ist gestrichelt und noch nicht anklickbar."
+    },
+    "matrix": {
+      "kicker": "Styleguide",
+      "title": "Matrix der Schaltflächen",
+      "lead": "Jede Variante, Größe und jeder Zustand, Hover und Druck fixiert. Wechsle den Stil, um eckig, Pille und Versatz zu vergleichen.",
+      "size": "Größe",
+      "sizes": {
+        "s": "S · 36",
+        "m": "M · 44",
+        "l": "L · 56"
+      },
+      "states": {
+        "rest": "Ruhe",
+        "hover": "Hover",
+        "focus": "Fokus",
+        "active": "Gedrückt",
+        "loading": "Lädt",
+        "success": "Erfolg",
+        "error": "Fehler",
+        "disabled": "Deaktiviert"
+      },
+      "loadingLabel": "Wird gespeichert",
+      "successLabel": "Gespeichert",
+      "errorLabel": "Fehlgeschlagen, erneut versuchen"
+    },
+    "home": {
+      "lead": "Variante der Startseite zur Designprüfung.",
+      "specimen": "Startseite A: Spezimen",
+      "typographic": "Startseite B: typografisch"
+    },
+    "screens": {
+      "kicker": "Styleguide",
+      "title": "App-Bildschirme",
+      "lead": "Jetzt gestaltet, in ihren Phasen gebaut: der Testbildschirm (Phase 3) und das Ergebnisplakat, das zugleich die Teilen-Karte ist.",
+      "test": "Testbildschirm",
+      "questionOf": "Frage {n} von {count}",
+      "mode": "Standard",
+      "progress": "Fortschritt im Test",
+      "back": "Zurück",
+      "explain": "Was heißt das?",
+      "result": "Ergebnisplakat",
+      "posterLabel": "Ergebnisplakat, Beispiel",
+      "posterHead": "Spectrum · Ergebnis · 12 Achsen",
+      "example": "Beispieldaten",
+      "match": "Größte Nähe",
+      "bar": "{axis}: {score}, Richtung {pole}, wahrscheinlich zwischen {low} und {high}",
+      "posterFoot": "spectrum-six-rho.vercel.app",
+      "legend": "Balken: Wert · schraffiertes Band: wahrscheinlicher Bereich"
+    }
+  },
+  "test": {
+    "questionOf": "Frage {n} von {count}",
+    "explain": "Was heißt das?",
+    "explainTitle": "Zu dieser Aussage",
+    "close": "Schließen",
+    "keys": "Tasten: 1–5 antworten · 0 überspringen · ← → wechseln · ? erklären",
+    "progress": "Fortschritt im Test",
+    "back": "Zurück",
+    "next": "Weiter",
+    "autoAdvance": "Nach der Antwort weiter",
+    "on": "Ein",
+    "off": "Aus",
+    "openLeft": "{count, plural, one {# Frage ist noch offen.} other {# Fragen sind noch offen.}}",
+    "goToOpen": "Zur ersten offenen",
+    "allDone": "Jede Frage hat eine Antwort oder wurde übersprungen.",
+    "finish": "Mein Ergebnis zeigen",
+    "finishing": "Ergebnis wird berechnet",
+    "notStored": "Dieser Browser erlaubt keine lokale Speicherung; deine Antworten bleiben nur, bis du den Tab schließt.",
+    "englishOnly": "Die Aussagen sind vorerst auf Englisch; Übersetzungen folgen."
+  },
+  "results": {
+    "title": "Dein Ergebnis",
+    "lead": "Nur aus diesem Browser gelesen; nichts über dein Ergebnis steht in der Adresszeile oder liegt auf einem Server.",
+    "loading": "Ergebnis wird geladen",
+    "empty": "In diesem Browser gibt es noch kein Ergebnis. Ergebnisse liegen nur auf diesem Gerät; ein Ergebnis aus einem anderen Browser erscheint hier nicht.",
+    "takeTest": "Zum Test",
+    "notStored": "Dieser Browser erlaubt keine lokale Speicherung; dieses Ergebnis verschwindet, wenn du den Tab schließt.",
+    "toc": "Abschnitte",
+    "sections": {
+      "summary": "Überblick",
+      "axes": "Zwölf Achsen",
+      "positions": "Wo du herausstichst",
+      "radar": "Deine Form",
+      "indices": "Bereichsindizes",
+      "ideologies": "Nächste Ideologien",
+      "uncertainty": "Wie sicher das ist",
+      "share": "Teilen und weiter",
+      "compass": "Auf der Karte"
+    },
+    "posterHead": "Spectrum · Ergebnis · {mode}",
+    "lowQuality": "Deine Antworten folgen einem Muster, das diese Deutung weniger verlässlich macht (siehe „Wie sicher das ist“). Nimm sie als grobe Skizze.",
+    "closest": "Nächste Ideologie",
+    "family": "Familie: {name}",
+    "variant": "Nächste Variante: {name} ({percent} %)",
+    "atrocityNote": "Diese Ideologie ist mit Massenverbrechen verbunden. Eine Übereinstimmung beschreibt Positionen auf den zwölf Achsen, keine Zustimmung zu dem, was in ihrem Namen geschah.",
+    "inBetween": "Du liegst zwischen {a} und {b}: Beide sind fast gleich nah.",
+    "honest": "Die Prozente sind Ähnlichkeit auf zwölf Achsen, bewusst gespreizt: 100 % hieße identische Positionen. Das ist eine Deutung, keine Messung dessen, wer du bist.",
+    "axisBar": "{axis}: {score}, Richtung {pole}, wahrscheinlich zwischen {low} und {high}",
+    "confidence": "Sicherheit {percent} %",
+    "measured": "Was das gemessen hat:",
+    "unusual": "Ungewöhnlichste Position",
+    "typical": "Typischste Position",
+    "unusualBody": "Nur {percent} % der Ideologien im Katalog liegen hier innerhalb von 15 Punkten um dich.",
+    "typicalBody": "{percent} % der Ideologien im Katalog liegen hier innerhalb von 15 Punkten um dich.",
+    "indexName": "Index {name}",
+    "indexUnusable": "als drei Achsen gezeigt",
+    "indexBar": "Index {name}: {score}",
+    "indexFormula": "Index = {formula}, auf ±100 skaliert · erklärt {share} % der Varianz des Katalogs in diesem Bereich",
+    "placementLow": "Die Einordnung dieses Eintrags ist unsicher.",
+    "furthest": "Am weitesten von dir entfernt",
+    "axesLead": "Jeder Balken reicht vom ersten Pol (−100) zum zweiten (+100). Das schraffierte Band ist der wahrscheinliche Bereich: breiter, wenn du auf dieser Achse wenige oder widersprüchliche Antworten gegeben hast.",
+    "you": "Du",
+    "radarTitle": "Deine zwölf Werte im Vergleich mit {name}",
+    "dataTable": "Zahlen zeigen",
+    "axis": "Achse",
+    "radarHow": "Die Mitte ist auf jeder Achse −100, der durchgezogene Innenring 0, der Außenring +100. Dein Profil ist die durchgezogene, schraffierte Form; der gestrichelte Umriss ist deine nächste Ideologie.",
+    "compassLink": "Dich auf dem Kompass verorten",
+    "indicesLead": "Jeder Index fasst die drei Achsen eines Bereichs zusammen, mit Gewichten aus dem Katalog (seiner ersten Hauptkomponente). Wo eine Zahl zu viel verbergen würde, stehen stattdessen die drei Achsen.",
+    "matchesLead": "Eingeordnet unter {count} Ideologien im Katalog. Varianten stehen unter ihrer Ideologie.",
+    "moreCatalogs": "Länder, historische Regime, Persönlichkeiten und Parteien kommen hinzu, sobald ihre Kataloge stehen.",
+    "overall": "Gesamtsicherheit",
+    "overallBody": "{percent} % über die zwölf Achsen, aus {answered} Antworten und {skipped} übersprungenen Fragen. Übersprungenes zählt nie als neutral.",
+    "tensions": "Spannungen",
+    "tensionsBody": "Deine Antworten zogen hier in verschiedene Richtungen: {axes}. Diese Werte liegen mitten in einem breiteren Bereich.",
+    "tensionsNone": "Keine Achse, auf der deine Antworten deutlich auseinanderliefen.",
+    "placement": "Einordnung der nächsten Ideologie",
+    "placementBody": {
+      "high": "{name} ist im Katalog mit hoher Sicherheit eingeordnet.",
+      "medium": "{name} ist mit mittlerer Sicherheit eingeordnet; die Quellen unterscheiden sich auf einigen Achsen.",
+      "low": "{name} ist mit geringer Sicherheit eingeordnet und führt deshalb den Überblick nie an, wenn eine andere Übereinstimmung fast gleich nah ist."
+    },
+    "quality": "Antwortmuster",
+    "flags": {
+      "straightline": "Viele Antworten waren gleich.",
+      "acquiescence": "Die Antworten neigten zur Zustimmung, egal was die Aussage sagte.",
+      "contradiction": "Einige Aussagenpaare wurden gegensätzlich beantwortet.",
+      "fast": "Die Antworten kamen sehr schnell.",
+      "sparse": "Viele Fragen wurden übersprungen."
+    },
+    "shareLead": "Teilen erzeugt einen kurzen Link mit deinen zwölf gerundeten Werten und Sicherheiten, nie deinen Antworten. Bevor du den Knopf drückst, existiert kein Link.",
+    "shareCreate": "Link zum Teilen erzeugen",
+    "shareLink": "Dein Link",
+    "copy": "Link kopieren",
+    "copied": "Kopiert",
+    "copyFailed": "Kopieren fehlgeschlagen, Link markieren",
+    "shareNative": "Teilen",
+    "more": "{count} weitere Fragen schärfen dieses Ergebnis; deine bisherigen Antworten bleiben erhalten.",
+    "moreButton": "{count} weitere beantworten",
+    "edit": "Antworten ändern",
+    "retake": "Neu beginnen",
+    "dashboard": "Verlauf",
+    "compassLead": "Dein Ergebnis auf der Gesamtkarte, zwischen den {count} Ideologien des Katalogs. Die schraffierte Ellipse ist dein wahrscheinlicher Bereich; im Kompass kannst du zwei beliebige Achsen wählen.",
+    "compassCaption": "Abb. — Du und {count} Ideologien",
+    "compassOpen": "Kompass öffnen"
+  },
+  "pilot": {
+    "kicker": "Pilot · nicht öffentlich",
+    "title": "Hilf beim Testen der Fragen",
+    "intro": "Danke für deine Hilfe. Du machst den normalen Test; am Ende speichert dein Browser eine kleine Antwortdatei.",
+    "contains": "Die Datei enthält deine Antwort auf jede Frage (oder ein Überspringen), wie lange jede Antwort dauerte (auf eine Zehntelsekunde gerundet), die Testlänge, die Version der Fragen und der Auswertung und, falls du ihn angibst, einen Ländercode. Sie enthält keinen Namen, kein Datum und keine Uhrzeit, keine Spracheinstellung, keine Angaben zu deinem Gerät oder Browser und keine Kennung.",
+    "sensitive": "Politische Ansichten sind sensible persönliche Daten. Mach bitte nur mit, wenn das für dich in Ordnung ist.",
+    "nothingStored": "Nichts wird an einen Server geschickt oder dort gespeichert, und diese Seite setzt keine Cookies. Bis die Datei gespeichert ist, bleiben deine Antworten nur in diesem Browser-Tab, sodass ein Sprachwechsel oder Neuladen sie nicht löscht. Sie werden gelöscht, wenn die Datei gespeichert ist, wenn du sie verwirfst oder wenn du den Tab schließt.",
+    "yourChoice": "Du entscheidest, ob und an wen du die Datei weitergibst.",
+    "length": "Testlänge",
+    "country": "Land (freiwillig)",
+    "countryHint": "Zwei Buchstaben, z. B. CH, DE, AT. Leer lassen ist in Ordnung.",
+    "countryError": "Fehler: Bitte zwei Buchstaben, etwa CH.",
+    "consent": "Ich verstehe, was die Datei enthält und dass sie meine politischen Ansichten enthält.",
+    "start": "Pilot starten",
+    "banner": "Pilot: Die Antworten bleiben auf dieser Seite und werden am Ende zur Datei.",
+    "thanks": "Danke",
+    "saved": "Deine Antworten wurden als {name} gespeichert. Gib die Datei nur weiter, wenn du willst.",
+    "cleared": "Die Antworten wurden von dieser Seite gelöscht.",
+    "discard": "Meine Antworten verwerfen",
+    "linkable": "Sobald du die Datei jemandem schickst, lässt sie sich mit dir verknüpfen, denn die Person weiß, wer sie geschickt hat. Die Dateien werden getrennt von den Nachrichten aufbewahrt, mit denen sie kamen.",
+    "sampleTitle": "So sieht die Datei aus",
+    "sampleNote": "Beispielwerte. Am Ende siehst du deine genaue Datei, bevor du sie speicherst.",
+    "sampleMore": "… eine Zeile pro Frage, insgesamt {count}",
+    "reviewTitle": "Deine Datei",
+    "reviewLead": "Das ist der genaue Inhalt der Datei; sonst steht nichts darin. Speichere sie und entscheide dann, ob du sie weitergibst.",
+    "save": "Datei speichern"
+  },
+  "compass": {
+    "controls": "Ansicht des Kompasses",
+    "view": "Ansicht",
+    "map": "Karte",
+    "axes": "Zwei Achsen",
+    "mapNote": "Die Gesamtkarte zeigt die beiden Richtungen, in denen sich die Ideologien des Katalogs am stärksten unterscheiden, zusammengesetzt aus allen zwölf Achsen. Zusammen erfassen sie {share} % der Unterschiede; Abstände auf der Karte erzählen also nur einen Teil.",
+    "xAxis": "Waagrecht (X)",
+    "yAxis": "Senkrecht (Y)",
+    "swapNote": "Wählst du die Dimension der anderen Achse, werden die beiden getauscht.",
+    "groupAxes": "Achsen",
+    "groupIndices": "Kategorie-Indizes",
+    "indexName": "Index {name}",
+    "pc": "HK{k}",
+    "pcName": "HK{k} · {share} % der Unterschiede",
+    "poleNeg": "{name} −",
+    "polePos": "{name} +",
+    "you": "Du",
+    "caption": "Abb. — Katalog, {count} Ideologien",
+    "axesLine": "X: {x} · Y: {y}",
+    "description": "{count} Ideologien aus dem Katalog, platziert nach {x} (waagrecht) und {y} (senkrecht). Größere Rasterpunkte bedeuten mehr Ideologien in der Nähe; jede Markierung zeigt ihr Spektrum durch ihre Form.",
+    "descriptionYou": "Dein letztes Ergebnis ist die schraffierte Ellipse mit Fadenkreuz; sie ist breiter, wo deine Antworten weniger eindeutig waren.",
+    "keyboard": "Kompass. Pfeiltasten springen zur nächsten Ideologie in dieser Richtung; Escape hebt die Auswahl auf.",
+    "announceView": "Ansicht: {x} gegen {y}.",
+    "announceYou": "Du: {x}, {y}.",
+    "announcePoint": "{name}, {code}: {x}, {y}.",
+    "table": "Als Tabelle anzeigen ({count})",
+    "tableCaption": "Positionen auf {x} (X) und {y} (Y)",
+    "colName": "Ideologie",
+    "colSpectrum": "Spektrum",
+    "noResult": "In diesem Browser gibt es noch kein Ergebnis. Mach den Test, um zu sehen, wo du auf dieser Karte stehst; dein Ergebnis bleibt auf diesem Gerät.",
+    "takeTest": "Zum Test",
+    "key": "Legende",
+    "density": "Raster: größere Punkte, mehr Ideologien in der Nähe",
+    "youRange": "Du: wahrscheinlicher Bereich, breiter bei weniger Sicherheit",
+    "spectra": "Spektren"
   }
 }

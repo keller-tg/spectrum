@@ -21,9 +21,7 @@ export default async function Page() {
   const t = await getTranslations("pages.privacy");
   return (
     <PageStub title={t("title")} lead={t("lead")} phase={7}>
-      <p className="mt-6 rounded-lg border border-rule-strong bg-paper-raised p-4 text-ink">
-        {t("now")}
-      </p>
+      <p className="prose-text mt-6 border-2 border-ink p-4">{t("now")}</p>
     </PageStub>
   );
 }
