@@ -644,9 +644,8 @@
     "intro": "Thank you for helping. You take the normal test; at the end your browser saves one small answers file.",
     "contains": "The file contains your answer to each question (or a skip), how long each answer took, the test length, the language and, if you add it, a country code. It contains no name, no date and no information about your device.",
     "sensitive": "Political views are sensitive personal data. Please take part only if you are comfortable with that.",
-    "nothingStored": "Nothing is sent to or stored on any server, and this page uses no cookies: your answers exist only on this page until the file is saved, then they are cleared.",
+    "nothingStored": "Nothing is sent to or stored on any server, and this page uses no cookies. Until the file is saved, your answers are kept only in this browser tab, so changing the language or reloading does not lose them. They are deleted when the file is saved, when you discard them or when you close the tab.",
     "yourChoice": "You decide whether to pass the file on, and to whom.",
-    "noSwitch": "Please do not change the language or reload during the test: the answers live only on this page.",
     "length": "Test length",
     "country": "Country (optional)",
     "countryHint": "Two letters, e.g. CH, DE, GB. Leave it empty if you prefer.",
@@ -656,7 +655,8 @@
     "banner": "Pilot: answers stay on this page and become a file at the end.",
     "thanks": "Thank you",
     "saved": "Your answers were saved as {name}. Pass it on only if you want to.",
-    "cleared": "The answers have been cleared from this page."
+    "cleared": "The answers have been cleared from this page.",
+    "discard": "Discard my answers"
   },
   "compass": {
     "controls": "Compass view",

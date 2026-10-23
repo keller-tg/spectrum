@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { QuestionStage, type StageItem } from "@/components/test/QuestionStage";
 import { Button } from "@/components/ui/Button";
@@ -13,6 +13,39 @@ import { PILOT_FORMAT, PILOT_VERSION, pilotFileSchema } from "@/lib/schema/pilot
 
 type PilotMode = "standard" | "quick";
 
+/**
+ * Session key for an unfinished pilot. sessionStorage lives in this tab only:
+ * it survives the remount a language switch causes, is never sent anywhere and
+ * is gone when the tab closes. It is removed on download and on discard.
+ */
+const SESSION_KEY = "spectrum-pilot";
+
+interface PilotSession {
+  mode: PilotMode;
+  country: string;
+  answers: Record<string, AnswerRecord>;
+  index: number;
+  autoAdvance: boolean;
+}
+
+function readSession(): PilotSession | null {
+  try {
+    const raw = sessionStorage.getItem(SESSION_KEY);
+    return raw ? (JSON.parse(raw) as PilotSession) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeSession(session: PilotSession | null) {
+  try {
+    if (session) sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    else sessionStorage.removeItem(SESSION_KEY);
+  } catch {
+    // Storage blocked: the pilot still works, it just does not survive a remount.
+  }
+}
+
 function randomName() {
   const bytes = crypto.getRandomValues(new Uint8Array(5));
   return `spectrum-pilot-${[...bytes].map((b) => b.toString(16).padStart(2, "0")).join("")}.json`;
@@ -20,9 +53,10 @@ function randomName() {
 
 /**
  * The pilot (PLAN §7a, D-072): explicit consent, then the real test with
- * answers held only in this component's memory (no IndexedDB, no cookie, no
- * request), then one anonymous file to download. Answers are cleared once the
- * file is saved; the participant decides whether to pass it on.
+ * answers held in this tab's sessionStorage only (no IndexedDB, no cookie, no
+ * request), so a language switch keeps them; then one anonymous file to
+ * download. Answers are cleared once the file is saved or discarded; the
+ * participant decides whether to pass the file on.
  */
 export function PilotFlow({
   items,
@@ -44,7 +78,38 @@ export function PilotFlow({
   const [index, setIndex] = useState(0);
   const [autoAdvance, setAutoAdvance] = useState(true);
   const [fileName, setFileName] = useState("");
+  const restored = useRef(false);
   const code = country.trim().toUpperCase();
+
+  // Before paint, so a language switch never flashes the consent screen.
+  useLayoutEffect(() => {
+    const saved = readSession();
+    restored.current = true;
+    if (!saved) return;
+    // sessionStorage exists only in the browser, so the restore must follow hydration.
+    /* eslint-disable react-hooks/set-state-in-effect */
+    setMode(saved.mode);
+    setCountry(saved.country);
+    setAnswers(saved.answers);
+    setIndex(saved.index);
+    setAutoAdvance(saved.autoAdvance);
+    setConsent(true);
+    setStep("test");
+    /* eslint-enable react-hooks/set-state-in-effect */
+  }, []);
+
+  useEffect(() => {
+    if (!restored.current || step !== "test") return;
+    writeSession({ mode, country, answers, index, autoAdvance });
+  }, [step, mode, country, answers, index, autoAdvance]);
+
+  const discard = () => {
+    writeSession(null);
+    setAnswers({});
+    setIndex(0);
+    setConsent(false);
+    setStep("consent");
+  };
   const countryOk = code === "" || /^[A-Z]{2}$/.test(code);
 
   if (step === "consent")
@@ -58,7 +123,6 @@ export function PilotFlow({
           <p>{t("sensitive")}</p>
           <p>{t("nothingStored")}</p>
           <p>{t("yourChoice")}</p>
-          <p className="annot font-bold">{t("noSwitch")}</p>
         </div>
         <div className="mt-10 grid max-w-2xl gap-6">
           <div>
@@ -118,7 +182,12 @@ export function PilotFlow({
   const list = items[mode];
   return (
     <>
-      <p className="annot border-b border-ink px-4 py-2 text-center font-bold">{t("banner")}</p>
+      <div className="annot flex flex-wrap items-center justify-center gap-x-4 border-b border-ink px-4 py-1 font-bold">
+        <p className="py-1">{t("banner")}</p>
+        <Button variant="text" size="s" onClick={discard}>
+          {t("discard")}
+        </Button>
+      </div>
       <QuestionStage
         items={list}
         index={index}
@@ -155,6 +224,7 @@ export function PilotFlow({
           link.click();
           link.remove();
           setTimeout(() => URL.revokeObjectURL(url), 1000);
+          writeSession(null);
           setAnswers({});
           setFileName(name);
           setStep("done");

@@ -984,8 +984,7 @@ the design without naming a home variant or a control style. Defaults, both chea
   a plain message. The private `/results` page never puts anything in the URL (D-018).
 - **Pilot:**
   - It keeps answers in memory only: no IndexedDB, no cookie.
-  - A language switch remounts the page and loses the pilot answers. That is accepted for an
-    unlinked page, and the consent screen says so.
+  - ~~A language switch remounts the page and loses the pilot answers.~~ Fixed by D-087.
   - The analysis treats a mirror pair as consistent unless the two answers point in opposite
     directions.
 - **Not in this phase:**
@@ -1041,6 +1040,21 @@ the design without naming a home variant or a control style. Defaults, both chea
 
   The picker offers a "Map" or "Two axes" mode. Choosing the other axis's dimension swaps the
   two axes instead of plotting one against itself.
+
+**D-087 · 🟢 · Pilot answers survive a language switch (2026-10-23).**
+- A language switch remounts the root layout, which used to drop the pilot's in-memory
+  answers.
+- The unfinished pilot (mode, country, answers, position, auto-advance) now lives in this
+  tab's `sessionStorage` under `spectrum-pilot`.
+  - It is restored in a layout effect, before paint, so the consent screen never flashes.
+  - It is removed on download, on "Discard my answers" and when the tab closes.
+  - It is never sent anywhere.
+- sessionStorage instead of state above the locale layout, because no layout sits above
+  `[locale]`. Adding one would make every page pay for the pilot.
+- The consent text now says where the answers are kept, and the warning not to switch
+  languages is gone.
+- e2e: answer 10, switch EN → DE → FR → EN. The answers and position remain, no non-GET
+  request is made, and there are no cookies and no IndexedDB.
 
 ## H. Open items
 

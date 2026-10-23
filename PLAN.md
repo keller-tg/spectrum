@@ -387,7 +387,8 @@ correlations.
   are sensitive data, that nothing is sent to or stored on any server, and that the participant
   decides whether to pass the file on. The test only starts after an unticked-by-default checkbox.
 - The participant takes the normal test (Standard by default) with the real UI. Answers stay in
-  memory for the session (no IndexedDB, no cookie) and are cleared after the download.
+  this tab's sessionStorage (no IndexedDB, no cookie, no request), so a language switch or reload
+  keeps them; they are removed on download, on "Discard" and when the tab closes (D-087).
 - **Download:** one JSON file, `spectrum-pilot-<random>.json`:
   `{ format: "spectrum-pilot", version: 1, bankVersion, engineVersion, mode, locale, answers:
   { [questionId]: { r, ms } }, country? }`. No name, no timestamp finer than the month, no

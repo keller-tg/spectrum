@@ -139,6 +139,53 @@ test("the pilot needs consent, stores nothing and its file round-trips through t
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Thank you");
   expect(await context.cookies()).toEqual([]);
   expect(await page.evaluate(async () => (await indexedDB.databases()).length)).toBe(0);
+  // The tab-only copy is gone once the file is saved.
+  expect(await page.evaluate(() => sessionStorage.length)).toBe(0);
+});
+
+test("pilot answers survive switching EN → DE → FR → EN, and nothing leaves the tab", async ({
+  page,
+  context,
+}, info) => {
+  test.skip(info.project.name !== "desktop", "the header switch is in the menu sheet on phones");
+  test.setTimeout(60_000);
+  const requests: string[] = [];
+  page.on("request", (r) => {
+    if (r.method() !== "GET") requests.push(`${r.method()} ${r.url()}`);
+  });
+  await page.goto("/en/pilot");
+  await page.locator("label[for=pilot-consent]").click();
+  await page.getByRole("button", { name: /Start the pilot/ }).click();
+  for (let n = 1; n <= 10; n++) {
+    await expect(page.getByText(`Question ${n} of 72`)).toBeVisible();
+    await page.keyboard.press(String((n % 5) + 1));
+  }
+  await expect(page.getByText("Question 11 of 72")).toBeVisible();
+  await expect(page.getByText("10 / 72")).toBeVisible();
+  for (const [code, lang] of [
+    ["DE", "de"],
+    ["FR", "fr"],
+    ["EN", "en"],
+  ] as const) {
+    await page.getByRole("link", { name: new RegExp(`^${code} ·`) }).click();
+    await expect(page.locator("html")).toHaveAttribute("lang", lang);
+    await expect(page.getByText("10 / 72")).toBeVisible();
+    await expect(page.locator("#question-statement")).toBeVisible();
+  }
+  await expect(page.getByText("Question 11 of 72")).toBeVisible();
+  // Earlier answers are still selected.
+  await page.getByRole("button", { name: "Back", exact: true }).click();
+  await expect(page.getByText("Question 10 of 72")).toBeVisible();
+  await expect(
+    page.getByRole("radiogroup", { name: "Your answer" }).getByRole("radio", { checked: true }),
+  ).toHaveCount(1);
+  expect(requests).toEqual([]);
+  expect(await context.cookies()).toEqual([]);
+  expect(await page.evaluate(async () => (await indexedDB.databases()).length)).toBe(0);
+  // Discarding clears the tab copy and returns to the consent screen.
+  await page.getByRole("button", { name: "Discard my answers" }).click();
+  await expect(page.getByRole("button", { name: /Start the pilot/ })).toBeVisible();
+  expect(await page.evaluate(() => sessionStorage.length)).toBe(0);
 });
 
 test("test and results pages fit 390px without sideways scrolling", async ({ browser }) => {

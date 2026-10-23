@@ -644,9 +644,8 @@
     "intro": "Merci de votre aide. Vous faites le test normal ; à la fin, votre navigateur enregistre un petit fichier de réponses.",
     "contains": "Le fichier contient votre réponse à chaque question (ou le fait de l’avoir passée), le temps de chaque réponse, la longueur du test, la langue et, si vous l’indiquez, un code de pays. Il ne contient ni nom, ni date, ni information sur votre appareil.",
     "sensitive": "Les opinions politiques sont des données personnelles sensibles. Ne participez que si cela vous convient.",
-    "nothingStored": "Rien n’est envoyé ni stocké sur un serveur, et cette page n’utilise aucun cookie : vos réponses n’existent que sur cette page jusqu’à l’enregistrement du fichier, puis elles sont effacées.",
+    "nothingStored": "Rien n’est envoyé ni stocké sur un serveur, et cette page n’utilise aucun cookie. Jusqu’à l’enregistrement du fichier, vos réponses sont conservées uniquement dans cet onglet du navigateur ; changer de langue ou recharger la page ne les efface donc pas. Elles sont supprimées à l’enregistrement du fichier, si vous les abandonnez ou à la fermeture de l’onglet.",
     "yourChoice": "Vous décidez de transmettre ou non le fichier, et à qui.",
-    "noSwitch": "Ne changez pas de langue et ne rechargez pas la page pendant le test : les réponses n’existent que sur cette page.",
     "length": "Longueur du test",
     "country": "Pays (facultatif)",
     "countryHint": "Deux lettres, p. ex. CH, FR, BE. Vous pouvez laisser vide.",
@@ -656,7 +655,8 @@
     "banner": "Pilote : les réponses restent sur cette page et deviennent un fichier à la fin.",
     "thanks": "Merci",
     "saved": "Vos réponses ont été enregistrées sous {name}. Transmettez-les seulement si vous le souhaitez.",
-    "cleared": "Les réponses ont été effacées de cette page."
+    "cleared": "Les réponses ont été effacées de cette page.",
+    "discard": "Abandonner mes réponses"
   },
   "compass": {
     "controls": "Vue de la boussole",

@@ -644,9 +644,8 @@
     "intro": "Danke für deine Hilfe. Du machst den normalen Test; am Ende speichert dein Browser eine kleine Antwortdatei.",
     "contains": "Die Datei enthält deine Antwort auf jede Frage (oder ein Überspringen), wie lange jede Antwort dauerte, die Testlänge, die Sprache und, falls du ihn angibst, einen Ländercode. Sie enthält keinen Namen, kein Datum und keine Angaben zu deinem Gerät.",
     "sensitive": "Politische Ansichten sind sensible persönliche Daten. Mach bitte nur mit, wenn das für dich in Ordnung ist.",
-    "nothingStored": "Nichts wird an einen Server geschickt oder dort gespeichert, und diese Seite setzt keine Cookies: Deine Antworten gibt es nur auf dieser Seite, bis die Datei gespeichert ist; dann werden sie gelöscht.",
+    "nothingStored": "Nichts wird an einen Server geschickt oder dort gespeichert, und diese Seite setzt keine Cookies. Bis die Datei gespeichert ist, bleiben deine Antworten nur in diesem Browser-Tab, sodass ein Sprachwechsel oder Neuladen sie nicht löscht. Sie werden gelöscht, wenn die Datei gespeichert ist, wenn du sie verwirfst oder wenn du den Tab schließt.",
     "yourChoice": "Du entscheidest, ob und an wen du die Datei weitergibst.",
-    "noSwitch": "Bitte wechsle während des Tests nicht die Sprache und lade die Seite nicht neu: Die Antworten existieren nur auf dieser Seite.",
     "length": "Testlänge",
     "country": "Land (freiwillig)",
     "countryHint": "Zwei Buchstaben, z. B. CH, DE, AT. Leer lassen ist in Ordnung.",
@@ -656,7 +655,8 @@
     "banner": "Pilot: Die Antworten bleiben auf dieser Seite und werden am Ende zur Datei.",
     "thanks": "Danke",
     "saved": "Deine Antworten wurden als {name} gespeichert. Gib die Datei nur weiter, wenn du willst.",
-    "cleared": "Die Antworten wurden von dieser Seite gelöscht."
+    "cleared": "Die Antworten wurden von dieser Seite gelöscht.",
+    "discard": "Meine Antworten verwerfen"
   },
   "compass": {
     "controls": "Ansicht des Kompasses",
