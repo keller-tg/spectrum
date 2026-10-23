@@ -63,11 +63,13 @@ test("the table alternative lists every entry with both values", async ({ page }
   await expect(rows.first().locator("th, td")).toHaveCount(4);
 });
 
-test("a view change runs on transforms at a steady frame rate", async ({ page }, info) => {
-  test.skip(info.project.name !== "desktop", "frame timing is measured on desktop");
+test("a view change glides smoothly at 4× CPU slowdown", async ({ page }, info) => {
+  test.skip(info.project.name !== "desktop", "frame timing is measured on desktop (CDP)");
   await page.goto("/en/compass");
   await page.getByRole("radio", { name: "Two axes" }).click();
   await page.waitForTimeout(600);
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
   const frames = await page.evaluate(async () => {
     const select = document.querySelector<HTMLSelectElement>("#compass-y");
     if (!select) return [];
@@ -80,19 +82,23 @@ test("a view change runs on transforms at a steady frame rate", async ({ page },
       if (running) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
+    // Let the loop settle, then change the view and record the glide.
+    await new Promise((r) => setTimeout(r, 200));
+    const start = times.length;
     select.value = "axis:tradition";
     select.dispatchEvent(new Event("change", { bubbles: true }));
-    await new Promise((r) => setTimeout(r, 700));
+    await new Promise((r) => setTimeout(r, 800));
     running = false;
-    return times.slice(1);
+    return times.slice(start);
   });
+  await cdp.send("Emulation.setCPUThrottlingRate", { rate: 1 });
   expect(frames.length).toBeGreaterThan(20);
   const sorted = [...frames].sort((a, b) => a - b);
-  const median = sorted[Math.floor(sorted.length / 2)] ?? 0;
-  // 60 fps: the median frame stays within one 16.7ms vsync (with slack for CI).
-  expect(median).toBeLessThan(20);
-  // Only the commit frame may run long; the glide itself must not stall.
-  expect(sorted.filter((t) => t > 50).length).toBeLessThanOrEqual(1);
+  const p95 = sorted[Math.floor(sorted.length * 0.95)] ?? 0;
+  console.log("compass frames", JSON.stringify({ n: sorted.length, p95, max: sorted.at(-1) }));
+  // The change itself (React commit + density recompute) is allowed one frame up to 50 ms.
+  expect(p95).toBeLessThan(20);
+  expect(sorted.at(-1) ?? 0).toBeLessThanOrEqual(50);
 });
 
 test("the compass fits 390px", async ({ page }) => {

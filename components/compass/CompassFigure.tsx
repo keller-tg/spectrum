@@ -87,7 +87,19 @@ export function CompassFigure({
   }, []);
 
   const layout = useMemo(() => layoutView(view, dims, entries, user), [view, dims, entries, user]);
-  const levels = useMemo(() => densityLevels(layout.points), [layout]);
+  // Dot area follows density; one path keeps a view change to a single paint.
+  const halftone = useMemo(() => {
+    const max = CELL / 2 - 1;
+    return densityLevels(layout.points)
+      .map((level, k) => {
+        const r = max * Math.sqrt(level);
+        if (r < 0.4) return "";
+        const x = PAD + ((k % GRID) + 0.5) * CELL;
+        const y = PAD + (Math.floor(k / GRID) + 0.5) * CELL;
+        return `M${r1(x - r)} ${r1(y)}a${r1(r)} ${r1(r)} 0 1 0 ${r1(2 * r)} 0a${r1(r)} ${r1(r)} 0 1 0 ${r1(-2 * r)} 0`;
+      })
+      .join("");
+  }, [layout]);
   const size = markerSize(entries.length);
   const xt = dimText(view.x);
   const yt = dimText(view.y);
@@ -224,19 +236,8 @@ export function CompassFigure({
               <path d={`M${PAD} ${r1(zeroY)}H${SIZE - PAD}`} strokeDasharray="2 4" />
             ) : null}
           </g>
-          {/* Halftone: fixed lattice, each dot scaled to its density. */}
-          <g fill="currentColor">
-            {levels.map((level, k) => (
-              <circle
-                key={k}
-                className="cmp-move"
-                r={CELL / 2 - 1}
-                style={{
-                  transform: `translate(${r1(PAD + ((k % GRID) + 0.5) * CELL)}px, ${r1(PAD + (Math.floor(k / GRID) + 0.5) * CELL)}px) scale(${Math.sqrt(level).toFixed(3)})`,
-                }}
-              />
-            ))}
-          </g>
+          {/* Halftone as one path: it shows the new view at once while the markers glide there. */}
+          <path d={halftone} fill="currentColor" />
           {/* You: paper knock-out, hatch and outline, clipped to the plot. */}
           {u ? (
             <g clipPath={`url(#${id}-plot)`}>

@@ -1008,8 +1008,8 @@ the design without naming a home variant or a control style. Defaults, both chea
 - **Halftone:**
   - It is a fixed lattice of dots, each scaled to the kernel density at that point.
   - The kernel narrows as the catalog grows, so structure survives at 300+.
-  - A view change animates each dot's `scale` and each marker's `translate`. That is
-    transform only, on `--dur-slow`, and instant under reduced motion.
+  - A view change animates each marker's `translate` (transform only, on `--dur-slow`,
+    instant under reduced motion). The halftone redraws at once as one path (D-090).
 - **You:**
   - The latest stored result appears as an outlined, hatched ellipse with a crosshair and a
     "You" tag.
@@ -1088,6 +1088,23 @@ the design without naming a home variant or a control style. Defaults, both chea
   "Discard my answers". e2e checks that the saved bytes equal the text shown and that only the
   allowed keys exist.
 - Version 1 files are not accepted. No real pilot files existed yet.
+
+**D-090 · 🟢 · Strict frame budget under CPU throttling (2026-10-23).**
+- **Test:** `tests/e2e/frames.spec.ts` slows the CPU 4× over CDP. It records every
+  `requestAnimationFrame` interval while the pointer sweeps the home page's mode rows (row
+  wipes, from alternating sides) and the test screen's answer rows (hovered and pressed,
+  auto-advance off) and buttons.
+- **Assertions:** p95 frame time under 20 ms and no frame over 50 ms. The compass view-change
+  test uses the same rule.
+- **Measured** in five repeated runs: p95 16.7–16.8 ms everywhere; the worst single frame was
+  33.4 ms, on home in two runs.
+- **No lenient median fallback is kept.** The strict check was stable locally. CI doesn't run
+  Playwright yet; if a slower CI runner flakes there, the fallback is a median under 20 ms
+  with p95 under 33 ms, documented here before it lands.
+- **The strict test caught the compass:** 900 individually transitioning halftone dots gave
+  p95 50 ms and a 100 ms frame at 4×. The halftone is now one `<path>` that shows the new
+  view at once while only the markers glide (now p95 16.7 ms, max 16.8 ms). This revises the
+  "dots scale" detail of D-086.
 
 ## H. Open items
 
