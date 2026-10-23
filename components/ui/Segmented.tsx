@@ -16,15 +16,9 @@ const KEYS: Record<string, (i: number, n: number) => number> = {
   End: (_, n) => n - 1,
 };
 
-/** Classes and the inverted indicator layer shared by every segmented control. */
-export function SegmentIndicator({ labels }: { labels: readonly string[] }) {
-  return (
-    <span className="seg-ind" aria-hidden="true">
-      {labels.map((label, i) => (
-        <span key={i}>{label}</span>
-      ))}
-    </span>
-  );
+/** The sliding indicator: the same inverting panel as the wipe, one segment wide. */
+export function SegmentIndicator() {
+  return <span className="seg-ind" aria-hidden="true" />;
 }
 
 /**
@@ -90,7 +84,7 @@ export function Segmented<T extends string>({
           {o.label}
         </button>
       ))}
-      <SegmentIndicator labels={options.map((o) => o.label)} />
+      <SegmentIndicator />
     </div>
   );
 }

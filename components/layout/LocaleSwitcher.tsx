@@ -63,7 +63,7 @@ export function LocaleSwitcher() {
             </Link>
           );
         })}
-        <SegmentIndicator labels={LOCALES.map((l) => t(`short.${l}`))} />
+        <SegmentIndicator />
       </div>
     </nav>
   );

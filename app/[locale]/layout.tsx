@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PreferenceSync } from "@/components/layout/PreferenceSync";
 import { ThemeScript } from "@/components/layout/ThemeScript";
+import { WipeDirection } from "@/components/ui/WipeDirection";
 import { routing } from "@/i18n/routing";
 import { PALETTE } from "@/lib/design/tokens";
 import { SITE_URL } from "@/lib/seo/site";
@@ -62,6 +63,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           {t("skipToContent")}
         </a>
         <PreferenceSync />
+        <WipeDirection />
         <NextIntlClientProvider messages={clientMessages}>
           <SiteHeader />
           <main id="main" className="flex-1">

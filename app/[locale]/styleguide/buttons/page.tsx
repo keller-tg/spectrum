@@ -55,7 +55,7 @@ export default async function ButtonMatrixPage() {
         );
       case "focus":
         return (
-          <Button {...common} className="outline-2 outline-offset-3 outline-ink">
+          <Button {...common} state="hover" className="outline-2 outline-offset-3 outline-ink">
             {text}
           </Button>
         );

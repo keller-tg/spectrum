@@ -204,15 +204,47 @@ test("hover wipes a mode row in; keyboard focus draws a 2px ring", async ({ page
   test.skip(isMobile, "hover needs a fine pointer");
   await page.goto("/en");
   const row = page.getByRole("link", { name: /Quick/ });
-  const wipe = row.locator(".wipe");
-  await expect(wipe).toHaveCSS("clip-path", /inset\(0px 100%/);
+  const panel = row.locator(".wipe-panel");
+  await expect(panel).toHaveCSS("transform", /^matrix\(1, 0, 0, 1, -/);
   await row.hover();
-  await expect(wipe).toHaveCSS("clip-path", "inset(0px)");
+  await expect(panel).toHaveCSS("transform", "none");
   await page.mouse.move(0, 0);
   await page.keyboard.press("Tab");
   const focused = page.locator(":focus-visible");
   await expect(focused).toHaveCSS("outline-width", "2px");
   await expect(focused).toHaveCSS("outline-offset", "3px");
+});
+
+test("the wipe follows the pointer's side and never sticks (D-083)", async ({ page, isMobile }) => {
+  test.skip(isMobile, "hover needs a fine pointer");
+  await page.goto("/en");
+  const row = page.getByRole("link", { name: /Standard/ });
+  const panel = row.locator(".wipe-panel");
+  const box = (await row.boundingBox())!;
+  const y = box.y + box.height / 2;
+  // Enter from the right: the panel starts on the right.
+  await page.mouse.move(box.x + box.width + 20, y);
+  await page.mouse.move(box.x + box.width - 10, y);
+  await expect(row).toHaveAttribute("data-wipe-from", "right");
+  await expect(panel).toHaveCSS("transform", "none");
+  // Leave to the left: it goes out to the left.
+  await page.mouse.move(box.x - 20, y);
+  await expect(row).toHaveAttribute("data-wipe-from", "left");
+  await expect(panel).toHaveCSS("transform", /^matrix\(1, 0, 0, 1, -/);
+  // Rapid in and out ends at rest, closed.
+  for (let i = 0; i < 6; i++) {
+    await page.mouse.move(box.x + 30, y);
+    await page.mouse.move(box.x + 30, box.y - 30);
+  }
+  await expect(row).not.toHaveAttribute("data-wipe-in", "");
+  await expect
+    .poll(() => panel.evaluate((el) => el.getAnimations().length), { timeout: 2000 })
+    .toBe(0);
+  const x = await panel.evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).m41);
+  expect(Math.abs(x)).toBeGreaterThan(box.width);
+  // Keyboard focus wipes too.
+  await row.focus();
+  await expect(panel).toHaveCSS("transform", "none");
 });
 
 test("reduced motion turns wipes into instant inverts", async ({ browser }) => {

@@ -896,6 +896,46 @@ ring is now 2px.*
   and phone: theme, control style, `lang`, hreflang, soft navigation, focus, and that the
   toggle still works.
 
+
+**D-083 · 🟢 · Motion rebuilt on one composited, direction-aware wipe (2026-10-23).**
+- **Audit:** `scripts/capture-motion.ts` records the interactions at quarter speed and traces
+  a mode-row hover with a per-frame probe. Both builds were measured on the same page.
+
+  | | Before | After |
+  |---|---|---|
+  | Wipe | revealed an aria-hidden duplicate of the content with clip-path | one slide panel |
+  | Paints | 19 | 13 (≤ 0.29 ms each) |
+  | Moving frames | 28 | 47 |
+  | Largest step per frame | 1.0 (a full-row snap in one frame) | 0.19 |
+  | Duration | 220 ms on a 1 300 px row | 380 ms on rows, 200 ms on controls |
+  | Direction | always from the left | entry and exit side |
+  | Keyboard focus | ring only | ring and wipe |
+  | Longest frame | 16.8 ms | 16.8 ms |
+
+  Clips: `docs/design/motion-before.webm` and `motion-after.webm`.
+- **New model:** each host gets `<Wipe />`, one aria-hidden panel, `will-change: transform`,
+  moved only by `transform`. It inverts what lies under it with `mix-blend-mode: difference`
+  against `--blend-light`, an alias of whichever token is white in the current scope, so no
+  third colour exists.
+  - On pure black and white, difference with white is an exact ink↔paper swap. Fill, label,
+    tags, arrows and focus rings flip in the same pixel and frame, with no duplicated content
+    to keep in sync.
+  - Resting states stay pure ink or paper; the colour audit checks them.
+  - Forced colours hide the panels (system colours would not invert cleanly); print hides
+    them too.
+- **Direction:** `<WipeDirection />` is one delegated listener in the root layout. A mouse
+  entering a host sets `data-wipe-in` and moves the resting panel, without animation, to the
+  entry side first. Leaving sets the exit side, so the panel goes out that way. A panel still
+  moving just reverses from where it is, which is the interruptible case. Touch keeps
+  `:active` only. Without JavaScript, CSS `:hover` (under `scripting: none`) wipes from the
+  left.
+- **One "engaged" state** drives everything: the pointer (`data-wipe-in`), keyboard focus
+  (`:focus-visible`) and pinned styleguide states (`data-state="hover"`). It covers the wipe,
+  arrow roll, START slide-in, text-button underline and the offset lift.
+- **Segmented controls** use the same inverting panel, one segment wide and moved by
+  `translateX`. **Header band, mobile sheet and START word** are transform-only now; they
+  were clip-path.
+
 ## H. Open items
 
 - **Owner's choice (blocks Phase 3):** home variant A (specimen) or B (typographic), and control

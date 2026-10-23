@@ -74,12 +74,25 @@ async function main() {
   if (path) renameSync(path, `${OUT}/motion-${name}.webm`);
   rmSync(dir, { recursive: true, force: true });
 
-  // 2. Trace at normal speed.
+  // 2. Trace and frame probe at normal speed: enter from the left, leave right.
   const traced = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const tpage = await traced.newPage();
-  await tpage.goto(`${BASE}/en/styleguide/home-a`, { waitUntil: "networkidle" });
+  // The landing page: mode rows and nothing else moving (no drifting field).
+  await tpage.goto(`${BASE}/en`, { waitUntil: "networkidle" });
   await tpage.locator(".mode-row").first().scrollIntoViewIfNeeded();
   await tpage.waitForTimeout(500);
+  // A string, so the bundler adds no helpers to code that runs in the page.
+  await tpage.evaluate(`
+    window.probe = [];
+    (function tick(t) {
+      var el = document.querySelector(".mode-row .wipe-panel") || document.querySelector(".mode-row > .wipe");
+      if (el) {
+        var cs = getComputedStyle(el);
+        window.probe.push([t, el.classList.contains("wipe-panel") ? "T:" + cs.transform : "C:" + cs.clipPath]);
+      }
+      if (window.probe.length < 240) requestAnimationFrame(tick);
+    })(performance.now());
+  `);
   await browser.startTracing(tpage, {
     categories: ["devtools.timeline", "disabled-by-default-devtools.timeline.frame"],
   });
@@ -95,16 +108,30 @@ async function main() {
   const trace = JSON.parse((await browser.stopTracing()).toString()) as {
     traceEvents: { name: string; dur?: number; ph: string; ts: number }[];
   };
+  const probe = (await tpage.evaluate("window.probe")) as [number, string][];
   await traced.close();
   await browser.close();
 
+  // Position of the wipe edge per frame, 0 (closed) … 1 (open), from either model.
+  const progress = (v: string) => {
+    if (v === "T:none") return 1;
+    const m = v.match(/matrix\([^)]*,\s*(-?[\d.]+),\s*-?[\d.]+\)/);
+    if (m) return 1 - Math.min(1, Math.abs(Number(m[1])) / ((row?.width ?? 1) * 1.01));
+    if (v === "C:inset(0px)") return 1;
+    const c = v.match(/inset\(0px (-?[\d.]+)%/);
+    return c ? 1 - Number(c[1]) / 100 : 0;
+  };
+  const moving = probe.filter((p, i) => i > 0 && p[1] !== (probe[i - 1] as [number, string])[1]);
+  const frameGaps = moving.map((p) => {
+    const i = probe.indexOf(p);
+    return p[0] - (probe[i - 1] as [number, string])[0];
+  });
+  const steps = moving.map((p) => {
+    const i = probe.indexOf(p);
+    return Math.abs(progress(p[1]) - progress((probe[i - 1] as [number, string])[1]));
+  });
   const events = trace.traceEvents;
   const count = (n: string) => events.filter((e) => e.name === n).length;
-  const frames = events
-    .filter((e) => e.name === "DrawFrame" || e.name === "BeginFrame")
-    .map((e) => e.ts)
-    .sort((a, b) => a - b);
-  const gaps = frames.slice(1).map((t, i) => (t - (frames[i] as number)) / 1000);
   const longest = (n: string) =>
     Math.max(
       0,
@@ -119,8 +146,9 @@ async function main() {
         styleRecalcs: count("UpdateLayoutTree"),
         longestLayoutMs: longest("Layout").toFixed(2),
         longestPaintMs: longest("Paint").toFixed(2),
-        frames: frames.length,
-        longestFrameGapMs: Math.max(0, ...gaps).toFixed(1),
+        movingFrames: moving.length,
+        longestFrameDuringWipeMs: Math.max(0, ...frameGaps).toFixed(1),
+        largestStepPerFrame: Math.max(0, ...steps).toFixed(3),
       },
       null,
       1,

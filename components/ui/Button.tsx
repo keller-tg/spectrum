@@ -1,6 +1,7 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { CheckGlyph, ExternalGlyph, RollingArrow } from "./icons";
+import { Wipe } from "./Wipe";
 
 export type ButtonVariant = "primary" | "secondary" | "text";
 export type ButtonSize = "s" | "m" | "l";
@@ -41,10 +42,7 @@ function Content({ arrow, keycap, status, statusLabel, children }: ButtonLook) {
   );
 }
 
-/**
- * The face is rendered twice: once at rest and once, aria-hidden, in the
- * inverted colours that wipe in on hover. Label and fill flip in the same frame.
- */
+/** The face, plus the shared wipe (not for the text variant, which underlines). */
 function Faces(look: ButtonLook) {
   return (
     <>
@@ -61,9 +59,7 @@ function Faces(look: ButtonLook) {
           </>
         ) : null}
       </span>
-      <span className="btn-face wipe" aria-hidden="true">
-        <Content {...look} />
-      </span>
+      {look.variant === "text" ? null : <Wipe />}
     </>
   );
 }

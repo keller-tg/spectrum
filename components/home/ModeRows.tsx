@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { RollingArrow } from "@/components/ui/icons";
+import { Wipe } from "@/components/ui/Wipe";
 import type { Locale } from "@/data/locales";
 import { MODE_IDS, MODES, type ModeId } from "@/data/modes";
 import { Link } from "@/i18n/navigation";
@@ -26,17 +27,16 @@ export async function ModeRows({
 }) {
   const t = await getTranslations("home");
 
-  const cells = (id: ModeId, inverted: boolean) => {
+  const cells = (id: ModeId) => {
     const mode = MODES[id];
     const open = OPEN[id];
-    const tag = inverted ? "bg-paper text-ink" : "bg-ink text-paper";
     return (
       <>
         <span className="min-w-0">
           <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <span className="display text-2xl sm:text-3xl">{t(`modes.${id}.name`)}</span>
             {id === "standard" ? (
-              <span className={`tag annot px-2 py-1 font-bold ${tag}`}>{t("recommended")}</span>
+              <span className="tag annot bg-ink px-2 py-1 font-bold text-paper">{t("recommended")}</span>
             ) : null}
             {!open ? <span className="annot font-bold">{t("opensSoon")}</span> : null}
           </span>
@@ -53,7 +53,9 @@ export async function ModeRows({
         <span className="label flex items-center justify-end gap-2" aria-hidden="true">
           {open ? (
             <>
-              <span className="mode-start-word hidden sm:inline-block">{t("start")}</span>
+              <span className="mode-start hidden sm:inline-flex">
+                <span className="mode-start-word">{t("start")}</span>
+              </span>
               <RollingArrow />
             </>
           ) : null}
@@ -92,10 +94,8 @@ export async function ModeRows({
                 className="mode-row mode-grid wipe-host"
                 data-state={pinnedHover === id ? "hover" : undefined}
               >
-                {cells(id, false)}
-                <span className="wipe mode-grid" aria-hidden="true">
-                  {cells(id, true)}
-                </span>
+                {cells(id)}
+                <Wipe />
               </Link>
             </li>
           ) : (
@@ -103,7 +103,7 @@ export async function ModeRows({
               key={id}
               className="mode-row mode-grid mt-2 border-[1.5px] border-dashed border-ink"
             >
-              {cells(id, false)}
+              {cells(id)}
             </li>
           ),
         )}

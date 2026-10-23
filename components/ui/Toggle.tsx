@@ -37,7 +37,7 @@ export function Toggle({
       >
         <span className="seg-opt">{onText}</span>
         <span className="seg-opt">{offText}</span>
-        <SegmentIndicator labels={[onText, offText]} />
+        <SegmentIndicator />
       </span>
     </button>
   );

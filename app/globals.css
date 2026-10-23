@@ -20,6 +20,9 @@
 :root {
   --ink: #000;
   --paper: #fff;
+  /* Whichever token is white: the operand of the inverting wipe (difference
+     blend). An alias of --ink or --paper, never a third colour. */
+  --blend-light: var(--paper);
   color-scheme: light;
 }
 
@@ -28,6 +31,7 @@
   :root:not([data-theme]) {
     --ink: #fff;
     --paper: #000;
+    --blend-light: var(--ink);
     color-scheme: dark;
   }
 }
@@ -36,6 +40,7 @@
 [data-theme="dark"] {
   --ink: #fff;
   --paper: #000;
+  --blend-light: var(--ink);
   color-scheme: dark;
 }
 
@@ -43,6 +48,7 @@
 [data-theme="light"] {
   --ink: #000;
   --paper: #fff;
+  --blend-light: var(--paper);
   color-scheme: light;
 }
 
@@ -52,17 +58,20 @@
 [data-invert] {
   --ink: #fff;
   --paper: #000;
+  --blend-light: var(--ink);
 }
 @scope ([data-theme="dark"]) {
   [data-invert] {
     --ink: #000;
     --paper: #fff;
+    --blend-light: var(--paper);
   }
 }
 @scope ([data-theme="light"]) {
   [data-invert] {
     --ink: #fff;
     --paper: #000;
+    --blend-light: var(--ink);
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -70,6 +79,7 @@
     [data-invert] {
       --ink: #000;
       --paper: #fff;
+      --blend-light: var(--paper);
     }
   }
 }
@@ -78,7 +88,9 @@
   color: var(--ink);
 }
 
-/* ---------- Motion and shape tokens ---------- */
+/* ---------- Motion and shape tokens (D-080, D-083) ----------
+   Every transition and animation in the app uses these; scripts/check-motion.ts
+   rejects raw durations and anything but transform and clip-path. */
 :root {
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   /* Spring with at most 3% overshoot. */
@@ -98,6 +110,14 @@
   --dur-fast: 120ms;
   --dur: 220ms;
   --dur-slow: 360ms;
+  /* Wipes scale with the surface: controls are quick, full-width rows slower. */
+  --dur-wipe: 200ms;
+  --dur-wipe-row: 380ms;
+  /* Underlines drawing in, marks ([X], ✓) drawing in, loading ticks. */
+  --dur-underline: 160ms;
+  --dur-draw: 120ms;
+  --dur-check: 240ms;
+  --dur-ticks: 900ms;
   /* Controls only: 0 (sharp, offset) or 999px (pill). Cells, tables and graphics stay square. */
   --radius-control: 0px;
   --header-h: 3.5rem;
@@ -115,6 +135,11 @@
     --dur-fast: 0s;
     --dur: 0s;
     --dur-slow: 0s;
+    --dur-wipe: 0s;
+    --dur-wipe-row: 0s;
+    --dur-underline: 0s;
+    --dur-draw: 0s;
+    --dur-check: 0s;
   }
 }
 

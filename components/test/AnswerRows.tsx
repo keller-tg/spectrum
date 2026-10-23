@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { Wipe } from "@/components/ui/Wipe";
 
 /** Raw answer: −2 … +2, or null for an explicit skip (never merged with neutral 0). */
 export type AnswerValue = -2 | -1 | 0 | 1 | 2;
@@ -108,9 +109,7 @@ export function AnswerRows({
             className="answer-row wipe-host border-ink not-last:border-b"
           >
             <RowContent keycap={String(index + 1)} label={t(o.key)} />
-            <span className="wipe" aria-hidden="true">
-              <RowContent keycap={String(index + 1)} label={t(o.key)} />
-            </span>
+            <Wipe />
           </button>
         ))}
       </div>
@@ -121,9 +120,7 @@ export function AnswerRows({
         className="answer-row wipe-host mt-3 border-[1.5px] border-dashed border-ink"
       >
         <RowContent keycap="0" label={t("skip")} />
-        <span className="wipe" aria-hidden="true">
-          <RowContent keycap="0" label={t("skip")} />
-        </span>
+        <Wipe />
       </button>
     </div>
   );
