@@ -309,7 +309,8 @@
       "links": "Links",
       "segmented": "Segmentierte Auswahl",
       "modes": "Modus-Zeilen",
-      "answers": "Antwortzeilen"
+      "answers": "Antwortzeilen",
+      "sparkline": "Verlaufslinie"
     },
     "palette": {
       "note": "Zwei Farben, die zwischen den Modi tauschen. Keine Grautöne, Akzente, Verläufe, Schatten, Transparenz, Unschärfe oder runden Ecken. Ein CI-Check weist jede andere Farbe zurück."
@@ -531,6 +532,11 @@
       "bar": "{axis}: {score}, Richtung {pole}, wahrscheinlich zwischen {low} und {high}",
       "posterFoot": "spectrum-six-rho.vercel.app",
       "legend": "Balken: Wert · schraffiertes Band: wahrscheinlicher Bereich"
+    },
+    "sparkline": {
+      "note": "Eine Achse im Zeitverlauf im Dashboard: der Wert als Linie mit quadratischen Punkten, der wahrscheinliche Bereich jedes Ergebnisses als schraffiertes Band, die Mitte gestrichelt. Ein einzelnes Ergebnis ist ein Punkt mit seinem Bereich.",
+      "many": "Drei Ergebnisse von −40 bis +10",
+      "one": "Ein Ergebnis bei +30"
     }
   },
   "test": {
@@ -700,5 +706,84 @@
     "density": "Raster: größere Punkte, mehr Ideologien in der Nähe",
     "youRange": "Du: wahrscheinlicher Bereich, breiter bei weniger Sicherheit",
     "spectra": "Spektren"
+  },
+  "dashboard": {
+    "title": "Dein Dashboard",
+    "lead": "Jedes Ergebnis bleibt nur in diesem Browser. Nichts davon wird verschickt oder steht in der Adresszeile.",
+    "loading": "Verlauf wird geladen",
+    "notStored": "Dieser Browser erlaubt keine lokale Speicherung; der Verlauf verschwindet, wenn du den Tab schließt.",
+    "empty": "In diesem Browser gibt es noch kein Ergebnis. Mach den Test oder importiere einen früher exportierten Verlauf.",
+    "takeTest": "Zum Test",
+    "count": "Ergebnisse",
+    "latest": "Zuletzt",
+    "next": "Nächster Schritt",
+    "suggestLonger": "Dein letztes Ergebnis stammt aus einem kürzeren Test. {count} weitere Fragen ({mode}) schärfen es; deine bisherigen Antworten bleiben erhalten.",
+    "suggestLongerButton": "{count} weitere beantworten",
+    "suggestLowQuality": "Deine letzten Antworten folgen einem Muster, das die Auswertung unsicherer macht. Ein ruhiger zweiter Durchgang ergibt ein klareres Bild.",
+    "suggestStale": "Dein letztes Ergebnis ist {days} Tage alt. Ansichten ändern sich; ein neuer Durchgang zeigt, ob sich deine geändert haben.",
+    "suggestNone": "{days, plural, =0 {Du hast den Test heute gemacht.} one {Du hast den Test gestern gemacht.} other {Du hast den Test vor # Tagen gemacht.}} Ein neuer Durchgang nach einigen Monaten zeigt, wie sich deine Ansichten bewegen.",
+    "retake": "Test wiederholen",
+    "basis": "Auswertung",
+    "recomputed": "Aktuelle Auswertung",
+    "asTaken": "Wie damals",
+    "basisChanged": "Auswertung oder Fragen haben sich seit einigen dieser Ergebnisse geändert: „Aktuelle Auswertung“ liest deine gespeicherten Antworten neu, „Wie damals“ zeigt die Werte jenes Tages.",
+    "basisSame": "Alle Ergebnisse wurden mit der aktuellen Auswertung berechnet; beide Ansichten stimmen überein.",
+    "sections": {
+      "axes": "Achsen im Zeitverlauf",
+      "timeline": "Nächste Ideologie im Zeitverlauf",
+      "drift": "Was sich bewegt hat",
+      "compare": "Zwei Ergebnisse vergleichen",
+      "history": "Ergebnisse und Notizen",
+      "data": "Deine Daten"
+    },
+    "axesLead": "Eine Linie pro Achse, das älteste Ergebnis links. Das schraffierte Band ist der wahrscheinliche Bereich jedes Ergebnisses: breiter, wenn es unsicherer war.",
+    "sparkline": "{axis}: {values}",
+    "delta": "{value} seit dem ersten",
+    "flagLow": "Wenig verlässlich",
+    "flagVersion": "Ältere Auswertung",
+    "driftSpan": "Von {from} bis {to}:",
+    "driftMoved": "Um 15 Punkte oder mehr bewegt: {axes}.",
+    "driftNone": "Keine Achse hat sich um 15 Punkte oder mehr bewegt.",
+    "driftClosest": "Deine nächste Ideologie hat sich von {from} zu {to} geändert.",
+    "driftClosestSame": "Deine nächste Ideologie ist gleich geblieben.",
+    "driftNote": "Bewegungen unter 15 Punkten liegen im üblichen Unterschied zwischen zwei Durchgängen desselben Tests.",
+    "driftOne": "Mit einem zweiten Ergebnis zeigt dieser Abschnitt, welche Achsen sich bewegt haben.",
+    "compareOne": "Mit einem zweiten Ergebnis kannst du hier zwei beliebige vergleichen.",
+    "compareA": "Ergebnis A",
+    "compareB": "Ergebnis B",
+    "compareCaption": "A gegen B · mittlerer Unterschied {distance} Punkte",
+    "axis": "Achse",
+    "change": "B − A",
+    "notesLead": "Notizen sind privat: Sie bleiben in diesem Browser und erscheinen nur in deinem eigenen Export.",
+    "note": "Private Notiz",
+    "noteSaved": "Notiz in diesem Browser gespeichert.",
+    "confidence": "Sicherheit {percent} %",
+    "versions": "Auswertung {engine} · Fragen {bank}",
+    "flags": {
+      "straightline": "gleiche Antworten",
+      "acquiescence": "Zustimmungsmuster",
+      "contradiction": "Widersprüche",
+      "fast": "sehr schnell",
+      "sparse": "viel übersprungen"
+    },
+    "deleteOne": "Dieses Ergebnis löschen",
+    "deleteOneYes": "Ja, löschen",
+    "deletedOne": "Das Ergebnis wurde aus diesem Browser gelöscht.",
+    "dataLead": "Der Export speichert alle Ergebnisse, ihre Antworten und deine Notizen als eine Datei auf deinem Gerät. Der Import liest eine solche Datei wieder ein; vorhandene Ergebnisse werden übersprungen.",
+    "export": "Meine Daten exportieren",
+    "import": "Verlauf importieren",
+    "exportNote": "Die Datei enthält deine politischen Ansichten. Bewahre sie privat auf.",
+    "exported": "{count, plural, one {# Ergebnis exportiert.} other {# Ergebnisse exportiert.}}",
+    "imported": "{added, plural, one {# Ergebnis} other {# Ergebnisse}} importiert; {skipped} waren schon da.",
+    "importError": "Diese Datei ist kein Spectrum-Verlaufsexport; es wurde nichts importiert.",
+    "deleteLead": "„Alles löschen“ entfernt alle Ergebnisse, Notizen, den laufenden Test und deine Einstellungen aus diesem Browser. Das lässt sich nicht rückgängig machen; exportiere vorher, wenn du eine Kopie willst.",
+    "deleteAll": "Alles löschen",
+    "deleteConfirm": "Wirklich alles endgültig löschen?",
+    "deleteYes": "Ja, alles löschen",
+    "cancel": "Abbrechen",
+    "deletedAll": "Alles wurde aus diesem Browser gelöscht.",
+    "colA": "A",
+    "colB": "B",
+    "poles": "{neg} ↔ {pos}"
   }
 }

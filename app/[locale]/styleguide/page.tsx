@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { AxisBar, formatScore } from "@/components/charts/AxisBar";
 import { halftoneRadius, HatchPattern } from "@/components/charts/patterns";
 import { Radar } from "@/components/charts/Radar";
+import { Sparkline } from "@/components/charts/Sparkline";
 import { RangeSlider } from "@/components/charts/RangeSlider";
 import { SpectrumTag } from "@/components/charts/SpectrumMarker";
 import { EntryGlyph } from "@/components/glyphs/EntryGlyph";
@@ -119,6 +120,7 @@ const SECTIONS = [
   "legend",
   "strip",
   "radar",
+  "sparkline",
   "compass",
   "web",
   "images",
@@ -814,6 +816,32 @@ export default async function StyleguidePage({ params }: PageProps<"/[locale]/st
               dataLabel={t("dataTable")}
               axisHeader={t("radar.axis")}
             />
+          )}
+        </ModePair>
+      </section>
+
+      <section aria-labelledby="sg-sparkline" className="mt-20">
+        <SectionHeader number={n("sparkline")} id="sg-sparkline" title={t("sections.sparkline")}>
+          {t("sparkline.note")}
+        </SectionHeader>
+        <ModePair labels={modeLabels}>
+          {(mode) => (
+            <div className="grid gap-6">
+              <Sparkline
+                id={`${mode}-spark-many`}
+                description={t("sparkline.many")}
+                points={[
+                  { t: Date.UTC(2026, 0, 10), score: -40, low: -75, high: -5 },
+                  { t: Date.UTC(2026, 3, 2), score: -25, low: -45, high: -5 },
+                  { t: Date.UTC(2026, 7, 20), score: 10, low: -2, high: 22 },
+                ]}
+              />
+              <Sparkline
+                id={`${mode}-spark-one`}
+                description={t("sparkline.one")}
+                points={[{ t: Date.UTC(2026, 0, 10), score: 30, low: 5, high: 55 }]}
+              />
+            </div>
           )}
         </ModePair>
       </section>

@@ -1143,6 +1143,36 @@ the design without naming a home variant or a control style. Defaults, both chea
   - **Wahhabism instead of quietist Salafism:** Wahhabism is a state doctrine; quietist
     Salafism seeks no state power, so it does not meet the theocratic criterion.
 
+**D-092 · 🟢 · Phase 6: local-first dashboard (2026-10-24).** Phase 7 sync is postponed by the
+owner, so v1 ships local-first with export and import.
+- **Data:** IndexedDB only (`lib/storage/db.ts`). New: private notes on results, deleting one
+  result, deleting everything (drafts, results, settings) and importing a history, which
+  skips duplicates by date, mode and answers. Nothing is sent anywhere and nothing goes in a
+  URL.
+- **Reading, as taken or recomputed:**
+  - "Current engine" re-scores the stored answers and is the default.
+  - "As taken" shows the snapshot frozen at the time.
+  - A result whose engine or question-bank version differs is marked "Older scoring" (§6.8).
+- **Sections:**
+  - **Header:** result count, the latest closest ideology, and one next-step suggestion. In
+    order: a low-quality retake, a stale result (90+ days), a longer mode that keeps the
+    answers, or "retake in a few months".
+  - **Axes over time:** a sparkline per axis with each result's likely range as a hatched
+    band, using the same half-width as the results page.
+  - **Closest ideology over time.**
+  - **What moved:** first against latest, with moves of 15 points or more named. Under 15 is
+    treated as noise between sittings, a placeholder until the pilot measures test-retest.
+  - **Compare any two results:** an axis table with B − A and the mean difference.
+  - **Results and notes:** confidence, quality flags, versions and per-result delete.
+  - **Your data:** export, import and delete everything.
+- **Export file** `spectrum-history.json` (`lib/schema/history.ts`, strict schema, format
+  version 1) contains answers, snapshots and notes. The UI warns that it holds political
+  views.
+- **Deletes use an inline two-step confirm,** not browser dialogs.
+- **Offline:** the dashboard needs no account or server; reading it offline needs the
+  page cached. A service worker (PWA) stays in Phase 11.
+- **Trail playback** stays in Phase 8.
+
 ## H. Open items
 
 - **Owner's choice, defaults applied (D-084):** home A and sharp are live on the branch; confirm

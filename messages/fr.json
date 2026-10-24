@@ -309,7 +309,8 @@
       "links": "Liens",
       "segmented": "Contrôles segmentés",
       "modes": "Lignes de mode",
-      "answers": "Lignes de réponse"
+      "answers": "Lignes de réponse",
+      "sparkline": "Courbe d’évolution"
     },
     "palette": {
       "note": "Deux couleurs, inversées d’un mode à l’autre. Ni gris, ni accent, ni dégradé, ni ombre, ni transparence, ni flou, ni coins arrondis. Un contrôle CI refuse toute autre couleur."
@@ -531,6 +532,11 @@
       "bar": "{axis} : {score}, vers {pole}, probablement entre {low} et {high}",
       "posterFoot": "spectrum-six-rho.vercel.app",
       "legend": "Barre : score · bande hachurée : plage probable"
+    },
+    "sparkline": {
+      "note": "Un axe dans le temps sur le tableau de bord : le score en ligne avec des points carrés, la zone probable de chaque résultat en bande hachurée, le centre en pointillé. Un seul résultat est un point avec sa zone.",
+      "many": "Trois résultats passant de −40 à +10",
+      "one": "Un résultat à +30"
     }
   },
   "test": {
@@ -700,5 +706,84 @@
     "density": "Trame : points plus gros, plus d’idéologies à proximité",
     "youRange": "Vous : zone probable, plus large quand c’est moins sûr",
     "spectra": "Spectres"
+  },
+  "dashboard": {
+    "title": "Votre tableau de bord",
+    "lead": "Chaque résultat reste uniquement dans ce navigateur. Rien n’est envoyé ni n’apparaît dans la barre d’adresse.",
+    "loading": "Chargement de votre historique",
+    "notStored": "Ce navigateur n’autorise pas le stockage local ; cet historique disparaît à la fermeture de l’onglet.",
+    "empty": "Il n’y a pas encore de résultat dans ce navigateur. Faites le test ou importez un historique exporté auparavant.",
+    "takeTest": "Faire le test",
+    "count": "Résultats",
+    "latest": "Dernier",
+    "next": "Prochaine étape",
+    "suggestLonger": "Votre dernier résultat vient d’un test plus court. {count} questions de plus ({mode}) le préciseraient ; vos réponses sont conservées.",
+    "suggestLongerButton": "Répondre à {count} de plus",
+    "suggestLowQuality": "Vos dernières réponses suivent un schéma qui rend la lecture moins fiable. Refaire le test calmement donnera une image plus nette.",
+    "suggestStale": "Votre dernier résultat date de {days} jours. Les opinions changent ; refaire le test montre si les vôtres ont changé.",
+    "suggestNone": "{days, plural, =0 {Vous avez fait le test aujourd’hui.} one {Vous avez fait le test hier.} other {Vous avez fait le test il y a # jours.}} Le refaire dans quelques mois montre comment vos opinions évoluent.",
+    "retake": "Refaire le test",
+    "basis": "Lecture",
+    "recomputed": "Calcul actuel",
+    "asTaken": "Tel que passé",
+    "basisChanged": "Le calcul ou les questions ont changé depuis certains de ces résultats : « Calcul actuel » relit vos réponses enregistrées, « Tel que passé » montre les scores du jour.",
+    "basisSame": "Tous les résultats ont été calculés avec le calcul actuel ; les deux lectures concordent.",
+    "sections": {
+      "axes": "Les axes dans le temps",
+      "timeline": "Idéologie la plus proche dans le temps",
+      "drift": "Ce qui a bougé",
+      "compare": "Comparer deux résultats",
+      "history": "Résultats et notes",
+      "data": "Vos données"
+    },
+    "axesLead": "Une ligne par axe, le résultat le plus ancien à gauche. La bande hachurée est la zone probable de chaque résultat : plus large quand il était moins sûr.",
+    "sparkline": "{axis} : {values}",
+    "delta": "{value} depuis le premier",
+    "flagLow": "Peu fiable",
+    "flagVersion": "Ancien calcul",
+    "driftSpan": "Du {from} au {to} :",
+    "driftMoved": "Déplacement de 15 points ou plus : {axes}.",
+    "driftNone": "Aucun axe n’a bougé de 15 points ou plus.",
+    "driftClosest": "Votre idéologie la plus proche est passée de {from} à {to}.",
+    "driftClosestSame": "Votre idéologie la plus proche est restée la même.",
+    "driftNote": "Les écarts de moins de 15 points restent dans la différence habituelle entre deux passages du même test.",
+    "driftOne": "Avec un deuxième résultat, cette section montre quels axes ont bougé.",
+    "compareOne": "Avec un deuxième résultat, vous pouvez en comparer deux ici.",
+    "compareA": "Résultat A",
+    "compareB": "Résultat B",
+    "compareCaption": "A contre B · écart moyen {distance} points",
+    "axis": "Axe",
+    "change": "B − A",
+    "notesLead": "Les notes sont privées : elles restent dans ce navigateur et n’apparaissent que dans votre propre export.",
+    "note": "Note privée",
+    "noteSaved": "Note enregistrée dans ce navigateur.",
+    "confidence": "Confiance {percent} %",
+    "versions": "Calcul {engine} · questions {bank}",
+    "flags": {
+      "straightline": "réponses identiques",
+      "acquiescence": "tendance à approuver",
+      "contradiction": "contradictions",
+      "fast": "très rapide",
+      "sparse": "beaucoup de questions passées"
+    },
+    "deleteOne": "Supprimer ce résultat",
+    "deleteOneYes": "Oui, supprimer",
+    "deletedOne": "Le résultat a été supprimé de ce navigateur.",
+    "dataLead": "L’export enregistre tous les résultats, leurs réponses et vos notes dans un fichier sur votre appareil. L’import relit un tel fichier ; les résultats déjà présents sont ignorés.",
+    "export": "Exporter mes données",
+    "import": "Importer mon historique",
+    "exportNote": "Le fichier contient vos opinions politiques. Conservez-le en lieu sûr.",
+    "exported": "{count, plural, one {# résultat exporté.} other {# résultats exportés.}}",
+    "imported": "{added, plural, one {# résultat importé} other {# résultats importés}} ; {skipped} déjà présents.",
+    "importError": "Ce fichier n’est pas un export d’historique Spectrum ; rien n’a été importé.",
+    "deleteLead": "« Tout supprimer » efface tous les résultats, les notes, le test en cours et vos réglages de ce navigateur. C’est irréversible ; exportez d’abord si vous voulez une copie.",
+    "deleteAll": "Tout supprimer",
+    "deleteConfirm": "Tout supprimer définitivement ?",
+    "deleteYes": "Oui, tout supprimer",
+    "cancel": "Annuler",
+    "deletedAll": "Tout a été supprimé de ce navigateur.",
+    "colA": "A",
+    "colB": "B",
+    "poles": "{neg} ↔ {pos}"
   }
 }

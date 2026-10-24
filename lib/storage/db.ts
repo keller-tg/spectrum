@@ -31,6 +31,8 @@ export interface StoredResult {
   overallConfidence: number;
   qualityFlags: QualityFlag[];
   lowQuality: boolean;
+  /** Private note, written on the dashboard; never leaves the device except in an export. */
+  note?: string;
 }
 
 export interface Settings {
@@ -52,11 +54,39 @@ export interface Store {
   addResult(result: StoredResult): Promise<number>;
   latestResult(): Promise<StoredResult | undefined>;
   allResults(): Promise<StoredResult[]>;
+  putResult(result: StoredResult & { id: number }): Promise<void>;
+  deleteResult(id: number): Promise<void>;
+  /** Adds results (an import); returns how many were new. Duplicates are skipped. */
+  importResults(results: readonly StoredResult[]): Promise<number>;
+  /** Removes every draft, result and setting from this browser. */
+  clearAll(): Promise<void>;
   getSettings(): Promise<Settings>;
   putSettings(settings: Settings): Promise<void>;
 }
 
 const DEFAULT_SETTINGS: Settings = { autoAdvance: true };
+
+/** Same moment, same mode, same answers: the same result (imports never duplicate). */
+export const resultKey = (r: Pick<StoredResult, "createdAt" | "mode" | "answers">) =>
+  `${r.createdAt}|${r.mode}|${JSON.stringify(
+    Object.keys(r.answers)
+      .sort()
+      .map((k) => [k, r.answers[k]?.r ?? null]),
+  )}`;
+
+function fresh(existing: readonly StoredResult[], incoming: readonly StoredResult[]) {
+  const seen = new Set(existing.map(resultKey));
+  const out: StoredResult[] = [];
+  for (const r of incoming) {
+    const key = resultKey(r);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const { id: _drop, ...rest } = r;
+    void _drop;
+    out.push(rest);
+  }
+  return out;
+}
 const DRAFT_KEY = "current";
 
 function idbStore(db: IDBPDatabase<Schema>): Store {
@@ -71,6 +101,23 @@ function idbStore(db: IDBPDatabase<Schema>): Store {
       return cursor?.value;
     },
     allResults: () => db.getAll("results"),
+    putResult: async (result) => void (await db.put("results", result)),
+    deleteResult: (id) => db.delete("results", id),
+    importResults: async (incoming) => {
+      const add = fresh(await db.getAll("results"), incoming);
+      const tx = db.transaction("results", "readwrite");
+      await Promise.all([...add.map((r) => tx.store.add(r)), tx.done]);
+      return add.length;
+    },
+    clearAll: async () => {
+      const tx = db.transaction(["drafts", "results", "settings"], "readwrite");
+      await Promise.all([
+        tx.objectStore("drafts").clear(),
+        tx.objectStore("results").clear(),
+        tx.objectStore("settings").clear(),
+        tx.done,
+      ]);
+    },
     getSettings: async () => ({
       ...DEFAULT_SETTINGS,
       ...((await db.get("settings", "ui")) as Partial<Settings> | undefined),
@@ -91,11 +138,29 @@ function memoryStore(): Store {
     putDraft: async (draft) => void (memory.draft = draft),
     clearDraft: async () => void (memory.draft = undefined),
     addResult: async (result) => {
-      memory.results.push({ ...result, id: memory.results.length + 1 });
-      return memory.results.length;
+      const id = Math.max(0, ...memory.results.map((r) => r.id ?? 0)) + 1;
+      memory.results.push({ ...result, id });
+      return id;
     },
     latestResult: async () => memory.results.at(-1),
     allResults: async () => [...memory.results],
+    putResult: async (result) => {
+      memory.results = memory.results.map((r) => (r.id === result.id ? result : r));
+    },
+    deleteResult: async (id) => {
+      memory.results = memory.results.filter((r) => r.id !== id);
+    },
+    importResults: async (incoming) => {
+      const add = fresh(memory.results, incoming);
+      let next = Math.max(0, ...memory.results.map((r) => r.id ?? 0));
+      for (const r of add) memory.results.push({ ...r, id: ++next });
+      return add.length;
+    },
+    clearAll: async () => {
+      memory.draft = undefined;
+      memory.results = [];
+      memory.settings = DEFAULT_SETTINGS;
+    },
     getSettings: async () => memory.settings,
     putSettings: async (settings) => void (memory.settings = settings),
   };

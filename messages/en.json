@@ -309,7 +309,8 @@
       "links": "Links",
       "segmented": "Segmented controls",
       "modes": "Mode rows",
-      "answers": "Answer rows"
+      "answers": "Answer rows",
+      "sparkline": "Sparkline"
     },
     "palette": {
       "note": "Two colours, swapped between modes. No greys, accents, gradients, shadows, opacity, blur or rounded corners. A CI check rejects any other colour."
@@ -531,6 +532,11 @@
       "bar": "{axis}: {score}, toward {pole}, likely between {low} and {high}",
       "posterFoot": "spectrum-six-rho.vercel.app",
       "legend": "Bar: score · hatched band: likely range"
+    },
+    "sparkline": {
+      "note": "One axis over time on the dashboard: the score as a line with square dots, each result's likely range as a hatched band, the centre dashed. A single result is one dot with its range.",
+      "many": "Three results moving from −40 to +10",
+      "one": "One result at +30"
     }
   },
   "test": {
@@ -700,5 +706,84 @@
     "density": "Halftone: bigger dots, more ideologies nearby",
     "youRange": "You: likely range, wider when less certain",
     "spectra": "Spectra"
+  },
+  "dashboard": {
+    "title": "Your dashboard",
+    "lead": "Every result you take is kept in this browser only. Nothing here is sent anywhere or appears in the address bar.",
+    "loading": "Loading your history",
+    "notStored": "This browser does not allow local storage, so this history disappears when you close the tab.",
+    "empty": "There is no result in this browser yet. Take the test, or import a history you exported earlier.",
+    "takeTest": "Take the test",
+    "count": "Results",
+    "latest": "Latest",
+    "next": "Next step",
+    "suggestLonger": "Your latest result comes from a shorter test. {count} more questions ({mode}) would sharpen it; your answers so far are kept.",
+    "suggestLongerButton": "Answer {count} more",
+    "suggestLowQuality": "Your latest answers followed a pattern that makes the reading less reliable. A calm retake gives a clearer picture.",
+    "suggestStale": "Your latest result is {days} days old. Views change; a retake shows whether yours have.",
+    "suggestNone": "{days, plural, =0 {You took the test today.} one {You took the test yesterday.} other {You took the test # days ago.}} A retake after a few months shows how your views move.",
+    "retake": "Retake the test",
+    "basis": "Reading",
+    "recomputed": "Current engine",
+    "asTaken": "As taken",
+    "basisChanged": "The scoring or the questions changed since some of these results were taken: “Current engine” re-reads your stored answers, “As taken” shows the scores from that day.",
+    "basisSame": "All results were scored with the current engine, so both readings agree.",
+    "sections": {
+      "axes": "Axes over time",
+      "timeline": "Closest ideology over time",
+      "drift": "What moved",
+      "compare": "Compare two results",
+      "history": "Results and notes",
+      "data": "Your data"
+    },
+    "axesLead": "One line per axis, oldest result on the left. The hatched band is the likely range of each result: wider when that result was less certain.",
+    "sparkline": "{axis}: {values}",
+    "delta": "{value} since first",
+    "flagLow": "Low reliability",
+    "flagVersion": "Older scoring",
+    "driftSpan": "From {from} to {to}:",
+    "driftMoved": "Moved by 15 points or more: {axes}.",
+    "driftNone": "No axis moved by 15 points or more.",
+    "driftClosest": "Your closest ideology changed from {from} to {to}.",
+    "driftClosestSame": "Your closest ideology stayed the same.",
+    "driftNote": "Moves under 15 points are within the usual difference between two sittings of the same test.",
+    "driftOne": "With a second result, this section shows which axes moved.",
+    "compareOne": "With a second result, you can compare any two here.",
+    "compareA": "Result A",
+    "compareB": "Result B",
+    "compareCaption": "A against B · mean difference {distance} points",
+    "axis": "Axis",
+    "change": "B − A",
+    "notesLead": "Notes are private: they stay in this browser and appear only in your own export.",
+    "note": "Private note",
+    "noteSaved": "Note saved in this browser.",
+    "confidence": "Confidence {percent}%",
+    "versions": "Engine {engine} · questions {bank}",
+    "flags": {
+      "straightline": "same answers",
+      "acquiescence": "agreeing pattern",
+      "contradiction": "contradictions",
+      "fast": "very fast",
+      "sparse": "many skips"
+    },
+    "deleteOne": "Delete this result",
+    "deleteOneYes": "Yes, delete it",
+    "deletedOne": "The result was deleted from this browser.",
+    "dataLead": "Export saves every result, its answers and your notes as one file on your device. Import reads such a file back; results already here are skipped.",
+    "export": "Export my data",
+    "import": "Import my history",
+    "exportNote": "The file contains your political views. Keep it somewhere private.",
+    "exported": "{count, plural, one {# result exported.} other {# results exported.}}",
+    "imported": "Imported {added, plural, one {# result} other {# results}}; {skipped} already here.",
+    "importError": "That file is not a Spectrum history export, so nothing was imported.",
+    "deleteLead": "Delete everything removes all results, notes, the test in progress and your settings from this browser. It cannot be undone; export first if you want a copy.",
+    "deleteAll": "Delete everything",
+    "deleteConfirm": "Delete everything for good?",
+    "deleteYes": "Yes, delete everything",
+    "cancel": "Cancel",
+    "deletedAll": "Everything was deleted from this browser.",
+    "colA": "A",
+    "colB": "B",
+    "poles": "{neg} ↔ {pos}"
   }
 }
