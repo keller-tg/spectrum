@@ -2,14 +2,19 @@
  * Regenerates data/<catalog>/index.ts from the files in that folder, so adding
  * an entry is "drop a file, run npm run gen:index".
  */
-import { readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const CATALOGS = [
   { dir: "data/ideologies", type: "IdeologyInput", exportName: "IDEOLOGIES" },
+  { dir: "data/countries", type: "CountryInput", exportName: "COUNTRIES" },
+  { dir: "data/regimes", type: "RegimeInput", exportName: "REGIMES" },
+  { dir: "data/figures", type: "FigureInput", exportName: "FIGURES" },
+  { dir: "data/parties", type: "PartyInput", exportName: "PARTIES" },
 ] as const;
 
 for (const { dir, type, exportName } of CATALOGS) {
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
   const files = readdirSync(dir)
     .filter((f) => f.endsWith(".ts") && f !== "index.ts" && !f.endsWith(".test.ts"))
     .sort();

@@ -7,7 +7,11 @@
  */
 import { mkdirSync } from "node:fs";
 import sharp from "sharp";
+import { FIGURES } from "../data/figures";
 import { IMAGES } from "../data/images";
+
+/** Figure portraits share one size, so every card lines up. */
+const PORTRAIT = { width: 240, height: 300 } as const;
 
 const BAYER_8 = [
   0, 32, 8, 40, 2, 34, 10, 42, 48, 16, 56, 24, 50, 18, 58, 26, 12, 44, 4, 36, 14, 46, 6, 38, 60, 28,
@@ -28,10 +32,25 @@ export function orderedDither(grey: Uint8Array, width: number, height: number): 
 
 async function main() {
   mkdirSync("public/images", { recursive: true });
-  for (const image of IMAGES) {
+  const jobs = [
+    ...IMAGES.map((i) => ({
+      id: i.id,
+      file: i.file,
+      width: i.width,
+      height: i.height,
+      position: "centre",
+    })),
+    ...FIGURES.flatMap((f) =>
+      // Portraits crop to the most salient region (the face), not the geometric centre.
+      f.image
+        ? [{ id: `figure-${f.id}`, file: f.image.file, ...PORTRAIT, position: "attention" }]
+        : [],
+    ),
+  ];
+  for (const image of jobs) {
     const { data, info } = await sharp(`data/images/${image.file}`)
       .greyscale()
-      .resize({ width: image.width, height: image.height, fit: "cover" })
+      .resize({ width: image.width, height: image.height, fit: "cover", position: image.position })
       .normalise()
       .raw()
       .toBuffer({ resolveWithObject: true });

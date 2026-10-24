@@ -253,3 +253,8 @@ export type Country = z.infer<typeof countrySchema>;
 export type Regime = z.infer<typeof regimeSchema>;
 export type Figure = z.infer<typeof figureSchema>;
 export type Party = z.infer<typeof partySchema>;
+
+export type CountryInput = z.input<typeof countrySchema>;
+export type RegimeInput = z.input<typeof regimeSchema>;
+export type FigureInput = z.input<typeof figureSchema>;
+export type PartyInput = z.input<typeof partySchema>;
